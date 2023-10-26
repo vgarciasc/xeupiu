@@ -50,7 +50,6 @@ def get_window_by_title(window_title):
     # or just the client area.
     result = windll.user32.PrintWindow(hwnd, saveDC.GetSafeHdc(), 3)
     # result = windll.user32.PrintWindow(hwnd, saveDC.GetSafeHdc(), 0)
-    print(result)
 
     bmpinfo = saveBitMap.GetInfo()
     bmpstr = saveBitMap.GetBitmapBits(True)
