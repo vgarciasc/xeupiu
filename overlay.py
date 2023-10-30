@@ -3,8 +3,9 @@ import tkinter as tk
 
 bg_img = None
 
+
 class OverlayWindow:
-    def __init__(self, x_pos=None, y_pos=None):
+    def __init__(self, x_pos: int = None, y_pos: int = None):
         self.root = tk.Tk()
         self.root.attributes("-alpha", 0.8)  # Make the window semi-transparent
         self.root.attributes("-topmost", True)  # Make the window semi-transparent
@@ -29,22 +30,25 @@ class OverlayWindow:
         # self.canvas.create_image(0, 0, image=bg_img, anchor='nw')
         # self.canvas.pack(expand=True, fill='both')
 
-        self.label = tk.Label(self.root, text="asdf", font=("Arial", 16), fg='white',
+        self.label = tk.Label(self.root, text="asdf", font=("Verdana", 16), fg='white',
                               wraplength=self.window_width, justify='left',
                               image=bg_img, compound='center')
         self.label.pack(expand=True, fill='both')
 
+    def update(self, new_text: str, char_name: str = None) -> None:
+        if char_name:
+            new_text = f"{char_name}: \"{new_text}\""
 
-    def update(self, new_text):
         self.label.config(text=new_text)
         self.root.update_idletasks()
         self.root.update()
 
-    def update_text(self, new_text):
+    def update_text(self, new_text: str) -> None:
         self.label.config(text=new_text)
 
     def start(self):
         self.root.mainloop()
+
 
 if __name__ == "__main__":
     overlay = OverlayWindow()

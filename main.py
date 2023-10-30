@@ -19,13 +19,14 @@ def save_everything(img_ss, img_tb, img_tb_bw, lines):
 
 
 window = OverlayWindow(670, 480)
-df = db.get_database()
+df_text = db.get_text_database()
+df_names = db.get_names_database()
 mocr = MangaOcr()
 
 history_size = 3
 history_text_ocr_lines = []
 iters_w_same_text = 0
-openai_requests = 0
+translation_requests = 0
 
 curr_line_cache = []
 for iter in range(10000):
@@ -39,6 +40,7 @@ for iter in range(10000):
     img_tb_bw = imp.convert_emerald_textbox_to_black_and_white(img_tb)
     img_tb_name, img_tb_lines = imp.separate_into_lines(img_tb_bw)
 
+    text_ocr_name = None
     img_tb_name = imp.trim_text(img_tb_name)
     if not imp.check_is_text_empty(img_tb_name):
         text_ocr_name = mocr(img_tb_name)
@@ -92,22 +94,22 @@ for iter in range(10000):
             curr_line_cache = text_ocr_lines
 
     # Translation
+    display_char_name = None
     display_text = "".join(curr_line_cache)
+
     if has_text_stopped_printing and tr.should_translate_text(display_text):
-        # display_text = "Translated:\n" + display_text
-        print(f"Translating: {display_text}")
-        translated_text = db.retrieve_translation(df, display_text)
-        if translated_text is None:
-            openai_requests += 1
-            print(f"Sending to OpenAI... # of requests already sent: {openai_requests}")
-            translated_text = tr.translate_jpn2eng(display_text)
-            df = db.add_translation(df, display_text, translated_text)
-        else:
-            print(f"Found translation in database: {translated_text}")
-        display_text = translated_text
+        display_char_name = db.retrieve_translated_name(df_names, text_ocr_name)
+        if display_char_name is None:
+            display_char_name = tr.translate_text(text_ocr_name, "google_cloud")
+            df_names = db.add_translated_name(df_names, text_ocr_name, display_char_name)
+
+        display_text = db.retrieve_translated_text(df_text, display_text, char_name_jp=display_char_name)
+        if display_text is None:
+            display_text = tr.translate_text(display_text, "google_cloud")
+            df_text = db.add_translated_text(df_text, display_text, display_text, char_name=display_char_name)
 
     # Display
-    window.update(display_text)
+    window.update(display_text, display_char_name)
 
     # Housekeeping
     tok = time.perf_counter_ns()
