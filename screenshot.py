@@ -29,7 +29,7 @@ def get_window_by_title(window_title):
 
     win32gui.EnumWindows(enum_cb, toplist)
 
-    window = [(hwnd, title) for hwnd, title in winlist if window_title in title.lower()]
+    window = [(hwnd, title) for hwnd, title in winlist if window_title.lower() in title.lower()]
     window = window[0]
     hwnd = window[0]
 
@@ -73,6 +73,6 @@ if __name__ == "__main__":
     #     screen_pixels.save("data/tmp.png")
 
     # Capture a specific window
-    window_pixels = get_window_by_title("gameplay_emerald.mp4")
+    window_pixels = get_window_by_title("Tokimeki Memorial")
     if window_pixels:
         window_pixels.save("data/tmp.png")

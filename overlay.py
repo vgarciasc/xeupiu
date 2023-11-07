@@ -30,16 +30,30 @@ class OverlayWindow:
         # self.canvas.create_image(0, 0, image=bg_img, anchor='nw')
         # self.canvas.pack(expand=True, fill='both')
 
-        self.label = tk.Label(self.root, text="asdf", font=("Verdana", 16), fg='white',
+        # self.text = self.canvas.create_text(10, 10, anchor="nw", text="Hello", font=("Verdana", 16),
+        #                                     fill='white', width=self.window_width, justify='left')
+        #
+        # self.text.insert("insert", "Hello")
+        # self.text.insert("insert", " World!")
+        # self.text.tag_add("start", "1.0", "1.5")
+        # self.text.tag_config("start", foreground="red")
+        # self.text.pack(expand=True, fill='both')
+
+        self.label = tk.Label(self.root, text="asdf", font=("Courier", 16), fg='white',
                               wraplength=self.window_width, justify='left',
                               image=bg_img, compound='center')
-        self.label.pack(expand=True, fill='both')
+        self.label.pack()
+
 
     def update(self, new_text: str, char_name: str = None) -> None:
         if char_name:
-            new_text = f"{char_name}: \"{new_text}\""
+            new_text = char_name + "\n  \"" + new_text + "\""
 
         self.label.config(text=new_text)
+
+        # self.text.delete("1.0", "end")
+        # self.text.insert("insert", new_text)
+
         self.root.update_idletasks()
         self.root.update()
 
@@ -54,5 +68,5 @@ if __name__ == "__main__":
     overlay = OverlayWindow()
 
     for _ in range(1000):
-        overlay.update(time.strftime("%H:%M:%S") + " lorem ipsum dorem sit amet " * 5)
+        overlay.update(time.strftime("%H:%M:%S") + " lorem ipsum dorem sit amet " *1, None)
         time.sleep(0.1)
