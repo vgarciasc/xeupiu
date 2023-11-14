@@ -1,5 +1,6 @@
 import time
 import pandas as pd
+from PIL import Image
 
 from thefuzz import fuzz
 from manga_ocr import MangaOcr
@@ -21,9 +22,9 @@ def save_everything(img_ss, img_tb, img_tb_bw, lines):
 window = OverlayWindow(670, 480)
 df_text = db.get_text_database()
 df_names = db.get_names_database()
-mocr = MangaOcr()
+# mocr = MangaOcr()
 
-history_size = 3
+history_size = 10
 history_text_ocr_lines = []
 iters_w_same_text = 0
 translation_requests = 0
@@ -36,26 +37,24 @@ for iter in range(10000):
     _mid_scroll = False
 
     tik = time.perf_counter_ns()
-    img_ss = get_window_by_title("gameplay_emerald.mp4")
-    img_tb = img_ss.crop((60, 370, 60 + 508, 370 + 104))
+    img_ss = get_window_by_title("gameplay_emerald")
+    img_tb = img_ss.crop((60, 355, 60 + 508, 355 + 96))
     img_tb = img_tb.resize((img_tb.size[0] // 2, img_tb.size[1] // 2), Image.NEAREST)
 
     img_tb_bw = imp.convert_emerald_textbox_to_black_and_white(img_tb)
     img_tb_name, img_tb_lines = imp.separate_into_lines(img_tb_bw)
 
     text_ocr_name = None
-    img_tb_name = imp.trim_text(img_tb_name)
     if not imp.check_is_text_empty(img_tb_name):
-        # text_ocr_line = poorcr.run_ocr(char_db, img_tb_name)
-        text_ocr_name = mocr(img_tb_name)
+        text_ocr_name = poorcr.run_ocr(char_db, img_tb_name)
+        # text_ocr_name = mocr(img_tb_name)
 
     text_ocr_lines = []
     for i, img_tb_line in enumerate(img_tb_lines):
-        img_tb_line = imp.trim_text(img_tb_line)
-
         if not imp.check_is_text_empty(img_tb_line):
-            text_ocr_line = mocr(img_tb_line)
-            # text_ocr_line = poorcr.run_ocr(char_db, img_tb_line)
+            # img_tb_line = imp.trim_text(img_tb_line)
+            # text_ocr_line = mocr(img_tb_line)
+            text_ocr_line = poorcr.run_ocr(char_db, img_tb_line)
             text_ocr_lines.append(text_ocr_line)
 
             if text_ocr_line == "そういえば、":
@@ -105,11 +104,8 @@ for iter in range(10000):
     display_char_name = None
     display_text = "".join(curr_line_cache)
 
-    save_everything(img_ss, img_tb, img_tb_bw, img_tb_lines)
-
     # if has_text_stopped_printing and tr.should_translate_text(display_text):
-    if False:
-    # if tr.should_translate_text(display_text):
+    if tr.should_translate_text(display_text):
         display_char_name = db.retrieve_translated_name(df_names, text_ocr_name)
         if display_char_name is None and has_text_stopped_printing:
             display_char_name = tr.translate_text(text_ocr_name, "google_cloud")

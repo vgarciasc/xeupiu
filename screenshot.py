@@ -73,6 +73,6 @@ if __name__ == "__main__":
     #     screen_pixels.save("data/tmp.png")
 
     # Capture a specific window
-    window_pixels = get_window_by_title("Tokimeki Memorial")
+    window_pixels = get_window_by_title("gameplay_emerald")
     if window_pixels:
         window_pixels.save("data/tmp.png")

@@ -47,7 +47,6 @@ def translate_google_cloud(text, project_id="xeupiu"):
     return response.translations[0].translated_text
 
 def translate_text(text, backend="google_free"):
-    # return "disabled"
     if backend == "google_free":
         return translate_google_free(text)
     elif backend == "google_cloud":

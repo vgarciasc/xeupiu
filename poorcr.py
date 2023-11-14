@@ -3,10 +3,14 @@ from PIL import Image
 from image_processing import extract_characters, trim_char
 import glob
 
+
 def load_character_db():
     char_images = {}
 
-    for filename in glob.glob('data/characters/hiragana/*.png'):
+    for filename in glob.glob('data/characters/hiragana/*.png') + \
+                    glob.glob('data/characters/other/*.png') + \
+                    glob.glob('data/characters/kanji/*.png'):
+
         if filename.endswith('chars.png'):
             continue
 
@@ -19,34 +23,25 @@ def load_character_db():
         else:
             char_images[char] = [char_img]
 
-    return char_images
+    char_db_str = []
+    char_db_np = []
+    for char, char_img_nps in char_images.items():
+        for char_img_np in char_img_nps:
+            char_db_np.append(char_img_np)
+            char_db_str.append(char)
+
+    return np.array(char_db_np), char_db_str
 
 def get_char_match(db, test_img_np):
-    test_img_np = trim_char(test_img_np)
+    if np.all(test_img_np):
+        return ' ', np.zeros((11, 11))
 
-    min_dist = 100000
-    min_char = None
-    min_img_np = None
-    for char, char_img_nps in db.items():
-        for char_img_np in char_img_nps:
-            for row in range(11):
-                # create an image where this row is duplicated
-                _char_img_np = np.zeros((char_img_np.shape[0] + 1, char_img_np.shape[1]))
-                _char_img_np[:row, :] = char_img_np[:row, :]
-                _char_img_np[row, :] = char_img_np[row, :]
-                _char_img_np[row + 1, :] = char_img_np[row, :]
-                _char_img_np[row + 1:, :] = char_img_np[row:, :]
-                _char_img_np = trim_char(_char_img_np)
+    char_db_np, char_db_str = db
 
-                # if they dont have the same shape, continue
-                if _char_img_np.shape != test_img_np.shape:
-                    continue
-
-                dist = np.sum(np.abs(test_img_np - _char_img_np))
-                if dist < min_dist:
-                    min_dist = dist
-                    min_char = char
-                    min_img_np = char_img_np
+    dist = np.sum(np.abs(test_img_np - char_db_np), axis=(1, 2))
+    min_char = char_db_str[np.argmin(dist)]
+    min_img_np = char_db_np[np.argmin(dist)]
+    min_dist = np.min(dist)
 
     if min_dist > 10:
         min_char = "?"
@@ -54,11 +49,9 @@ def get_char_match(db, test_img_np):
 
     return min_char, min_img_np
 
+
 def run_ocr(db, img_line_bw):
     char_imgs = extract_characters(img_line_bw)
-    for i, char_img in enumerate(char_imgs):
-        char_img.save(f"data/tmp_char_{i}.png")
-
     text = ""
     for char_img in char_imgs:
         char_img_np = np.array(char_img.convert('1'))
@@ -67,34 +60,19 @@ def run_ocr(db, img_line_bw):
         char, _ = get_char_match(db, char_img_np)
         text += char
 
+    text = text.replace(" ", "")
     return text
+
 
 if __name__ == "__main__":
     char_db = load_character_db()
 
-    # for filename in glob.glob('data/characters/hiragana/*.png'):
-    #     if filename.endswith('chars.png'):
-    #         continue
-    #
-    #     test_char = filename.split('/')[-1].split('.')[0].split('_')[-1]
-    #     test_char_img = Image.open(filename)
-    #     test_char_img_np = np.array(test_char_img.convert('1'))
-    #     test_char_img_np = test_char_img_np.astype(np.int32)
-    #
-    #     min_char, min_img_np = get_char_match(char_db, test_char_img_np)
-    #
-    #     if min_char != test_char:
-    #         raise Exception(f"test_char: {test_char} | min_char: {min_char}")
-    #
-    # print(f"Passed all tests.")
-
     chars = []
-    img = Image.open('data/tmp_line_2.png')
+    img = Image.open('data/tmp_line_0.png')
     char_imgs = extract_characters(img)
-    char_imgs[-1].save("data/tmp_char.png")
-    # foo = np.array(char_imgs[-1].convert('1')).astype(np.int32)
-    # txt = get_char_match(char_db, foo)
-    # print(txt[0])
+    for char_img in char_imgs:
+        char_img.save(f"data/tmp_char_{len(chars)}.png")
+        chars.append(np.array(char_img.convert('1')).astype(np.int32))
 
-    # text = run_ocr(char_db, img)
-    # print(text)
+    text = run_ocr(char_db, img)
+    print(text)
