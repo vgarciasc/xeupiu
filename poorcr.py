@@ -53,6 +53,7 @@ class PoorCR:
 
         return min_char, min_img_np
 
+    #TODO: should try to calibrate every time a '?' is found
     def calibrate(self, img_line_bw_np):
         for pad_x in range(0, 10):
             for pad_y in range(0, 10):
