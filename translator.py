@@ -47,6 +47,10 @@ def translate_google_cloud(text, project_id="xeupiu"):
     return response.translations[0].translated_text
 
 def translate_text(text, backend="google_free"):
+    if text[0] in ["「", "『", "【", "（", "［", "《", "〈", "〔", "｛", "〖", "〘", "〚", "〝"]:
+        if text[-1] not in ["」", "』", "】", "）", "］", "》", "〉", "〕", "｝", "〗", "〙", "〛", "〞"]:
+            text = text[1:]
+
     if backend == "google_free":
         return translate_google_free(text)
     elif backend == "google_cloud":

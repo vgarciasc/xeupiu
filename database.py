@@ -24,6 +24,10 @@ def get_names_database() -> pd.DataFrame:
 def retrieve_translated_text(df: pd.DataFrame, text_jp: str, char_name_en: str = None,
                              fuzziness: int = 100, is_text_jp_complete: bool = True):
 
+    if not is_text_jp_complete and len(text_jp) < 5:
+        # wait until more is revealed
+        return 0, None, None
+
     if char_name_en is not None:
         df = df[df["Character name"] == char_name_en]
 

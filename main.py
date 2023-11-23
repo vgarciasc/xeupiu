@@ -38,15 +38,15 @@ for iter in range(10000):
 
     tik = time.perf_counter_ns()
     img_ss = get_window_by_title("gameplay_emerald")
-    img_tb = img_ss.crop((60, 355, 60 + 508, 355 + 96))
-    img_tb = img_tb.resize((img_tb.size[0] // 2, img_tb.size[1] // 2), Image.NEAREST)
+    img_ss = img_ss.resize((img_ss.size[0] // 2, img_ss.size[1] // 2), Image.NEAREST)
+    img_tb = img_ss.crop((30, 178, 30 + 254, 178 + 48))
 
     img_tb_bw = imp.convert_emerald_textbox_to_black_and_white(img_tb)
     img_tb_name, img_tb_lines = imp.separate_into_lines(img_tb_bw)
 
     text_ocr_name = None
     if not imp.check_is_text_empty(img_tb_name):
-        text_ocr_name = poorcr.run_ocr(char_db, img_tb_name)
+        text_ocr_name = poorcr.run_ocr(char_db, img_tb_name, only_perfect=True)
         # text_ocr_name = mocr(img_tb_name)
 
     text_ocr_lines = []
@@ -54,7 +54,7 @@ for iter in range(10000):
         if not imp.check_is_text_empty(img_tb_line):
             # img_tb_line = imp.trim_text(img_tb_line)
             # text_ocr_line = mocr(img_tb_line)
-            text_ocr_line = poorcr.run_ocr(char_db, img_tb_line)
+            text_ocr_line = poorcr.run_ocr(char_db, img_tb_line, only_perfect=True)
             text_ocr_lines.append(text_ocr_line)
 
             if text_ocr_line == "そういえば、":
@@ -104,8 +104,12 @@ for iter in range(10000):
     display_char_name = None
     display_text = "".join(curr_line_cache)
 
-    # if has_text_stopped_printing and tr.should_translate_text(display_text):
-    if tr.should_translate_text(display_text):
+    if "?" in display_text:
+        save_everything(img_ss, img_tb, img_tb_bw, img_tb_lines)
+        break
+
+    should_translate = True
+    if tr.should_translate_text(display_text) and should_translate:
         display_char_name = db.retrieve_translated_name(df_names, text_ocr_name)
         if display_char_name is None and has_text_stopped_printing:
             display_char_name = tr.translate_text(text_ocr_name, "google_cloud")
@@ -138,20 +142,8 @@ for iter in range(10000):
                 len_matched_text = len(matched_jp_text)
                 n_characters_remain = len_matched_text - len_display_text
 
-                _words = translated_text.split(" ")
-                _line_char_count = 3
-                _output = []
-                for word in _words:
-                    _line_char_count += len(word) + 1
-                    if _line_char_count > 39:
-                        _output.append("\n")
-                        _line_char_count = len(word)
-                    _output.append(word)
-                    _output.append(" ")
-                if len_display_text < len_matched_text:
-                    display_text = "".join(_output)[:-n_characters_remain]
-                else:
-                    display_text = translated_text
+                if n_characters_remain > 0:
+                    display_text = translated_text[:-n_characters_remain] + " " * n_characters_remain
 
     # Display
     window.update(display_text, display_char_name)

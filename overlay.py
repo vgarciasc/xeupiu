@@ -47,7 +47,7 @@ class OverlayWindow:
 
     def update(self, new_text: str, char_name: str = None) -> None:
         if char_name:
-            new_text = char_name + "\n  \"" + new_text + "\""
+            new_text = char_name + "\n  " + new_text + ""
 
         self.label.config(text=new_text)
 
