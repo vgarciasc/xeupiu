@@ -94,8 +94,8 @@ def check_is_text_empty(img_tb):
     return np.all(red > 200) | np.all(green > 200) | np.all(blue > 200)
 
 
-def extract_characters(img_line):
-    img_line_np = np.array(img_line.convert('1'))
+def extract_characters(img_line_np):
+    # img_line_np = np.array(img_line.convert('1'))
 
     char_w, char_h = 11, 11
     offset_y = 1

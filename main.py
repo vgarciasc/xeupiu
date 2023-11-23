@@ -1,4 +1,6 @@
 import time
+
+import numpy as np
 import pandas as pd
 from PIL import Image
 
@@ -9,7 +11,7 @@ from overlay import OverlayWindow
 import translator as tr
 import image_processing as imp
 import database as db
-import poorcr
+from poorcr import PoorCR
 
 def save_everything(img_ss, img_tb, img_tb_bw, lines):
     img_ss.save("data/tmp_window.png")
@@ -22,19 +24,18 @@ def save_everything(img_ss, img_tb, img_tb_bw, lines):
 window = OverlayWindow(670, 480)
 df_text = db.get_text_database()
 df_names = db.get_names_database()
-# mocr = MangaOcr()
 
+textbox_offset = None
 history_size = 10
 history_text_ocr_lines = []
 iters_w_same_text = 0
 translation_requests = 0
 
-char_db = poorcr.load_character_db()
+pcr = PoorCR(only_perfect=True)
 
 curr_line_cache = []
 for iter in range(10000):
     print("--------------------")
-    _mid_scroll = False
 
     tik = time.perf_counter_ns()
     img_ss = get_window_by_title("gameplay_emerald")
@@ -44,29 +45,17 @@ for iter in range(10000):
     img_tb_bw = imp.convert_emerald_textbox_to_black_and_white(img_tb)
     img_tb_name, img_tb_lines = imp.separate_into_lines(img_tb_bw)
 
-    text_ocr_name = None
-    if not imp.check_is_text_empty(img_tb_name):
-        text_ocr_name = poorcr.run_ocr(char_db, img_tb_name, only_perfect=True)
-        # text_ocr_name = mocr(img_tb_name)
-
     text_ocr_lines = []
     for i, img_tb_line in enumerate(img_tb_lines):
         if not imp.check_is_text_empty(img_tb_line):
-            # img_tb_line = imp.trim_text(img_tb_line)
-            # text_ocr_line = mocr(img_tb_line)
-            text_ocr_line = poorcr.run_ocr(char_db, img_tb_line, only_perfect=True)
+            text_ocr_line = pcr.detect(img_tb_line)
             text_ocr_lines.append(text_ocr_line)
 
-            if text_ocr_line == "そういえば、":
-                # save_everything(img_ss, img_tb, img_tb_bw, img_tb_lines)
-                # raise Exception("Text was empty.")
-                _mid_scroll = True
-                break
+    text_ocr_name = None
+    if not imp.check_is_text_empty(img_tb_name):
+        text_ocr_name = pcr.detect(img_tb_name)
 
-    if _mid_scroll:
-        continue
-
-    if text_ocr_lines == []:
+    if not text_ocr_lines:
         continue
 
     # Text has stopped printing when all texts in history are the same
@@ -106,9 +95,11 @@ for iter in range(10000):
 
     if "?" in display_text:
         save_everything(img_ss, img_tb, img_tb_bw, img_tb_lines)
+        print(f"Text was '{display_text}'")
+        print("Exiting...")
         break
 
-    should_translate = True
+    should_translate = False
     if tr.should_translate_text(display_text) and should_translate:
         display_char_name = db.retrieve_translated_name(df_names, text_ocr_name)
         if display_char_name is None and has_text_stopped_printing:
