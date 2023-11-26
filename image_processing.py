@@ -27,13 +27,10 @@ def separate_into_lines(img_tb):
 
     img_name = None
     if is_divider_line_there:
-        img_name = img_tb.crop((1, 1, 42, 14))
-        leftmost_black = np.min(np.where(np.array(img_name.convert('1')) == 0)[1])
-        if leftmost_black > 6:
-            img_name = img_name.crop((7, 0, 7 + 2*11 + 3 + 1 + 1, 13))
+        img_name = img_tb.crop((0, 0, 42, 16))
         _x = 43
 
-    img_text = img_tb.crop((_x, 0, _x + 211, 52))
+    img_text = img_tb.crop((_x, 0, img_tb.width, img_tb.height))
     red, green, blue = np.array(img_text.convert('RGB')).T
     black_pts_y = np.where(red != 255)[1]
 
@@ -43,7 +40,7 @@ def separate_into_lines(img_tb):
         for i in range(3):
             if _y + 16 * (i + 1) > 52:
                 break
-            img_line = img_tb.crop((_x, _y + 16 * i, _x + 211, _y + 16 * (i + 1) - 2))
+            img_line = img_tb.crop((_x, _y + 16 * i, img_tb.width, _y + 16 * (i + 1) - 2))
             img_lines.append(img_line)
 
     return img_name, img_lines
@@ -104,7 +101,7 @@ def extract_characters(img_line_np):
 
     char_imgs = []
     for i in range(0, 100):
-        if offset_x + char_w > img_line_np.shape[1]:
+        if offset_x + char_w > img_line_np.shape[1] or offset_y + char_h > img_line_np.shape[0]:
             break
 
         char = img_line_np[offset_y:(offset_y + char_h), offset_x:(offset_x + char_w)]
@@ -120,7 +117,15 @@ if __name__ == "__main__":
     img_ss = Image.open("data/tmp.png")
     img_ss = img_ss.resize((img_ss.size[0] // 2, img_ss.size[1] // 2), Image.NEAREST)
 
-    img_tb = img_ss.crop((30, 178, 30 + 254, 178 + 48))
+    img_tb = img_ss.crop((30, 176, 30 + 254, 176 + 48))
+
+    img_cs = img_tb.crop((245, 27, 254, 48))
+    red, green, blue = np.array(img_cs.convert('RGB')).T
+    cursor_is_there = np.any((blue > 140) & (red < 100))
+
+    if cursor_is_there:
+        img_tb = img_tb.crop((0, 0, 245, 48))
+
     img_tb.save("data/tmp_text.png")
 
     img_tb_bw = convert_emerald_textbox_to_black_and_white(img_tb)

@@ -5,8 +5,9 @@ import glob
 
 
 class PoorCR:
-    def __init__(self, only_perfect=False):
+    def __init__(self, only_perfect=False, always_recalibrate=False):
         self.only_perfect = only_perfect
+        self.always_recalibrate = always_recalibrate
 
         self.calibration = None
         self.load_character_db()
@@ -14,14 +15,8 @@ class PoorCR:
     def detect(self, img_line_bw, is_calibrating=False):
         img_line_bw_np = np.array(img_line_bw.convert('1'))
 
-        if self.calibration is None and not is_calibrating:
-            self.calibrate(img_line_bw_np)
-            print(f"Calibrated. Offset: {self.calibration}")
-
-        if self.calibration != (0, 0) and self.calibration is not None:
-            img_line_bw_np = np.pad(img_line_bw_np, ((self.calibration[0], 0),
-                                                     (self.calibration[1], 0)),
-                                    'constant', constant_values=1)
+        if not is_calibrating:
+            img_line_bw_np = self.apply_calibration(img_line_bw_np)
 
         char_imgs = extract_characters(img_line_bw_np)
         text = ""
@@ -33,6 +28,15 @@ class PoorCR:
             text += char
 
         text = text.replace(" ", "")
+
+        if "?" in text:
+            if is_calibrating:
+                return text
+            else:
+                img_line_bw_np = np.array(img_line_bw.convert('1'))
+                self.calibrate(img_line_bw_np)
+                return self.detect(img_line_bw)
+
         return text
 
     def get_char_match(self, test_img_np):
@@ -53,16 +57,27 @@ class PoorCR:
 
         return min_char, min_img_np
 
-    #TODO: should try to calibrate every time a '?' is found
+    # TODO: should try to calibrate every time a '?' is found
     def calibrate(self, img_line_bw_np):
-        for pad_x in range(0, 10):
-            for pad_y in range(0, 10):
+        for pad_x in range(0, 5):
+            for pad_y in range(0, 5):
                 _img = Image.fromarray(np.pad(img_line_bw_np, ((pad_x, 0), (pad_y, 0)),
                                               mode='constant', constant_values=1))
                 text = self.detect(_img, is_calibrating=True)
 
-                if not "?" in text:
+                if not "?" in text and text != '':
                     self.calibration = (pad_x, pad_y)
+                    return
+
+        for off_x in range(0, img_line_bw_np.shape[1] - 11):
+            for off_y in range(0, img_line_bw_np.shape[0] - 11):
+                _img = Image.fromarray(img_line_bw_np).crop((off_x, off_y,
+                                                             img_line_bw_np.shape[1],
+                                                             img_line_bw_np.shape[0]))
+                text = self.detect(_img, is_calibrating=True)
+
+                if not "?" in text and text != '':
+                    self.calibration = (-off_x, -off_y)
                     return
 
         self.calibration = (0, 0)
@@ -75,6 +90,7 @@ class PoorCR:
                         glob.glob('data/characters/others_1/*.png') + \
                         glob.glob('data/characters/others_2/*.png') + \
                         glob.glob('data/characters/kanji_ingame/*.png') + \
+                        glob.glob('data/characters/kanji_gameplay/*.png') + \
                         glob.glob('data/characters/kanji_corrected/*.png'):
 
             if filename.endswith('chars.png'):
@@ -104,11 +120,23 @@ class PoorCR:
 
         return self.db_np, self.db_str
 
+    def apply_calibration(self, img_line_bw_np):
+        if self.calibration == (0, 0) or self.calibration is None:
+            return img_line_bw_np
+
+        img_line_bw_np = np.pad(img_line_bw_np, ((max(self.calibration[0], 0), 0),
+                                                 (max(self.calibration[1], 0), 0)),
+                                'constant', constant_values=1)
+
+        img_line_bw_np = img_line_bw_np[max(- self.calibration[1], 0):, max(- self.calibration[0], 0):]
+
+        return img_line_bw_np
+
 
 if __name__ == "__main__":
     pcr = PoorCR(only_perfect=True)
 
-    img = Image.open('data/tmp_line_0.png')
+    img = Image.open('data/tmp_line_2.png')
     img_np = np.array(img.convert('1'))
     char_imgs = extract_characters(img_np)
 

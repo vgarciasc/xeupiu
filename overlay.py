@@ -5,9 +5,9 @@ bg_img = None
 
 
 class OverlayWindow:
-    def __init__(self, x_pos: int = None, y_pos: int = None):
+    def __init__(self, x_pos: int = 600, y_pos: int = 100):
         self.root = tk.Tk()
-        self.root.attributes("-alpha", 0.8)  # Make the window semi-transparent
+        self.root.attributes("-alpha", 0.9)  # Make the window semi-transparent
         self.root.attributes("-topmost", True)  # Make the window semi-transparent
         self.root.overrideredirect(True)  # Remove window decorations (border, title bar)
 
@@ -18,8 +18,8 @@ class OverlayWindow:
         # Set the window size and position it at the bottom center
         self.window_width = 520  # Adjust as needed
         self.window_height = 105  # Adjust as needed
-        self.x_pos = x_pos if x_pos else (self.screen_width - self.window_width) // 2
-        self.y_pos = y_pos if y_pos else self.screen_height - self.window_height * 3
+        self.x_pos = x_pos - self.window_width // 2 + 53
+        self.y_pos = y_pos - self.window_height // 2
 
         self.root.geometry(f"{self.window_width}x{self.window_height}+{self.x_pos}+{self.y_pos}")
 
@@ -39,7 +39,7 @@ class OverlayWindow:
         # self.text.tag_config("start", foreground="red")
         # self.text.pack(expand=True, fill='both')
 
-        self.label = tk.Label(self.root, text="asdf", font=("Courier", 16), fg='white',
+        self.label = tk.Label(self.root, text="asdf", font=("MS Pgothic", 16), fg='white',
                               wraplength=self.window_width, justify='left',
                               image=bg_img, compound='center')
         self.label.pack()

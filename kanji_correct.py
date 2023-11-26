@@ -1,10 +1,5 @@
 import glob
-
-import numpy as np
 from PIL import Image
-
-from char_db_script import clean_nameselect_image
-from poorcr import load_character_db, get_char_match
 
 if __name__ == "__main__":
     for filename in glob.glob("data/characters/kanji_proposals/identified/*.png") + \

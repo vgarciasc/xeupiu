@@ -24,15 +24,16 @@ def capture_pixels(window_title=None):
 def get_window_by_title(window_title):
     toplist, winlist = [], []
 
-    def enum_cb(hwnd, results):
+    def enum_cb(hwnd, _):
         winlist.append((hwnd, win32gui.GetWindowText(hwnd)))
 
     win32gui.EnumWindows(enum_cb, toplist)
-
     window = [(hwnd, title) for hwnd, title in winlist if window_title.lower() in title.lower()]
-    window = window[0]
-    hwnd = window[0]
+    window_id, window_name = window[0]
 
+    return window_id
+
+def get_window_image(hwnd):
     left, top, right, bot = win32gui.GetClientRect(hwnd)
     w = right - left
     h = bot - top
@@ -66,6 +67,10 @@ def get_window_by_title(window_title):
 
     return img
 
+def get_window_pos(window_id):
+    _, _, left, top = win32gui.GetClientRect(window_id)
+    return left, top
+
 if __name__ == "__main__":
     # Capture the entire screen
     # screen_pixels = capture_pixels("VLC")
@@ -73,6 +78,7 @@ if __name__ == "__main__":
     #     screen_pixels.save("data/tmp.png")
 
     # Capture a specific window
-    window_pixels = get_window_by_title("gameplay_emerald")
+    window_id = get_window_by_title("Tokimeki Memorial")
+    window_pixels = get_window_image(window_id)
     if window_pixels:
         window_pixels.save("data/tmp.png")
