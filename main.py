@@ -121,7 +121,7 @@ for iter in range(100000):
     should_translate = (not "?" in display_text) and (has_text_stopped_printing)
     if tr.should_translate_text(display_text) and should_translate:
         display_char_name = db.retrieve_translated_name(df_names, text_ocr_name)
-        if display_char_name is None and has_text_stopped_printing:
+        if display_char_name is not None and has_text_stopped_printing:
             display_char_name = tr.translate_text(text_ocr_name, "google_cloud")
             df_names = db.add_translated_name(df_names, text_ocr_name, display_char_name)
 
