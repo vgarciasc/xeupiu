@@ -25,8 +25,7 @@ def save_everything(img_ss, img_tb, img_tb_bw, lines):
 
 window_id = get_window_by_title("Tokimeki Memorial")
 # window_id = get_window_by_title("gameplay_emerald")
-window_x, window_y = get_window_pos(window_id)
-overlay = OverlayWindow(window_x, window_y)
+overlay = OverlayWindow(window_id)
 
 df_text = db.get_text_database()
 df_names = db.get_names_database()
@@ -46,7 +45,7 @@ for iter in range(100000):
 
     tik = time.perf_counter_ns()
     img_ss = get_window_image(window_id)
-    img_ss = img_ss.resize((img_ss.size[0] // 2, img_ss.size[1] // 2), Image.NEAREST)
+    img_ss = img_ss.resize((img_ss.size[0] // overlay.game_scaling, img_ss.size[1] // overlay.game_scaling), Image.NEAREST)
     img_tb = img_ss.crop((30, 176, 30 + TB_WIDTH, 176 + TB_HEIGHT))
 
     img_cs = img_tb.crop((TB_WIDTH - 11, 27, TB_WIDTH, TB_HEIGHT))

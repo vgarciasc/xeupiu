@@ -5,7 +5,6 @@ import win32gui
 import win32ui
 from PIL import ImageGrab, Image
 
-
 def capture_pixels(window_title=None):
     if window_title:
         window = gw.getWindowsWithTitle(window_title)
@@ -33,10 +32,15 @@ def get_window_by_title(window_title):
 
     return window_id
 
-def get_window_image(hwnd):
+def get_window_image(hwnd, use_scaling=True):
+    if use_scaling:
+        scaling = windll.shcore.GetScaleFactorForDevice(0) / 100
+    else:
+        scaling = 1.0
+
     left, top, right, bot = win32gui.GetClientRect(hwnd)
-    w = right - left
-    h = bot - top
+    w = int((right - left) * scaling)
+    h = int((bot - top) * scaling)
 
     hwndDC = win32gui.GetWindowDC(hwnd)
     mfcDC = win32ui.CreateDCFromHandle(hwndDC)
@@ -81,4 +85,4 @@ if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
     window_pixels = get_window_image(window_id)
     if window_pixels:
-        window_pixels.save("data/tmp.png")
+        window_pixels.save("data/tmp/ss.png")

@@ -1,49 +1,52 @@
 import time
 import tkinter as tk
+from ctypes import windll
+
+import numpy as np
+
+from screenshot import get_window_by_title, get_window_image
+
+import win32gui
 
 bg_img = None
 
 
 class OverlayWindow:
-    def __init__(self, x_pos: int = 600, y_pos: int = 100):
+    def __init__(self, window_id: int):
         self.root = tk.Tk()
         self.root.attributes("-alpha", 0.9)  # Make the window semi-transparent
         self.root.attributes("-topmost", True)  # Make the window semi-transparent
         self.root.overrideredirect(True)  # Remove window decorations (border, title bar)
 
-        # Get the screen width and height
-        self.screen_width = self.root.winfo_screenwidth()
-        self.screen_height = self.root.winfo_screenheight()
-
-        # Set the window size and position it at the bottom center
-        self.window_width = 520  # Adjust as needed
-        self.window_height = 105  # Adjust as needed
-        self.x_pos = x_pos - self.window_width // 2 + 53
-        self.y_pos = y_pos - self.window_height // 2
-
-        self.root.geometry(f"{self.window_width}x{self.window_height}+{self.x_pos}+{self.y_pos}")
+        self.initialize(window_id)
 
         global bg_img
-        bg_img = tk.PhotoImage(file="data/emerald_bg.png")
+        bg_img = tk.PhotoImage(file="data/emerald_bg_4x.png")
 
-        # self.canvas = tk.Canvas(self.root, width=self.window_width, height=self.window_height)
-        # self.canvas.create_image(0, 0, image=bg_img, anchor='nw')
-        # self.canvas.pack(expand=True, fill='both')
+        self.font_size = max(self.game_scaling * 6, 24)
 
-        # self.text = self.canvas.create_text(10, 10, anchor="nw", text="Hello", font=("Verdana", 16),
-        #                                     fill='white', width=self.window_width, justify='left')
-        #
-        # self.text.insert("insert", "Hello")
-        # self.text.insert("insert", " World!")
-        # self.text.tag_add("start", "1.0", "1.5")
-        # self.text.tag_config("start", foreground="red")
-        # self.text.pack(expand=True, fill='both')
-
-        self.label = tk.Label(self.root, text="asdf", font=("MS Pgothic", 16), fg='white',
-                              wraplength=self.window_width, justify='left',
+        self.label = tk.Label(self.root, text="asdf", font=("MS PGothic", self.font_size), fg='white',
+                              wraplength=self.textbox_width, justify='left',
                               image=bg_img, compound='center')
         self.label.pack()
 
+
+    def initialize(self, window_id: int):
+        windll.user32.SetProcessDPIAware()
+
+        left, top, right, bot = win32gui.GetWindowRect(window_id)
+        width, height = right - left, bot - top
+        pos_x, pos_y = left, top
+
+        self.game_scaling = width // 320
+
+        # Set the window size and position it at the bottom center
+        self.textbox_width = int(260 * self.game_scaling)
+        self.textbox_height = int(50 * self.game_scaling)
+        self.pos_x = pos_x + (33 * self.game_scaling)
+        self.pos_y = pos_y + int(168 * self.game_scaling) + 61 # 61 is the height of the taskbar
+
+        self.root.geometry(f"{self.textbox_width}x{self.textbox_height}+{self.pos_x}+{self.pos_y}")
 
     def update(self, new_text: str, char_name: str = None) -> None:
         if char_name:
@@ -65,7 +68,8 @@ class OverlayWindow:
 
 
 if __name__ == "__main__":
-    overlay = OverlayWindow()
+    window_id = get_window_by_title("Tokimeki Memorial")
+    overlay = OverlayWindow(window_id)
 
     for _ in range(1000):
         overlay.update(time.strftime("%H:%M:%S") + " lorem ipsum dorem sit amet " *1, None)
