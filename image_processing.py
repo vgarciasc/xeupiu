@@ -27,7 +27,7 @@ def separate_into_lines(img_tb):
 
     img_name = None
     if is_divider_line_there:
-        img_name = img_tb.crop((0, 0, 42, 16))
+        img_name = img_tb.crop((0, 0, 42, 20))
         _x = 43
 
     img_text = img_tb.crop((_x, 0, img_tb.width, img_tb.height))
@@ -38,7 +38,7 @@ def separate_into_lines(img_tb):
     if len(black_pts_y) > 0:
         _y = np.min(black_pts_y) - 1
         for i in range(3):
-            if _y + 16 * (i + 1) > 52:
+            if _y + 16 * (i + 1) > 54:
                 break
             img_line = img_tb.crop((_x, _y + 16 * i, img_tb.width, _y + 16 * (i + 1) - 2))
             img_lines.append(img_line)
@@ -87,8 +87,8 @@ def check_is_text_empty(img_tb):
     if img_tb is None:
         return True
 
-    red, green, blue = np.array(img_tb.convert('RGB')).T
-    return np.all(red > 200) | np.all(green > 200) | np.all(blue > 200)
+    black = np.array(img_tb.convert('1')).T
+    return np.all(~black[:, :-1])
 
 
 def extract_characters(img_line_np):

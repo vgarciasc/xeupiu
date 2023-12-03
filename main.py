@@ -14,7 +14,7 @@ import database as db
 from poorcr import PoorCR
 
 TB_WIDTH = 254
-TB_HEIGHT = 48
+TB_HEIGHT = 54
 
 def save_everything(img_ss, img_tb, img_tb_bw, lines):
     img_ss.save("data/tmp_window.png")
@@ -31,7 +31,7 @@ df_text = db.get_text_database()
 df_names = db.get_names_database()
 
 textbox_offset = None
-history_size = 10
+history_size = 15
 history_text_ocr_lines = []
 iters_w_same_text = 0
 translation_requests = 0
@@ -46,7 +46,7 @@ for iter in range(100000):
     tik = time.perf_counter_ns()
     img_ss = get_window_image(window_id)
     img_ss = img_ss.resize((img_ss.size[0] // overlay.game_scaling, img_ss.size[1] // overlay.game_scaling), Image.NEAREST)
-    img_tb = img_ss.crop((30, 176, 30 + TB_WIDTH, 176 + TB_HEIGHT))
+    img_tb = img_ss.crop((30, 172, 30 + TB_WIDTH, 172 + TB_HEIGHT))
 
     img_cs = img_tb.crop((TB_WIDTH - 11, 27, TB_WIDTH, TB_HEIGHT))
     red, green, blue = np.array(img_cs.convert('RGB')).T
@@ -121,7 +121,7 @@ for iter in range(100000):
     should_translate = (not "?" in display_text) and (has_text_stopped_printing)
     if tr.should_translate_text(display_text) and should_translate:
         display_char_name = db.retrieve_translated_name(df_names, text_ocr_name)
-        if display_char_name is not None and has_text_stopped_printing:
+        if display_char_name is None and text_ocr_name is not None and has_text_stopped_printing:
             display_char_name = tr.translate_text(text_ocr_name, "google_cloud")
             df_names = db.add_translated_name(df_names, text_ocr_name, display_char_name)
 

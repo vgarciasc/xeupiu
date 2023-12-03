@@ -52,6 +52,8 @@ class OverlayWindow:
         if char_name:
             new_text = char_name + "\n  " + new_text + ""
 
+        new_text = new_text.replace("\" \"", "\"\n\"")
+
         self.label.config(text=new_text)
 
         # self.text.delete("1.0", "end")

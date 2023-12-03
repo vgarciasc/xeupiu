@@ -9,6 +9,9 @@ from rich import print
 import openai
 import openai_keys
 
+OPENING_QUOTES = ["「", "『", "【", "（", "［", "《", "〈", "〔", "｛", "〖", "〘", "〚", "〝"]
+CLOSING_QUOTES = ["」", "』", "】", "）", "］", "》", "〉", "〕", "｝", "〗", "〙", "〛", "〞"]
+
 def translate_openai(desc):
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
@@ -47,18 +50,22 @@ def translate_google_cloud(text, project_id="xeupiu"):
     return response.translations[0].translated_text
 
 def translate_text(text, backend="google_free"):
-    if text[0] in ["「", "『", "【", "（", "［", "《", "〈", "〔", "｛", "〖", "〘", "〚", "〝"]:
-        if text[-1] not in ["」", "』", "】", "）", "］", "》", "〉", "〕", "｝", "〗", "〙", "〛", "〞"]:
-            text = text[1:]
+    if text[0] in OPENING_QUOTES:
+        if text[-1] not in CLOSING_QUOTES:
+            text = text[1:] # Remove opening quote
 
     if backend == "google_free":
-        return translate_google_free(text)
+        translated_text = translate_google_free(text)
     elif backend == "google_cloud":
-        return translate_google_cloud(text)
+        translated_text = translate_google_cloud(text)
     elif backend == "openai":
-        return translate_openai(text)
+        translated_text = translate_openai(text)
     else:
         raise Exception(f"Unknown backend: {backend}")
+
+    translated_text = translated_text.replace("``", "\"")
+    translated_text = translated_text.replace("''", "\"")
+    return translated_text
 
 def should_translate_text(text):
     if text == "":

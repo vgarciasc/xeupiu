@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     # Cropping textbox
     img_ss = img_ss.resize((img_ss.size[0] // scaling, img_ss.size[1] // scaling), Image.NEAREST)
-    img_tb = img_ss.crop((30, 176, 30 + 254, 176 + 48))
+    img_tb = img_ss.crop((30, 172, 30 + 254, 172 + 54))
 
     img_cs = img_tb.crop((245, 27, 254, 48))
     red, green, blue = np.array(img_cs.convert('RGB')).T
@@ -44,8 +44,13 @@ if __name__ == "__main__":
         img_name.save(f"data/tmp/name.png")
 
     # Extracting characters
-    pcr = PoorCR(only_perfect=True)
 
+    if img_name:
+        pcr_name = PoorCR(only_perfect=True)
+        text = pcr_name.detect(img_name)
+        print('name', text)
+
+    pcr_text = PoorCR(only_perfect=True)
     for i, img_tb_line in enumerate(img_tb_lines):
         img_tb_line_np = np.array(img_tb_line.convert('1'))
         char_imgs = ip.extract_characters(img_tb_line_np)
@@ -55,5 +60,5 @@ if __name__ == "__main__":
             char_img.save(f"data/tmp/char_{i}_{len(chars)}.png")
             chars.append(np.array(char_img.convert('1')).astype(np.int32))
 
-        text = pcr.detect(img_tb_line)
+        text = pcr_text.detect(img_tb_line)
         print(i, text)
