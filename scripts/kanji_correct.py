@@ -1,6 +1,11 @@
 import glob
 from PIL import Image
 
+# The goal of this script is to migrate kanji from 'kanji_proposals/identified' and 'kanji_proposals/to_accept'
+# to 'kanji_corrected'. This is because the kanji in 'kanji_proposals' do not match the ones in the character naming
+# screen, which we think happens because the game's font is not exactly MS Gothic 11x11, but a prototypic version
+# (< 2.3) that has been lost to time.
+
 if __name__ == "__main__":
     for filename in glob.glob("data/characters/kanji_proposals/identified/*.png") + \
                     glob.glob("data/characters/kanji_proposals/to_accept/*.png"):

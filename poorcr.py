@@ -5,16 +5,25 @@ import glob
 
 
 class PoorCR:
-    def __init__(self, only_perfect=False, always_recalibrate=False):
+    """
+    PoorCR stands for "Poor Man's Character Recognition". It is a simple OCR that uses a database of characters
+    to detect text in images. We can do this for the textboxes because the font is always the same (MS Gothic 11x11).
+    """
+    def __init__(self, only_perfect=False):
         self.only_perfect = only_perfect
-        self.always_recalibrate = always_recalibrate
 
         self.calibration = None
         self.load_character_db()
 
     def detect(self, img_line_bw, is_calibrating=False):
-        img_line_bw_np = np.array(img_line_bw.convert('1'))
+        """
+        Detects text in a line of text.
+        :param img_line_bw: Image of a line of text in black and white.
+        :param is_calibrating: Whether this detection is part of an OCR calibration or not. Leave as 'False' if unsure.
+        :return: The text detected in the line.
+        """
 
+        img_line_bw_np = np.array(img_line_bw.convert('1'))
         if not is_calibrating:
             img_line_bw_np = self.apply_calibration(img_line_bw_np)
 
@@ -26,7 +35,6 @@ class PoorCR:
 
             char, _ = self.get_char_match(char_img_np)
             text += char
-
         text = text.replace(" ", "")
 
         if "?" in text:
@@ -40,6 +48,14 @@ class PoorCR:
         return text
 
     def get_char_match(self, test_img_np):
+        """
+        Gets the closest character match for a given image. This is done by comparing the image with the database
+        images and returning the closest one.
+
+        :param test_img_np: Image to compare with the database, in a 'np.array' format.
+        :return: The closest character match, and its image.
+        """
+
         if np.all(test_img_np):
             return ' ', np.zeros((11, 11))
 
@@ -59,6 +75,17 @@ class PoorCR:
 
     # TODO: should try to calibrate every time a '?' is found
     def calibrate(self, img_line_bw_np):
+        """
+        Calibrates the OCR by finding the offset of the text in the image. This is done by padding the image with
+        white pixels and checking if the OCR detects text in the padded image. If it does, then the offset is the
+        padding size. If it doesn't, then the calibration tries to find the offset by cropping the image and checking
+        if the OCR detects text in the cropped image. If it does, then the offset is the negative of the crop size.
+        If no calibration works, then the offset is set to (0, 0).
+
+        :param img_line_bw_np: Image of a line of text in black and white, in a 'np.array' format.
+        :return: None.
+        """
+
         for pad_x in range(0, 5):
             for pad_y in range(0, 5):
                 _img = Image.fromarray(np.pad(img_line_bw_np, ((pad_x, 0), (pad_y, 0)),
@@ -83,6 +110,12 @@ class PoorCR:
         self.calibration = (0, 0)
 
     def load_character_db(self):
+        """
+        Loads the character database from the 'data/characters' folder. This is done by loading all the images
+        in the folder and turning them into a giant tensor.
+
+        :return: A tensor of all the characters in the database, and a string array of the characters' strings.
+        """
         char_images = {}
 
         for filename in glob.glob('data/characters/hiragana/*.png') + \
@@ -121,6 +154,14 @@ class PoorCR:
         return self.db_np, self.db_str
 
     def apply_calibration(self, img_line_bw_np):
+        """
+        Applies the calibration to an image. This is done by padding the image with white pixels and cropping it
+        according to the class's current calibration.
+
+        :param img_line_bw_np: Image of a line of text in black and white, in a 'np.array' format.
+        :return: The calibrated image.
+        """
+
         if self.calibration == (0, 0) or self.calibration is None:
             return img_line_bw_np
 

@@ -3,11 +3,15 @@ import glob
 import numpy as np
 from PIL import Image
 
-from char_db_script import clean_nameselect_image
-from poorcr import load_character_db, get_char_match
+from scripts.char_db_script import clean_nameselect_image
+from poorcr import PoorCR
+
+# The goal of this script is to parse the kanji from the character naming screen (screenshots/kanji_*.png) and detect
+# which of the kanji are not present in our database (created with MS Gothic v2.3). The kanji that are not present
+# will be saved in 'data/characters/mysteries' for further analysis, alongside the closest kanji found in the database.
 
 if __name__ == "__main__":
-    char_db = load_character_db()
+    pcr = PoorCR(only_perfect=True)
 
     processed_chars = []
     for file_id in range(1, 88):
@@ -39,7 +43,7 @@ if __name__ == "__main__":
                 else:
                     processed_chars.append(img_char_np)
 
-                    match_char, match_img = get_char_match(char_db, img_char_np, only_perfect=True)
+                    match_char, match_img = pcr.get_char_match(img_char_np)
                     print(f"[{curr_row}, {curr_col}]: {match_char}")
                     if match_char == "?":
                         img_char.save(f"data/characters/mysteries/{filename}_{curr_row}-{curr_col}.png")
@@ -56,16 +60,16 @@ if __name__ == "__main__":
                     print()
                     break
 
-    # for filename in glob.glob("data/characters/mysteries/*.png"):
-    #     char_img = Image.open(filename)
-    #     match_char, match_img_np = get_char_match(char_db, np.array(char_img.convert('1')))
-    #     print(f"{filename}: {match_char}")
-    #
-    #     # concatenate char_img and match_img
-    #     char_img_np = np.array(char_img.convert('1'))
-    #     _np = np.concatenate((char_img_np, np.ones((11, 2)), match_img_np), axis=1)
-    #     _np = np.pad(_np, ((2, 2), (2, 2)), 'constant', constant_values=1)
-    #     _img = Image.fromarray(_np * 255)
-    #     _img = _img.resize((_img.size[0] * 2, _img.size[1] * 2), Image.NEAREST)
-    #     f = f"{filename.replace('mysteries', 'proposals').split('.')[0]}_{match_char if match_char != '?' else 'none'}.png"
-    #     _img.convert("L").save(f)
+    for filename in glob.glob("data/characters/mysteries/*.png"):
+        char_img = Image.open(filename)
+        match_char, match_img_np = pcr.get_char_match(np.array(char_img.convert('1')))
+        print(f"{filename}: {match_char}")
+
+        # concatenate char_img and match_img
+        char_img_np = np.array(char_img.convert('1'))
+        _np = np.concatenate((char_img_np, np.ones((11, 2)), match_img_np), axis=1)
+        _np = np.pad(_np, ((2, 2), (2, 2)), 'constant', constant_values=1)
+        _img = Image.fromarray(_np * 255)
+        _img = _img.resize((_img.size[0] * 2, _img.size[1] * 2), Image.NEAREST)
+        f = f"{filename.replace('mysteries', 'proposals').split('.')[0]}_{match_char if match_char != '?' else 'none'}.png"
+        _img.convert("L").save(f)

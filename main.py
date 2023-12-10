@@ -22,6 +22,7 @@ df_names = db.get_names_database()
 pcr_name = PoorCR(only_perfect=True)
 pcr_text = PoorCR(only_perfect=True)
 
+last_translated_text_ocr = None
 iterations_wout_textbox = 0
 history_text_ocr_lines = []
 curr_line_cache = []
@@ -72,8 +73,6 @@ while True:
             if prev_text_ocr_lines[-1] != text_ocr_lines[-1]:
                 has_text_stopped_printing = False
                 break
-    history_text_ocr_lines.append(text_ocr_lines)
-    history_text_ocr_lines = history_text_ocr_lines[-HISTORY_SIZE:]
 
     if not curr_line_cache:
         # Cache is empty. Fill it with the current text.
@@ -101,9 +100,12 @@ while True:
 
     if "?" in text_ocr:
         save_everything(img_ss, img_tb, img_tb_bw, img_tb_lines)
-        print(f"Text was '{text_ocr}'")
-        print("Exiting...")
+        print(f"Text was '{text_ocr}'. Exiting...")
         # break
+
+    if text_ocr == last_translated_text_ocr:
+        # Text is the same as the last translated text
+        continue
 
     n_matches = -1
     if tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:
@@ -132,10 +134,15 @@ while True:
             print(f"Multiple matches found for '{text_ocr}'. Displaying the first one.")
             display_text = translated_text
 
+        last_translated_text_ocr = text_ocr
+
     # Display
     overlay_tb.update(display_text, display_char_name)
 
     # Housekeeping
+    history_text_ocr_lines.append(text_ocr_lines)
+    history_text_ocr_lines = history_text_ocr_lines[-HISTORY_SIZE:]
+
     tok = time.perf_counter_ns()
     print(f"Name (detected):\t\t {text_ocr_name}")
     print(f"Name (displayed):\t\t {display_char_name}")

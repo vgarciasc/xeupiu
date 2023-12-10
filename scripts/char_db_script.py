@@ -4,6 +4,10 @@ import numpy as np
 from PIL import Image
 from manga_ocr import MangaOcr
 
+# The goal of this script is to generate character image files. In general, we have images full of characters, and the
+# strings below tell us exactly which characters are in the image. We can use this information to generate a database
+# of character images, which we can then use to detect characters in the game.
+
 hiragana = list(
     "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんぁぃぅぇぉっゃゅょーがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ")
 katakana = list(
@@ -100,7 +104,7 @@ def load_kanji_images():
 
 if __name__ == "__main__":
     generate_char_images("kanji",
-                         f"data/characters/char_tables/all_kanji_2.png",
+                         f"../data/characters/char_tables/all_kanji_2.png",
                          kanji,
                          offset_x=0, offset_y=0,
                          padding_x=1, padding_y=1)
