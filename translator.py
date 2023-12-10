@@ -50,6 +50,9 @@ def translate_google_cloud(text, project_id="xeupiu"):
     return response.translations[0].translated_text
 
 def translate_text(text, backend="google_free"):
+    if not text:
+        return ""
+
     if text[0] in OPENING_QUOTES:
         if text[-1] not in CLOSING_QUOTES:
             text = text[1:] # Remove opening quote

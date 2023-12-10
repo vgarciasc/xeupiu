@@ -24,12 +24,26 @@ class OverlayWindow:
         bg_img = tk.PhotoImage(file="data/emerald_bg_4x.png")
 
         self.font_size = max(self.game_scaling * 6, 24)
+        self.is_hidden = False
 
         self.label = tk.Label(self.root, text="asdf", font=("MS PGothic", self.font_size), fg='white',
                               wraplength=self.textbox_width, justify='left',
                               image=bg_img, compound='center')
         self.label.pack()
 
+    def hide(self):
+        if self.is_hidden:
+            return
+        self.root.attributes("-alpha", 0.0)
+        self.root.update_idletasks()
+        self.root.update()
+        self.is_hidden = True
+
+    def show(self):
+        self.root.attributes("-alpha", 0.9)
+        self.root.update_idletasks()
+        self.root.update()
+        self.is_hidden = False
 
     def initialize(self, window_id: int):
         windll.user32.SetProcessDPIAware()
@@ -38,6 +52,7 @@ class OverlayWindow:
         width, height = right - left, bot - top
         pos_x, pos_y = left, top
 
+        self.window_id = window_id
         self.game_scaling = width // 320
 
         # Set the window size and position it at the bottom center
@@ -55,10 +70,6 @@ class OverlayWindow:
         new_text = new_text.replace("\" \"", "\"\n\"")
 
         self.label.config(text=new_text)
-
-        # self.text.delete("1.0", "end")
-        # self.text.insert("insert", new_text)
-
         self.root.update_idletasks()
         self.root.update()
 
@@ -75,4 +86,9 @@ if __name__ == "__main__":
 
     for _ in range(1000):
         overlay.update(time.strftime("%H:%M:%S") + " lorem ipsum dorem sit amet " *1, None)
-        time.sleep(0.1)
+        time.sleep(0.5)
+        overlay.hide()
+        time.sleep(0.5)
+        overlay.show()
+        time.sleep(0.5)
+

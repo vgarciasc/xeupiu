@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-
+from constants import *
 
 def convert_emerald_textbox_to_black_and_white(img_tb):
     img_tb_np = np.array(img_tb.convert('RGBA'))
@@ -41,7 +41,8 @@ def separate_into_lines(img_tb):
             if _y + 16 * (i + 1) > 54:
                 break
             img_line = img_tb.crop((_x, _y + 16 * i, img_tb.width, _y + 16 * (i + 1) - 2))
-            img_lines.append(img_line)
+            if not check_is_text_empty(img_line):
+                img_lines.append(img_line)
 
     return img_name, img_lines
 
@@ -88,8 +89,12 @@ def check_is_text_empty(img_tb):
         return True
 
     black = np.array(img_tb.convert('1')).T
-    return np.all(~black[:, :-1])
+    return np.all(black[:, :-1])
 
+
+def check_is_textbox_there(img_tb):
+    red, green, blue = np.array(img_tb.convert('RGB')).T
+    return np.any((red < 50) & (blue < 50) & (green > 100))
 
 def extract_characters(img_line_np):
     # img_line_np = np.array(img_line.convert('1'))
@@ -111,6 +116,19 @@ def extract_characters(img_line_np):
         char_imgs.append(char_img)
 
     return char_imgs
+
+
+def crop_textbox_image(img_ss):
+    img_tb = img_ss.crop((30, 172, 30 + TB_WIDTH, 172 + TB_HEIGHT))
+
+    img_cs = img_tb.crop((TB_WIDTH - 11, 27, TB_WIDTH, TB_HEIGHT))
+    red, green, blue = np.array(img_cs.convert('RGB')).T
+
+    cursor_is_there = np.any((blue > 140) & (red < 100))
+    if cursor_is_there:
+        img_tb = img_tb.crop((0, 0, TB_WIDTH - 11, 48))
+
+    return img_tb
 
 
 if __name__ == "__main__":
