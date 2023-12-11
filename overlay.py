@@ -7,34 +7,41 @@ from screenshot import get_window_by_title, get_window_image
 
 bg_img = None
 
+
 class OverlayWindow:
     """ A semi-transparent window that displays text on top of the game window. """
 
     def __init__(self, window_id: int):
-        global bg_img
+        pos_x, pos_y, width, height = self.get_window_dims(window_id)
+        self.create_overlay(pos_x, pos_y, width, height)
 
         self.is_hidden = False
 
+    def get_window_dims(self, window_id: int):
         windll.user32.SetProcessDPIAware()
         left, top, right, bot = win32gui.GetWindowRect(window_id)
         width, height = right - left, bot - top
         pos_x, pos_y = left, top
 
-        self.window_id = window_id
         self.game_scaling = width // 320
-        self.font_size = max(self.game_scaling * 6, 24)
+        self.font_size = min(self.game_scaling * 6, 24)
 
-        # Set the window size and position it at the bottom center
+        return pos_x, pos_y, width, height
+
+    def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
+        global bg_img
+
         self.textbox_width = int(260 * self.game_scaling)
         self.textbox_height = int(50 * self.game_scaling)
-        self.pos_x = pos_x + (33 * self.game_scaling)
-        self.pos_y = pos_y + int(168 * self.game_scaling) + 61  # 61 is the height of the taskbar
+        self.pos_x = window_pos_x + (33 * self.game_scaling)
+        self.pos_y = window_pos_y + int(168 * self.game_scaling) + 61  # 61 is the height of the taskbar
 
-        self.root = tk.Tk()
+        self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.9)  # Make the window semi-transparent
         self.root.attributes("-topmost", True)  # Make the window semi-transparent
         self.root.overrideredirect(True)  # Remove window decorations (border, title bar)
         bg_img = tk.PhotoImage(file="data/emerald_bg_4x.png")
+
         self.root.geometry(f"{self.textbox_width}x{self.textbox_height}+{self.pos_x}+{self.pos_y}")
         self.label = tk.Label(self.root, text="asdf", font=("MS PGothic", self.font_size), fg='white',
                               wraplength=self.textbox_width, justify='left',
@@ -79,6 +86,13 @@ class OverlayWindow:
         self.label.config(text=new_text)
         self.root.update_idletasks()
         self.root.update()
+
+    @staticmethod
+    def create_master():
+        root_tk = tk.Tk()
+        root_tk.overrideredirect(True)
+        root_tk.attributes("-alpha", 0.0)
+        return root_tk
 
 
 if __name__ == "__main__":

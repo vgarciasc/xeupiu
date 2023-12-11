@@ -96,6 +96,13 @@ def check_is_textbox_there(img_tb):
     red, green, blue = np.array(img_tb.convert('RGB')).T
     return np.any((red < 50) & (blue < 50) & (green > 100))
 
+
+def check_are_attributes_there(img_ss):
+    img_attr = img_ss.crop((30, 34, 30+9, 34+36))
+    red, green, blue = np.array(img_attr.convert('RGB')).T
+    return np.all((red < 50) & (blue < 50) & (green > 70))
+
+
 def extract_characters(img_line_np):
     # img_line_np = np.array(img_line.convert('1'))
 

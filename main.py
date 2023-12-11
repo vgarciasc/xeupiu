@@ -6,7 +6,8 @@ from thefuzz import fuzz
 from manga_ocr import MangaOcr
 
 from screenshot import get_window_by_title, get_window_image
-from overlay import OverlayWindow
+from textbox_overlay import OverlayWindow
+from attribute_overlay import AttributeOverlayWindow
 import translator as tr
 import image_processing as imp
 import database as db
@@ -16,7 +17,10 @@ from constants import *
 
 window_id = get_window_by_title(WINDOW_TITLE)
 
+OverlayWindow.create_master()
 overlay_tb = OverlayWindow(window_id)
+overlay_attrs = [AttributeOverlayWindow(window_id, i) for i in range(9)]
+
 df_text = db.get_text_database()
 df_names = db.get_names_database()
 pcr_name = PoorCR(only_perfect=True)
@@ -34,6 +38,11 @@ while True:
                             img_ss.size[1] // overlay_tb.game_scaling),
                            Image.NEAREST)
     img_tb = imp.crop_textbox_image(img_ss)
+
+    if imp.check_are_attributes_there(img_ss):
+        [overlay_attr.show() for overlay_attr in overlay_attrs]
+    else:
+        [overlay_attr.hide() for overlay_attr in overlay_attrs]
 
     # Hide textbox overlay if textbox is not there
     if imp.check_is_textbox_there(img_tb):
