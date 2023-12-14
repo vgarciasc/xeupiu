@@ -43,7 +43,7 @@ class PoorCR:
             else:
                 img_line_bw_np = np.array(img_line_bw.convert('1'))
                 self.calibrate(img_line_bw_np)
-                return self.detect(img_line_bw, is_calibrating=True)
+                return self.detect(img_line_bw)
 
         return text
 
@@ -122,6 +122,7 @@ class PoorCR:
                         glob.glob('data/characters/katakana/*.png') + \
                         glob.glob('data/characters/others_1/*.png') + \
                         glob.glob('data/characters/others_2/*.png') + \
+                        glob.glob('data/characters/weekdays/*.png') + \
                         glob.glob('data/characters/kanji_ingame/*.png') + \
                         glob.glob('data/characters/kanji_gameplay/*.png') + \
                         glob.glob('data/characters/kanji_corrected/*.png'):

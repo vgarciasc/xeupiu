@@ -5,6 +5,8 @@ from PIL import Image
 from thefuzz import fuzz
 from manga_ocr import MangaOcr
 
+from date_ymd_overlay import YearMonthDayOverlayWindow
+from date_weekday_overlay import WeekdayOverlayWindow
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 from textbox_overlay import TextboxOverlayWindow
@@ -21,6 +23,8 @@ window_id = get_window_by_title(WINDOW_TITLE)
 OverlayWindow.create_master()
 overlay_tb = TextboxOverlayWindow(window_id)
 overlay_attrs = [AttributeOverlayWindow(window_id, i) for i in range(9)]
+overlay_dateymds = [YearMonthDayOverlayWindow(window_id, i) for i in range(3)]
+overlay_weekday = WeekdayOverlayWindow(window_id)
 
 df_text = db.get_text_database()
 df_names = db.get_names_database()
@@ -34,7 +38,12 @@ curr_line_cache = []
 while True:
     # Take screenshot, crop textbox
     tik = time.perf_counter_ns()
-    img_ss = get_window_image(window_id)
+    #TODO: Understand why name is not detected when use_scaling=False, when it is detected when use_scaling=True
+    #I think use_scaling should be false here (save img_ss with and without scaling to see the difference)
+    #Also weekday.update_weekday is not working properly (should need use_scaling = False, but even with it,
+    #it is not working properly)
+
+    img_ss = get_window_image(window_id, use_scaling=False)
     img_ss = img_ss.resize((img_ss.size[0] // overlay_tb.game_scaling,
                             img_ss.size[1] // overlay_tb.game_scaling),
                            Image.NEAREST)
@@ -42,6 +51,10 @@ while True:
 
     for overlay_attr in overlay_attrs:
         overlay_attr.hide_if_not_needed(img_ss)
+    for overlay_dateymd in overlay_dateymds:
+        overlay_dateymd.hide_if_not_needed(img_ss)
+    overlay_weekday.hide_if_not_needed(img_ss)
+    # overlay_weekday.update_weekday(img_ss)
 
     overlay_tb.hide_if_not_needed(img_tb)
     if not overlay_tb.detect_gameobj(img_tb):

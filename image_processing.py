@@ -10,6 +10,13 @@ def convert_emerald_textbox_to_black_and_white(img_tb):
     img_tb_np[..., :-1][bg_pixels.T] = (0, 0, 0)
     return Image.fromarray(img_tb_np)
 
+def convert_weekday_to_black_and_white(img_tb):
+    img_tb_np = np.array(img_tb.convert('RGBA'))
+    red, green, blue, alpha = img_tb_np.T
+    fg_pixels = (red > 90) & (blue > 90) & (green > 90)
+    img_tb_np[..., :-1] = (255, 255, 255)
+    img_tb_np[..., :-1][fg_pixels.T] = (0, 0, 0)
+    return Image.fromarray(img_tb_np)
 
 def separate_into_lines(img_tb):
     # If image is entirely white, return
