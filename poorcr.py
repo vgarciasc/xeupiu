@@ -43,7 +43,7 @@ class PoorCR:
             else:
                 img_line_bw_np = np.array(img_line_bw.convert('1'))
                 self.calibrate(img_line_bw_np)
-                return self.detect(img_line_bw)
+                return self.detect(img_line_bw, is_calibrating=True)
 
         return text
 

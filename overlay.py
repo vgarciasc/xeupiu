@@ -2,7 +2,9 @@ import time
 import tkinter as tk
 from ctypes import windll
 import win32gui
+from PIL.Image import Image
 
+from constants import *
 from screenshot import get_window_by_title, get_window_image
 
 bg_img = None
@@ -16,6 +18,7 @@ class OverlayWindow:
         self.create_overlay(pos_x, pos_y, width, height)
 
         self.is_hidden = False
+        self.iterations_wout_gameobj = 0
 
     def get_window_dims(self, window_id: int):
         windll.user32.SetProcessDPIAware()
@@ -48,6 +51,28 @@ class OverlayWindow:
                               image=bg_img, compound='center')
         self.label.pack()
 
+    def detect_gameobj(self, img_ss: Image) -> bool:
+        """
+        Detects whether the game object to be overlayed is present in the screenshot.
+        """
+
+        return True
+
+    def hide_if_not_needed(self, img_ss: Image) -> None:
+        """
+        Hides the overlay if it is not needed.
+        """
+
+        if self.detect_gameobj(img_ss):
+            self.iterations_wout_gameobj = 0
+        else:
+            self.iterations_wout_gameobj += 1
+
+        if self.iterations_wout_gameobj > ITERS_WOUT_GAMEOBJ_BEFORE_MINIMIZING:
+            self.hide()
+        else:
+            self.show()
+
     def hide(self):
         """
         Hides the overlay window.
@@ -55,6 +80,7 @@ class OverlayWindow:
 
         if self.is_hidden:
             return
+
         self.root.attributes("-alpha", 0.0)
         self.root.update_idletasks()
         self.root.update()
@@ -64,6 +90,9 @@ class OverlayWindow:
         """
         Shows the overlay window.
         """
+
+        if not self.is_hidden:
+            return
 
         self.root.attributes("-alpha", 0.9)
         self.root.update_idletasks()

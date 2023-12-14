@@ -6,7 +6,8 @@ from thefuzz import fuzz
 from manga_ocr import MangaOcr
 
 from screenshot import get_window_by_title, get_window_image
-from textbox_overlay import OverlayWindow
+from overlay import OverlayWindow
+from textbox_overlay import TextboxOverlayWindow
 from attribute_overlay import AttributeOverlayWindow
 import translator as tr
 import image_processing as imp
@@ -18,7 +19,7 @@ from constants import *
 window_id = get_window_by_title(WINDOW_TITLE)
 
 OverlayWindow.create_master()
-overlay_tb = OverlayWindow(window_id)
+overlay_tb = TextboxOverlayWindow(window_id)
 overlay_attrs = [AttributeOverlayWindow(window_id, i) for i in range(9)]
 
 df_text = db.get_text_database()
@@ -39,20 +40,11 @@ while True:
                            Image.NEAREST)
     img_tb = imp.crop_textbox_image(img_ss)
 
-    if imp.check_are_attributes_there(img_ss):
-        [overlay_attr.show() for overlay_attr in overlay_attrs]
-    else:
-        [overlay_attr.hide() for overlay_attr in overlay_attrs]
+    for overlay_attr in overlay_attrs:
+        overlay_attr.hide_if_not_needed(img_ss)
 
-    # Hide textbox overlay if textbox is not there
-    if imp.check_is_textbox_there(img_tb):
-        iterations_wout_textbox = 0
-        if overlay_tb.is_hidden:
-            overlay_tb.show()
-    else:
-        iterations_wout_textbox += 1
-        if iterations_wout_textbox > ITERS_WOUT_TEXTBOX_BEFORE_MINIMIZING:
-            overlay_tb.hide()
+    overlay_tb.hide_if_not_needed(img_tb)
+    if not overlay_tb.detect_gameobj(img_tb):
         continue
 
     # Detecting text in textbox

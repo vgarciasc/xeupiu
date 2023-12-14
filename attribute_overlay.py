@@ -1,7 +1,10 @@
 import time
 import tkinter as tk
 from ctypes import windll
+
+import numpy as np
 import win32gui
+from PIL import Image
 
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
@@ -36,6 +39,14 @@ class AttributeOverlayWindow(OverlayWindow):
 
         self.root.update_idletasks()
         self.root.update()
+
+    def detect_gameobj(self, img_ss: Image) -> bool:
+        img_attr = img_ss.crop((ATTRIBUTE_POS[self.attribute_id][0] - 2,
+                                ATTRIBUTE_POS[self.attribute_id][1] + 7,
+                                (ATTRIBUTE_POS[self.attribute_id][0] + 30 - 2),
+                                (ATTRIBUTE_POS[self.attribute_id][1] + 15 + 7)))
+        red, green, blue = np.array(img_attr.convert('RGB')).T
+        return np.any((red < 50) & (blue < 50) & (green > 70))
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
