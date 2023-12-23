@@ -1,6 +1,7 @@
 from ctypes import windll
 
 import pygetwindow as gw
+from constants import *
 import win32gui
 import win32ui
 from PIL import Image
@@ -68,6 +69,8 @@ def get_window_image(window_id, use_scaling=True):
     mfcDC.DeleteDC()
     win32gui.ReleaseDC(window_id, hwndDC)
 
+    img = img.crop((0, SIZE_TOOLBAR, w, h - SIZE_WINDOW_BORDER_BOTTOM))
+
     return img
 
 def get_window_pos(window_id):
@@ -90,4 +93,4 @@ if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
     window_pixels = get_window_image(window_id)
     if window_pixels:
-        window_pixels.save("data/tmp/ss.png")
+        window_pixels.save("data/tmp.png")

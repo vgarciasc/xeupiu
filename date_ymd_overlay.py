@@ -24,7 +24,7 @@ class YearMonthDayOverlayWindow(OverlayWindow):
         self.textbox_width = int(18 * self.game_scaling)
         self.textbox_height = int(15 * self.game_scaling)
         self.pos_x = window_pos_x + (pos_x * self.game_scaling)
-        self.pos_y = window_pos_y + int(pos_y * self.game_scaling) + 61  # 61 is the height of the taskbar
+        self.pos_y = window_pos_y + int(pos_y * self.game_scaling)
 
         self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.95)  # Make the window semi-transparent

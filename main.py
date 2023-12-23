@@ -38,15 +38,12 @@ curr_line_cache = []
 while True:
     # Take screenshot, crop textbox
     tik = time.perf_counter_ns()
-    #TODO: Understand why name is not detected when use_scaling=False, when it is detected when use_scaling=True
-    #I think use_scaling should be false here (save img_ss with and without scaling to see the difference)
-    #Also weekday.update_weekday is not working properly (should need use_scaling = False, but even with it,
-    #it is not working properly)
 
     img_ss = get_window_image(window_id, use_scaling=False)
     img_ss = img_ss.resize((img_ss.size[0] // overlay_tb.game_scaling,
                             img_ss.size[1] // overlay_tb.game_scaling),
                            Image.NEAREST)
+
     img_tb = imp.crop_textbox_image(img_ss)
 
     for overlay_attr in overlay_attrs:
@@ -54,7 +51,7 @@ while True:
     for overlay_dateymd in overlay_dateymds:
         overlay_dateymd.hide_if_not_needed(img_ss)
     overlay_weekday.hide_if_not_needed(img_ss)
-    # overlay_weekday.update_weekday(img_ss)
+    overlay_weekday.update_weekday(img_ss)
 
     overlay_tb.hide_if_not_needed(img_tb)
     if not overlay_tb.detect_gameobj(img_tb):
@@ -117,9 +114,9 @@ while True:
         print(f"Text was '{text_ocr}'. Exiting...")
         # break
 
-    if text_ocr == last_translated_text_ocr:
-        # Text is the same as the last translated text
-        continue
+    # Text is the same as the last translated text
+    # if text_ocr == last_translated_text_ocr:
+    #     continue
 
     n_matches = -1
     if tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:

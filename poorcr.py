@@ -178,14 +178,15 @@ class PoorCR:
 if __name__ == "__main__":
     pcr = PoorCR(only_perfect=True)
 
-    img = Image.open('data/tmp_line_2.png')
-    img_np = np.array(img.convert('1'))
-    char_imgs = extract_characters(img_np)
+    for i, filename in enumerate(glob.glob("data/tmp/line_*.png")):
+        img = Image.open(filename)
+        img_np = np.array(img.convert('1'))
+        char_imgs = extract_characters(img_np)
 
-    chars = []
-    for char_img in char_imgs:
-        char_img.save(f"data/tmp_char_{len(chars)}.png")
-        chars.append(np.array(char_img.convert('1')).astype(np.int32))
+        chars = []
+        for j, char_img in enumerate(char_imgs):
+            char_img.save(f"data/tmp/line{i}_char{j}.png")
+            chars.append(np.array(char_img.convert('1')).astype(np.int32))
 
-    text = pcr.detect(img)
-    print(text)
+        text = pcr.detect(img)
+        print(text)

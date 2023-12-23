@@ -9,7 +9,7 @@ from PIL import Image
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 
-ATTRIBUTE_POS = [(40, 24), (40, 38), (40, 52), (128, 24), (128, 38), (128, 52), (216, 24), (216, 38), (216, 52)]
+ATTRIBUTE_POS = [(40, 23), (40, 37), (40, 51), (128, 23), (128, 37), (128, 51), (216, 23), (216, 37), (216, 51)]
 ATTRIBUTE_NAMES = ["HEALTH", "ARTS", "STYLE", "HUMAN", "EXERC", "GUTS", "SCIENC", "TRIVIA", "STRESS"]
 
 class AttributeOverlayWindow(OverlayWindow):
@@ -25,7 +25,7 @@ class AttributeOverlayWindow(OverlayWindow):
         self.textbox_width = int(30 * self.game_scaling)
         self.textbox_height = int(15 * self.game_scaling)
         self.pos_x = window_pos_x + (pos_x * self.game_scaling)
-        self.pos_y = window_pos_y + int(pos_y * self.game_scaling) + 61  # 61 is the height of the taskbar
+        self.pos_y = window_pos_y + int(pos_y * self.game_scaling)
 
         self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.9)  # Make the window semi-transparent

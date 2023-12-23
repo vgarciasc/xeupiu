@@ -26,6 +26,8 @@ class OverlayWindow:
         width, height = right - left, bot - top
         pos_x, pos_y = left, top
 
+        pos_y += SIZE_TOOLBAR + SIZE_WINDOW_BORDER_TOP
+
         self.game_scaling = width // 320
         self.font_size = min(self.game_scaling * 6, 24)
 
@@ -34,10 +36,10 @@ class OverlayWindow:
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
         global bg_img
 
-        self.textbox_width = int(260 * self.game_scaling)
-        self.textbox_height = int(50 * self.game_scaling)
-        self.pos_x = window_pos_x + (33 * self.game_scaling)
-        self.pos_y = window_pos_y + int(168 * self.game_scaling) + 61  # 61 is the height of the taskbar
+        self.pos_x = window_pos_x + (TB_POS_X * self.game_scaling)
+        self.pos_y = window_pos_y + int(TB_POS_Y * self.game_scaling)
+        self.textbox_width = int(TB_WIDTH * self.game_scaling)
+        self.textbox_height = int(TB_HEIGHT * self.game_scaling)
 
         self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.9)  # Make the window semi-transparent

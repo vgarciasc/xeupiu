@@ -2,6 +2,7 @@ import numpy as np
 from PIL import Image
 from constants import *
 
+
 def convert_emerald_textbox_to_black_and_white(img_tb):
     img_tb_np = np.array(img_tb.convert('RGBA'))
     red, green, blue, alpha = img_tb_np.T
@@ -10,6 +11,7 @@ def convert_emerald_textbox_to_black_and_white(img_tb):
     img_tb_np[..., :-1][bg_pixels.T] = (0, 0, 0)
     return Image.fromarray(img_tb_np)
 
+
 def convert_weekday_to_black_and_white(img_tb):
     img_tb_np = np.array(img_tb.convert('RGBA'))
     red, green, blue, alpha = img_tb_np.T
@@ -17,6 +19,7 @@ def convert_weekday_to_black_and_white(img_tb):
     img_tb_np[..., :-1] = (255, 255, 255)
     img_tb_np[..., :-1][fg_pixels.T] = (0, 0, 0)
     return Image.fromarray(img_tb_np)
+
 
 def separate_into_lines(img_tb):
     # If image is entirely white, return
@@ -105,7 +108,7 @@ def check_is_textbox_there(img_tb):
 
 
 def check_are_attributes_there(img_ss):
-    img_attr = img_ss.crop((30, 34, 30+9, 34+36))
+    img_attr = img_ss.crop((30, 34, 30 + 9, 34 + 36))
     red, green, blue = np.array(img_attr.convert('RGB')).T
     return np.all((red < 50) & (blue < 50) & (green > 70))
 
@@ -133,7 +136,8 @@ def extract_characters(img_line_np):
 
 
 def crop_textbox_image(img_ss):
-    img_tb = img_ss.crop((30, 172, 30 + TB_WIDTH, 172 + TB_HEIGHT))
+    pos_x = TB_POS_X - 2 # The world works in mysterious ways
+    img_tb = img_ss.crop((pos_x, TB_POS_Y, pos_x + TB_WIDTH, TB_POS_Y + TB_HEIGHT))
 
     img_cs = img_tb.crop((TB_WIDTH - 11, 27, TB_WIDTH, TB_HEIGHT))
     red, green, blue = np.array(img_cs.convert('RGB')).T
@@ -147,26 +151,22 @@ def crop_textbox_image(img_ss):
 
 if __name__ == "__main__":
     img_ss = Image.open("data/tmp.png")
-    img_ss = img_ss.resize((img_ss.size[0] // 2, img_ss.size[1] // 2), Image.NEAREST)
+    game_scaling = img_ss.width // 320
 
-    img_tb = img_ss.crop((30, 176, 30 + 254, 176 + 48))
+    img_ss = img_ss.resize((img_ss.size[0] // game_scaling,
+                            img_ss.size[1] // game_scaling),
+                           Image.NEAREST)
 
-    img_cs = img_tb.crop((245, 27, 254, 48))
-    red, green, blue = np.array(img_cs.convert('RGB')).T
-    cursor_is_there = np.any((blue > 140) & (red < 100))
-
-    if cursor_is_there:
-        img_tb = img_tb.crop((0, 0, 245, 48))
-
-    img_tb.save("data/tmp_text.png")
+    img_tb = crop_textbox_image(img_ss)
+    img_tb.save("data/tmp/text.png")
 
     img_tb_bw = convert_emerald_textbox_to_black_and_white(img_tb)
-    img_tb_bw.save("data/tmp_text_bw.png")
+    img_tb_bw.save("data/tmp/text_bw.png")
 
     img_name, img_tb_lines = separate_into_lines(img_tb_bw)
-    img_name.save(f"data/tmp_name.png")
+    img_name.save(f"data/tmp/name.png")
     for i, img_tb_line in enumerate(img_tb_lines):
-        # img_tb_line = trim_text(img_tb_line)
-
         if not check_is_text_empty(img_tb_line):
-            img_tb_line.save(f"data/tmp_line_{i}.png")
+            img_tb_line.save(f"data/tmp/line_{i}.png")
+
+
