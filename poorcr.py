@@ -1,7 +1,12 @@
+from datetime import datetime
+
 import numpy as np
 from PIL import Image
+
+import image_processing
 from image_processing import extract_characters, trim_char, pad_char
 import glob
+import os
 
 
 class PoorCR:
@@ -9,8 +14,11 @@ class PoorCR:
     PoorCR stands for "Poor Man's Character Recognition". It is a simple OCR that uses a database of characters
     to detect text in images. We can do this for the textboxes because the font is always the same (MS Gothic 11x11).
     """
+
     def __init__(self, only_perfect=False):
         self.only_perfect = only_perfect
+
+        os.makedirs("data/log", exist_ok=True)
 
         self.calibration = None
         self.load_character_db()
@@ -25,26 +33,16 @@ class PoorCR:
 
         img_line_bw_np = np.array(img_line_bw.convert('1'))
         if not is_calibrating:
+            if self.calibration is None:
+                self.calibrate(img_line_bw_np)
+
             img_line_bw_np = self.apply_calibration(img_line_bw_np)
 
         char_imgs = extract_characters(img_line_bw_np)
-        text = ""
-        for char_img in char_imgs:
-            char_img_np = np.array(char_img.convert('1'))
-            char_img_np = char_img_np.astype(np.int32)
+        text = self.char_imgs_to_text(char_imgs)
 
-            char, _ = self.get_char_match(char_img_np)
-            text += char
-        text = text.replace(" ", "")
-
-        if "?" in text:
-            print(f"Found '?' in text.")
-            if is_calibrating:
-                return text
-            else:
-                img_line_bw_np = np.array(img_line_bw.convert('1'))
-                self.calibrate(img_line_bw_np)
-                return self.detect(img_line_bw)
+        if text.count("?") > 0:
+            self.log_error(text, img_line_bw)
 
         return text
 
@@ -74,7 +72,16 @@ class PoorCR:
 
         return min_char, min_img_np
 
-    # TODO: should try to calibrate every time a '?' is found
+    def char_imgs_to_text(self, char_imgs: list[Image.Image]):
+        text = ""
+        for char_img in char_imgs:
+            char_img_np = np.array(char_img.convert('1'))
+            char_img_np = char_img_np.astype(np.int32)
+
+            char, _ = self.get_char_match(char_img_np)
+            text += char
+        return text
+
     def calibrate(self, img_line_bw_np):
         """
         Calibrates the OCR by finding the offset of the text in the image. This is done by padding the image with
@@ -87,28 +94,38 @@ class PoorCR:
         :return: None.
         """
 
+        n_min_unrecognized = 99
+        n_txt_length = 0
+
+        for off_x in range(0, img_line_bw_np.shape[0] - 11):
+            for off_y in range(0, img_line_bw_np.shape[1] - 11):
+                _img = img_line_bw_np[
+                       off_x:img_line_bw_np.shape[0],
+                       off_y:img_line_bw_np.shape[1]]
+
+                char_imgs = extract_characters(_img)
+                text = self.char_imgs_to_text(char_imgs)
+                n_unrecognized = text.count("?")
+
+                if text != '':
+                    if (n_unrecognized < n_min_unrecognized) or \
+                            (n_unrecognized == n_min_unrecognized and len(text) > n_txt_length):
+                        n_min_unrecognized = n_unrecognized
+                        n_txt_length = len(text)
+                        self.calibration = (-off_y, -off_x)
+
         for pad_x in range(0, 5):
             for pad_y in range(0, 5):
-                _img = Image.fromarray(np.pad(img_line_bw_np, ((pad_x, 0), (pad_y, 0)),
-                                              mode='constant', constant_values=1))
-                text = self.detect(_img, is_calibrating=True)
+                _img = np.pad(img_line_bw_np, ((pad_x, pad_x), (pad_y, pad_y)), mode='constant', constant_values=1)
 
-                if not "?" in text and text != '':
+                char_imgs = extract_characters(_img)
+                text = self.char_imgs_to_text(char_imgs)
+                n_unrecognized = text.count("?")
+
+                if text != '' and n_unrecognized <= n_min_unrecognized and len(text) > n_txt_length:
+                    n_min_unrecognized = n_unrecognized
+                    n_txt_length = len(text)
                     self.calibration = (pad_x, pad_y)
-                    return
-
-        for off_x in range(0, img_line_bw_np.shape[1] - 11):
-            for off_y in range(0, img_line_bw_np.shape[0] - 11):
-                _img = Image.fromarray(img_line_bw_np).crop((off_x, off_y,
-                                                             img_line_bw_np.shape[1],
-                                                             img_line_bw_np.shape[0]))
-                text = self.detect(_img, is_calibrating=True)
-
-                if not "?" in text and text != '':
-                    self.calibration = (-off_x, -off_y)
-                    return
-
-        self.calibration = (0, 0)
 
     def load_character_db(self):
         """
@@ -175,12 +192,53 @@ class PoorCR:
 
         return img_line_bw_np
 
+    def log_error(self, text, image):
+        """
+        Logs an error to the error log file.
+        :param text: The text that was detected.
+        :param image: The image that was detected.
+        :return: None.
+        """
+
+        timestamp = datetime.now().strftime("%Y-%m-%d")
+
+        # get ID of the last .png that starts with 'timestamp'
+        last_id = -1
+        for filename in glob.glob(f"data/log/{timestamp}_*.png"):
+            last_id = max(last_id, int(filename.split('_')[-1].split('.')[0]))
+        img_id = last_id + 1
+
+        img_filename = f"data/log/{timestamp}_{img_id}.png"
+        image.save(img_filename)
+
+        log_filename = f"data/log/{timestamp}.txt"
+
+        # check if the last line of the log file is the same as the current text
+        last_line = ""
+        if os.path.exists(log_filename):
+            with open(log_filename, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+                if len(lines) > 2:
+                    last_line = lines[-3].strip()
+                    if last_line == f"Text: {text}":
+                        return
+
+        with open(log_filename, "a", encoding="utf-8") as f:
+            f.write(f"Text: {text}\n")
+            f.write(f"Image: {img_filename}\n")
+            f.write("-" * 50 + "\n")
+
+        print(f"Logged missing character to {log_filename}.")
+
 
 if __name__ == "__main__":
     pcr = PoorCR(only_perfect=True)
 
-    for i, filename in enumerate(glob.glob("data/tmp/line_*.png")):
+    # for i, filename in enumerate(glob.glob("data/tmp/line_*.png")):
+    for i, filename in enumerate(["data/log/2023-12-23_0.png"]):
         img = Image.open(filename)
+        img = image_processing.trim_text(img)
+
         img_np = np.array(img.convert('1'))
         char_imgs = extract_characters(img_np)
 
