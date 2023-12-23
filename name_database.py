@@ -10,10 +10,10 @@ class NameDatabase(Database):
         super().__init__(DB_NAMES_FILEPATH)
 
     def retrieve_translation(self, char_name_jp: str):
-        char_name_jp = char_name_jp.strip()
-
         if char_name_jp is None:
             return None
+
+        char_name_jp = char_name_jp.strip()
 
         df = self.df[self.df["Japanese name"] == char_name_jp]
 
