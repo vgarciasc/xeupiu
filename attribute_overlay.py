@@ -41,12 +41,12 @@ class AttributeOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, img_ss: Image) -> bool:
-        img_attr = img_ss.crop((ATTRIBUTE_POS[self.attribute_id][0] - 2,
-                                ATTRIBUTE_POS[self.attribute_id][1] + 7,
-                                (ATTRIBUTE_POS[self.attribute_id][0] + 30 - 2),
-                                (ATTRIBUTE_POS[self.attribute_id][1] + 15 + 7)))
+        img_attr = img_ss.crop((ATTRIBUTE_POS[self.attribute_id][0],
+                                ATTRIBUTE_POS[self.attribute_id][1],
+                                ATTRIBUTE_POS[self.attribute_id][0] + 30,
+                                ATTRIBUTE_POS[self.attribute_id][1] + 15))
         red, green, blue = np.array(img_attr.convert('RGB')).T
-        return np.any((red < 50) & (blue < 50) & (green > 70))
+        return np.mean((red < 50) & (blue < 50) & (green > 70)) > 0.3
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
@@ -54,5 +54,13 @@ if __name__ == "__main__":
     OverlayWindow.create_master()
     overlays = [AttributeOverlayWindow(window_id, i) for i in range(9)]
 
+    img_ss = get_window_image(window_id, use_scaling=False)
+    img_ss = img_ss.resize((img_ss.size[0] // overlays[0].game_scaling,
+                            img_ss.size[1] // overlays[0].game_scaling),
+                           Image.NEAREST)
+
     while True:
         time.sleep(1)
+
+        for overlay in overlays:
+            overlay.hide_if_not_needed(img_ss)

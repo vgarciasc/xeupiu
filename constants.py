@@ -11,3 +11,6 @@ HISTORY_SIZE = 15
 ITERS_WOUT_GAMEOBJ_BEFORE_MINIMIZING = 1
 
 WINDOW_TITLE = "Tokimeki Memorial"
+
+def is_str_empty(str):
+    return str.isspace() or not str
