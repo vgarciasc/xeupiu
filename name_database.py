@@ -10,6 +10,8 @@ class NameDatabase(Database):
         super().__init__(DB_NAMES_FILEPATH)
 
     def retrieve_translation(self, char_name_jp: str):
+        char_name_jp = char_name_jp.strip()
+
         if char_name_jp is None:
             return None
 
@@ -24,12 +26,12 @@ class NameDatabase(Database):
         return eng_text
 
     def insert_translation(self, name_jp: str, name_en: str):
-        self.df = pd.concat([self.df, pd.DataFrame({"Japanese name": [name_jp],
-                                                    "English name": [name_en]})])
+        self.df = pd.concat([self.df, pd.DataFrame({"Japanese name": [name_jp.strip()],
+                                                    "English name": [name_en.strip()]})])
         self.df.to_csv(self.filepath, sep=";", index=False)
 
 if __name__ == "__main__":
-    name_db = NameDatabase("data/database_names.csv")
+    name_db = NameDatabase()
 
     txt_jp = "謎の女"
     txt = name_db.retrieve_translation(txt_jp)
