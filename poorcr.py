@@ -9,6 +9,55 @@ import glob
 import os
 
 
+def load_character_db():
+    """
+    Loads the character database from the 'data/characters' folder. This is done by loading all the images
+    in the folder and turning them into a giant tensor.
+
+    :return: A tensor of all the characters in the database, and a string array of the characters' strings.
+    """
+    char_images = {}
+
+    for filename in glob.glob('data/characters/hiragana/*.png') + \
+                    glob.glob('data/characters/katakana/*.png') + \
+                    glob.glob('data/characters/others_1/*.png') + \
+                    glob.glob('data/characters/others_2/*.png') + \
+                    glob.glob('data/characters/weekdays/*.png') + \
+                    glob.glob('data/characters/kanji_ingame/*.png') + \
+                    glob.glob('data/characters/kanji_gameplay/*.png') + \
+                    glob.glob('data/characters/kanji_corrected/*.png'):
+
+        if filename.endswith('chars.png'):
+            continue
+
+        char = filename.split('/')[-1].split('.')[0].split('_')[-1]
+        char_img = Image.open(filename)
+        char_img_np = np.array(char_img.convert('1')).astype(np.int32)
+        char_img_np = trim_char(char_img_np)
+        char_img_np = pad_char(char_img_np)
+
+        if char in char_images:
+            char_images[char].append(char_img_np)
+        else:
+            char_images[char] = [char_img_np]
+
+    # turn dictionary into numpy array and string array
+    char_db_str = []
+    char_db_np = []
+    for char, char_img_nps in char_images.items():
+        for char_img_np in char_img_nps:
+            char_db_np.append(char_img_np)
+            char_db_str.append(char)
+
+    db_np = np.array(char_db_np)
+    db_str = char_db_str
+
+    return db_np, db_str
+
+
+db_np, db_str = load_character_db()
+
+
 class PoorCR:
     """
     PoorCR stands for "Poor Man's Character Recognition". It is a simple OCR that uses a database of characters
@@ -21,7 +70,6 @@ class PoorCR:
         os.makedirs("data/log", exist_ok=True)
 
         self.calibration = None
-        self.load_character_db()
 
     def detect(self, img_line_bw, is_calibrating=False):
         """
@@ -61,9 +109,9 @@ class PoorCR:
         test_img_np = trim_char(test_img_np)
         test_img_np = pad_char(test_img_np)
 
-        dist = np.sum(np.abs(test_img_np - self.db_np), axis=(1, 2))
-        min_char = self.db_str[np.argmin(dist)]
-        min_img_np = self.db_np[np.argmin(dist)]
+        dist = np.sum(np.abs(test_img_np - db_np), axis=(1, 2))
+        min_char = db_str[np.argmin(dist)]
+        min_img_np = db_np[np.argmin(dist)]
         min_dist = np.min(dist)
 
         if min_dist > 1 and self.only_perfect:
@@ -126,51 +174,6 @@ class PoorCR:
                     n_min_unrecognized = n_unrecognized
                     n_txt_length = len(text)
                     self.calibration = (pad_x, pad_y)
-
-    def load_character_db(self):
-        """
-        Loads the character database from the 'data/characters' folder. This is done by loading all the images
-        in the folder and turning them into a giant tensor.
-
-        :return: A tensor of all the characters in the database, and a string array of the characters' strings.
-        """
-        char_images = {}
-
-        for filename in glob.glob('data/characters/hiragana/*.png') + \
-                        glob.glob('data/characters/katakana/*.png') + \
-                        glob.glob('data/characters/others_1/*.png') + \
-                        glob.glob('data/characters/others_2/*.png') + \
-                        glob.glob('data/characters/weekdays/*.png') + \
-                        glob.glob('data/characters/kanji_ingame/*.png') + \
-                        glob.glob('data/characters/kanji_gameplay/*.png') + \
-                        glob.glob('data/characters/kanji_corrected/*.png'):
-
-            if filename.endswith('chars.png'):
-                continue
-
-            char = filename.split('/')[-1].split('.')[0].split('_')[-1]
-            char_img = Image.open(filename)
-            char_img_np = np.array(char_img.convert('1')).astype(np.int32)
-            char_img_np = trim_char(char_img_np)
-            char_img_np = pad_char(char_img_np)
-
-            if char in char_images:
-                char_images[char].append(char_img_np)
-            else:
-                char_images[char] = [char_img_np]
-
-        # turn dictionary into numpy array and string array
-        char_db_str = []
-        char_db_np = []
-        for char, char_img_nps in char_images.items():
-            for char_img_np in char_img_nps:
-                char_db_np.append(char_img_np)
-                char_db_str.append(char)
-
-        self.db_np = np.array(char_db_np)
-        self.db_str = char_db_str
-
-        return self.db_np, self.db_str
 
     def apply_calibration(self, img_line_bw_np):
         """
