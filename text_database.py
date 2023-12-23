@@ -11,6 +11,7 @@ class TextDatabase(Database):
     def retrieve_translation(self, text_jp: str, char_name_en: str = None,
                              fuzziness: int = 100, is_text_jp_complete: bool = True):
 
+        text_jp = text_jp.strip()
         df = self.df.copy()
 
         if not is_text_jp_complete and len(text_jp) < 5:
@@ -44,13 +45,13 @@ class TextDatabase(Database):
         return n_matches, jp_text, eng_text
 
     def insert_translation(self, text_jp: str, text_en: str, char_name: str = "none"):
-        self.df = pd.concat([self.df, pd.DataFrame({"Character name": [char_name],
-                                                    "Japanese text": [text_jp],
-                                                    "English text": [text_en]})])
+        self.df = pd.concat([self.df, pd.DataFrame({"Character name": [char_name.strip()],
+                                                    "Japanese text": [text_jp.strip()],
+                                                    "English text": [text_en.strip()]})])
         self.df.to_csv(self.filepath, sep=";", index=False)
 
 if __name__ == "__main__":
-    name_db = TextDatabase("data/database_text.csv")
+    name_db = TextDatabase()
 
     txt_jp = "「あなた、ＰＬＡＹＥＲね。"
     char_en = "Yuina"

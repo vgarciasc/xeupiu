@@ -7,16 +7,25 @@ from manga_ocr import MangaOcr
 
 from date_ymd_overlay import YearMonthDayOverlayWindow
 from date_weekday_overlay import WeekdayOverlayWindow
+from notebook_database import NotebookDatabase
+from notebook_overlay import NotebookOverlayWindow
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 from textbox_overlay import TextboxOverlayWindow
 from attribute_overlay import AttributeOverlayWindow
 import translator as tr
 import image_processing as imp
-import database as db
+from text_database import TextDatabase
+from name_database import NameDatabase
 from poorcr import PoorCR
 from logger import save_everything
 from constants import *
+
+pcr_name = PoorCR(only_perfect=True)
+pcr_text = PoorCR(only_perfect=True)
+
+db_texts = TextDatabase()
+db_names = NameDatabase()
 
 window_id = get_window_by_title(WINDOW_TITLE)
 
@@ -24,17 +33,14 @@ OverlayWindow.create_master()
 overlay_tb = TextboxOverlayWindow(window_id)
 overlay_attrs = [AttributeOverlayWindow(window_id, i) for i in range(9)]
 overlay_dateymds = [YearMonthDayOverlayWindow(window_id, i) for i in range(3)]
+overlay_notebooks = [NotebookOverlayWindow(window_id, i) for i in range(16)]
 overlay_weekday = WeekdayOverlayWindow(window_id)
-
-df_text = db.get_text_database()
-df_names = db.get_names_database()
-pcr_name = PoorCR(only_perfect=True)
-pcr_text = PoorCR(only_perfect=True)
 
 last_translated_text_ocr = None
 iterations_wout_textbox = 0
 history_text_ocr_lines = []
 curr_line_cache = []
+
 while True:
     # Take screenshot, crop textbox
     tik = time.perf_counter_ns()
@@ -50,6 +56,9 @@ while True:
         overlay_attr.hide_if_not_needed(img_ss)
     for overlay_dateymd in overlay_dateymds:
         overlay_dateymd.hide_if_not_needed(img_ss)
+    for overlay_notebook in overlay_notebooks:
+        overlay_notebook.hide_if_not_needed(img_ss)
+        overlay_notebook.update_text(img_ss)
     overlay_weekday.hide_if_not_needed(img_ss)
     overlay_weekday.update_weekday(img_ss)
 
@@ -106,7 +115,7 @@ while True:
             curr_line_cache = text_ocr_lines
 
     # Translation
-    display_char_name = None
+    display_name = None
     display_text = text_ocr
 
     if "?" in text_ocr:
@@ -121,21 +130,21 @@ while True:
     n_matches = -1
     if tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:
         # Translating character name
-        display_char_name = db.retrieve_translated_name(df_names, text_ocr_name)
-        if display_char_name is None and text_ocr_name is not None and has_text_stopped_printing:
-            display_char_name = tr.translate_text(text_ocr_name, "google_cloud")
-            df_names = db.add_translated_name(df_names, text_ocr_name, display_char_name)
+        display_name = db_names.retrieve_translation(text_ocr_name)
+        if display_name is None and text_ocr_name is not None and has_text_stopped_printing:
+            display_name = tr.translate_text(text_ocr_name, "google_cloud")
+            db_names.insert_translation(text_ocr_name, display_name)
 
         # Translating character text
-        n_matches, matched_jp_text, translated_text = db.retrieve_translated_text(
-            df_text, text_ocr, char_name_en=display_char_name, fuzziness=90,
+        n_matches, matched_jp_text, translated_text = db_texts.retrieve_translation(
+            text_ocr, char_name_en=display_name, fuzziness=90,
             is_text_jp_complete=has_text_stopped_printing)
 
         if n_matches == 0:
             if has_text_stopped_printing:
                 # No match found, but text has stopped printing. Translate and add to database
                 translated_text = tr.translate_text(text_ocr, "google_cloud")
-                df_text = db.add_translated_text(df_text, text_ocr, translated_text, char_name=display_char_name)
+                db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
                 display_text = translated_text
         elif n_matches == 1:
             # One match found. Display it.
@@ -148,7 +157,7 @@ while True:
         last_translated_text_ocr = text_ocr
 
     # Display
-    overlay_tb.update(display_text, display_char_name)
+    overlay_tb.update(display_text, display_name)
 
     # Housekeeping
     history_text_ocr_lines.append(text_ocr_lines)
@@ -156,7 +165,7 @@ while True:
 
     tok = time.perf_counter_ns()
     print(f"Name (detected):\t\t {text_ocr_name}")
-    print(f"Name (displayed):\t\t {display_char_name}")
+    print(f"Name (displayed):\t\t {display_name}")
     print(f"Text (detected):\t\t {text_ocr}")
     print(f"Text (displayed, {n_matches}):\t {display_text}")
     print(f"[[{time.strftime('%H:%M:%S')} ; {(tok - tik) / 1000000:.2f} ms]]")
