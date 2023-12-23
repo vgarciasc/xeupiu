@@ -12,6 +12,15 @@ def convert_emerald_textbox_to_black_and_white(img_tb):
     return Image.fromarray(img_tb_np)
 
 
+def convert_notebook_to_black_and_white(img_ss):
+    img_tb_np = np.array(img_ss.convert('RGBA'))
+    red, green, blue, alpha = img_tb_np.T
+    fg_pixels = ((red == 132) & (green == 132) & (blue == 164))
+    img_tb_np[..., :-1] = (255, 255, 255)
+    img_tb_np[..., :-1][fg_pixels.T] = (0, 0, 0)
+    return Image.fromarray(img_tb_np)
+
+
 def convert_weekday_to_black_and_white(img_tb):
     img_tb_np = np.array(img_tb.convert('RGBA'))
     red, green, blue, alpha = img_tb_np.T
@@ -79,10 +88,15 @@ def trim_text(img_tb, offset_x=1, offset_y=1):
     topmost_black = np.min(np.where((red != 255).T)[0])
     bottommost_black = np.max(np.where((red != 255).T)[0])
 
-    img_tb_trim = img_tb.crop((max(leftmost_black - offset_x, 0),
-                               max(topmost_black - offset_y, 0),
-                               rightmost_black + offset_x,
-                               bottommost_black + offset_y))
+    x1 = max(leftmost_black - offset_x, 0)
+    y1 = max(topmost_black - offset_y, 0)
+    x2 = rightmost_black + offset_x
+    y2 = bottommost_black + offset_y
+    w = x2 - x1
+
+    x2 = x1 + (w + (14 - (w - 11) % 14))
+
+    img_tb_trim = img_tb.crop((x1, y1, x2, y2))
 
     return img_tb_trim
 
