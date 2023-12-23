@@ -38,6 +38,7 @@ class PoorCR:
         text = text.replace(" ", "")
 
         if "?" in text:
+            print(f"Found '?' in text.")
             if is_calibrating:
                 return text
             else:
@@ -186,7 +187,6 @@ if __name__ == "__main__":
         chars = []
         for j, char_img in enumerate(char_imgs):
             char_img.save(f"data/tmp/line{i}_char{j}.png")
-            chars.append(np.array(char_img.convert('1')).astype(np.int32))
 
         text = pcr.detect(img)
         print(text)

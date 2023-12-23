@@ -6,9 +6,9 @@ from constants import *
 def convert_emerald_textbox_to_black_and_white(img_tb):
     img_tb_np = np.array(img_tb.convert('RGBA'))
     red, green, blue, alpha = img_tb_np.T
-    bg_pixels = (red > 150) & (blue > 150) & (green > 150)
-    img_tb_np[..., :-1] = (255, 255, 255)
-    img_tb_np[..., :-1][bg_pixels.T] = (0, 0, 0)
+    bg_pixels = ((red < 50) & (blue < 50) & (green > 50)) | ((red < 20) & (blue < 20) & (green < 20))
+    img_tb_np[..., :-1] = (0, 0, 0)
+    img_tb_np[..., :-1][bg_pixels.T] = (255, 255, 255)
     return Image.fromarray(img_tb_np)
 
 
@@ -28,17 +28,25 @@ def separate_into_lines(img_tb):
 
     # A region in the textbox. If this region is blank, the left area
     # of the textbox is being used to display the character's name
-    divider_line = img_tb.crop((44, 0, 49, img_tb.height))
-    divider_line_np = np.array(divider_line.convert('RGBA'))
-    red, green, blue, alpha = divider_line_np.T
-    is_divider_line_there = np.all(red == 255) and np.all(green == 255) and np.all(blue == 255)
+    img_name = img_tb.crop((0, 0, 42, 20))
+    img_name_np = np.array(img_name.convert('1'))
+    is_name_there = np.any(img_name_np == 0)
+
+    below_name = img_tb.crop((0, 17, 42, 48))
+    below_name_np = np.array(below_name.convert('1'))
+    is_nothing_below_name = np.all(below_name_np == 1)
+
+    rest_textbox = img_tb.crop((47, 0, img_tb.width - 47, img_tb.height))
+    rest_textbox_np = np.array(rest_textbox.convert('1'))
+    is_text_in_rest_textbox = np.any(rest_textbox_np == 0)
+
+    should_separate_name_and_text = is_name_there and is_nothing_below_name and is_text_in_rest_textbox
 
     _x, _y = 0, 0
-
-    img_name = None
-    if is_divider_line_there:
-        img_name = img_tb.crop((0, 0, 42, 20))
+    if should_separate_name_and_text:
         _x = 43
+    else:
+        img_name = None
 
     img_text = img_tb.crop((_x, 0, img_tb.width, img_tb.height))
     red, green, blue = np.array(img_text.convert('RGB')).T
