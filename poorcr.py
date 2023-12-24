@@ -181,10 +181,12 @@ class PoorCR:
                 text = self.char_imgs_to_text(char_imgs)
                 n_unrecognized = text.count("?")
 
-                if text != '' and n_unrecognized <= n_min_unrecognized and len(text) > n_txt_length:
-                    n_min_unrecognized = n_unrecognized
-                    n_txt_length = len(text)
-                    self.calibration = (pad_x, pad_y)
+                if text != '':
+                    if (n_unrecognized < n_min_unrecognized) or \
+                            (n_unrecognized == n_min_unrecognized and len(text) > n_txt_length):
+                        n_min_unrecognized = n_unrecognized
+                        n_txt_length = len(text)
+                        self.calibration = (pad_x, pad_y)
 
     def apply_calibration(self, img_line_bw_np):
         """
@@ -249,7 +251,7 @@ if __name__ == "__main__":
     pcr = PoorCR(only_perfect=True)
 
     for i, filename in enumerate(glob.glob("data/tmp/line_*.png")):
-    # for i, filename in enumerate(["data/tmp/line_0.png"]):
+        # for i, filename in enumerate(["data/tmp/line_0.png"]):
         img = Image.open(filename)
         # img = image_processing.trim_text(img)
 

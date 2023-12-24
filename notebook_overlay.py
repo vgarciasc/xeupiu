@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 
 import translator
-from constants import is_str_empty
+from constants import is_str_empty, ITERS_WOUT_GAMEOBJ_BEFORE_MINIMIZING
 from notebook_database import NotebookDatabase
 from poorcr import PoorCR
 from screenshot import get_window_by_title, get_window_image
@@ -76,6 +76,11 @@ class NotebookOverlayWindow(OverlayWindow):
                                 self.pos_y_gamescreen,
                                 (self.pos_x_gamescreen + self.width),
                                 (self.pos_y_gamescreen + self.height)))
+
+        img_item_bw = imp.convert_notebook_to_black_and_white(img_item)
+        if imp.check_is_text_empty(img_item_bw):
+            return False
+
         red, green, blue = np.array(img_item.convert('RGB')).T
 
         beige = (np.mean((red == green) & (blue == green)) > 0.2) and np.mean((red > 150) & (blue > 150) & (green > 150))
@@ -99,8 +104,12 @@ class NotebookOverlayWindow(OverlayWindow):
                                 self.pos_y_gamescreen,
                                 self.pos_x_gamescreen + self.width,
                                 self.pos_y_gamescreen + self.height))
+
         img_item_bw = imp.convert_notebook_to_black_and_white(img_item)
         img_item_bw = imp.trim_text(img_item_bw)
+
+        if imp.check_is_text_empty(img_item_bw):
+            return
 
         text_jp = self.pcr.detect(img_item_bw)
         if is_str_empty(text_jp):
@@ -116,6 +125,22 @@ class NotebookOverlayWindow(OverlayWindow):
 
         self.update("   " + text)
 
+    def hide_if_not_needed(self, img_ss: Image) -> None:
+        """
+        Hides the overlay if it is not needed.
+        """
+
+        if self.detect_gameobj(img_ss):
+            self.iterations_wout_gameobj = 0
+        else:
+            self.iterations_wout_gameobj += 1
+
+        if self.iterations_wout_gameobj > ITERS_WOUT_GAMEOBJ_BEFORE_MINIMIZING:
+            self.hide()
+        else:
+            self.show()
+
+
     def toggle_selected(self, val: bool):
         if val:
             self.label.config(bg='#bbebbb')
@@ -130,7 +155,7 @@ if __name__ == "__main__":
     db = NotebookDatabase()
 
     overlays = [NotebookOverlayWindow(window_id, i, db) for i in range(16)]
-    # overlays = [NotebookOverlayWindow(window_id, 1, db)]
+    # overlays = [NotebookOverlayWindow(window_id, 15, db)]
 
     while True:
         img_ss = get_window_image(window_id, use_scaling=False)
