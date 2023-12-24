@@ -45,7 +45,8 @@ class TextDatabase(Database):
         return n_matches, jp_text, eng_text
 
     def insert_translation(self, text_jp: str, text_en: str, char_name: str = "none"):
-        self.df = pd.concat([self.df, pd.DataFrame({"Character name": [char_name.strip()],
+        char_name = char_name.strip() if char_name is not None else "none"
+        self.df = pd.concat([self.df, pd.DataFrame({"Character name": [char_name],
                                                     "Japanese text": [text_jp.strip()],
                                                     "English text": [text_en.strip()]})])
         self.df.to_csv(self.filepath, sep=";", index=False)

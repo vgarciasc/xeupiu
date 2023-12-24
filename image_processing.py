@@ -37,7 +37,7 @@ def separate_into_lines(img_tb):
 
     # A region in the textbox. If this region is blank, the left area
     # of the textbox is being used to display the character's name
-    img_name = img_tb.crop((0, 0, 42, 20))
+    img_name = img_tb.crop((0, 0, 45, 20))
     img_name_np = np.array(img_name.convert('1'))
     is_name_there = np.any(img_name_np == 0)
 
@@ -88,15 +88,17 @@ def trim_text(img_tb, offset_x=1, offset_y=1):
     topmost_black = np.min(np.where((red != 255).T)[0])
     bottommost_black = np.max(np.where((red != 255).T)[0])
 
+    w = rightmost_black - leftmost_black
+    w = w + (14 - (w - 11) % 14)
+    w = w + offset_x * 2
+
+    h = bottommost_black - topmost_black
+    h = max(h, 11 + offset_y * 2)
+
     x1 = max(leftmost_black - offset_x, 0)
     y1 = max(topmost_black - offset_y, 0)
-    x2 = rightmost_black + offset_x
-    y2 = bottommost_black + offset_y
-    w = x2 - x1
 
-    x2 = x1 + (w + (14 - (w - 11) % 14))
-
-    img_tb_trim = img_tb.crop((x1, y1, x2, y2))
+    img_tb_trim = img_tb.crop((x1, y1, x1 + w, y1 + h))
 
     return img_tb_trim
 
@@ -166,18 +168,18 @@ def crop_textbox_image(img_ss):
 
     cursor_is_there = np.any((blue > 140) & (red < 100))
     if cursor_is_there:
-        img_tb = img_tb.crop((0, 0, TB_WIDTH - 11, 48))
+        img_tb = img_tb.crop((0, 0, TB_WIDTH - CURSOR_WIDTH, 48))
 
     return img_tb
 
 
 if __name__ == "__main__":
-    img_ss = Image.open("data/tmp.png")
-    game_scaling = img_ss.width // 320
+    img_ss = Image.open("data/tmp/tmp_window_2.png")
+    # game_scaling = img_ss.width // 320
 
-    img_ss = img_ss.resize((img_ss.size[0] // game_scaling,
-                            img_ss.size[1] // game_scaling),
-                           Image.NEAREST)
+    # img_ss = img_ss.resize((img_ss.size[0] // game_scaling,
+    #                         img_ss.size[1] // game_scaling),
+    #                        Image.NEAREST)
 
     img_tb = crop_textbox_image(img_ss)
     img_tb.save("data/tmp/text.png")
@@ -186,7 +188,8 @@ if __name__ == "__main__":
     img_tb_bw.save("data/tmp/text_bw.png")
 
     img_name, img_tb_lines = separate_into_lines(img_tb_bw)
-    img_name.save(f"data/tmp/name.png")
+    if img_name:
+        img_name.save(f"data/tmp/name.png")
     for i, img_tb_line in enumerate(img_tb_lines):
         if not check_is_text_empty(img_tb_line):
             img_tb_line.save(f"data/tmp/line_{i}.png")

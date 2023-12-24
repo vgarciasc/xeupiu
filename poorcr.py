@@ -71,7 +71,7 @@ class PoorCR:
 
         self.calibration = None
 
-    def detect(self, img_line_bw, is_calibrating=False):
+    def detect(self, img_line_bw, should_recalibrate=False):
         """
         Detects text in a line of text.
         :param img_line_bw: Image of a line of text in black and white.
@@ -79,20 +79,31 @@ class PoorCR:
         :return: The text detected in the line.
         """
 
-        img_line_bw_np = np.array(img_line_bw.convert('1'))
-        if not is_calibrating:
-            if self.calibration is None:
-                self.calibrate(img_line_bw_np)
+        img_line_bw_np_original = np.array(img_line_bw.convert('1'))
 
-            img_line_bw_np = self.apply_calibration(img_line_bw_np)
+        # Calibrate if no calibration exists
+        if self.calibration is None:
+            self.calibrate(img_line_bw_np_original)
+        img_line_bw_np = self.apply_calibration(img_line_bw_np_original)
 
+        # First try
         char_imgs = extract_characters(img_line_bw_np)
         text = self.char_imgs_to_text(char_imgs)
 
-        if text.count("?") > 0:
-            self.log_error(text, img_line_bw)
+        perfect_detection = text.count("?") == 0
+        if not perfect_detection and should_recalibrate:
+            self.calibrate(img_line_bw_np_original)
+            img_line_bw_np = self.apply_calibration(img_line_bw_np_original)
 
-        return text
+            # Second try
+            char_imgs = extract_characters(img_line_bw_np)
+            text = self.char_imgs_to_text(char_imgs)
+
+            perfect_detection = text.count("?") == 0
+            if not perfect_detection:
+                self.log_error(text, img_line_bw)
+
+        return text.strip()
 
     def get_char_match(self, test_img_np):
         """
@@ -145,8 +156,8 @@ class PoorCR:
         n_min_unrecognized = 99
         n_txt_length = 0
 
-        for off_x in range(0, img_line_bw_np.shape[0] - 11):
-            for off_y in range(0, img_line_bw_np.shape[1] - 11):
+        for off_y in range(0, 11):
+            for off_x in range(0, 11):
                 _img = img_line_bw_np[
                        off_x:img_line_bw_np.shape[0],
                        off_y:img_line_bw_np.shape[1]]
@@ -237,10 +248,10 @@ class PoorCR:
 if __name__ == "__main__":
     pcr = PoorCR(only_perfect=True)
 
-    # for i, filename in enumerate(glob.glob("data/tmp/line_*.png")):
-    for i, filename in enumerate(["data/log/2023-12-23_0.png"]):
+    for i, filename in enumerate(glob.glob("data/tmp/line_*.png")):
+    # for i, filename in enumerate(["data/tmp/line_0.png"]):
         img = Image.open(filename)
-        img = image_processing.trim_text(img)
+        # img = image_processing.trim_text(img)
 
         img_np = np.array(img.convert('1'))
         char_imgs = extract_characters(img_np)
@@ -249,5 +260,6 @@ if __name__ == "__main__":
         for j, char_img in enumerate(char_imgs):
             char_img.save(f"data/tmp/line{i}_char{j}.png")
 
-        text = pcr.detect(img)
+        text = pcr.detect(img, should_recalibrate=True)
+        print("Calibration:", pcr.calibration)
         print(text)

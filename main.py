@@ -26,6 +26,7 @@ pcr_text = PoorCR(only_perfect=True)
 
 db_texts = TextDatabase()
 db_names = NameDatabase()
+db_notebook = NotebookDatabase()
 
 window_id = get_window_by_title(WINDOW_TITLE)
 
@@ -33,7 +34,7 @@ OverlayWindow.create_master()
 overlay_tb = TextboxOverlayWindow(window_id)
 overlay_attrs = [AttributeOverlayWindow(window_id, i) for i in range(9)]
 overlay_dateymds = [YearMonthDayOverlayWindow(window_id, i) for i in range(3)]
-overlay_notebooks = [NotebookOverlayWindow(window_id, i) for i in range(16)]
+overlay_notebooks = [NotebookOverlayWindow(window_id, i, db_notebook) for i in range(16)]
 overlay_weekday = WeekdayOverlayWindow(window_id)
 
 last_translated_text_ocr = None
@@ -44,6 +45,8 @@ curr_line_cache = []
 while True:
     # Take screenshot, crop textbox
     tik = time.perf_counter_ns()
+
+    #TODO: Load 'Global Save 4' and play. Textbox is now fucked up for whatever reason. This needs to be fixed
 
     img_ss = get_window_image(window_id, use_scaling=False)
     img_ss = img_ss.resize((img_ss.size[0] // overlay_tb.game_scaling,
@@ -70,14 +73,15 @@ while True:
     img_tb_bw = imp.convert_emerald_textbox_to_black_and_white(img_tb)
     img_tb_name, img_tb_lines = imp.separate_into_lines(img_tb_bw)
 
-    text_ocr_name = None
+    name_ocr = None
     if not imp.check_is_text_empty(img_tb_name):
-        text_ocr_name = pcr_name.detect(img_tb_name)
+        img_tb_name = imp.trim_text(img_tb_name)
+        name_ocr = pcr_name.detect(img_tb_name, should_recalibrate=True)
 
     text_ocr_lines = []
     for i, img_tb_line in enumerate(img_tb_lines):
         if not imp.check_is_text_empty(img_tb_line):
-            text_ocr_line = pcr_text.detect(img_tb_line)
+            text_ocr_line = pcr_text.detect(img_tb_line, should_recalibrate=True)
             if text_ocr_line == '':
                 print("Empty line detected. This should not be happening "
                       "(empty line should not be considered by separate_into_lines). "
@@ -115,25 +119,25 @@ while True:
             curr_line_cache = text_ocr_lines
 
     # Translation
-    display_name = None
+    display_name = name_ocr
     display_text = text_ocr
 
-    if "?" in text_ocr:
-        save_everything(img_ss, img_tb, img_tb_bw, img_tb_lines)
-        print(f"Text was '{text_ocr}'. Exiting...")
-        # break
+    # if "?" in text_ocr:
+    #     save_everything(img_ss, img_tb, img_tb_bw, img_tb_lines)
+    #     print(f"Text was '{text_ocr}'. Exiting...")
+    #     break
 
     # Text is the same as the last translated text
-    # if text_ocr == last_translated_text_ocr:
-    #     continue
+    if text_ocr == last_translated_text_ocr:
+        continue
 
     n_matches = -1
     if tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:
         # Translating character name
-        display_name = db_names.retrieve_translation(text_ocr_name)
-        if display_name is None and text_ocr_name is not None and has_text_stopped_printing:
-            display_name = tr.translate_text(text_ocr_name, "google_cloud")
-            db_names.insert_translation(text_ocr_name, display_name)
+        display_name = db_names.retrieve_translation(name_ocr)
+        if display_name is None and name_ocr is not None and has_text_stopped_printing:
+            display_name = tr.translate_text(name_ocr, "google_cloud")
+            db_names.insert_translation(name_ocr, display_name)
 
         # Translating character text
         n_matches, matched_jp_text, translated_text = db_texts.retrieve_translation(
@@ -164,7 +168,7 @@ while True:
     history_text_ocr_lines = history_text_ocr_lines[-HISTORY_SIZE:]
 
     tok = time.perf_counter_ns()
-    print(f"Name (detected):\t\t {text_ocr_name}")
+    print(f"Name (detected):\t\t {name_ocr}")
     print(f"Name (displayed):\t\t {display_name}")
     print(f"Text (detected):\t\t {text_ocr}")
     print(f"Text (displayed, {n_matches}):\t {display_text}")
