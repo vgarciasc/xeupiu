@@ -13,23 +13,34 @@ from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 import image_processing as imp
 
+DIVIDER_MARK_3COL = ((100, 54), (9, 9), (41, 132, 164))
+DIVIDER_MARK_2COL = ((145, 35), (7, 8), (99, 132, 164))
+
 NOTEBOOK_ITEMS = [
-    ((20, 35),   (256, 16), "#e0e0e0"),
-    ((24, 64),   (72, 16),  "#e0e0e0"),
-    ((24, 80),   (72, 16),  "#e0e0e0"),
-    ((24, 96),   (72, 16),  "#e0e0e0"),
-    ((24, 112),  (72, 16),  "#e0e0e0"),
-    ((24, 128),  (72, 16),  "#dddddd"),
-    ((108, 64),  (72, 16),  "#e0e0e0"),
-    ((108, 80),  (72, 16),  "#dedede"),
-    ((108, 96),  (72, 16),  "#d8d8d8"),
-    ((108, 112), (72, 16),  "#d3d3d3"),
-    ((108, 128), (72, 16),  "#cecece"),
-    ((200, 64),  (72, 16),  "#d8d8d8"),
-    ((200, 80),  (72, 16),  "#d5d5d5"),
-    ((200, 96),  (72, 16),  "#d2d2d2"),
-    ((200, 112), (72, 16),  "#cacaca"),
-    ((200, 128), (72, 16),  "#c8c8c8"),
+    ((20, 35), (256, 16), "#e0e0e0", "3col"),
+    ((24, 64), (72, 16), "#e0e0e0", "3col"),
+    ((24, 80), (72, 16), "#e0e0e0", "3col"),
+    ((24, 96), (72, 16), "#e0e0e0", "3col"),
+    ((24, 112), (72, 16), "#e0e0e0", "3col"),
+    ((24, 128), (72, 16), "#dddddd", "3col"),
+    ((108, 64), (72, 16), "#e0e0e0", "3col"),
+    ((108, 80), (72, 16), "#dedede", "3col"),
+    ((108, 96), (72, 16), "#d8d8d8", "3col"),
+    ((108, 112), (72, 16), "#d3d3d3", "3col"),
+    ((108, 128), (72, 16), "#cecece", "3col"),
+    ((200, 64), (72, 16), "#d8d8d8", "3col"),
+    ((200, 80), (72, 16), "#d5d5d5", "3col"),
+    ((200, 96), (72, 16), "#d2d2d2", "3col"),
+    ((200, 112), (72, 16), "#cacaca", "3col"),
+    ((200, 128), (72, 16), "#c8c8c8", "3col"),
+    ((36, 56), (98, 12), "#e0e0e0", "2col"),
+    ((36, 68), (98, 12), "#e0e0e0", "2col"),
+    ((36, 80), (98, 12), "#e0e0e0", "2col"),
+    ((36, 92), (98, 12), "#e0e0e0", "2col"),
+    ((36, 104), (98, 12), "#e0e0e0", "2col"),
+    ((36, 116), (98, 12), "#e0e0e0", "2col"),
+    ((36, 128), (98, 12), "#e0e0e0", "2col"),
+    ((36, 140), (98, 12), "#e0e0e0", "2col"),
 ]
 
 
@@ -45,6 +56,14 @@ class NotebookOverlayWindow(OverlayWindow):
         self.pos_x_gamescreen, self.pos_y_gamescreen = notebook_item[0]
         self.width, self.height = notebook_item[1]
         self.bg_color = notebook_item[2]
+        self.group_code = notebook_item[3]
+
+        if self.group_code == "3col":
+            self.divider_mark = DIVIDER_MARK_3COL
+        elif self.group_code == "2col":
+            self.divider_mark = DIVIDER_MARK_2COL
+        else:
+            raise ValueError(f"Invalid group code: {self.group_code}")
 
         super().__init__(window_id)
 
@@ -72,18 +91,21 @@ class NotebookOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, img_ss: Image) -> bool:
+        red, green, blue = np.array(img_ss.convert('RGB')).T
+
+        is_divider_there = self.detect_divider(red, green, blue)
+        if not is_divider_there:
+            return False
+
         img_item = img_ss.crop((self.pos_x_gamescreen,
                                 self.pos_y_gamescreen,
                                 (self.pos_x_gamescreen + self.width),
                                 (self.pos_y_gamescreen + self.height)))
 
-        img_item_bw = imp.convert_notebook_to_black_and_white(img_item)
-        if imp.check_is_text_empty(img_item_bw):
-            return False
-
         red, green, blue = np.array(img_item.convert('RGB')).T
 
-        beige = (np.mean((red == green) & (blue == green)) > 0.2) and np.mean((red > 150) & (blue > 150) & (green > 150))
+        beige = (np.mean((red == green) & (blue == green)) > 0.2) and np.mean(
+            (red > 150) & (blue > 150) & (green > 150))
         lightgreen = np.mean((red > 120) & (blue > 120) & (green > 200)) > 0.4
 
         self.is_selected = lightgreen and not beige
@@ -93,11 +115,28 @@ class NotebookOverlayWindow(OverlayWindow):
 
         if is_detected and self.is_hidden:
             img_item_bw = imp.convert_notebook_to_black_and_white(img_item)
+
+            if imp.check_is_text_empty(img_item_bw):
+                return False
+
+            img_item_bw = imp.convert_notebook_to_black_and_white(img_item)
             img_item_bw = imp.trim_text(img_item_bw)
             img_item_bw_np = np.array(img_item_bw.convert('1'))
             self.pcr.calibrate(img_item_bw_np)
 
         return is_detected
+
+    def detect_divider(self, red, green, blue):
+        x, y = self.divider_mark[0]
+        w, h = self.divider_mark[1]
+        r, g, b = self.divider_mark[2]
+
+        is_divider_there = np.sum(
+            (red[x:x + w, y:y + h] == r) &
+            (green[x:x + w, y:y + h] == g) &
+            (blue[x:x + w, y:y + h] == b)) > 5
+
+        return is_divider_there
 
     def update_text(self, img_ss: Image):
         img_item = img_ss.crop((self.pos_x_gamescreen,
@@ -140,7 +179,6 @@ class NotebookOverlayWindow(OverlayWindow):
         else:
             self.show()
 
-
     def toggle_selected(self, val: bool):
         if val:
             self.label.config(bg='#bbebbb')
@@ -154,7 +192,7 @@ if __name__ == "__main__":
     OverlayWindow.create_master()
     db = NotebookDatabase()
 
-    overlays = [NotebookOverlayWindow(window_id, i, db) for i in range(16)]
+    overlays = [NotebookOverlayWindow(window_id, i, db) for i in range(len(NOTEBOOK_ITEMS))]
     # overlays = [NotebookOverlayWindow(window_id, 15, db)]
 
     while True:
