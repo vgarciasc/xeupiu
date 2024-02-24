@@ -27,11 +27,6 @@ def translate_openai(desc):
     )
     return completion.choices[0].message['content']
 
-def translate_google_free(text):
-    translator = Translator()
-    translated = translator.translate(text, src='ja', dest='en')
-    return translated.text
-
 def translate_google_cloud(text, project_id="xeupiu"):
     client = translate.TranslationServiceClient()
     location = "global"
@@ -49,7 +44,7 @@ def translate_google_cloud(text, project_id="xeupiu"):
 
     return response.translations[0].translated_text
 
-def translate_text(text, backend="google_free"):
+def translate_text(text, backend="google_cloud"):
     if not text:
         return ""
 
@@ -57,9 +52,7 @@ def translate_text(text, backend="google_free"):
         if text[-1] not in CLOSING_QUOTES:
             text = text[1:] # Remove opening quote
 
-    if backend == "google_free":
-        translated_text = translate_google_free(text)
-    elif backend == "google_cloud":
+    if backend == "google_cloud":
         translated_text = translate_google_cloud(text)
     elif backend == "openai":
         translated_text = translate_openai(text)
@@ -82,8 +75,4 @@ if __name__ == "__main__":
 
     print(f"Google Cloud:")
     txt_en = translate_google_cloud(txt_jp, "xeupiu")
-    print(txt_en)
-
-    print(f"Normal:")
-    txt_en = translate_google_free(txt_jp)
     print(txt_en)
