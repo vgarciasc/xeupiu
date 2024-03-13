@@ -18,7 +18,7 @@ class YearMonthDayOverlayWindow(OverlayWindow):
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
         attr_str = DATE_COMPONENT_NAMES[self.date_component_id]
         pos_x, pos_y = DATE_COMPONENT_POS[self.date_component_id]
-        self.bg_img = tk.PhotoImage(file="data/emerald_bg_DATE-DAY.png")
+        self.bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_DATE-DAY.png")
         self.font_size = min(self.game_scaling * 5, 24)
 
         self.textbox_width = int(18 * self.game_scaling)

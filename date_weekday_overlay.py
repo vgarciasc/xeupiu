@@ -30,7 +30,7 @@ class WeekdayOverlayWindow(OverlayWindow):
         super().__init__(window_id)
 
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
-        self.bg_img = tk.PhotoImage(file="data/emerald_bg_DATE-DAY.png")
+        self.bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_DATE-DAY.png")
         self.font_size = min(self.game_scaling * 5, 24)
 
         self.textbox_width = int(18 * self.game_scaling)

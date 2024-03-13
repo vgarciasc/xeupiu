@@ -45,7 +45,7 @@ class OverlayWindow:
         self.root.attributes("-alpha", 0.9)  # Make the window semi-transparent
         self.root.attributes("-topmost", True)  # Make the window semi-transparent
         self.root.overrideredirect(True)  # Remove window decorations (border, title bar)
-        bg_img = tk.PhotoImage(file="data/emerald_bg_4x.png")
+        bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_4x.png")
 
         self.root.geometry(f"{self.textbox_width}x{self.textbox_height}+{self.pos_x}+{self.pos_y}")
         self.label = tk.Label(self.root, text="asdf", font=("MS PGothic", self.font_size), fg='white',

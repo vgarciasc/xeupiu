@@ -20,7 +20,7 @@ class AttributeOverlayWindow(OverlayWindow):
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
         attr_str = ATTRIBUTE_NAMES[self.attribute_id]
         pos_x, pos_y = ATTRIBUTE_POS[self.attribute_id]
-        self.bg_img = tk.PhotoImage(file="data/emerald_bg_4x.png")
+        self.bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_4x.png")
 
         self.textbox_width = int(30 * self.game_scaling)
         self.textbox_height = int(15 * self.game_scaling)
