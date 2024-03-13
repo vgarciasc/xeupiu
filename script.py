@@ -18,16 +18,12 @@ if __name__ == "__main__":
     scaling = img_ss.size[0] // 320
     img_ss.save("data/tmp/ss.png")
 
-    # Cropping textbox
+    # Resizing
     img_ss = img_ss.resize((img_ss.size[0] // scaling, img_ss.size[1] // scaling), Image.NEAREST)
-    img_tb = img_ss.crop((30, 172, 30 + 254, 172 + 54))
+    img_ss.save("data/tmp/ss_scaled.png")
 
-    img_cs = img_tb.crop((245, 27, 254, 48))
-    red, green, blue = np.array(img_cs.convert('RGB')).T
-    cursor_is_there = np.any((blue > 140) & (red < 100))
-    if cursor_is_there:
-        img_tb = img_tb.crop((0, 0, 245, 48))
-
+    # Cropping textbox
+    img_tb = ip.crop_textbox_image(img_ss)
     img_tb.save("data/tmp/text.png")
 
     # Converting textbox to black and white
@@ -44,7 +40,6 @@ if __name__ == "__main__":
         img_name.save(f"data/tmp/name.png")
 
     # Extracting characters
-
     if img_name:
         pcr_name = PoorCR(only_perfect=True)
         text = pcr_name.detect(img_name)

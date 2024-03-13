@@ -7,8 +7,13 @@ from PIL import Image
 # (< 2.3) that has been lost to time.
 
 if __name__ == "__main__":
-    for filename in glob.glob("data/characters/kanji_proposals/identified/*.png") + \
-                    glob.glob("data/characters/kanji_proposals/to_accept/*.png"):
+    filenames = glob.glob("data/characters/kanji_proposals/identified/*.png") + glob.glob("data/characters/kanji_proposals/to_accept/*.png")
+
+    if not filenames:
+        print("WARNING: No kanji to migrate.")
+
+    for filename in filenames:
+        print(filename)
         img = Image.open(filename)
         img = img.resize((img.width // 2, img.height // 2), Image.NEAREST)
         img = img.crop((2, 2, 2 + 11, 2 + 11))
