@@ -13,36 +13,49 @@ from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 import image_processing as imp
 
-DIVIDER_MARK_3COL = ((100, 54), (9, 9), (41, 132, 164))
-DIVIDER_MARK_2COL = ((145, 35), (7, 8), (99, 132, 164))
+DIVIDER_MARK_3COL_1 = ((100, 54), (9, 9), (41, 132, 164))
+DIVIDER_MARK_2COL_1 = ((145, 35), (7, 8), (99, 132, 164))
+DIVIDER_MARK_2COL_2 = ((145, 35), (9, 15), (41, 132, 164))
 
 NOTEBOOK_ITEMS = [
-    ((20, 35), (256, 16), "#e0e0e0", "3col"),
-    ((24, 64), (72, 16), "#e0e0e0", "3col"),
-    ((24, 80), (72, 16), "#e0e0e0", "3col"),
-    ((24, 96), (72, 16), "#e0e0e0", "3col"),
-    ((24, 112), (72, 16), "#e0e0e0", "3col"),
-    ((24, 128), (72, 16), "#dddddd", "3col"),
-    ((108, 64), (72, 16), "#e0e0e0", "3col"),
-    ((108, 80), (72, 16), "#dedede", "3col"),
-    ((108, 96), (72, 16), "#d8d8d8", "3col"),
-    ((108, 112), (72, 16), "#d3d3d3", "3col"),
-    ((108, 128), (72, 16), "#cecece", "3col"),
-    ((200, 64), (72, 16), "#d8d8d8", "3col"),
-    ((200, 80), (72, 16), "#d5d5d5", "3col"),
-    ((200, 96), (72, 16), "#d2d2d2", "3col"),
-    ((200, 112), (72, 16), "#cacaca", "3col"),
-    ((200, 128), (72, 16), "#c8c8c8", "3col"),
-    ((36, 56), (98, 12), "#e0e0e0", "2col"),
-    ((36, 68), (98, 12), "#e0e0e0", "2col"),
-    ((36, 80), (98, 12), "#e0e0e0", "2col"),
-    ((36, 92), (98, 12), "#e0e0e0", "2col"),
-    ((36, 104), (98, 12), "#e0e0e0", "2col"),
-    ((36, 116), (98, 12), "#e0e0e0", "2col"),
-    ((36, 128), (98, 12), "#e0e0e0", "2col"),
-    ((36, 140), (98, 12), "#e0e0e0", "2col"),
+    # ((20, 35), (256, 16), "#e0e0e0", "3col_1"),
+    # ((24, 64), (72, 16), "#e0e0e0", "3col_1"),
+    # ((24, 80), (72, 16), "#e0e0e0", "3col_1"),
+    # ((24, 96), (72, 16), "#e0e0e0", "3col_1"),
+    # ((24, 112), (72, 16), "#e0e0e0", "3col_1"),
+    # ((24, 128), (72, 16), "#dddddd", "3col_1"),
+    # ((108, 64), (72, 16), "#e0e0e0", "3col_1"),
+    # ((108, 80), (72, 16), "#dedede", "3col_1"),
+    # ((108, 96), (72, 16), "#d8d8d8", "3col_1"),
+    # ((108, 112), (72, 16), "#d3d3d3", "3col_1"),
+    # ((108, 128), (72, 16), "#cecece", "3col_1"),
+    # ((200, 64), (72, 16), "#d8d8d8", "3col_1"),
+    # ((200, 80), (72, 16), "#d5d5d5", "3col_1"),
+    # ((200, 96), (72, 16), "#d2d2d2", "3col_1"),
+    # ((200, 112), (72, 16), "#cacaca", "3col_1"),
+    # ((200, 128), (72, 16), "#c8c8c8", "3col_1"),
+    # ((36, 56), (98, 12), "#e0e0e0", "2col_1"),
+    # ((36, 68), (98, 12), "#e0e0e0", "2col_1"),
+    # ((36, 80), (98, 12), "#e0e0e0", "2col_1"),
+    # ((36, 92), (98, 12), "#e0e0e0", "2col_1"),
+    # ((36, 104), (98, 12), "#e0e0e0", "2col_1"),
+    # ((36, 116), (98, 12), "#e0e0e0", "2col_1"),
+    # ((36, 128), (98, 12), "#e0e0e0", "2col_1"),
+    # ((36, 140), (98, 12), "#e0e0e0", "2col_1"),
+    ((24, 64), (109, 12), "#e0e0e0", "2col_2"),
+    ((24, 80), (109, 12), "#e0e0e0", "2col_2"),
+    ((24, 96), (109, 12), "#e0e0e0", "2col_2"),
+    ((24, 112), (109, 12), "#e0e0e0", "2col_2"),
+    ((24, 128), (109, 12), "#e0e0e0", "2col_2"),
+    ((160, 38), (109, 12), "#e0e0e0", "2col_2"),
+    ((160, 64), (109, 12), "#e0e0e0", "2col_2"),
+    ((160, 80), (109, 12), "#e0e0e0", "2col_2"),
+    ((160, 96), (109, 12), "#e0e0e0", "2col_2"),
+    ((160, 112), (109, 12), "#e0e0e0", "2col_2"),
+    ((160, 128), (109, 12), "#e0e0e0", "2col_2"),
+    ((32, 38), (98, 12), "#e0e0e0", "2col_2"),
+    ((160, 38), (98, 12), "#e0e0e0", "2col_2"),
 ]
-
 
 class NotebookOverlayWindow(OverlayWindow):
     def __init__(self, window_id: int, item_id: int, db: NotebookDatabase, pcr: PoorCR = None):
@@ -58,10 +71,12 @@ class NotebookOverlayWindow(OverlayWindow):
         self.bg_color = notebook_item[2]
         self.group_code = notebook_item[3]
 
-        if self.group_code == "3col":
-            self.divider_mark = DIVIDER_MARK_3COL
-        elif self.group_code == "2col":
-            self.divider_mark = DIVIDER_MARK_2COL
+        if self.group_code == "3col_1":
+            self.divider_mark = DIVIDER_MARK_3COL_1
+        elif self.group_code == "2col_1":
+            self.divider_mark = DIVIDER_MARK_2COL_1
+        elif self.group_code == "2col_2":
+            self.divider_mark = DIVIDER_MARK_2COL_2
         else:
             raise ValueError(f"Invalid group code: {self.group_code}")
 
@@ -81,7 +96,7 @@ class NotebookOverlayWindow(OverlayWindow):
         self.root.overrideredirect(True)
 
         self.root.geometry(f"{self.textbox_width}x{self.textbox_height}+{self.pos_x}+{self.pos_y}")
-        self.label = tk.Label(self.root, text="XXX", font=("MS PGothic", self.font_size), fg='#70779e',
+        self.label = tk.Label(self.root, text="", font=("MS PGothic", self.font_size), fg='#70779e',
                               width=self.textbox_width, height=self.textbox_height,
                               wraplength=self.textbox_width, bg=self.bg_color,
                               justify='left', compound='left', anchor='w')
@@ -131,11 +146,11 @@ class NotebookOverlayWindow(OverlayWindow):
         w, h = self.divider_mark[1]
         r, g, b = self.divider_mark[2]
 
-        is_divider_there = np.sum(
-            (red[x:x + w, y:y + h] == r) &
-            (green[x:x + w, y:y + h] == g) &
-            (blue[x:x + w, y:y + h] == b)) > 5
+        red = red[x:x + w, y:y + h]
+        green = green[x:x + w, y:y + h]
+        blue = blue[x:x + w, y:y + h]
 
+        is_divider_there = np.sum((red == r) & (green == g) & (blue == b)) > 5
         return is_divider_there
 
     def update_text(self, img_ss: Image):
@@ -148,6 +163,7 @@ class NotebookOverlayWindow(OverlayWindow):
         img_item_bw = imp.trim_text(img_item_bw)
 
         if imp.check_is_text_empty(img_item_bw):
+            self.hide()
             return
 
         text_jp = self.pcr.detect(img_item_bw)
