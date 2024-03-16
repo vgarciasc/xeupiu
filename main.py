@@ -46,9 +46,7 @@ while True:
     # Take screenshot, crop textbox
     tik = time.perf_counter_ns()
 
-    #TODO: Load 'Global Save 4' and play. Textbox is now fucked up for whatever reason. This needs to be fixed
-
-    img_ss = get_window_image(window_id, use_scaling=False)
+    img_ss = get_window_image(window_id, use_scaling=True)
     img_ss = img_ss.resize((img_ss.size[0] // overlay_tb.game_scaling,
                             img_ss.size[1] // overlay_tb.game_scaling),
                            Image.NEAREST)
@@ -128,8 +126,8 @@ while True:
     #     break
 
     # Text is the same as the last translated text
-    if text_ocr == last_translated_text_ocr:
-        continue
+    # if text_ocr == last_translated_text_ocr:
+    #     continue
 
     n_matches = -1
     if tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:

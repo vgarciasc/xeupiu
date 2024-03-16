@@ -174,12 +174,12 @@ def crop_textbox_image(img_ss):
 
 
 if __name__ == "__main__":
-    img_ss = Image.open("data/tmp/tmp_window_2.png")
-    # game_scaling = img_ss.width // 320
+    img_ss = Image.open("data/tmp/ss.png")
+    game_scaling = img_ss.width // 320
 
-    # img_ss = img_ss.resize((img_ss.size[0] // game_scaling,
-    #                         img_ss.size[1] // game_scaling),
-    #                        Image.NEAREST)
+    img_ss = img_ss.resize((img_ss.size[0] // game_scaling,
+                            img_ss.size[1] // game_scaling),
+                           Image.NEAREST)
 
     img_tb = crop_textbox_image(img_ss)
     img_tb.save("data/tmp/text.png")

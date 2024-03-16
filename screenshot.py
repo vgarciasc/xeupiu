@@ -93,4 +93,4 @@ if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
     window_pixels = get_window_image(window_id)
     if window_pixels:
-        window_pixels.save("data/tmp.png")
+        window_pixels.save("data/tmp/ss.png")
