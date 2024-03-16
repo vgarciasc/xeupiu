@@ -1,5 +1,5 @@
-TB_POS_X = 32
-TB_POS_Y = 166
+TB_POS_X = 30
+TB_POS_Y = 168
 TB_WIDTH = 11 + (11 + 3) * 18 - 2
 TB_HEIGHT = 11 + (11 + 5) * 2 + 8
 

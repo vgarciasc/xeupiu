@@ -22,10 +22,10 @@ class AttributeOverlayWindow(OverlayWindow):
         pos_x, pos_y = ATTRIBUTE_POS[self.attribute_id]
         self.bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_4x.png")
 
+        self.pos_x = window_pos_x + int(pos_x * self.game_scaling)
+        self.pos_y = window_pos_y + int(pos_y * self.game_scaling)
         self.textbox_width = int(30 * self.game_scaling)
         self.textbox_height = int(15 * self.game_scaling)
-        self.pos_x = window_pos_x + (pos_x * self.game_scaling)
-        self.pos_y = window_pos_y + int(pos_y * self.game_scaling)
 
         self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.9)  # Make the window semi-transparent

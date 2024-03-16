@@ -37,7 +37,7 @@ def separate_into_lines(img_tb):
 
     # A region in the textbox. If this region is blank, the left area
     # of the textbox is being used to display the character's name
-    img_name = img_tb.crop((0, 0, 45, 20))
+    img_name = img_tb.crop((0, 0, 42, 20))
     img_name_np = np.array(img_name.convert('1'))
     is_name_there = np.any(img_name_np == 0)
 
@@ -160,13 +160,12 @@ def extract_characters(img_line_np):
 
 
 def crop_textbox_image(img_ss):
-    pos_x = TB_POS_X - 2 # The world works in mysterious ways
-    img_tb = img_ss.crop((pos_x, TB_POS_Y, pos_x + TB_WIDTH, TB_POS_Y + TB_HEIGHT))
+    img_tb = img_ss.crop((TB_POS_X, TB_POS_Y, TB_POS_X + TB_WIDTH, TB_POS_Y + TB_HEIGHT))
 
     img_cs = img_tb.crop((TB_WIDTH - 11, 27, TB_WIDTH, TB_HEIGHT))
-    red, green, blue = np.array(img_cs.convert('RGB')).T
+    r, g, b = np.array(img_cs.convert('RGB')).T
 
-    cursor_is_there = np.any((blue > 140) & (red < 100))
+    cursor_is_there = np.any((b > 140) & (r < 100))
     if cursor_is_there:
         img_tb = img_tb.crop((0, 0, TB_WIDTH - CURSOR_WIDTH, 48))
 

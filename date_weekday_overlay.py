@@ -33,10 +33,10 @@ class WeekdayOverlayWindow(OverlayWindow):
         self.bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_DATE-DAY.png")
         self.font_size = min(self.game_scaling * 5, 24)
 
-        self.textbox_width = int(18 * self.game_scaling)
-        self.textbox_height = int(16 * self.game_scaling)
         self.pos_x = window_pos_x + (self.pos_x_gamescreen * self.game_scaling)
         self.pos_y = window_pos_y + ((self.pos_y_gamescreen - 1) * self.game_scaling)
+        self.textbox_width = int(18 * self.game_scaling)
+        self.textbox_height = int(16 * self.game_scaling)
 
         self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.95)

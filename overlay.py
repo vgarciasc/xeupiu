@@ -1,8 +1,10 @@
 import time
 import tkinter as tk
 from ctypes import windll
+
+import numpy as np
 import win32gui
-from PIL.Image import Image
+from PIL import Image
 
 from constants import *
 from screenshot import get_window_by_title, get_window_image
@@ -14,19 +16,71 @@ class OverlayWindow:
     """ A semi-transparent window that displays text on top of the game window. """
 
     def __init__(self, window_id: int):
+        self.letterbox_offset = self.get_letterbox_offset(window_id)
+
         pos_x, pos_y, width, height = self.get_window_dims(window_id)
         self.create_overlay(pos_x, pos_y, width, height)
 
         self.is_hidden = False
         self.iterations_wout_gameobj = 0
 
+    def get_letterbox_offset(self, window_id: int):
+        """
+        Removes black letterboxes on the sides of the game window.
+        :return: The x and y offsets of the game window.
+        """
+
+        img_ss = get_window_image(window_id, use_scaling=False)
+        img_ss_np = np.array(img_ss.convert('RGBA'))
+
+        left_offset = 0
+        for r, g, b, a in img_ss_np[img_ss_np.shape[0]//2, :, :]:
+            if not (r == 0 and g == 0 and b == 0):
+                break
+            left_offset += 1
+
+        right_offset = 0
+        for r, g, b, a in np.flip(img_ss_np, axis=1)[img_ss_np.shape[0]//2, :, :]:
+            if not (r == 0 and g == 0 and b == 0):
+                break
+            right_offset += 1
+
+        bottom_offset = 0
+        for r, g, b, a in np.flip(img_ss_np, axis=0)[:, img_ss_np.shape[1]//2, :]:
+            if not (r == 0 and g == 0 and b == 0):
+                break
+            bottom_offset += 1
+
+        top_offset = 0
+        for r, g, b, a in img_ss_np[:, img_ss_np.shape[1]//2, :]:
+            if not (r == 0 and g == 0 and b == 0):
+                break
+            top_offset += 1
+
+        local_game_scaling = round((img_ss.width - left_offset - right_offset) / 320)
+
+        # There is a 1px black border on the left on DuckStation for some reason
+        left_offset -= 1 * local_game_scaling
+
+        # There is a *FLICKERING* 1px black border on the top on DuckStation
+        if (img_ss.height - top_offset - bottom_offset) % 240 != 0:
+            top_offset -= 1 * local_game_scaling
+
+        return left_offset, right_offset, top_offset, bottom_offset
+
     def get_window_dims(self, window_id: int):
         windll.user32.SetProcessDPIAware()
+
         left, top, right, bot = win32gui.GetWindowRect(window_id)
         width, height = right - left, bot - top
         pos_x, pos_y = left, top
 
-        pos_y += SIZE_TOOLBAR + SIZE_WINDOW_BORDER_TOP
+        l_offset, r_offset, t_offset, b_offset = self.letterbox_offset
+
+        pos_x += l_offset
+        pos_y += SIZE_TOOLBAR + SIZE_WINDOW_BORDER_TOP + t_offset
+        width -= (l_offset + r_offset)
+        height -= (SIZE_TOOLBAR + SIZE_WINDOW_BORDER_TOP + t_offset + b_offset)
 
         self.game_scaling = width // 320
         self.font_size = min(self.game_scaling * 6, 24)
@@ -36,7 +90,7 @@ class OverlayWindow:
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
         global bg_img
 
-        self.pos_x = window_pos_x + (TB_POS_X * self.game_scaling)
+        self.pos_x = window_pos_x + int(TB_POS_X * self.game_scaling)
         self.pos_y = window_pos_y + int(TB_POS_Y * self.game_scaling)
         self.textbox_width = int(TB_WIDTH * self.game_scaling)
         self.textbox_height = int(TB_HEIGHT * self.game_scaling)

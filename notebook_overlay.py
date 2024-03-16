@@ -42,19 +42,18 @@ NOTEBOOK_ITEMS = [
     ((36, 116), (98, 12), "#e0e0e0", "2col_1"),
     ((36, 128), (98, 12), "#e0e0e0", "2col_1"),
     ((36, 140), (98, 12), "#e0e0e0", "2col_1"),
-    ((24, 64), (109, 12), "#e0e0e0", "2col_2"),
-    ((24, 80), (109, 12), "#e0e0e0", "2col_2"),
-    ((24, 96), (109, 12), "#e0e0e0", "2col_2"),
-    ((24, 112), (109, 12), "#e0e0e0", "2col_2"),
-    ((24, 128), (109, 12), "#e0e0e0", "2col_2"),
-    ((160, 38), (109, 12), "#e0e0e0", "2col_2"),
-    ((160, 64), (109, 12), "#e0e0e0", "2col_2"),
-    ((160, 80), (109, 12), "#e0e0e0", "2col_2"),
-    ((160, 96), (109, 12), "#e0e0e0", "2col_2"),
-    ((160, 112), (109, 12), "#e0e0e0", "2col_2"),
-    ((160, 128), (109, 12), "#e0e0e0", "2col_2"),
-    ((32, 38), (98, 12), "#e0e0e0", "2col_2"),
-    ((160, 38), (98, 12), "#e0e0e0", "2col_2"),
+    ((23, 62), (109, 15), "#e0e0e0", "2col_2"),
+    ((23, 78), (109, 15), "#e0e0e0", "2col_2"),
+    ((23, 94), (109, 15), "#e0e0e0", "2col_2"),
+    ((23, 110), (109, 15), "#e0e0e0", "2col_2"),
+    ((23, 126), (109, 15), "#e0e0e0", "2col_2"),
+    ((158, 62), (109, 15), "#e0e0e0", "2col_2"),
+    ((158, 78), (109, 15), "#e0e0e0", "2col_2"),
+    ((158, 94), (109, 15), "#e0e0e0", "2col_2"),
+    ((158, 110), (109, 15), "#e0e0e0", "2col_2"),
+    ((158, 126), (109, 15), "#e0e0e0", "2col_2"),
+    ((31, 36), (98, 15), "#e0e0e0", "2col_2"),
+    ((158, 36), (109, 15), "#e0e0e0", "2col_2"),
 ]
 
 class NotebookOverlayWindow(OverlayWindow):
@@ -85,10 +84,10 @@ class NotebookOverlayWindow(OverlayWindow):
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
         self.font_size = min(self.game_scaling * 6, 32)
 
-        self.textbox_width = int(self.width * self.game_scaling)
-        self.textbox_height = int(self.height * self.game_scaling)
         self.pos_x = window_pos_x + (self.pos_x_gamescreen * self.game_scaling)
         self.pos_y = window_pos_y + (self.pos_y_gamescreen * self.game_scaling)
+        self.textbox_width = int(self.width * self.game_scaling)
+        self.textbox_height = int(self.height * self.game_scaling)
 
         self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.95)

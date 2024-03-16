@@ -26,7 +26,7 @@ def get_window_by_title(window_title):
 
     return window_id
 
-def get_window_image(window_id, use_scaling=True):
+def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=True):
     """
     Returns a PIL image of the window with the given ID.
 
@@ -69,7 +69,13 @@ def get_window_image(window_id, use_scaling=True):
     mfcDC.DeleteDC()
     win32gui.ReleaseDC(window_id, hwndDC)
 
-    img = img.crop((0, SIZE_TOOLBAR, w, h - SIZE_WINDOW_BORDER_BOTTOM))
+    # img = img.crop((0, SIZE_TOOLBAR, w, h - SIZE_WINDOW_BORDER_BOTTOM))
+    # img = img.crop((offset_x[0], offset_y[0], img.width - offset_x[1], img.height - offset_y[1]))
+
+    img = img.crop((offset_x[0],
+                    offset_y[0] + SIZE_TOOLBAR,
+                    img.width - offset_x[1],
+                    img.height - offset_y[1] - SIZE_WINDOW_BORDER_BOTTOM))
 
     return img
 

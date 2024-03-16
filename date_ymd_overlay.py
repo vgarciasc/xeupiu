@@ -21,10 +21,10 @@ class YearMonthDayOverlayWindow(OverlayWindow):
         self.bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_DATE-DAY.png")
         self.font_size = min(self.game_scaling * 5, 24)
 
-        self.textbox_width = int(18 * self.game_scaling)
-        self.textbox_height = int(15 * self.game_scaling)
         self.pos_x = window_pos_x + (pos_x * self.game_scaling)
         self.pos_y = window_pos_y + int(pos_y * self.game_scaling)
+        self.textbox_width = int(18 * self.game_scaling)
+        self.textbox_height = int(15 * self.game_scaling)
 
         self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.95)  # Make the window semi-transparent
