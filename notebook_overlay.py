@@ -17,43 +17,44 @@ DIVIDER_MARK_3COL_1 = ((100, 54), (9, 9), (41, 132, 164))
 DIVIDER_MARK_2COL_1 = ((145, 35), (7, 8), (99, 132, 164))
 DIVIDER_MARK_2COL_2 = ((145, 35), (9, 15), (41, 132, 164))
 
+
 NOTEBOOK_ITEMS = [
-    ((20, 35), (256, 16), "#e0e0e0", "3col_1"),
-    ((24, 64), (72, 16), "#e0e0e0", "3col_1"),
-    ((24, 80), (72, 16), "#e0e0e0", "3col_1"),
-    ((24, 96), (72, 16), "#e0e0e0", "3col_1"),
-    ((24, 112), (72, 16), "#e0e0e0", "3col_1"),
-    ((24, 128), (72, 16), "#dddddd", "3col_1"),
-    ((108, 64), (72, 16), "#e0e0e0", "3col_1"),
-    ((108, 80), (72, 16), "#dedede", "3col_1"),
-    ((108, 96), (72, 16), "#d8d8d8", "3col_1"),
-    ((108, 112), (72, 16), "#d3d3d3", "3col_1"),
-    ((108, 128), (72, 16), "#cecece", "3col_1"),
-    ((200, 64), (72, 16), "#d8d8d8", "3col_1"),
-    ((200, 80), (72, 16), "#d5d5d5", "3col_1"),
-    ((200, 96), (72, 16), "#d2d2d2", "3col_1"),
-    ((200, 112), (72, 16), "#cacaca", "3col_1"),
-    ((200, 128), (72, 16), "#c8c8c8", "3col_1"),
-    ((36, 56), (98, 12), "#e0e0e0", "2col_1"),
-    ((36, 68), (98, 12), "#e0e0e0", "2col_1"),
-    ((36, 80), (98, 12), "#e0e0e0", "2col_1"),
-    ((36, 92), (98, 12), "#e0e0e0", "2col_1"),
-    ((36, 104), (98, 12), "#e0e0e0", "2col_1"),
-    ((36, 116), (98, 12), "#e0e0e0", "2col_1"),
-    ((36, 128), (98, 12), "#e0e0e0", "2col_1"),
-    ((36, 140), (98, 12), "#e0e0e0", "2col_1"),
-    ((23, 62), (109, 15), "#e0e0e0", "2col_2"),
-    ((23, 78), (109, 15), "#e0e0e0", "2col_2"),
-    ((23, 94), (109, 15), "#e0e0e0", "2col_2"),
-    ((23, 110), (109, 15), "#e0e0e0", "2col_2"),
-    ((23, 126), (109, 15), "#e0e0e0", "2col_2"),
-    ((158, 62), (109, 15), "#e0e0e0", "2col_2"),
-    ((158, 78), (109, 15), "#e0e0e0", "2col_2"),
-    ((158, 94), (109, 15), "#e0e0e0", "2col_2"),
-    ((158, 110), (109, 15), "#e0e0e0", "2col_2"),
-    ((158, 126), (109, 15), "#e0e0e0", "2col_2"),
-    ((31, 36), (98, 15), "#e0e0e0", "2col_2"),
-    ((158, 36), (109, 15), "#e0e0e0", "2col_2"),
+    ((20, 35),   (256, 16), "#e0e0e0", DIVIDER_MARK_3COL_1),
+    ((24, 64),   (72, 16),  "#e0e0e0", DIVIDER_MARK_3COL_1),
+    ((24, 80),   (72, 16),  "#e0e0e0", DIVIDER_MARK_3COL_1),
+    ((24, 96),   (72, 16),  "#e0e0e0", DIVIDER_MARK_3COL_1),
+    ((24, 112),  (72, 16),  "#e0e0e0", DIVIDER_MARK_3COL_1),
+    ((24, 128),  (72, 16),  "#dddddd", DIVIDER_MARK_3COL_1),
+    ((108, 64),  (72, 16),  "#e0e0e0", DIVIDER_MARK_3COL_1),
+    ((108, 80),  (72, 16),  "#dedede", DIVIDER_MARK_3COL_1),
+    ((108, 96),  (72, 16),  "#d8d8d8", DIVIDER_MARK_3COL_1),
+    ((108, 112), (72, 16),  "#d3d3d3", DIVIDER_MARK_3COL_1),
+    ((108, 128), (72, 16),  "#cecece", DIVIDER_MARK_3COL_1),
+    ((200, 64),  (72, 16),  "#d8d8d8", DIVIDER_MARK_3COL_1),
+    ((200, 80),  (72, 16),  "#d5d5d5", DIVIDER_MARK_3COL_1),
+    ((200, 96),  (72, 16),  "#d2d2d2", DIVIDER_MARK_3COL_1),
+    ((200, 112), (72, 16),  "#cacaca", DIVIDER_MARK_3COL_1),
+    ((200, 128), (72, 16),  "#c8c8c8", DIVIDER_MARK_3COL_1),
+    ((36, 56),   (98, 12),  "#e0e0e0", DIVIDER_MARK_2COL_1),
+    ((36, 68),   (98, 12),  "#e0e0e0", DIVIDER_MARK_2COL_1),
+    ((36, 80),   (98, 12),  "#e0e0e0", DIVIDER_MARK_2COL_1),
+    ((36, 92),   (98, 12),  "#e0e0e0", DIVIDER_MARK_2COL_1),
+    ((36, 104),  (98, 12),  "#e0e0e0", DIVIDER_MARK_2COL_1),
+    ((36, 116),  (98, 12),  "#e0e0e0", DIVIDER_MARK_2COL_1),
+    ((36, 128),  (98, 12),  "#e0e0e0", DIVIDER_MARK_2COL_1),
+    ((36, 140),  (98, 12),  "#e0e0e0", DIVIDER_MARK_2COL_1),
+    ((23, 62),   (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((23, 78),   (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((23, 94),   (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((23, 110),  (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((23, 126),  (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((158, 62),  (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((158, 78),  (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((158, 94),  (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((158, 110), (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((158, 126), (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((31, 36),   (98, 15),  "#e0e0e0", DIVIDER_MARK_2COL_2),
+    ((158, 36),  (109, 15), "#e0e0e0", DIVIDER_MARK_2COL_2),
 ]
 
 class NotebookOverlayWindow(OverlayWindow):
@@ -68,16 +69,7 @@ class NotebookOverlayWindow(OverlayWindow):
         self.pos_x_gamescreen, self.pos_y_gamescreen = notebook_item[0]
         self.width, self.height = notebook_item[1]
         self.bg_color = notebook_item[2]
-        self.group_code = notebook_item[3]
-
-        if self.group_code == "3col_1":
-            self.divider_mark = DIVIDER_MARK_3COL_1
-        elif self.group_code == "2col_1":
-            self.divider_mark = DIVIDER_MARK_2COL_1
-        elif self.group_code == "2col_2":
-            self.divider_mark = DIVIDER_MARK_2COL_2
-        else:
-            raise ValueError(f"Invalid group code: {self.group_code}")
+        self.divider_mark = notebook_item[3]
 
         super().__init__(window_id)
 
@@ -105,9 +97,9 @@ class NotebookOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, img_ss: Image) -> bool:
-        red, green, blue = np.array(img_ss.convert('RGB')).T
+        r, g, b = np.array(img_ss.convert('RGB')).T
 
-        is_divider_there = self.detect_divider(red, green, blue)
+        is_divider_there = self.detect_divider(r, g, b)
         if not is_divider_there:
             return False
 
@@ -116,11 +108,10 @@ class NotebookOverlayWindow(OverlayWindow):
                                 (self.pos_x_gamescreen + self.width),
                                 (self.pos_y_gamescreen + self.height)))
 
-        red, green, blue = np.array(img_item.convert('RGB')).T
+        r, g, b = np.array(img_item.convert('RGB')).T
 
-        beige = (np.mean((red == green) & (blue == green)) > 0.2) and np.mean(
-            (red > 150) & (blue > 150) & (green > 150))
-        lightgreen = np.mean((red > 120) & (blue > 120) & (green > 200)) > 0.4
+        beige = (np.mean((r == g) & (b == g)) > 0.2) and np.mean((r > 150) & (b > 150) & (g > 150))
+        lightgreen = np.mean((r > 120) & (b > 120) & (g > 200)) > 0.4
 
         self.is_selected = lightgreen and not beige
         self.toggle_selected(self.is_selected)
