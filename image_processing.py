@@ -4,29 +4,38 @@ from constants import *
 
 
 def convert_emerald_textbox_to_black_and_white(img_tb):
-    img_tb_np = np.array(img_tb.convert('RGBA'))
-    red, green, blue, alpha = img_tb_np.T
+    img_tb_np = np.array(img_tb.convert('RGB'))
+    red, green, blue = img_tb_np.T
     bg_pixels = ((red < 50) & (blue < 50) & (green > 50)) | ((red < 20) & (blue < 20) & (green < 20))
-    img_tb_np[..., :-1] = (0, 0, 0)
-    img_tb_np[..., :-1][bg_pixels.T] = (255, 255, 255)
+    img_tb_np[..., :] = (0, 0, 0)
+    img_tb_np[..., :][bg_pixels.T] = (255, 255, 255)
     return Image.fromarray(img_tb_np)
 
 
 def convert_notebook_to_black_and_white(img_ss):
-    img_tb_np = np.array(img_ss.convert('RGBA'))
-    red, green, blue, alpha = img_tb_np.T
+    img_tb_np = np.array(img_ss.convert('RGB'))
+    red, green, blue = img_tb_np.T
     fg_pixels = ((red == 132) & (green == 132) & (blue == 164))
-    img_tb_np[..., :-1] = (255, 255, 255)
-    img_tb_np[..., :-1][fg_pixels.T] = (0, 0, 0)
+    img_tb_np[..., :] = (255, 255, 255)
+    img_tb_np[..., :][fg_pixels.T] = (0, 0, 0)
+    return Image.fromarray(img_tb_np)
+
+
+def convert_to_black_and_white(img_ss, text_color=(132, 132, 164)):
+    img_tb_np = np.array(img_ss.convert('RGB'))
+    red, green, blue = img_tb_np.T
+    fg_pixels = ((red == text_color[0]) & (green == text_color[1]) & (blue == text_color[2]))
+    img_tb_np[..., :] = (255, 255, 255)
+    img_tb_np[..., :][fg_pixels.T] = (0, 0, 0)
     return Image.fromarray(img_tb_np)
 
 
 def convert_weekday_to_black_and_white(img_tb):
-    img_tb_np = np.array(img_tb.convert('RGBA'))
-    red, green, blue, alpha = img_tb_np.T
+    img_tb_np = np.array(img_tb.convert('RGB'))
+    red, green, blue = img_tb_np.T
     fg_pixels = (red > 90) & (blue > 90) & (green > 90)
-    img_tb_np[..., :-1] = (255, 255, 255)
-    img_tb_np[..., :-1][fg_pixels.T] = (0, 0, 0)
+    img_tb_np[..., :] = (255, 255, 255)
+    img_tb_np[..., :][fg_pixels.T] = (0, 0, 0)
     return Image.fromarray(img_tb_np)
 
 

@@ -9,6 +9,7 @@ from date_ymd_overlay import YearMonthDayOverlayWindow
 from date_weekday_overlay import WeekdayOverlayWindow
 from notebook_database import NotebookDatabase
 from notebook_overlay import NOTEBOOK_ITEMS, NotebookOverlayWindow
+from selectable_rect_overlay import SELECTABLE_RECTS, SelectableRectOverlay
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 from textbox_overlay import TextboxOverlayWindow
@@ -34,7 +35,7 @@ OverlayWindow.create_master()
 overlay_tb = TextboxOverlayWindow(window_id)
 overlay_attrs = [AttributeOverlayWindow(window_id, i) for i in range(9)]
 overlay_dateymds = [YearMonthDayOverlayWindow(window_id, i) for i in range(3)]
-overlay_notebooks = [NotebookOverlayWindow(window_id, i, db_notebook) for i in range(len(NOTEBOOK_ITEMS))]
+overlay_rects = [SelectableRectOverlay(window_id, i, db_notebook) for i in range(len(SELECTABLE_RECTS))]
 overlay_weekday = WeekdayOverlayWindow(window_id)
 
 last_translated_text_ocr = None
@@ -53,18 +54,18 @@ while True:
     img_ss = img_ss.resize((img_ss.size[0] // overlay_tb.game_scaling,
                             img_ss.size[1] // overlay_tb.game_scaling),
                            Image.NEAREST)
-
-    img_tb = imp.crop_textbox_image(img_ss)
+    img_ss_rgb = np.array(img_ss.convert('RGB')).T
 
     for overlay_attr in overlay_attrs:
         overlay_attr.hide_if_not_needed(img_ss)
     for overlay_dateymd in overlay_dateymds:
         overlay_dateymd.hide_if_not_needed(img_ss)
-    for overlay_notebook in overlay_notebooks:
-        overlay_notebook.hide_if_not_needed(img_ss)
-        overlay_notebook.update_text(img_ss)
+    for overlay_rect in overlay_rects:
+        overlay_rect.step(img_ss)
     overlay_weekday.hide_if_not_needed(img_ss)
     overlay_weekday.update_weekday(img_ss)
+
+    img_tb = imp.crop_textbox_image(img_ss)
 
     overlay_tb.hide_if_not_needed(img_tb)
     if not overlay_tb.detect_gameobj(img_tb):
