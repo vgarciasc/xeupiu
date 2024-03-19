@@ -27,9 +27,14 @@ def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_
 
     return np.sum((red > r_min) & (red < r_max) & (green > g_min) & (green < g_max) & (blue > b_min) & (blue < b_max)) == count
 
-def detect_mark_textbox_choice(red, green, blue):
+def detect_mark_textbox_choice1(red, green, blue):
     is_cursor_there = detect_mark_by_count(red, green, blue, 274, 170, 6, 47, 239, 230, 239, 4)
-    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 260, 166, 6, 50, 60, 120, 160, 180, 50, 100, 96)
+    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 260, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
+    return is_cursor_there and is_selection_there
+
+def detect_mark_textbox_choice2(red, green, blue):
+    is_cursor_there = detect_mark_by_count(red, green, blue, 278, 166, 6, 47, 239, 230, 239, 4)
+    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 270, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
     return is_cursor_there and is_selection_there
 
 detect_mark_nb_3col1 = lambda r, g, b: detect_mark_by_count(r, g, b,100, 54, 9, 9, 41, 132, 164, 7)
@@ -50,8 +55,8 @@ SELECTABLE_RECT_GROUPS = {
         "textcolor": "#ffffff",
         "selected_color": "#39a930",
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
-        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 80) & (g < 140) & (b == 0)) > 0.7,
-        "is_selected_fn": lambda r, g, b: np.mean((g > 160) & (r > 30) & (r < 170) & (b > 20) & (b < 120)) > 0.7,
+        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.7,
+        "is_selected_fn": lambda r, g, b: np.mean((r > 30) & (r < 170) & (g > 150) & (b > 20) & (b < 120)) > 0.7,
     }
 }
 
@@ -95,8 +100,12 @@ SELECTABLE_RECTS = [
     ("nb_2col2_2.4", (158, 110), (109, 15), "#e0e0e0", detect_mark_nb_2col2),
     ("nb_2col2_2.5", (158, 126), (109, 15), "#e0e0e0", detect_mark_nb_2col2),
 
-    ("dc_3row1_1", (39, 169), (230, 17), "#135800", detect_mark_textbox_choice),
-    ("dc_3row1_2", (39, 185), (230, 17), "#135800", detect_mark_textbox_choice),
+    ("dc_3row1_1", (39, 169), (230, 17), "#135800", detect_mark_textbox_choice1),
+    ("dc_3row1_2", (39, 185), (230, 17), "#135800", detect_mark_textbox_choice1),
+
+    ("dc_3row2_1", (32, 167), (252, 16), "#135800", detect_mark_textbox_choice2),
+    ("dc_3row2_2", (32, 183), (252, 16), "#135800", detect_mark_textbox_choice2),
+    ("dc_3row2_3", (32, 199), (252, 16), "#135800", detect_mark_textbox_choice2),
 ]
 
 
