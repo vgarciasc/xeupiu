@@ -39,17 +39,11 @@ def detect_mark_textbox_choice2(red, green, blue):
 
 detect_mark_nb_3col1 = lambda r, g, b: detect_mark_by_count(r, g, b,100, 54, 9, 9, 41, 132, 164, 7)
 detect_mark_nb_2col1 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 8, 99, 132, 164, 50)
-detect_mark_nb_2col2 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 9, 15, 41, 132, 164, 9)
+detect_mark_nb_2col2 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9)
+detect_mark_nb_2col2 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9)
+detect_mark_ng_1 = lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42)
 
 SELECTABLE_RECT_GROUPS = {
-    "nb": {
-        "fullname": "notebook",
-        "textcolor": "#70779e",
-        "selected_color": "#bbebbb",
-        "bw_conversion_fn": imp.convert_notebook_to_black_and_white,
-        "is_unselected_fn": lambda r, g, b: np.mean((r > 185) & (r < 225) & (r == g) & (r == b)) > 0.7,
-        "is_selected_fn": lambda r, g, b: np.mean((g > 220) & (g < 250) & (r == b) & (r < 220)) > 0.55,
-    },
     "dc": {
         "fullname": "dialogue_choice",
         "textcolor": "#ffffff",
@@ -57,7 +51,39 @@ SELECTABLE_RECT_GROUPS = {
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
         "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.7,
         "is_selected_fn": lambda r, g, b: np.mean((r > 30) & (r < 170) & (g > 150) & (b > 20) & (b < 120)) > 0.7,
-    }
+    },
+    "nb": {
+        "fullname": "notebook",
+        "textcolor": "#70779e",
+        "selected_color": "#bbebbb",
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (132, 132, 164)),
+        "is_unselected_fn": lambda r, g, b: np.mean((r > 185) & (r < 225) & (r == g) & (r == b)) > 0.7,
+        "is_selected_fn": lambda r, g, b: np.mean((g > 220) & (g < 250) & (r == b) & (r < 220)) > 0.55,
+    },
+    "ngp": {
+        "fullname": "notebook_girl_pink",
+        "textcolor": "#e600a5",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (230, 0, 164)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "ngg": {
+        "fullname": "notebook_girl_grey",
+        "textcolor": "#70779e",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (132, 132, 164)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "ngb": {
+        "fullname": "notebook_girl_blue",
+        "textcolor": "#0073ff",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (0, 115, 255)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
 }
 
 SELECTABLE_RECTS = [
@@ -106,6 +132,22 @@ SELECTABLE_RECTS = [
     ("dc_3row2_1", (32, 167), (252, 16), "#135800", detect_mark_textbox_choice2),
     ("dc_3row2_2", (32, 183), (252, 16), "#135800", detect_mark_textbox_choice2),
     ("dc_3row2_3", (32, 199), (252, 16), "#135800", detect_mark_textbox_choice2),
+
+    ("ngp_1_1", (21, 41), (44, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngp_1_2", (21, 57), (30, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngp_1_3", (21, 73), (44, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngp_1_4", (21, 89), (44, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngp_1_5", (21, 105), (44, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngp_1_6", (21, 121), (30, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngg_1_h", (31, 21), (91, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngg_1_1", (71, 41), (115, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngg_1_2", (71, 57), (115, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngg_1_3", (71, 73), (115, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngg_1_4", (71, 89), (115, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngg_1_5", (71, 105), (115, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngg_1_6", (71, 121), (215, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngg_1_6", (71, 137), (215, 13), "#e0e0e0", detect_mark_ng_1),
+    ("ngb_1_1", (127, 21), (60, 13), "#e0e0e0", detect_mark_ng_1),
 ]
 
 
