@@ -17,7 +17,7 @@ class TextboxOverlayWindow(OverlayWindow):
         r, g, b = np.array(img_tb.convert('RGB')).T
 
         emerald_bg = np.mean((r < 30) & (g > 86) & (g < 137) & (b == 0)) > 0.4
-        has_highlight = np.any((r > 100) & (r < 150) & (g > 180) & (g < 200) & (b > 30))
+        has_highlight = np.any((r > 100) & (r < 150) & (g > 170) & (g < 200) & (b > 30))
 
         return emerald_bg and not has_highlight
 
