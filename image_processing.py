@@ -41,7 +41,7 @@ def separate_into_lines(img_tb):
     img_name_np = np.array(img_name.convert('1'))
     is_name_there = np.any(img_name_np == 0)
 
-    below_name = img_tb.crop((0, 17, 42, 48))
+    below_name = img_tb.crop((0, 17, 42, 46))
     below_name_np = np.array(below_name.convert('1'))
     is_nothing_below_name = np.all(below_name_np == 1)
 
