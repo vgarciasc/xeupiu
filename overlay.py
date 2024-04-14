@@ -63,8 +63,12 @@ class OverlayWindow:
         left_offset -= 1 * local_game_scaling
 
         # There is a *FLICKERING* 1px black border on the top on DuckStation
-        if (img_ss.height - top_offset - bottom_offset) % 240 != 0:
+        if (img_ss.height - top_offset - bottom_offset) % 240 != 0 and top_offset != 0:
             top_offset -= 1 * local_game_scaling
+
+        if right_offset - left_offset < 0:
+            print(f"Letterbox calibration done before window was fully rendered. Retrying...")
+            return self.get_letterbox_offset(window_id)
 
         return left_offset, right_offset, top_offset, bottom_offset
 
