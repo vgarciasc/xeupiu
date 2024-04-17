@@ -1,6 +1,7 @@
 import pandas as pd
 from thefuzz import fuzz
 
+from config import CONFIG
 from database import Database
 from constants import DB_NAMES_FILEPATH
 
@@ -13,7 +14,10 @@ class NameDatabase(Database):
         if char_name_jp is None:
             return None
 
-        char_name_jp = char_name_jp.strip()
+        if char_name_jp == CONFIG["player"]["jp_name"]:
+            return CONFIG["player"]["en_name"]
+
+        char_name_jp = Database.generalize_player_variables(char_name_jp.strip())
 
         df = self.df[self.df["Japanese name"] == char_name_jp]
 
@@ -26,8 +30,10 @@ class NameDatabase(Database):
         return eng_text
 
     def insert_translation(self, name_jp: str, name_en: str):
-        self.df = pd.concat([self.df, pd.DataFrame({"Japanese name": [name_jp.strip()],
-                                                    "English name": [name_en.strip()]})])
+        name_jp = name_jp.strip()
+        name_en = name_en.strip()
+
+        self.df = pd.concat([self.df, pd.DataFrame({"Japanese name": [name_jp], "English name": [name_en]})])
         self.df.to_csv(self.filepath, sep=";", index=False)
 
 if __name__ == "__main__":
