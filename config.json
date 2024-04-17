@@ -1,0 +1,13 @@
+{
+  "player": {
+    "jp_name": "ＰＬＡ",
+    "jp_surname": "ＹＥＲ",
+    "en_name": "Pla",
+    "en_surname": "Yer",
+    "nickname": "AAA",
+    "date_of_birth": {
+      "day": 1,
+      "month": 1
+    }
+  }
+}

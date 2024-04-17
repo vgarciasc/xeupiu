@@ -1,6 +1,7 @@
 import pandas as pd
 from thefuzz import fuzz
 
+import database
 from database import Database
 from constants import DB_TEXT_FILEPATH
 
@@ -11,7 +12,7 @@ class TextDatabase(Database):
     def retrieve_translation(self, text_jp: str, char_name_en: str = None,
                              fuzziness: int = 100, is_text_jp_complete: bool = True):
 
-        text_jp = text_jp.strip()
+        text_jp = Database.generalize_player_variables(text_jp)
         df = self.df.copy()
 
         if not is_text_jp_complete and len(text_jp) < 5:
@@ -41,14 +42,16 @@ class TextDatabase(Database):
         result = results.iloc[0]
         jp_text = result["Japanese text"]
         eng_text = result["English text"]
+        eng_text = Database.specify_player_variables(eng_text)
 
         return n_matches, jp_text, eng_text
 
     def insert_translation(self, text_jp: str, text_en: str, char_name: str = "none"):
         char_name = char_name.strip() if char_name is not None else "none"
+
         self.df = pd.concat([self.df, pd.DataFrame({"Character name": [char_name],
-                                                    "Japanese text": [text_jp.strip()],
-                                                    "English text": [text_en.strip()]})])
+                                                    "Japanese text": [Database.generalize_player_variables(text_jp)],
+                                                    "English text": [Database.generalize_player_variables(text_en)]})])
         self.df.to_csv(self.filepath, sep=";", index=False)
 
 if __name__ == "__main__":
