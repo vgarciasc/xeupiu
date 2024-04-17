@@ -90,7 +90,6 @@ while True:
                       "Skipping...")
                 continue
             text_ocr_lines.append(text_ocr_line)
-    text_ocr = "".join(curr_line_cache)
 
     # Text has stopped printing when all texts in history are the same as the current text.
     has_text_stopped_printing = True
@@ -119,6 +118,8 @@ while True:
 
         if not is_scrolling:
             curr_line_cache = text_ocr_lines
+
+    text_ocr = "".join(curr_line_cache)
 
     # Translation
     display_name = name_ocr
