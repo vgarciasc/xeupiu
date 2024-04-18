@@ -14,17 +14,15 @@ CLOSING_QUOTES = ["」", "』", "】", "）", "］", "》", "〉", "〕", "｝",
 
 def translate_openai(desc):
     completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4-0125-preview",
         messages=[
             {"role": "system",
              "content": "A chat between an user and an artificial intelligence assistant, "
-                        "specialized in translation from japanese to english. The user inputs "
-                        "some text in japanese, and the assistant responds simply with the translation "
-                        "to english, and waits for the next input. The assistant tries to be succinct "
-                        "since there is a space limit."},
+                        "specialized in translation from japanese to english."},
             {"role": "user", "content": desc},
         ]
     )
+    print(f"Tokens used: {completion.usage.total_tokens}")
     return completion.choices[0].message['content']
 
 def translate_google_cloud(text, project_id="xeupiu"):
@@ -75,4 +73,8 @@ if __name__ == "__main__":
 
     print(f"Google Cloud:")
     txt_en = translate_google_cloud(txt_jp, "xeupiu")
+    print(txt_en)
+
+    print(f"OpenAI:")
+    txt_en = translate_openai(txt_jp)
     print(txt_en)
