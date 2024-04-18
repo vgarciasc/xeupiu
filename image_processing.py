@@ -35,8 +35,6 @@ def separate_into_lines(img_tb):
     if np.all(np.array(img_tb.convert('1')) == 1):
         return None, []
 
-    # A region in the textbox. If this region is blank, the left area
-    # of the textbox is being used to display the character's name
     img_name = img_tb.crop((0, 0, 42, 20))
     img_name_np = np.array(img_name.convert('1'))
     is_name_there = np.any(img_name_np == 0)
@@ -45,11 +43,16 @@ def separate_into_lines(img_tb):
     below_name_np = np.array(below_name.convert('1'))
     is_nothing_below_name = np.all(below_name_np == 1)
 
+    between_name_and_text = img_tb.crop((42, 2, 48, 12))
+    between_name_and_text_np = np.array(between_name_and_text.convert('1'))
+    is_nothing_between_name_and_text = np.all(between_name_and_text_np == 1)
+
     rest_textbox = img_tb.crop((47, 0, img_tb.width - 47, img_tb.height))
     rest_textbox_np = np.array(rest_textbox.convert('1'))
     is_text_in_rest_textbox = np.any(rest_textbox_np == 0)
 
-    should_separate_name_and_text = is_name_there and is_nothing_below_name and is_text_in_rest_textbox
+    should_separate_name_and_text = (is_name_there and is_nothing_between_name_and_text
+                                     and is_nothing_below_name and is_text_in_rest_textbox)
 
     _x, _y = 0, 0
     if should_separate_name_and_text:

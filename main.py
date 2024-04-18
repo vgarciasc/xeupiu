@@ -39,6 +39,7 @@ overlay_rects = [SelectableRectOverlay(window_id, i, db_notebook) for i in range
 overlay_weekday = WeekdayOverlayWindow(window_id)
 
 last_translated_text_ocr = None
+last_name_ocr = None
 iterations_wout_textbox = 0
 history_text_ocr_lines = []
 curr_line_cache = []
@@ -104,16 +105,20 @@ while True:
         curr_line_cache = text_ocr_lines
     elif not text_ocr_lines:
         # Textbox is empty. Cache should be empty as well.
+        last_name_ocr = None
         curr_line_cache = []
     else:
         # Textbox is not empty, and cache is not empty.
         # Check to see if current text is a continuation of the cache.
         # If it is, then append the current text to the cache.
         is_scrolling = False
+
         for i, line in enumerate(curr_line_cache):
             if fuzz.ratio(text_ocr_lines[0], line) > 50 or text_ocr_lines[0].startswith(line):
                 is_scrolling = True
                 curr_line_cache = curr_line_cache[:i] + text_ocr_lines
+                if i > 0:
+                    name_ocr = last_name_ocr
                 break
 
         if not is_scrolling:
@@ -150,7 +155,7 @@ while True:
         if n_matches == 0:
             if has_text_stopped_printing:
                 # No match found, but text has stopped printing. Translate and add to database
-                translated_text = tr.translate_text(text_ocr, "google_cloud")
+                translated_text = tr.translate_text(text_ocr, "openai")
                 db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
                 display_text = translated_text
         elif n_matches == 1:
@@ -169,6 +174,7 @@ while True:
     # Housekeeping
     history_text_ocr_lines.append(text_ocr_lines)
     history_text_ocr_lines = history_text_ocr_lines[-HISTORY_SIZE:]
+    last_name_ocr = name_ocr if name_ocr is not None else last_name_ocr
 
     tok = time.perf_counter_ns()
     print(f"Name (detected):\t\t {name_ocr}")
