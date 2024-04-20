@@ -20,12 +20,15 @@ def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
 
     return np.sum((red == r) & (green == g) & (blue == b)) == count
 
-def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max, count):
+def get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max):
     red = red[x:x + w, y:y + h]
     green = green[x:x + w, y:y + h]
     blue = blue[x:x + w, y:y + h]
 
-    return np.sum((red > r_min) & (red < r_max) & (green > g_min) & (green < g_max) & (blue > b_min) & (blue < b_max)) == count
+    return np.sum((red > r_min) & (red < r_max) & (green > g_min) & (green < g_max) & (blue > b_min) & (blue < b_max))
+
+def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max, count):
+    return get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max) == count
 
 def detect_mark_textbox_choice1(red, green, blue):
     is_cursor_there = detect_mark_by_count(red, green, blue, 274, 170, 6, 47, 239, 230, 239, 4)
@@ -37,9 +40,20 @@ def detect_mark_textbox_choice2(red, green, blue):
     is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 270, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
     return is_cursor_there and is_selection_there
 
-detect_mark_nb_3col1 = lambda r, g, b: detect_mark_by_count(r, g, b,100, 54, 9, 9, 41, 132, 164, 7)
-detect_mark_nb_2col1 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 8, 99, 132, 164, 50)
-detect_mark_nb_2col2 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9)
+def detect_mark_character_selection_choice_1(red, green, blue):
+    is_cursor_in_vgap_1 = detect_mark_by_count(red, green, blue, 80, 170, 16, 54, 239, 230, 239, 68)
+    is_cursor_in_vgap_2 = detect_mark_by_count(red, green, blue, 144, 170, 16, 54, 239, 230, 239, 68)
+    is_cursor_in_vgap_3 = detect_mark_by_count(red, green, blue, 208, 170, 16, 54, 239, 230, 239, 68)
+    is_cursor_in_vgap_4 = detect_mark_by_count(red, green, blue, 272, 170, 16, 54, 239, 230, 239, 68)
+
+    is_selection_in_hgap_1 = 75 < get_count_by_thresholds(red, green, blue, 31, 182, 260, 4, 60, 120, 150, 210, 30, 120) < 100
+    is_selection_in_hgap_2 = 75 < get_count_by_thresholds(red, green, blue, 31, 198, 260, 4, 60, 120, 150, 210, 30, 120) < 100
+    is_selection_in_hgap_3 = 50 < get_count_by_thresholds(red, green, blue, 31, 214, 260, 4, 60, 120, 150, 210, 30, 120) < 100
+
+    return (is_cursor_in_vgap_1 or is_cursor_in_vgap_2 or is_cursor_in_vgap_3 or is_cursor_in_vgap_4) and (is_selection_in_hgap_1 or is_selection_in_hgap_2 or is_selection_in_hgap_3)
+
+detect_mark_nb_3col1 = lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7)
+detect_mark_nb_2col1 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16)
 detect_mark_nb_2col2 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9)
 detect_mark_ng_1 = lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42)
 
@@ -84,6 +98,14 @@ SELECTABLE_RECT_GROUPS = {
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
     },
+    "csc": {
+        "fullname": "character_selection_choice",
+        "textcolor": "#ffffff",
+        "selected_color": "#39a930",
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
+        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.6,
+        "is_selected_fn": lambda r, g, b: np.mean((r > 30) & (r < 170) & (g > 150) & (b > 20) & (b < 120)) > 0.55,
+    }
 }
 
 SELECTABLE_RECTS = [
@@ -148,6 +170,19 @@ SELECTABLE_RECTS = [
     ("ngg_1_6", (71, 121), (215, 13), "#e0e0e0", detect_mark_ng_1),
     ("ngg_1_6", (71, 137), (215, 13), "#e0e0e0", detect_mark_ng_1),
     ("ngb_1_1", (127, 21), (60, 13), "#e0e0e0", detect_mark_ng_1),
+
+    ("csc_1_1", (32, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_2", (32, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_3", (32, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_4", (96, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_5", (96, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_6", (96, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_7", (160, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_8", (160, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_9", (160, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_10", (224, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_11", (224, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1),
+    ("csc_1_12", (224, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1),
 ]
 
 
