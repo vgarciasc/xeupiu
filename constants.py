@@ -11,8 +11,6 @@ CURSOR_WIDTH = 15
 HISTORY_SIZE = 15
 ITERS_WOUT_GAMEOBJ_BEFORE_MINIMIZING = 1
 
-WINDOW_TITLE = "Tokimeki Memorial"
-
 DB_NAMES_FILEPATH = "data/texts/database_names.csv"
 DB_TEXT_FILEPATH = "data/texts/database_text.csv"
 DB_NOTEBOOK_FILEPATH = "data/texts/database_notebook.csv"

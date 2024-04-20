@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image
 
-from constants import WINDOW_TITLE
+from config import WINDOW_TITLE
 from overlay import OverlayWindow
 from screenshot import get_window_by_title, get_window_image
 from textbox_overlay import TextboxOverlayWindow

@@ -21,6 +21,7 @@ from name_database import NameDatabase
 from poorcr import PoorCR
 from logger import save_everything
 from constants import *
+from config import WINDOW_TITLE
 
 pcr_name = PoorCR(only_perfect=True)
 pcr_text = PoorCR(only_perfect=True)
