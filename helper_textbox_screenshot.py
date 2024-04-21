@@ -32,6 +32,9 @@ if __name__ == "__main__":
     img_ss.save("data/tmp/img_ss.png")
     img_tb.save("data/tmp/img_tb.png")
     img_tb_bw.save("data/tmp/img_tb_bw.png")
-    img_tb_name.save("data/tmp/img_tb_name.png")
+
+    if img_tb_name:
+        img_tb_name.save("data/tmp/img_tb_name.png")
+
     for i, img_tb_line in enumerate(img_tb_lines):
         img_tb_line.save(f"data/tmp/img_tb_line_{i}.png")
