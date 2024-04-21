@@ -63,6 +63,7 @@ detect_mark_an_4 = lambda r, g, b: detect_mark_by_count(r, g, b, 75, 23, 6, 32, 
 detect_mark_an_5 = lambda r, g, b: detect_mark_by_count(r, g, b, 89, 23, 6, 32, 49, 0, 0, 70)
 detect_mark_an_6 = lambda r, g, b: detect_mark_by_count(r, g, b, 103, 23, 6, 32, 49, 0, 0, 70)
 detect_mark_an_7 = lambda r, g, b: detect_mark_by_count(r, g, b, 117, 23, 6, 32, 49, 0, 0, 70)
+detect_mark_exr = lambda r, g, b: detect_mark_by_count(r, g, b, 82, 6, 156, 28, 49, 0, 0, 960)
 
 SELECTABLE_RECT_GROUPS = {
     "dc": {
@@ -118,6 +119,14 @@ SELECTABLE_RECT_GROUPS = {
         "textcolor": "#ffffff",
         "selected_color": None,
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "exr": {
+        "fullname": "exam_results",
+        "textcolor": "#70779e",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (132, 132, 164)),
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
     }
@@ -219,6 +228,22 @@ SELECTABLE_RECTS = [
     ("an_5", (17, 31), (74, 15), "#135800", detect_mark_an_5),
     ("an_6", (17, 31), (89, 15), "#135800", detect_mark_an_6),
     ("an_7", (17, 31), (104, 15), "#135800", detect_mark_an_7),
+
+    ("an_exr_h", (103, 13), (112, 14), "#135800", detect_mark_exr, 0.8),
+    ("exr_1_1", (31, 37), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 37, 90, 13, 132, 132, 164, 88)),
+    ("exr_1_2", (31, 53), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 37, 90, 13, 132, 132, 164, 88)),
+    ("exr_1_3", (31, 69), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 69, 90, 13, 132, 132, 164, 88)),
+    ("exr_1_4", (31, 85), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 85, 90, 13, 132, 132, 164, 88)),
+    ("exr_1_5", (31, 101), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 101, 90, 13, 132, 132, 164, 88)),
+    ("exr_1_6", (31, 117), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 117, 90, 13, 132, 132, 164, 88)),
+    ("exr_1_7", (31, 133), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 133, 90, 13, 132, 132, 164, 88)),
+    ("exr_2_1", (191, 37), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 37, 90, 13, 132, 132, 164, 88)),
+    ("exr_2_2", (191, 53), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 53, 90, 13, 132, 132, 164, 88)),
+    ("exr_2_3", (191, 69), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 69, 90, 13, 132, 132, 164, 88)),
+    ("exr_2_4", (191, 85), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 85, 90, 13, 132, 132, 164, 88)),
+    ("exr_2_5", (191, 101), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 101, 90, 13, 132, 132, 164, 88)),
+    ("exr_2_6", (191, 117), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 117, 90, 13, 132, 132, 164, 88)),
+    ("exr_2_7", (191, 133), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 133, 90, 13, 132, 132, 164, 88)),
 ]
 
 
