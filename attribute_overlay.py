@@ -41,12 +41,10 @@ class AttributeOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, img_ss: Image) -> bool:
-        img_attr = img_ss.crop((ATTRIBUTE_POS[self.attribute_id][0],
-                                ATTRIBUTE_POS[self.attribute_id][1],
-                                ATTRIBUTE_POS[self.attribute_id][0] + 30,
-                                ATTRIBUTE_POS[self.attribute_id][1] + 15))
+        # Cue is the first pillar in the attribute container
+        img_attr = img_ss.crop((109, 16, 109 + 14, 16 + 56))
         red, green, blue = np.array(img_attr.convert('RGB')).T
-        return np.mean((red < 50) & (blue < 50) & (green > 70)) > 0.3
+        return np.sum((red == 49) & (blue == 0) & (green == 0)) == 208
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
@@ -54,7 +52,10 @@ if __name__ == "__main__":
     OverlayWindow.create_master()
     overlays = [AttributeOverlayWindow(window_id, i) for i in range(9)]
 
-    img_ss = get_window_image(window_id, use_scaling=False)
+    img_ss = get_window_image(window_id,
+                              offset_x=(overlays[0].letterbox_offset[0], overlays[0].letterbox_offset[1]),
+                              offset_y=(overlays[0].letterbox_offset[2], overlays[0].letterbox_offset[3]),
+                              use_scaling=False)
     img_ss = img_ss.resize((img_ss.size[0] // overlays[0].game_scaling,
                             img_ss.size[1] // overlays[0].game_scaling),
                            Image.NEAREST)
