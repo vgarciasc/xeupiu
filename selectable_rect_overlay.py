@@ -213,8 +213,8 @@ SELECTABLE_RECTS = [
     # ("csc_1_11", (224, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1),
     # ("csc_1_12", (224, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1),
 
-    ("an_2", (17, 31), (29, 15), "#135800", detect_mark_an_2),
-    ("an_3", (17, 31), (44, 15), "#135800", detect_mark_an_3),
+    ("an_2", (17, 31), (29, 15), "#135800", detect_mark_an_2, 0.7),
+    ("an_3", (17, 31), (44, 15), "#135800", detect_mark_an_3, 0.8),
     ("an_4", (17, 31), (59, 15), "#135800", detect_mark_an_4),
     ("an_5", (17, 31), (74, 15), "#135800", detect_mark_an_5),
     ("an_6", (17, 31), (89, 15), "#135800", detect_mark_an_6),
@@ -233,6 +233,7 @@ class SelectableRectOverlay(OverlayWindow):
         self.rect_w, self.rect_h = selectable_rect[2]
         self.bg_color = selectable_rect[3]
         self.detect_mark_fn = selectable_rect[4]
+        self.font_scaling = selectable_rect[5] if len(selectable_rect) > 5 else 1
 
         for key, val in SELECTABLE_RECT_GROUPS.items():
             if self.item_id.startswith(key):
@@ -242,7 +243,7 @@ class SelectableRectOverlay(OverlayWindow):
         super().__init__(window_id)
 
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
-        self.font_size = min(self.game_scaling * 6, 32)
+        self.font_size = min(int(self.game_scaling * 6 * self.font_scaling), 32)
 
         self.pos_x = window_pos_x + (self.rect_x * self.game_scaling)
         self.pos_y = window_pos_y + (self.rect_y * self.game_scaling)
