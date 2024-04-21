@@ -56,6 +56,7 @@ detect_mark_nb_3col1 = lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 
 detect_mark_nb_2col1 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16)
 detect_mark_nb_2col2 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9)
 detect_mark_ng_1 = lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42)
+detect_mark_ng_2 = lambda r, g, b: detect_mark_by_count(r, g, b,160, 21, 16, 15, 41, 164, 255, 76)
 
 SELECTABLE_RECT_GROUPS = {
     "dc": {
@@ -171,6 +172,20 @@ SELECTABLE_RECTS = [
     ("ngg_1_6", (71, 137), (215, 13), "#e0e0e0", detect_mark_ng_1),
     ("ngb_1_1", (127, 21), (60, 13), "#e0e0e0", detect_mark_ng_1),
 
+    ("ngp_1_h", (31, 21), (114, 13), "#e0e0e0", detect_mark_ng_2),
+    ("ngg_1_1", (29, 47), (70, 13), "#e0e0e0", detect_mark_ng_2),
+    ("ngg_1_2", (29, 63), (70, 13), "#e0e0e0", detect_mark_ng_2),
+    ("ngg_1_3", (29, 79), (70, 13), "#e0e0e0", detect_mark_ng_2),
+    ("ngg_1_4", (29, 95), (70, 13), "#e0e0e0", detect_mark_ng_2),
+    ("ngg_1_5", (29, 111), (70, 13), "#e0e0e0", detect_mark_ng_2),
+    ("ngg_1_6", (29, 127), (70, 13), "#e0e0e0", detect_mark_ng_2),
+    ("ngg_2_1", (159, 47), (70, 13), "#e0e0e0", detect_mark_ng_2),
+    ("ngg_2_2", (159, 63), (70, 13), "#d9d9d9", detect_mark_ng_2),
+    ("ngg_2_3", (159, 79), (70, 13), "#d9d9d9", detect_mark_ng_2),
+    ("ngg_2_4", (159, 95), (70, 13), "#d9d9d9", detect_mark_ng_2),
+    ("ngg_2_5", (159, 111), (70, 13), "#cccccc", detect_mark_ng_2),
+    ("ngg_2_6", (159, 127), (70, 13), "#cccccc", detect_mark_ng_2),
+
     ("csc_1_1", (32, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1),
     ("csc_1_2", (32, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1),
     ("csc_1_3", (32, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1),
@@ -230,6 +245,12 @@ class SelectableRectOverlay(OverlayWindow):
 
     def detect_gameobj(self, img_ss: Image) -> bool:
         r, g, b = np.array(img_ss.convert('RGB')).T
+
+        # Sometimes the screenshot comes out black. This is a workaround for that.
+        if np.mean((r < 10) & (g < 10) & (b < 10)) > 0.6:
+            if self.is_hidden:
+                return False
+            return True
 
         is_mark_there = self.detect_mark_fn(r, g, b)
         if not is_mark_there:
