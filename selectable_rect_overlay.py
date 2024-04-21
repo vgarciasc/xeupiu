@@ -13,19 +13,23 @@ from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 import image_processing as imp
 
-def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
-    red = red[x:x + w, y:y + h]
-    green = green[x:x + w, y:y + h]
-    blue = blue[x:x + w, y:y + h]
-
-    return np.sum((red == r) & (green == g) & (blue == b)) == count
-
 def get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max):
     red = red[x:x + w, y:y + h]
     green = green[x:x + w, y:y + h]
     blue = blue[x:x + w, y:y + h]
 
     return np.sum((red > r_min) & (red < r_max) & (green > g_min) & (green < g_max) & (blue > b_min) & (blue < b_max))
+
+def get_count_by_equality(red, green, blue, x, y, w, h, r, g, b):
+    red = red[x:x + w, y:y + h]
+    green = green[x:x + w, y:y + h]
+    blue = blue[x:x + w, y:y + h]
+
+    return np.sum((red == r) & (green == g) & (blue == b))
+
+def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
+    c = get_count_by_equality(red, green, blue, x, y, w, h, r, g, b)
+    return c == count
 
 def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max, count):
     return get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max) == count
@@ -64,6 +68,7 @@ detect_mark_an_5 = lambda r, g, b: detect_mark_by_count(r, g, b, 89, 23, 6, 32, 
 detect_mark_an_6 = lambda r, g, b: detect_mark_by_count(r, g, b, 103, 23, 6, 32, 49, 0, 0, 70)
 detect_mark_an_7 = lambda r, g, b: detect_mark_by_count(r, g, b, 117, 23, 6, 32, 49, 0, 0, 70)
 detect_mark_exr = lambda r, g, b: detect_mark_by_count(r, g, b, 82, 6, 156, 28, 49, 0, 0, 960)
+detect_mark_magazine = lambda r, g, b: detect_mark_by_count(r, g, b, 6, 10, 97, 36, 255, 41, 0, 816)
 
 SELECTABLE_RECT_GROUPS = {
     "dc": {
@@ -129,7 +134,31 @@ SELECTABLE_RECT_GROUPS = {
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (132, 132, 164)),
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
-    }
+    },
+    "mg_movie": {
+        "fullname": "magazine_movie",
+        "textcolor": "#ffffff",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (222, 239, 247)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "mg_concert": {
+        "fullname": "magazine_concert",
+        "textcolor": "#ffffff",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (247, 214, 239)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "mg_event": {
+        "fullname": "magazine_event",
+        "textcolor": "#ffffff",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (230, 222, 239)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
 }
 
 SELECTABLE_RECTS = [
@@ -244,8 +273,13 @@ SELECTABLE_RECTS = [
     ("exr_2_5", (191, 101), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 101, 90, 13, 132, 132, 164, 88)),
     ("exr_2_6", (191, 117), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 117, 90, 13, 132, 132, 164, 88)),
     ("exr_2_7", (191, 133), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 133, 90, 13, 132, 132, 164, 88)),
-]
 
+    ("mg_movie", (188, 25), (116, 13), "#003abd", detect_mark_magazine),
+    ("mg_concert", (188, 57), (116, 13), "#f763a3", detect_mark_magazine),
+    ("mg_event_1", (16, 105), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 16, 105, 225, 13, 230, 222, 239) > 10),
+    ("mg_event_2", (16, 121), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 16, 121, 225, 13, 230, 222, 239) > 10),
+    ("mg_event_3", (16, 137), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 11, 137, 225, 13, 230, 222, 239) > 10),
+]
 
 class SelectableRectOverlay(OverlayWindow):
     def __init__(self, window_id: int, item_idx: int, db: NotebookDatabase, pcr: PoorCR = None):
