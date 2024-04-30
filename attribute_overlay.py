@@ -42,9 +42,9 @@ class AttributeOverlayWindow(OverlayWindow):
 
     def detect_gameobj(self, img_ss: Image) -> bool:
         # Cue is the first pillar in the attribute container
-        img_attr = img_ss.crop((109, 16, 109 + 14, 16 + 56))
+        img_attr = img_ss.crop((109, 16, 109 + 14, 16 + 46))
         red, green, blue = np.array(img_attr.convert('RGB')).T
-        return np.sum((red == 49) & (blue == 0) & (green == 0)) == 208
+        return np.sum((red == 49) & (blue == 0) & (green == 0)) == 144
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
