@@ -69,6 +69,9 @@ detect_mark_an_6 = lambda r, g, b: detect_mark_by_count(r, g, b, 103, 23, 6, 32,
 detect_mark_an_7 = lambda r, g, b: detect_mark_by_count(r, g, b, 117, 23, 6, 32, 49, 0, 0, 70)
 detect_mark_exr = lambda r, g, b: detect_mark_by_count(r, g, b, 82, 6, 156, 28, 49, 0, 0, 960)
 detect_mark_magazine = lambda r, g, b: detect_mark_by_count(r, g, b, 6, 10, 97, 36, 255, 41, 0, 816)
+detect_chcr_0 = lambda r, g, b: detect_mark_by_count(r, g, b, 7, 1, 103, 15, 82, 197, 206, 68)
+detect_chcr_0_1 = lambda r, g, b: detect_mark_by_count(r, g, b, 130, 132, 8, 83, 247, 239, 239, 32)
+detect_chcr_0_4 = lambda r, g, b: detect_mark_by_count(r, g, b, 130, 132, 8, 83, 230, 230, 230, 407)
 detect_chcr_1 = lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 203)
 detect_chcr_2 = lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 307)
 detect_chcr_3 = lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 35, 255, 197, 247, 88)
@@ -160,6 +163,22 @@ SELECTABLE_RECT_GROUPS = {
         "textcolor": "#ffffff",
         "selected_color": None,
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (230, 222, 239)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "chcr_k1": {
+        "fullname": "character_creation_black1",
+        "textcolor": "#0f0f0f",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (16, 16, 16)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "chcr_k2": {
+        "fullname": "character_creation_black2",
+        "textcolor": "#0f0f0f",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (8, 0, 0)),
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
     },
@@ -307,7 +326,7 @@ SELECTABLE_RECTS = [
     ("mg_event_1", (16, 105), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 16, 105, 225, 13, 230, 222, 239) > 10, 1),
     ("mg_event_2", (16, 121), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 16, 121, 225, 13, 230, 222, 239) > 10, 1),
     ("mg_event_3", (16, 137), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 11, 137, 225, 13, 230, 222, 239) > 10, 1),
-    #
+
     ("chcr_g_h_1", (6, 14), (300, 15), "#1f1f1f", detect_chcr_1, 1, 5),
     ("chcr_w_h_1", (6, 14), (300, 15), "#1f1f1f", detect_chcr_1, 1, 5),
     ("chcr_p_1_1", (14, 30), (32, 16), "#1f1f1f", detect_chcr_1, 0.8, 5),
@@ -327,6 +346,22 @@ SELECTABLE_RECTS = [
     ("chcr_p_3_6", (182, 200), (48, 16), "#1f1f1f", detect_chcr_3, 0.8, 5),
     ("chcr_w_4_1", (102, 62), (32, 16), "#1f1f1f", detect_chcr_4, 0.8, 5),
     ("chcr_w_4_2", (158, 62), (32, 16), "#1f1f1f", detect_chcr_4, 0.8, 5),
+    # ("chcr_k1_1_1", (120, 43), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
+    # ("chcr_k1_1_2", (120, 59), (48, 13), "#ffffff", detect_chcr_0, 0.8, 5),
+    # ("chcr_k1_1_3", (120, 75), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
+    # ("chcr_k2_1_4_1", (95, 149), (208, 15), "#ffffff", detect_chcr_0_1, 1, 3),
+    # ("chcr_k2_1_4_2", (95, 165), (208, 15), "#ffffff", detect_chcr_0_1, 1, 3),
+    # ("chcr_k2_1_4_3", (95, 181), (208, 15), "#ffffff", detect_chcr_0_1, 1, 3),
+    # ("chcr_k2_1_4_4", (95, 197), (208, 15), "#ffffff", detect_chcr_0_1, 1, 3),
+    # ("chcr_k1_1_4_1", (100, 149), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
+    # ("chcr_k1_1_4_2", (100, 165), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
+    # ("chcr_k1_1_4_3", (100, 181), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
+    # ("chcr_k1_1_4_4", (100, 197), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
+    # ("chcr_k1_1_4_5", (205, 132), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
+    # ("chcr_k1_1_4_6", (205, 149), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
+    # ("chcr_k1_1_4_7", (205, 165), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
+    # ("chcr_k1_1_4_8", (205, 181), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
+
 ]
 
 class SelectableRectOverlay(OverlayWindow):
