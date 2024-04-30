@@ -64,8 +64,9 @@ class PoorCR:
     to detect text in images. We can do this for the textboxes because the font is always the same (MS Gothic 11x11).
     """
 
-    def __init__(self, only_perfect=False):
+    def __init__(self, only_perfect=False, padding_x=3):
         self.only_perfect = only_perfect
+        self.padding_x = padding_x
 
         os.makedirs("data/log", exist_ok=True)
 
@@ -87,7 +88,7 @@ class PoorCR:
         img_line_bw_np = self.apply_calibration(img_line_bw_np_original)
 
         # First try
-        char_imgs = extract_characters(img_line_bw_np)
+        char_imgs = extract_characters(img_line_bw_np, self.padding_x)
         text = self.char_imgs_to_text(char_imgs)
 
         perfect_detection = text.count("?") == 0
@@ -96,7 +97,7 @@ class PoorCR:
             img_line_bw_np = self.apply_calibration(img_line_bw_np_original)
 
             # Second try
-            char_imgs = extract_characters(img_line_bw_np)
+            char_imgs = extract_characters(img_line_bw_np, self.padding_x)
             text = self.char_imgs_to_text(char_imgs)
 
             perfect_detection = text.count("?") == 0
@@ -162,7 +163,7 @@ class PoorCR:
                        off_x:img_line_bw_np.shape[0],
                        off_y:img_line_bw_np.shape[1]]
 
-                char_imgs = extract_characters(_img)
+                char_imgs = extract_characters(_img, self.padding_x)
                 text = self.char_imgs_to_text(char_imgs)
                 n_unrecognized = text.count("?")
 
@@ -177,7 +178,7 @@ class PoorCR:
             for pad_y in range(0, 5):
                 _img = np.pad(img_line_bw_np, ((pad_x, pad_x), (pad_y, pad_y)), mode='constant', constant_values=1)
 
-                char_imgs = extract_characters(_img)
+                char_imgs = extract_characters(_img, self.padding_x)
                 text = self.char_imgs_to_text(char_imgs)
                 n_unrecognized = text.count("?")
 

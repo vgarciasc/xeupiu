@@ -140,13 +140,10 @@ def check_are_attributes_there(img_ss):
     return np.all((red < 50) & (blue < 50) & (green > 70))
 
 
-def extract_characters(img_line_np):
-    # img_line_np = np.array(img_line.convert('1'))
-
+def extract_characters(img_line_np, padding_x=3):
     char_w, char_h = 11, 11
     offset_y = 1
     offset_x = 1
-    padding_x = 3
 
     char_imgs = []
     for i in range(0, 100):
