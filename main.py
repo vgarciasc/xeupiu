@@ -90,9 +90,9 @@ while True:
         if not imp.check_is_text_empty(img_tb_line):
             text_ocr_line = pcr_text.detect(img_tb_line, should_recalibrate=True)
             if text_ocr_line == '':
-                print_str += "Empty line detected. This should not be happening " + \
+                print("Empty line detected. This should not be happening " + \
                       "(empty line should not be considered by separate_into_lines). " + \
-                      "Skipping...\n"
+                      "Skipping...")
                 continue
             text_ocr_lines.append(text_ocr_line)
 
@@ -167,7 +167,7 @@ while True:
             display_text = translated_text
         else:
             # Multiple matches found. Display the first one.
-            print_str += f"Multiple matches found for '{text_ocr}'. Displaying the first one.\n"
+            print(f"Multiple matches found for '{text_ocr}'. Displaying the first one.")
             display_text = translated_text
 
         last_translated_text_ocr = text_ocr
@@ -181,16 +181,16 @@ while True:
     last_name_ocr = name_ocr if name_ocr is not None else last_name_ocr
 
     tok = time.perf_counter_ns()
-    print_str += f"Name (detected):\t\t {name_ocr}\n"
-    print_str += f"Name (displayed):\t\t {display_name}\n"
-    print_str += f"Text (detected):\t\t {text_ocr}\n"
-    print_str += f"Text (displayed, {n_matches}):\t {display_text}\n"
-    print_str += f"[[{time.strftime('%H:%M:%S')} ; {(tok - tik) / 1000000:.2f} ms]]\n"
-    print_str += "=" * 100 + "\n"
+    print(f"Name (detected):\t\t {name_ocr}")
+    print(f"Name (displayed):\t\t {display_name}")
+    print(f"Text (detected):\t\t {text_ocr}")
+    print(f"Text (displayed, {n_matches}):\t {display_text}")
+    print(f"[[{time.strftime('%H:%M:%S')} ; {(tok - tik) / 1000000:.2f} ms]]")
+    print("=" * 100 + "")
 
-    print_str_history.append(print_str)
-    print_str_history = print_str_history[-PRINT_STR_HISTORY_SIZE:]
-    print(print_str)
+    # print_str_history.append(print_str)
+    # print_str_history = print_str_history[-PRINT_STR_HISTORY_SIZE:]
+    # print(print_str)
 
     # Save images on F12
     if keyboard.is_pressed("f12"):
@@ -204,6 +204,6 @@ while True:
         for i, img_tb_line in enumerate(img_tb_lines):
             img_tb_line.save(f"data/tmp/{curr_timestamp}_img_tb_line_{i}.png")
 
-        with open(f"data/tmp/{curr_timestamp}_print_str_history.txt", "w", encoding="utf-8") as f:
-            f.writelines(print_str_history)
+        # with open(f"data/tmp/{curr_timestamp}_print_str_history.txt", "w", encoding="utf-8") as f:
+        #     f.writelines(print_str_history)
 
