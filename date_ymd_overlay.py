@@ -40,12 +40,9 @@ class YearMonthDayOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, img_ss: Image) -> bool:
-        img_attr = img_ss.crop((DATE_COMPONENT_POS[self.date_component_id][0] - 2,
-                                DATE_COMPONENT_POS[self.date_component_id][1] + 7,
-                                (DATE_COMPONENT_POS[self.date_component_id][0] + 18 - 2),
-                                (DATE_COMPONENT_POS[self.date_component_id][1] + 15 + 7)))
+        img_attr = img_ss.crop((288, 30, 288 + 32, 38 + 140))
         red, green, blue = np.array(img_attr.convert('RGB')).T
-        return np.any((red < 50) & (blue < 50) & (green > 70))
+        return np.sum((red == 49) & (blue == 0) & (green == 0)) == 956
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
@@ -53,5 +50,16 @@ if __name__ == "__main__":
     OverlayWindow.create_master()
     overlays = [YearMonthDayOverlayWindow(window_id, i) for i in range(3)]
 
+    img_ss = get_window_image(window_id,
+                              offset_x=(overlays[0].letterbox_offset[0], overlays[0].letterbox_offset[1]),
+                              offset_y=(overlays[0].letterbox_offset[2], overlays[0].letterbox_offset[3]),
+                              use_scaling=False)
+    img_ss = img_ss.resize((img_ss.size[0] // overlays[0].game_scaling,
+                            img_ss.size[1] // overlays[0].game_scaling),
+                           Image.NEAREST)
+
     while True:
         time.sleep(1)
+
+        for overlay in overlays:
+            overlay.hide_if_not_needed(img_ss)
