@@ -1,5 +1,6 @@
 import time
 
+import keyboard
 import numpy as np
 from PIL import Image
 from thefuzz import fuzz
@@ -184,3 +185,15 @@ while True:
     print(f"Text (displayed, {n_matches}):\t {display_text}")
     print(f"[[{time.strftime('%H:%M:%S')} ; {(tok - tik) / 1000000:.2f} ms]]")
     print("=" * 100)
+
+    # Save images on F12
+    if keyboard.is_pressed("f12"):
+        curr_timestamp = time.strftime("%Y%m%d_%H%M%S")
+        img_ss.save(f"data/tmp/{curr_timestamp}_img_ss.png")
+        img_tb.save(f"data/tmp/{curr_timestamp}_img_tb.png")
+        img_tb_bw.save(f"data/tmp/{curr_timestamp}_img_tb_bw.png")
+        if img_tb_name:
+            img_tb_name.save(f"data/tmp/{curr_timestamp}_img_tb_name.png")
+        for i, img_tb_line in enumerate(img_tb_lines):
+            img_tb_line.save(f"data/tmp/{curr_timestamp}_img_tb_line_{i}.png")
+
