@@ -42,7 +42,8 @@ class YearMonthDayOverlayWindow(OverlayWindow):
     def detect_gameobj(self, img_ss: Image) -> bool:
         img_attr = img_ss.crop((288, 30, 288 + 32, 38 + 140))
         red, green, blue = np.array(img_attr.convert('RGB')).T
-        return np.sum((red == 49) & (blue == 0) & (green == 0)) == 956
+        c = np.sum((red == 247) & (green == 214) & (blue == 156))
+        return c == 23
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
