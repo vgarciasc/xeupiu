@@ -1,16 +1,19 @@
 import os
-import time
 
-import pandas as pd
 from google.cloud import translate
 from googletrans import Translator
 from rich import print
+from config import CONFIG
 
 import openai
-import openai_keys
 
 OPENING_QUOTES = ["「", "『", "【", "（", "［", "《", "〈", "〔", "｛", "〖", "〘", "〚", "〝"]
 CLOSING_QUOTES = ["」", "』", "】", "）", "］", "》", "〉", "〕", "｝", "〗", "〙", "〛", "〞"]
+
+openai.organization = CONFIG["translation"]["openai"]["organization"]
+openai.api_key = CONFIG["translation"]["openai"]["api_key"]
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = CONFIG["translation"]["google_cloud"]["credential_path"]
 
 def translate_openai(desc):
     completion = openai.ChatCompletion.create(
