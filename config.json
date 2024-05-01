@@ -1,5 +1,18 @@
 {
   "window_title": "Tokimeki Memorial",
+  "history_size": 5,
+  "iters_without_gameobj_without_minimizing": 1,
+  "border_size": {
+    "print_str_history_size": 10,
+    "size_window_border_top": 30,
+    "size_window_border_bottom": 22,
+    "size_toolbar": 21
+  },
+  "databases": {
+    "names_filepath": "data/texts/database_names.csv",
+    "text_filepath": "data/texts/database_text.csv",
+    "notebook_filepath": "data/texts/database_notebook.csv"
+  },
   "player": {
     "jp_name": "ＰＬＡ",
     "jp_surname": "ＹＥＲ",
@@ -9,6 +22,16 @@
     "date_of_birth": {
       "day": 1,
       "month": 1
+    }
+  },
+  "translation": {
+    "backend": "openai",
+    "google_cloud": {
+      "credential_path": "--"
+    },
+    "openai": {
+      "organization": "--",
+      "api_key": "--"
     }
   }
 }

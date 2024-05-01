@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 
 import translator
-from constants import is_str_empty, ITERS_WOUT_GAMEOBJ_BEFORE_MINIMIZING
+from constants import is_str_empty
 from notebook_database import NotebookDatabase
 from poorcr import PoorCR
 from screenshot import get_window_by_title, get_window_image

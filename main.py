@@ -6,10 +6,10 @@ from PIL import Image
 from thefuzz import fuzz
 from manga_ocr import MangaOcr
 
+import config
 from date_ymd_overlay import YearMonthDayOverlayWindow
 from date_weekday_overlay import WeekdayOverlayWindow
 from notebook_database import NotebookDatabase
-from notebook_overlay import NOTEBOOK_ITEMS, NotebookOverlayWindow
 from selectable_rect_overlay import SELECTABLE_RECTS, SelectableRectOverlay
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
@@ -21,7 +21,7 @@ from text_database import TextDatabase
 from name_database import NameDatabase
 from poorcr import PoorCR
 from constants import *
-from config import WINDOW_TITLE
+from config import WINDOW_TITLE, CONFIG
 
 pcr_name = PoorCR(only_perfect=True)
 pcr_text = PoorCR(only_perfect=True)
@@ -148,7 +148,7 @@ while True:
         # Translating character name
         display_name = db_names.retrieve_translation(name_ocr)
         if display_name is None and name_ocr is not None and has_text_stopped_printing:
-            display_name = tr.translate_text(name_ocr, "google_cloud")
+            display_name = tr.translate_text(name_ocr, CONFIG["translation"]["backend"])
             db_names.insert_translation(name_ocr, display_name)
 
         # Translating character text
@@ -159,7 +159,7 @@ while True:
         if n_matches == 0:
             if has_text_stopped_printing:
                 # No match found, but text has stopped printing. Translate and add to database
-                translated_text = tr.translate_text(text_ocr, "openai")
+                translated_text = tr.translate_text(text_ocr, CONFIG["translation"]["backend"])
                 db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
                 display_text = translated_text
         elif n_matches == 1:
@@ -177,7 +177,7 @@ while True:
 
     # Housekeeping
     history_text_ocr_lines.append(text_ocr_lines)
-    history_text_ocr_lines = history_text_ocr_lines[-HISTORY_SIZE:]
+    history_text_ocr_lines = history_text_ocr_lines[-CONFIG["history_size"]:]
     last_name_ocr = name_ocr if name_ocr is not None else last_name_ocr
 
     tok = time.perf_counter_ns()

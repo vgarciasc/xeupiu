@@ -1,6 +1,8 @@
 from ctypes import windll
 
 import pygetwindow as gw
+
+from config import CONFIG
 from constants import *
 import win32gui
 import win32ui
@@ -73,9 +75,9 @@ def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=Tr
     # img = img.crop((offset_x[0], offset_y[0], img.width - offset_x[1], img.height - offset_y[1]))
 
     img = img.crop((offset_x[0],
-                    offset_y[0] + SIZE_TOOLBAR,
+                    offset_y[0] + CONFIG["border_size"]["size_toolbar"],
                     img.width - offset_x[1],
-                    img.height - offset_y[1] - SIZE_WINDOW_BORDER_BOTTOM))
+                    img.height - offset_y[1] - CONFIG["border_size"]["size_window_border_bottom"]))
 
     return img
 

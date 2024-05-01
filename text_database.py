@@ -1,14 +1,12 @@
 import pandas as pd
 from thefuzz import fuzz
 
-import database
 from config import CONFIG
 from database import Database
-from constants import DB_TEXT_FILEPATH
 
 class TextDatabase(Database):
     def __init__(self):
-        super().__init__(DB_TEXT_FILEPATH)
+        super().__init__(CONFIG["databases"]["text_filepath"])
 
     def retrieve_translation(self, text_jp: str, char_name_en: str = None,
                              fuzziness: int = 100, is_text_jp_complete: bool = True):

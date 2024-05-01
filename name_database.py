@@ -3,12 +3,11 @@ from thefuzz import fuzz
 
 from config import CONFIG
 from database import Database
-from constants import DB_NAMES_FILEPATH
 
 
 class NameDatabase(Database):
     def __init__(self):
-        super().__init__(DB_NAMES_FILEPATH)
+        super().__init__(CONFIG["databases"]["notebook_filepath"])
 
     def retrieve_translation(self, char_name_jp: str):
         if char_name_jp is None:

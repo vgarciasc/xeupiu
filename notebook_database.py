@@ -2,11 +2,11 @@ import pandas as pd
 from thefuzz import fuzz
 
 from database import Database
-from constants import DB_NOTEBOOK_FILEPATH
+from config import CONFIG
 
 class NotebookDatabase(Database):
     def __init__(self):
-        super().__init__(DB_NOTEBOOK_FILEPATH)
+        super().__init__(CONFIG["databases"]["notebook_filepath"])
 
     def retrieve_translation(self, notebook_item_jp: str):
         notebook_item_jp = notebook_item_jp.strip()
