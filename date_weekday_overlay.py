@@ -52,10 +52,10 @@ class WeekdayOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, img_ss: Image) -> bool:
-        img_date = img_ss.crop((self.pos_x_gamescreen, self.pos_y_gamescreen,
-                                (self.pos_x_gamescreen + 11), (self.pos_y_gamescreen + 11)))
-        red, green, blue = np.array(img_date.convert('RGB')).T
-        return np.any((red < 50) & (blue < 50) & (green > 70))
+        img_attr = img_ss.crop((288, 30, 288 + 32, 38 + 140))
+        red, green, blue = np.array(img_attr.convert('RGB')).T
+        c = np.sum((red == 247) & (green == 214) & (blue == 156))
+        return c == 23
 
     def update_weekday(self, img_ss: Image) -> None:
         img_ss_bw = imp.convert_weekday_to_black_and_white(img_ss)
