@@ -7,7 +7,7 @@ from database import Database
 
 class NameDatabase(Database):
     def __init__(self):
-        super().__init__(CONFIG["databases"]["notebook_filepath"])
+        super().__init__(CONFIG["databases"]["names_filepath"])
 
     def retrieve_translation(self, char_name_jp: str):
         if char_name_jp is None:
