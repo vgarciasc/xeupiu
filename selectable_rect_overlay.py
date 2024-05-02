@@ -67,6 +67,9 @@ detect_mark_an_4 = lambda r, g, b: detect_mark_by_count(r, g, b, 75, 23, 6, 32, 
 detect_mark_an_5 = lambda r, g, b: detect_mark_by_count(r, g, b, 89, 23, 6, 32, 49, 0, 0, 70)
 detect_mark_an_6 = lambda r, g, b: detect_mark_by_count(r, g, b, 103, 23, 6, 32, 49, 0, 0, 70)
 detect_mark_an_7 = lambda r, g, b: detect_mark_by_count(r, g, b, 117, 23, 6, 32, 49, 0, 0, 70)
+detect_mark_an_8 = lambda r, g, b: detect_mark_by_count(r, g, b, 131, 23, 6, 32, 49, 0, 0, 70)
+detect_mark_an_9 = lambda r, g, b: detect_mark_by_count(r, g, b, 145, 23, 6, 32, 49, 0, 0, 70)
+detect_mark_an_10 = lambda r, g, b: detect_mark_by_count(r, g, b, 159, 23, 6, 32, 49, 0, 0, 70)
 detect_mark_exr = lambda r, g, b: detect_mark_by_count(r, g, b, 82, 6, 156, 28, 49, 0, 0, 960)
 detect_mark_magazine = lambda r, g, b: detect_mark_by_count(r, g, b, 6, 10, 97, 36, 255, 41, 0, 816)
 detect_chcr_0 = lambda r, g, b: detect_mark_by_count(r, g, b, 7, 1, 103, 15, 82, 197, 206, 68)
@@ -304,6 +307,9 @@ SELECTABLE_RECTS = [
     ("an_5", (17, 31), (74, 15), "#135800", detect_mark_an_5, 1),
     ("an_6", (17, 31), (89, 15), "#135800", detect_mark_an_6, 1),
     ("an_7", (17, 31), (104, 15), "#135800", detect_mark_an_7, 1),
+    ("an_8", (17, 31), (119, 15), "#135800", detect_mark_an_8, 1),
+    ("an_9", (17, 31), (134, 15), "#135800", detect_mark_an_9, 1),
+    ("an_10", (17, 31), (149, 15), "#135800", detect_mark_an_10, 1),
 
     ("an_exr_h", (103, 13), (112, 14), "#135800", detect_mark_exr, 0.8),
     ("exr_1_1", (31, 37), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 37, 90, 13, 132, 132, 164, 88), 1),
