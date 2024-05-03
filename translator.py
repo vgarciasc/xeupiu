@@ -4,6 +4,7 @@ from google.cloud import translate
 from config import CONFIG
 
 import openai
+import deepl
 
 OPENING_QUOTES = ["「", "『", "【", "（", "［", "《", "〈", "〔", "｛", "〖", "〘", "〚", "〝"]
 CLOSING_QUOTES = ["」", "』", "】", "）", "］", "》", "〉", "〕", "｝", "〗", "〙", "〛", "〞"]
@@ -12,6 +13,8 @@ openai.organization = CONFIG["translation"]["openai"]["organization"]
 openai.api_key = CONFIG["translation"]["openai"]["api_key"]
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = CONFIG["translation"]["google_cloud"]["credential_path"]
+
+DEEPL_L = deepl.Translator(auth_key=CONFIG["translation"]["deepl"]["api_key"])
 
 def translate_openai(desc):
     completion = openai.ChatCompletion.create(
@@ -43,6 +46,9 @@ def translate_google_cloud(text, project_id="xeupiu"):
 
     return response.translations[0].translated_text
 
+def translate_deepl(text):
+    return DEEPL_L.translate_text(text, source_lang="JA", target_lang="EN-US").text
+
 def translate_text(text, backend="google_cloud"):
     if not text:
         return ""
@@ -55,6 +61,8 @@ def translate_text(text, backend="google_cloud"):
         translated_text = translate_google_cloud(text)
     elif backend == "openai":
         translated_text = translate_openai(text)
+    elif backend == "deepl":
+        translated_text = translate_deepl(text)
     else:
         raise Exception(f"Unknown backend: {backend}")
 
@@ -78,4 +86,8 @@ if __name__ == "__main__":
 
     print(f"OpenAI:")
     txt_en = translate_openai(txt_jp)
+    print(txt_en)
+
+    print(f"DeepL:")
+    txt_en = translate_deepl(txt_jp)
     print(txt_en)
