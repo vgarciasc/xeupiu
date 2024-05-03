@@ -1,9 +1,12 @@
+import time
 from ctypes import windll
 
 from config import CONFIG
 import win32gui
 import win32ui
 from PIL import Image
+
+SCALE_FACTOR = windll.shcore.GetScaleFactorForDevice(0)
 
 def get_window_by_title(window_title):
     """
@@ -35,7 +38,7 @@ def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=Tr
     """
 
     if use_scaling:
-        scaling = windll.shcore.GetScaleFactorForDevice(0) / 100
+        scaling = SCALE_FACTOR / 100
     else:
         scaling = 1.0
 
@@ -53,7 +56,6 @@ def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=Tr
     saveDC.SelectObject(saveBitMap)
 
     result = windll.user32.PrintWindow(window_id, saveDC.GetSafeHdc(), 3)
-    # result = windll.user32.PrintWindow(hwnd, saveDC.GetSafeHdc(), 0)
 
     bmpinfo = saveBitMap.GetInfo()
     bmpstr = saveBitMap.GetBitmapBits(True)
@@ -67,9 +69,6 @@ def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=Tr
     saveDC.DeleteDC()
     mfcDC.DeleteDC()
     win32gui.ReleaseDC(window_id, hwndDC)
-
-    # img = img.crop((0, SIZE_TOOLBAR, w, h - SIZE_WINDOW_BORDER_BOTTOM))
-    # img = img.crop((offset_x[0], offset_y[0], img.width - offset_x[1], img.height - offset_y[1]))
 
     img = img.crop((offset_x[0],
                     offset_y[0] + CONFIG["border_size"]["size_toolbar"],
@@ -99,3 +98,10 @@ if __name__ == "__main__":
     window_pixels = get_window_image(window_id)
     if window_pixels:
         window_pixels.save("data/tmp/ss.png")
+
+    # tik = time.perf_counter()
+    # for _ in range(100):
+    #     window_id = get_window_by_title("Tokimeki Memorial")
+    #     window_pixels = get_window_image(window_id)
+    # tok = time.perf_counter()
+    # print(f"Capturing the window took {(tok - tik)/100*1000} miliseconds on average.")
