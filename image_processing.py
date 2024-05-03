@@ -116,9 +116,9 @@ def trim_char(img_char_bw_np):
 
 
 def pad_char(img_char_bw_np):
-    return np.pad(img_char_bw_np, ((0, 11 - img_char_bw_np.shape[0]),
-                                   (0, 11 - img_char_bw_np.shape[1])),
-                  'constant', constant_values=1)
+    padded_img = np.ones((11, 11), dtype=img_char_bw_np.dtype)
+    padded_img[:img_char_bw_np.shape[0], :img_char_bw_np.shape[1]] = img_char_bw_np
+    return padded_img
 
 
 def check_is_text_empty(img_tb):
