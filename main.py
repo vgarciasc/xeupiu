@@ -4,9 +4,7 @@ import keyboard
 import numpy as np
 from PIL import Image
 from thefuzz import fuzz
-from manga_ocr import MangaOcr
 
-import config
 from date_ymd_overlay import YearMonthDayOverlayWindow
 from date_weekday_overlay import WeekdayOverlayWindow
 from notebook_database import NotebookDatabase
@@ -20,7 +18,6 @@ import image_processing as imp
 from text_database import TextDatabase
 from name_database import NameDatabase
 from poorcr import PoorCR
-from constants import *
 from config import WINDOW_TITLE, CONFIG
 
 pcr_name = PoorCR(only_perfect=True)

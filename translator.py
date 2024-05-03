@@ -1,8 +1,6 @@
 import os
 
 from google.cloud import translate
-from googletrans import Translator
-from rich import print
 from config import CONFIG
 
 import openai

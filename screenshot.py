@@ -1,9 +1,6 @@
 from ctypes import windll
 
-import pygetwindow as gw
-
 from config import CONFIG
-from constants import *
 import win32gui
 import win32ui
 from PIL import Image
