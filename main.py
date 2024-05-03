@@ -59,18 +59,19 @@ while True:
     img_ss_rgb = np.array(img_ss.convert('RGB')).T
 
     for overlay_attr in overlay_attrs:
-        overlay_attr.hide_if_not_needed(img_ss)
+        overlay_attr.hide_if_not_needed(*img_ss_rgb, img_ss)
     for overlay_dateymd in overlay_dateymds:
-        overlay_dateymd.hide_if_not_needed(img_ss)
+        overlay_dateymd.hide_if_not_needed(*img_ss_rgb, img_ss)
     for overlay_rect in overlay_rects:
-        overlay_rect.step(img_ss)
-    overlay_weekday.hide_if_not_needed(img_ss)
+        overlay_rect.step(*img_ss_rgb, img_ss)
+    overlay_weekday.hide_if_not_needed(*img_ss_rgb, img_ss)
     overlay_weekday.update_weekday(img_ss)
 
     img_tb = imp.crop_textbox_image(img_ss)
+    img_tb_rgb = np.array(img_tb.convert('RGB')).T
 
-    overlay_tb.hide_if_not_needed(img_tb)
-    if not overlay_tb.detect_gameobj(img_tb):
+    overlay_tb.hide_if_not_needed(*img_tb_rgb, img_tb)
+    if not overlay_tb.detect_gameobj(*img_tb_rgb, img_tb):
         continue
 
     # Detecting text in textbox

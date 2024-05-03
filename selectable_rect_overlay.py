@@ -2,6 +2,7 @@ import glob
 import time
 import tkinter as tk
 
+from numba import jit
 import numpy as np
 from PIL import Image
 
@@ -414,9 +415,7 @@ class SelectableRectOverlay(OverlayWindow):
         self.root.update_idletasks()
         self.root.update()
 
-    def detect_gameobj(self, img_ss: Image) -> bool:
-        r, g, b = np.array(img_ss.convert('RGB')).T
-
+    def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
         # Sometimes the screenshot comes out black. This is a workaround for that.
         if np.mean((r < 10) & (g < 10) & (b < 10)) > 0.6:
             if self.is_hidden:
@@ -427,14 +426,16 @@ class SelectableRectOverlay(OverlayWindow):
         if not is_mark_there:
             return False
 
-        img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
-        r, g, b = np.array(img_item.convert('RGB')).T
+        r = r[self.rect_x:self.rect_x + self.rect_w, self.rect_y:self.rect_y + self.rect_h]
+        g = g[self.rect_x:self.rect_x + self.rect_w, self.rect_y:self.rect_y + self.rect_h]
+        b = b[self.rect_x:self.rect_x + self.rect_w, self.rect_y:self.rect_y + self.rect_h]
 
         is_unselected = self.group['is_unselected_fn'](r, g, b)
         is_selected = self.group['is_selected_fn'](r, g, b)
         is_detected = is_unselected or is_selected
 
         if is_detected and self.is_hidden:
+            img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
             img_item_bw = self.group['bw_conversion_fn'](img_item)
 
             if imp.check_is_text_empty(img_item_bw):
@@ -471,8 +472,8 @@ class SelectableRectOverlay(OverlayWindow):
 
         self.update(" " + text)
 
-    def step(self, img_ss: Image):
-        self.hide_if_not_needed(img_ss)
+    def step(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> None:
+        self.hide_if_not_needed(r, g, b, img_ss)
 
         if not self.is_hidden:
             self.update_text(img_ss)

@@ -34,9 +34,7 @@ class TextboxOverlayWindow(OverlayWindow):
                               image=bg_img, compound='center')
         self.label.pack()
 
-    def detect_gameobj(self, img_tb: Image) -> bool:
-        r, g, b = np.array(img_tb.convert('RGB')).T
-
+    def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
         emerald_bg = np.mean((r < 30) & (g > 86) & (g < 137) & (b == 0)) > 0.4
         has_highlight = np.any((r > 100) & (r < 150) & (g > 170) & (g < 200) & (b > 30))
 

@@ -112,19 +112,19 @@ class OverlayWindow:
                               image=bg_img, compound='center')
         self.label.pack()
 
-    def detect_gameobj(self, img_ss: Image) -> bool:
+    def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
         """
         Detects whether the game object to be overlayed is present in the screenshot.
         """
 
         return True
 
-    def hide_if_not_needed(self, img_ss: Image) -> None:
+    def hide_if_not_needed(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> None:
         """
         Hides the overlay if it is not needed.
         """
 
-        if self.detect_gameobj(img_ss):
+        if self.detect_gameobj(r, g, b, img_ss):
             self.iterations_wout_gameobj = 0
         else:
             self.iterations_wout_gameobj += 1

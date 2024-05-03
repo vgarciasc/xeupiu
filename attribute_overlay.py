@@ -40,10 +40,11 @@ class AttributeOverlayWindow(OverlayWindow):
         self.root.update_idletasks()
         self.root.update()
 
-    def detect_gameobj(self, img_ss: Image) -> bool:
-        # Cue is the first pillar in the attribute container
-        img_attr = img_ss.crop((213, 16, 213 + 32, 16 + 57))
-        red, green, blue = np.array(img_attr.convert('RGB')).T
+    def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
+        red   = r[213:245, 16:73]
+        green = g[213:245, 16:73]
+        blue  = b[213:245, 16:73]
+
         return np.sum((red == 164) & (blue == 206) & (green == 206)) == 282
 
 if __name__ == "__main__":

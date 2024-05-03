@@ -51,9 +51,11 @@ class WeekdayOverlayWindow(OverlayWindow):
         self.root.update_idletasks()
         self.root.update()
 
-    def detect_gameobj(self, img_ss: Image) -> bool:
-        img_attr = img_ss.crop((288, 30, 288 + 32, 38 + 140))
-        red, green, blue = np.array(img_attr.convert('RGB')).T
+    def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
+        red   = r[288:320, 30:178]
+        green = g[288:320, 30:178]
+        blue  = b[288:320, 30:178]
+
         c = np.sum((red == 247) & (green == 214) & (blue == 156))
         return c == 23
 
