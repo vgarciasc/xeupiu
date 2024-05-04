@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 
 import numpy as np
@@ -121,10 +122,21 @@ class PoorCR:
         test_img_np = trim_char(test_img_np)
         test_img_np = pad_char(test_img_np)
 
-        dist = np.sum(np.abs(test_img_np - db_np), axis=(1, 2))
-        min_char = db_str[np.argmin(dist)]
-        min_img_np = db_np[np.argmin(dist)]
-        min_dist = np.min(dist)
+        partitions = [200, 400, len(db_str)]
+        curr_idx = 0
+        for i in partitions:
+            db_np_p = db_np[curr_idx:i]
+            db_str_p = db_str[curr_idx:i]
+
+            dist = np.sum(np.abs(test_img_np - db_np_p), axis=(1, 2))
+            min_char = db_str_p[np.argmin(dist)]
+            min_img_np = db_np_p[np.argmin(dist)]
+            min_dist = np.min(dist)
+
+            if min_dist == 0:
+                return min_char, min_img_np
+
+            curr_idx = i
 
         if min_dist > 1 and self.only_perfect:
             min_char = "?"
@@ -251,18 +263,16 @@ class PoorCR:
 if __name__ == "__main__":
     pcr = PoorCR(only_perfect=True)
 
-    for i, filename in enumerate(glob.glob("data/tmp/line_*.png")):
-        # for i, filename in enumerate(["data/tmp/line_0.png"]):
-        img = Image.open(filename)
-        # img = image_processing.trim_text(img)
+    tik = time.perf_counter_ns()
+    for _ in range(100):
+        for i, filename in enumerate(["data/tmp/img_tb_line_0.png"]):
+            img = Image.open(filename)
+            img = image_processing.trim_text(img)
 
-        img_np = np.array(img.convert('1'))
-        char_imgs = extract_characters(img_np)
+            img_np = np.array(img.convert('1'))
+            char_imgs = extract_characters(img_np)
+            text = pcr.char_imgs_to_text(char_imgs)
+            print(f"{_}: Text: {text}")
+    tok = time.perf_counter_ns()
 
-        chars = []
-        for j, char_img in enumerate(char_imgs):
-            char_img.save(f"data/tmp/line{i}_char{j}.png")
-
-        text = pcr.detect(img, should_recalibrate=True)
-        print("Calibration:", pcr.calibration)
-        print(text)
+    print(f"Time: {(tok - tik) / 1000000:.2f} ms")
