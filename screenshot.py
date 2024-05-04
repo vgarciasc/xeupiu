@@ -24,6 +24,10 @@ def get_window_by_title(window_title):
 
     win32gui.EnumWindows(enum_cb, toplist)
     window = [(hwnd, title) for hwnd, title in winlist if window_title.lower() in title.lower()]
+
+    if not window:
+        raise ValueError(f"Window with title '{window_title}' not found.")
+
     window_id, window_name = window[0]
 
     return window_id
