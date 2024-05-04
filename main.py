@@ -10,7 +10,7 @@ from thefuzz import fuzz
 from date_ymd_overlay import YearMonthDayOverlayWindow
 from date_weekday_overlay import WeekdayOverlayWindow
 from notebook_database import NotebookDatabase
-from selectable_rect_overlay import SELECTABLE_RECTS, SelectableRectOverlay
+from selectable_rect_overlay import SELECTABLE_RECTS, SelectableRectOverlay, SCREEN_CUES
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 from textbox_overlay import TextboxOverlayWindow
@@ -21,6 +21,10 @@ from text_database import TextDatabase
 from name_database import NameDatabase
 from poorcr import PoorCR
 from config import WINDOW_TITLE, CONFIG
+
+img_ss = None
+img_tb = None
+print_str_history = []
 
 try:
     pcr_name = PoorCR(only_perfect=True)
@@ -46,8 +50,6 @@ try:
     history_text_ocr_lines = []
     curr_line_cache = []
 
-    print_str_history = []
-
     while True:
         print_str = ""
         tik = time.perf_counter_ns()
@@ -62,12 +64,29 @@ try:
                                Image.NEAREST)
         img_ss_rgb = np.array(img_ss.convert('RGB')).T
 
+        # Detecting cues for various selectable rects
+        cue_dict = {}
+        for cue in SCREEN_CUES:
+            prerequisites_fulfilled = True
+            if cue["prerequisites"]:
+                for prerequisite in cue["prerequisites"]:
+                    if not cue_dict.get(prerequisite):
+                        prerequisites_fulfilled = False
+                        break
+
+            if prerequisites_fulfilled:
+                is_detected = cue["fn"](*img_ss_rgb)
+            else:
+                is_detected = False
+
+            cue_dict[cue["id"]] = is_detected
+
         for overlay_attr in overlay_attrs:
             overlay_attr.hide_if_not_needed(*img_ss_rgb, img_ss)
         for overlay_dateymd in overlay_dateymds:
             overlay_dateymd.hide_if_not_needed(*img_ss_rgb, img_ss)
         for overlay_rect in overlay_rects:
-            overlay_rect.step(*img_ss_rgb, img_ss)
+            overlay_rect.step(*img_ss_rgb, img_ss, cue_dict)
         overlay_weekday.hide_if_not_needed(*img_ss_rgb, img_ss)
         overlay_weekday.update_weekday(img_ss)
 

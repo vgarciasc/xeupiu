@@ -14,73 +14,6 @@ from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 import image_processing as imp
 
-def get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max):
-    red = red[x:x + w, y:y + h]
-    green = green[x:x + w, y:y + h]
-    blue = blue[x:x + w, y:y + h]
-
-    return np.sum((red > r_min) & (red < r_max) & (green > g_min) & (green < g_max) & (blue > b_min) & (blue < b_max))
-
-def get_count_by_equality(red, green, blue, x, y, w, h, r, g, b):
-    red = red[x:x + w, y:y + h]
-    green = green[x:x + w, y:y + h]
-    blue = blue[x:x + w, y:y + h]
-
-    return np.sum((red == r) & (green == g) & (blue == b))
-
-def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
-    c = get_count_by_equality(red, green, blue, x, y, w, h, r, g, b)
-    return c == count
-
-def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max, count):
-    return get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max) == count
-
-def detect_mark_textbox_choice1(red, green, blue):
-    is_cursor_there = detect_mark_by_count(red, green, blue, 274, 170, 6, 47, 239, 230, 239, 4)
-    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 260, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
-    return is_cursor_there and is_selection_there
-
-def detect_mark_textbox_choice2(red, green, blue):
-    is_cursor_there = detect_mark_by_count(red, green, blue, 278, 166, 6, 47, 239, 230, 239, 4)
-    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 270, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
-    return is_cursor_there and is_selection_there
-
-def detect_mark_character_selection_choice_1(red, green, blue):
-    is_cursor_in_vgap_1 = detect_mark_by_count(red, green, blue, 80, 170, 16, 54, 239, 230, 239, 68)
-    is_cursor_in_vgap_2 = detect_mark_by_count(red, green, blue, 144, 170, 16, 54, 239, 230, 239, 68)
-    is_cursor_in_vgap_3 = detect_mark_by_count(red, green, blue, 208, 170, 16, 54, 239, 230, 239, 68)
-    is_cursor_in_vgap_4 = detect_mark_by_count(red, green, blue, 272, 170, 16, 54, 239, 230, 239, 68)
-
-    is_selection_in_hgap_1 = 75 < get_count_by_thresholds(red, green, blue, 31, 182, 260, 4, 60, 120, 150, 210, 30, 120) < 100
-    is_selection_in_hgap_2 = 75 < get_count_by_thresholds(red, green, blue, 31, 198, 260, 4, 60, 120, 150, 210, 30, 120) < 100
-    is_selection_in_hgap_3 = 50 < get_count_by_thresholds(red, green, blue, 31, 214, 260, 4, 60, 120, 150, 210, 30, 120) < 100
-
-    return (is_cursor_in_vgap_1 or is_cursor_in_vgap_2 or is_cursor_in_vgap_3 or is_cursor_in_vgap_4) and (is_selection_in_hgap_1 or is_selection_in_hgap_2 or is_selection_in_hgap_3)
-
-detect_mark_nb_3col1 = lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7)
-detect_mark_nb_2col1 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16)
-detect_mark_nb_2col2 = lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9)
-detect_mark_ng_1 = lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42)
-detect_mark_ng_2 = lambda r, g, b: detect_mark_by_count(r, g, b,160, 21, 16, 15, 41, 164, 255, 76)
-detect_mark_an_2 = lambda r, g, b: detect_mark_by_count(r, g, b, 47, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_an_3 = lambda r, g, b: detect_mark_by_count(r, g, b, 61, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_an_4 = lambda r, g, b: detect_mark_by_count(r, g, b, 75, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_an_5 = lambda r, g, b: detect_mark_by_count(r, g, b, 89, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_an_6 = lambda r, g, b: detect_mark_by_count(r, g, b, 103, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_an_7 = lambda r, g, b: detect_mark_by_count(r, g, b, 117, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_an_8 = lambda r, g, b: detect_mark_by_count(r, g, b, 131, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_an_9 = lambda r, g, b: detect_mark_by_count(r, g, b, 145, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_an_10 = lambda r, g, b: detect_mark_by_count(r, g, b, 159, 23, 6, 32, 49, 0, 0, 70)
-detect_mark_exr = lambda r, g, b: detect_mark_by_count(r, g, b, 82, 6, 156, 28, 49, 0, 0, 960)
-detect_mark_magazine = lambda r, g, b: detect_mark_by_count(r, g, b, 6, 10, 97, 36, 255, 41, 0, 816)
-detect_chcr_0 = lambda r, g, b: detect_mark_by_count(r, g, b, 7, 1, 103, 15, 82, 197, 206, 68)
-detect_chcr_0_1 = lambda r, g, b: detect_mark_by_count(r, g, b, 130, 132, 8, 83, 247, 239, 239, 32)
-detect_chcr_0_4 = lambda r, g, b: detect_mark_by_count(r, g, b, 130, 132, 8, 83, 230, 230, 230, 407)
-detect_chcr_1 = lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 203)
-detect_chcr_2 = lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 307)
-detect_chcr_3 = lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 35, 255, 197, 247, 88)
-detect_chcr_4 = lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 123, 255, 197, 247, 371)
-
 SELECTABLE_RECT_GROUPS = {
     "dc": {
         "fullname": "dialogue_choice",
@@ -212,147 +145,241 @@ SELECTABLE_RECT_GROUPS = {
     }
 }
 
+def get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max):
+    red = red[x:x + w, y:y + h]
+    green = green[x:x + w, y:y + h]
+    blue = blue[x:x + w, y:y + h]
+
+    return np.sum((red > r_min) & (red < r_max) & (green > g_min) & (green < g_max) & (blue > b_min) & (blue < b_max))
+
+def get_count_by_equality(red, green, blue, x, y, w, h, r, g, b):
+    red = red[x:x + w, y:y + h]
+    green = green[x:x + w, y:y + h]
+    blue = blue[x:x + w, y:y + h]
+
+    return np.sum((red == r) & (green == g) & (blue == b))
+
+def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
+    c = get_count_by_equality(red, green, blue, x, y, w, h, r, g, b)
+    return c == count
+
+def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max, count):
+    return get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max) == count
+
+def detect_mark_textbox_choice1(red, green, blue):
+    is_cursor_there = detect_mark_by_count(red, green, blue, 274, 170, 6, 47, 239, 230, 239, 4)
+    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 260, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
+    return is_cursor_there and is_selection_there
+
+def detect_mark_textbox_choice2(red, green, blue):
+    is_cursor_there = detect_mark_by_count(red, green, blue, 278, 166, 6, 47, 239, 230, 239, 4)
+    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 270, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
+    return is_cursor_there and is_selection_there
+
+def detect_mark_character_selection_choice_1(red, green, blue):
+    is_cursor_in_vgap_1 = detect_mark_by_count(red, green, blue, 80, 170, 16, 54, 239, 230, 239, 68)
+    is_cursor_in_vgap_2 = detect_mark_by_count(red, green, blue, 144, 170, 16, 54, 239, 230, 239, 68)
+    is_cursor_in_vgap_3 = detect_mark_by_count(red, green, blue, 208, 170, 16, 54, 239, 230, 239, 68)
+    is_cursor_in_vgap_4 = detect_mark_by_count(red, green, blue, 272, 170, 16, 54, 239, 230, 239, 68)
+
+    is_selection_in_hgap_1 = 75 < get_count_by_thresholds(red, green, blue, 31, 182, 260, 4, 60, 120, 150, 210, 30, 120) < 100
+    is_selection_in_hgap_2 = 75 < get_count_by_thresholds(red, green, blue, 31, 198, 260, 4, 60, 120, 150, 210, 30, 120) < 100
+    is_selection_in_hgap_3 = 50 < get_count_by_thresholds(red, green, blue, 31, 214, 260, 4, 60, 120, 150, 210, 30, 120) < 100
+
+    return (is_cursor_in_vgap_1 or is_cursor_in_vgap_2 or is_cursor_in_vgap_3 or is_cursor_in_vgap_4) and (is_selection_in_hgap_1 or is_selection_in_hgap_2 or is_selection_in_hgap_3)
+
+SCREEN_CUES = [
+    { "id": "dc_3row1", "fn": detect_mark_textbox_choice1, "prerequisites": [] },
+    { "id": "dc_3row2", "fn": detect_mark_textbox_choice2, "prerequisites": [] },
+    { "id": "csc_1", "fn": detect_mark_character_selection_choice_1, "prerequisites": [] },
+    { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": [] },
+    { "id": "nb_2col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16), "prerequisites": [] },
+    { "id": "nb_2col2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9), "prerequisites": [] },
+    { "id": "ng_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42), "prerequisites": [] },
+    { "id": "ng_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,160, 21, 16, 15, 41, 164, 255, 76), "prerequisites": [] },
+    { "id": "an", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 7, 16, 8, 45, 49, 0, 0, 87), "prerequisites": [] },
+    { "id": "an_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 47, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "an_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 61, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "an_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 75, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "an_5", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 89, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "an_6", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 103, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "an_7", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 117, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "an_8", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 131, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "an_9", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 145, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "an_10", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 159, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
+    { "id": "exr", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 82, 6, 156, 28, 49, 0, 0, 960), "prerequisites": [] },
+    { "id": "exr_0", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 31, 37, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_1", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 31, 53, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_2", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 31, 69, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_3", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 31, 85, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_4", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 31, 101, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_5", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 31, 117, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_6", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 31, 133, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_7", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 37, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_8", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 53, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_9", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 69, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_10", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 85, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_11", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 101, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_12", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 117, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "exr_13", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 133, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
+    { "id": "magazine", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 6, 10, 97, 36, 255, 41, 0, 816), "prerequisites": [] },
+    { "id": "mg_event_1", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 16, 105, 225, 13, 230, 222, 239) > 10, "prerequisites": ["magazine"] },
+    { "id": "mg_event_2", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 16, 121, 225, 13, 230, 222, 239) > 10, "prerequisites": ["magazine"] },
+    { "id": "mg_event_3", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 11, 137, 225, 13, 230, 222, 239) > 10, "prerequisites": ["magazine"] },
+    { "id": "chcr_0", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 7, 1, 103, 15, 82, 197, 206, 68), "prerequisites": [] },
+    { "id": "chcr_0_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 130, 132, 8, 83, 247, 239, 239, 32), "prerequisites": [] },
+    { "id": "chcr_0_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 130, 132, 8, 83, 230, 230, 230, 407), "prerequisites": [] },
+    { "id": "chcr_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 203), "prerequisites": [] },
+    { "id": "chcr_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 307), "prerequisites": [] },
+    { "id": "chcr_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 35, 255, 197, 247, 88), "prerequisites": [] },
+    { "id": "chcr_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 123, 255, 197, 247, 371), "prerequisites": [] },
+]
+
 SELECTABLE_RECTS = [
-    ("nb_3col1_h", (20, 35), (256, 16), "#e0e0e0", detect_mark_nb_3col1, 1),
-    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", detect_mark_nb_3col1, 1),
-    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", detect_mark_nb_3col1, 1),
-    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", detect_mark_nb_3col1, 1),
-    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", detect_mark_nb_3col1, 1),
-    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", detect_mark_nb_3col1, 1),
-    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", detect_mark_nb_3col1, 1),
-    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", detect_mark_nb_3col1, 1),
-    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", detect_mark_nb_3col1, 1),
-    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", detect_mark_nb_3col1, 1),
-    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", detect_mark_nb_3col1, 1),
-    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", detect_mark_nb_3col1, 1),
-    ("nb_3col1_3.2", (200, 80), (72, 16), "#d5d5d5", detect_mark_nb_3col1, 1),
-    ("nb_3col1_3.3", (200, 96), (72, 16), "#d2d2d2", detect_mark_nb_3col1, 1),
-    ("nb_3col1_3.4", (200, 112), (72, 16), "#cacaca", detect_mark_nb_3col1, 1),
-    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", detect_mark_nb_3col1, 1),
+    ("nb_3col1_h", (20, 35), (256, 16), "#e0e0e0", "nb_3col1", 1),
+    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", "nb_3col1", 1),
+    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", "nb_3col1", 1),
+    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", "nb_3col1", 1),
+    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", "nb_3col1", 1),
+    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", "nb_3col1", 1),
+    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", "nb_3col1", 1),
+    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", "nb_3col1", 1),
+    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", "nb_3col1", 1),
+    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", "nb_3col1", 1),
+    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", "nb_3col1", 1),
+    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", "nb_3col1", 1),
+    ("nb_3col1_3.2", (200, 80), (72, 16), "#d5d5d5", "nb_3col1", 1),
+    ("nb_3col1_3.3", (200, 96), (72, 16), "#d2d2d2", "nb_3col1", 1),
+    ("nb_3col1_3.4", (200, 112), (72, 16), "#cacaca", "nb_3col1", 1),
+    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", "nb_3col1", 1),
 
-    ("nb_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", detect_mark_nb_2col1, 1),
-    ("nb_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", detect_mark_nb_2col1, 1),
-    ("nb_2col1_1.3", (35, 79), (100, 13), "#e0e0e0", detect_mark_nb_2col1, 1),
-    ("nb_2col1_1.4", (35, 91), (100, 13), "#e0e0e0", detect_mark_nb_2col1, 1),
-    ("nb_2col1_1.5", (35, 103), (100, 13), "#e0e0e0", detect_mark_nb_2col1, 1),
-    ("nb_2col1_1.6", (35, 115), (100, 13), "#e0e0e0", detect_mark_nb_2col1, 1),
-    ("nb_2col1_1.7", (35, 127), (100, 13), "#e0e0e0", detect_mark_nb_2col1, 1),
-    ("nb_2col1_1.8", (35, 139), (100, 13), "#e0e0e0", detect_mark_nb_2col1, 1),
+    ("nb_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_1.3", (35, 79), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_1.4", (35, 91), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_1.5", (35, 103), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_1.6", (35, 115), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_1.7", (35, 127), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_1.8", (35, 139), (100, 13), "#e0e0e0", "nb_2col1", 1),
 
-    ("nb_2col2_h1", (31, 36), (98, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_h2", (158, 36), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_1.1", (23, 62), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_1.2", (23, 78), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_1.3", (23, 94), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_1.4", (23, 110), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_1.5", (23, 126), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_2.1", (158, 62), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_2.2", (158, 78), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_2.3", (158, 94), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_2.4", (158, 110), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
-    ("nb_2col2_2.5", (158, 126), (109, 15), "#e0e0e0", detect_mark_nb_2col2, 1),
+    ("nb_2col2_h1", (31, 36), (98, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_h2", (158, 36), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_1.1", (23, 62), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_1.2", (23, 78), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_1.3", (23, 94), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_1.4", (23, 110), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_1.5", (23, 126), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_2.1", (158, 62), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_2.2", (158, 78), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_2.3", (158, 94), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_2.4", (158, 110), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_2.5", (158, 126), (109, 15), "#e0e0e0", "nb_2col2", 1),
 
-    ("dc_3row1_1", (39, 169), (230, 17), "#135800", detect_mark_textbox_choice1, 1),
-    ("dc_3row1_2", (39, 185), (230, 17), "#135800", detect_mark_textbox_choice1, 1),
+    ("dc_3row1_1", (39, 169), (230, 17), "#135800", "dc_3row1", 1),
+    ("dc_3row1_2", (39, 185), (230, 17), "#135800", "dc_3row1", 1),
 
-    ("dc_3row2_1", (32, 167), (252, 16), "#135800", detect_mark_textbox_choice2, 1),
-    ("dc_3row2_2", (32, 183), (252, 16), "#135800", detect_mark_textbox_choice2, 1),
-    ("dc_3row2_3", (32, 199), (252, 16), "#135800", detect_mark_textbox_choice2, 1),
+    ("dc_3row2_1", (32, 167), (252, 16), "#135800", "dc_3row2", 1),
+    ("dc_3row2_2", (32, 183), (252, 16), "#135800", "dc_3row2", 1),
+    ("dc_3row2_3", (32, 199), (252, 16), "#135800", "dc_3row2", 1),
 
-    ("ngp_1_1", (21, 41), (44, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngp_1_2", (21, 57), (30, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngp_1_3", (21, 73), (44, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngp_1_4", (21, 89), (44, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngp_1_5", (21, 105), (44, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngp_1_6", (21, 121), (30, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngg_1_h", (31, 21), (91, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngg_1_1", (71, 41), (115, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngg_1_2", (71, 57), (115, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngg_1_3", (71, 73), (115, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngg_1_4", (71, 89), (115, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngg_1_5", (71, 105), (115, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngg_1_6", (71, 121), (215, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngg_1_6", (71, 137), (215, 13), "#e0e0e0", detect_mark_ng_1, 1),
-    ("ngb_1_1", (127, 21), (60, 13), "#e0e0e0", detect_mark_ng_1, 1),
+    ("ngp_1_1", (21, 41), (44, 13), "#e0e0e0", "ng_1", 1),
+    ("ngp_1_2", (21, 57), (30, 13), "#e0e0e0", "ng_1", 1),
+    ("ngp_1_3", (21, 73), (44, 13), "#e0e0e0", "ng_1", 1),
+    ("ngp_1_4", (21, 89), (44, 13), "#e0e0e0", "ng_1", 1),
+    ("ngp_1_5", (21, 105), (44, 13), "#e0e0e0", "ng_1", 1),
+    ("ngp_1_6", (21, 121), (30, 13), "#e0e0e0", "ng_1", 1),
+    ("ngg_1_h", (31, 21), (91, 13), "#e0e0e0", "ng_1", 1),
+    ("ngg_1_1", (71, 41), (115, 13), "#e0e0e0", "ng_1", 1),
+    ("ngg_1_2", (71, 57), (115, 13), "#e0e0e0", "ng_1", 1),
+    ("ngg_1_3", (71, 73), (115, 13), "#e0e0e0", "ng_1", 1),
+    ("ngg_1_4", (71, 89), (115, 13), "#e0e0e0", "ng_1", 1),
+    ("ngg_1_5", (71, 105), (115, 13), "#e0e0e0", "ng_1", 1),
+    ("ngg_1_6", (71, 121), (215, 13), "#e0e0e0", "ng_1", 1),
+    ("ngg_1_6", (71, 137), (215, 13), "#e0e0e0", "ng_1", 1),
+    ("ngb_1_1", (127, 21), (60, 13), "#e0e0e0", "ng_1", 1),
 
-    ("ngp_1_h", (31, 21), (114, 13), "#e0e0e0", detect_mark_ng_2, 1),
-    ("ngg_1_1", (29, 47), (70, 13), "#e0e0e0", detect_mark_ng_2, 1),
-    ("ngg_1_2", (29, 63), (70, 13), "#e0e0e0", detect_mark_ng_2, 1),
-    ("ngg_1_3", (29, 79), (70, 13), "#e0e0e0", detect_mark_ng_2, 1),
-    ("ngg_1_4", (29, 95), (70, 13), "#e0e0e0", detect_mark_ng_2, 1),
-    ("ngg_1_5", (29, 111), (70, 13), "#e0e0e0", detect_mark_ng_2, 1),
-    ("ngg_1_6", (29, 127), (70, 13), "#e0e0e0", detect_mark_ng_2, 1),
-    ("ngg_2_1", (159, 47), (70, 13), "#e0e0e0", detect_mark_ng_2, 1),
-    ("ngg_2_2", (159, 63), (70, 13), "#d9d9d9", detect_mark_ng_2, 1),
-    ("ngg_2_3", (159, 79), (70, 13), "#d9d9d9", detect_mark_ng_2, 1),
-    ("ngg_2_4", (159, 95), (70, 13), "#d9d9d9", detect_mark_ng_2, 1),
-    ("ngg_2_5", (159, 111), (70, 13), "#cccccc", detect_mark_ng_2, 1),
-    ("ngg_2_6", (159, 127), (70, 13), "#cccccc", detect_mark_ng_2, 1),
+    ("ngp_1_h", (31, 21), (114, 13), "#e0e0e0", "ng_2", 1),
+    ("ngg_1_1", (29, 47), (70, 13), "#e0e0e0", "ng_2", 1),
+    ("ngg_1_2", (29, 63), (70, 13), "#e0e0e0", "ng_2", 1),
+    ("ngg_1_3", (29, 79), (70, 13), "#e0e0e0", "ng_2", 1),
+    ("ngg_1_4", (29, 95), (70, 13), "#e0e0e0", "ng_2", 1),
+    ("ngg_1_5", (29, 111), (70, 13), "#e0e0e0", "ng_2", 1),
+    ("ngg_1_6", (29, 127), (70, 13), "#e0e0e0", "ng_2", 1),
+    ("ngg_2_1", (159, 47), (70, 13), "#e0e0e0", "ng_2", 1),
+    ("ngg_2_2", (159, 63), (70, 13), "#d9d9d9", "ng_2", 1),
+    ("ngg_2_3", (159, 79), (70, 13), "#d9d9d9", "ng_2", 1),
+    ("ngg_2_4", (159, 95), (70, 13), "#d9d9d9", "ng_2", 1),
+    ("ngg_2_5", (159, 111), (70, 13), "#cccccc", "ng_2", 1),
+    ("ngg_2_6", (159, 127), (70, 13), "#cccccc", "ng_2", 1),
 
-    ("csc_1_1", (32, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_2", (32, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_3", (32, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_4", (96, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_5", (96, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_6", (96, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_7", (160, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_8", (160, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_9", (160, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_10", (224, 170), (48, 16), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_11", (224, 186), (48, 16), "#135800", detect_mark_character_selection_choice_1, 1),
-    ("csc_1_12", (224, 202), (48, 15), "#135800", detect_mark_character_selection_choice_1, 1),
+    ("csc_1_1", (32, 170), (48, 16), "#135800", "csc_1", 1),
+    ("csc_1_2", (32, 186), (48, 16), "#135800", "csc_1", 1),
+    ("csc_1_3", (32, 202), (48, 15), "#135800", "csc_1", 1),
+    ("csc_1_4", (96, 170), (48, 16), "#135800", "csc_1", 1),
+    ("csc_1_5", (96, 186), (48, 16), "#135800", "csc_1", 1),
+    ("csc_1_6", (96, 202), (48, 15), "#135800", "csc_1", 1),
+    ("csc_1_7", (160, 170), (48, 16), "#135800", "csc_1", 1),
+    ("csc_1_8", (160, 186), (48, 16), "#135800", "csc_1", 1),
+    ("csc_1_9", (160, 202), (48, 15), "#135800", "csc_1", 1),
+    ("csc_1_10", (224, 170), (48, 16), "#135800", "csc_1", 1),
+    ("csc_1_11", (224, 186), (48, 16), "#135800", "csc_1", 1),
+    ("csc_1_12", (224, 202), (48, 15), "#135800", "csc_1", 1),
 
-    ("an_2", (17, 31), (29, 15), "#135800", detect_mark_an_2, 0.7),
-    ("an_3", (17, 31), (44, 15), "#135800", detect_mark_an_3, 0.8),
-    ("an_4", (17, 31), (59, 15), "#135800", detect_mark_an_4, 1),
-    ("an_5", (17, 31), (74, 15), "#135800", detect_mark_an_5, 1),
-    ("an_6", (17, 31), (89, 15), "#135800", detect_mark_an_6, 1),
-    ("an_7", (17, 31), (104, 15), "#135800", detect_mark_an_7, 1),
-    ("an_8", (17, 31), (119, 15), "#135800", detect_mark_an_8, 1),
-    ("an_9", (17, 31), (134, 15), "#135800", detect_mark_an_9, 1),
-    ("an_10", (17, 31), (149, 15), "#135800", detect_mark_an_10, 1),
+    ("an_2", (17, 31), (29, 15), "#135800", "an_2", 0.7),
+    ("an_3", (17, 31), (44, 15), "#135800", "an_3", 0.8),
+    ("an_4", (17, 31), (59, 15), "#135800", "an_4", 1),
+    ("an_5", (17, 31), (74, 15), "#135800", "an_5", 1),
+    ("an_6", (17, 31), (89, 15), "#135800", "an_6", 1),
+    ("an_7", (17, 31), (104, 15), "#135800", "an_7", 1),
+    ("an_8", (17, 31), (119, 15), "#135800", "an_8", 1),
+    ("an_9", (17, 31), (134, 15), "#135800", "an_9", 1),
+    ("an_10", (17, 31), (149, 15), "#135800", "an_10", 1),
 
-    ("an_exr_h", (103, 13), (112, 14), "#135800", detect_mark_exr, 0.8),
-    ("exr_1_1", (31, 37), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 37, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_1_2", (31, 53), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 37, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_1_3", (31, 69), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 69, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_1_4", (31, 85), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 85, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_1_5", (31, 101), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 101, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_1_6", (31, 117), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 117, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_1_7", (31, 133), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 31, 133, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_2_1", (191, 37), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 37, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_2_2", (191, 53), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 53, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_2_3", (191, 69), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 69, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_2_4", (191, 85), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 85, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_2_5", (191, 101), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 101, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_2_6", (191, 117), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 117, 90, 13, 132, 132, 164, 88), 1),
-    ("exr_2_7", (191, 133), (90, 13), "#e0e0e0", lambda r, g, b: detect_mark_exr(r,g,b) and not detect_mark_by_count(r, g, b, 191, 133, 90, 13, 132, 132, 164, 88), 1),
+    ("an_exr_h", (103, 13), (112, 14), "#135800", "exr", 0.8),
+    ("exr_1_1", (31, 37), (90, 13), "#e0e0e0", "exr_0", 1),
+    ("exr_1_2", (31, 53), (90, 13), "#e0e0e0", "exr_1", 1),
+    ("exr_1_3", (31, 69), (90, 13), "#e0e0e0", "exr_2", 1),
+    ("exr_1_4", (31, 85), (90, 13), "#e0e0e0", "exr_3", 1),
+    ("exr_1_5", (31, 101), (90, 13), "#e0e0e0", "exr_4", 1),
+    ("exr_1_6", (31, 117), (90, 13), "#e0e0e0", "exr_5", 1),
+    ("exr_1_7", (31, 133), (90, 13), "#e0e0e0", "exr_6", 1),
+    ("exr_2_1", (191, 37), (90, 13), "#e0e0e0", "exr_7", 1),
+    ("exr_2_2", (191, 53), (90, 13), "#e0e0e0", "exr_8", 1),
+    ("exr_2_3", (191, 69), (90, 13), "#e0e0e0", "exr_9", 1),
+    ("exr_2_4", (191, 85), (90, 13), "#e0e0e0", "exr_10", 1),
+    ("exr_2_5", (191, 101), (90, 13), "#e0e0e0", "exr_11", 1),
+    ("exr_2_6", (191, 117), (90, 13), "#e0e0e0", "exr_12", 1),
+    ("exr_2_7", (191, 133), (90, 13), "#e0e0e0", "exr_13", 1),
 
-    ("mg_movie", (188, 25), (116, 13), "#003abd", detect_mark_magazine, 1),
-    ("mg_concert", (188, 57), (116, 13), "#f763a3", detect_mark_magazine, 1),
-    ("mg_event_1", (16, 105), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 16, 105, 225, 13, 230, 222, 239) > 10, 1),
-    ("mg_event_2", (16, 121), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 16, 121, 225, 13, 230, 222, 239) > 10, 1),
-    ("mg_event_3", (16, 137), (225, 13), "#7b4ace", lambda r, g, b: detect_mark_magazine(r,g,b) and get_count_by_equality(r, g, b, 11, 137, 225, 13, 230, 222, 239) > 10, 1),
+    ("mg_movie", (188, 25), (116, 13), "#003abd", "magazine", 1),
+    ("mg_concert", (188, 57), (116, 13), "#f763a3", "magazine", 1),
+    ("mg_event_1", (16, 105), (225, 13), "#7b4ace", "mg_event_1", 1),
+    ("mg_event_2", (16, 121), (225, 13), "#7b4ace", "mg_event_2", 1),
+    ("mg_event_3", (16, 137), (225, 13), "#7b4ace", "mg_event_3", 1),
 
-    ("chcr_g_h_1", (6, 14), (300, 15), "#1f1f1f", detect_chcr_1, 1, 5),
-    ("chcr_w_h_1", (6, 14), (300, 15), "#1f1f1f", detect_chcr_1, 1, 5),
-    ("chcr_p_1_1", (14, 30), (32, 16), "#1f1f1f", detect_chcr_1, 0.8, 5),
-    ("chcr_p_1_1", (174, 30), (48, 16), "#1f1f1f", detect_chcr_1, 0.8, 5),
-    ("chcr_w_h_2", (6, 14), (300, 15), "#1f1f1f", detect_chcr_2, 1, 5),
-    ("chcr_p_2_1", (20, 30), (48, 16), "#1f1f1f", detect_chcr_2, 0.8, 5),
-    ("chcr_p_2_2", (198, 30), (48, 16), "#1f1f1f", detect_chcr_2, 0.8, 5),
-    ("chcr_p_2_3", (38, 62), (48, 16), "#1f1f1f", detect_chcr_2, 0.8, 5),
-    ("chcr_p_2_4", (38, 110), (48, 16), "#1f1f1f", detect_chcr_2, 0.8, 5),
-    ("chcr_p_2_5", (38, 174), (48, 16), "#1f1f1f", detect_chcr_2, 0.8, 5),
-    ("chcr_p_3_1", (38, 62), (48, 16), "#1f1f1f", detect_chcr_3, 0.8, 5),
-    ("chcr_p_3_2", (38, 94), (48, 16), "#1f1f1f", detect_chcr_3, 0.8, 5),
-    ("chcr_p_3_3", (38, 126), (48, 16), "#1f1f1f", detect_chcr_3, 0.8, 5),
-    ("chcr_p_3_4", (38, 158), (48, 16), "#1f1f1f", detect_chcr_3, 0.8, 5),
-    ("chcr_w_3_1", (135, 182), (93, 16), "#1f1f1f", detect_chcr_3, 1, 5),
-    ("chcr_p_3_5", (128, 200), (48, 16), "#1f1f1f", detect_chcr_3, 0.8, 5),
-    ("chcr_p_3_6", (182, 200), (48, 16), "#1f1f1f", detect_chcr_3, 0.8, 5),
-    ("chcr_w_4_1", (102, 62), (32, 16), "#1f1f1f", detect_chcr_4, 0.8, 5),
-    ("chcr_w_4_2", (158, 62), (32, 16), "#1f1f1f", detect_chcr_4, 0.8, 5),
+    ("chcr_g_h_1", (6, 14), (300, 15), "#1f1f1f", "chcr_1", 1, 5),
+    ("chcr_w_h_1", (6, 14), (300, 15), "#1f1f1f", "chcr_1", 1, 5),
+    ("chcr_p_1_1", (14, 30), (32, 16), "#1f1f1f", "chcr_1", 0.8, 5),
+    ("chcr_p_1_1", (174, 30), (48, 16), "#1f1f1f", "chcr_1", 0.8, 5),
+
+    ("chcr_w_h_2", (6, 14), (300, 15), "#1f1f1f", "chcr_2", 1, 5),
+    ("chcr_p_2_1", (20, 30), (48, 16), "#1f1f1f", "chcr_2", 0.8, 5),
+    ("chcr_p_2_2", (198, 30), (48, 16), "#1f1f1f", "chcr_2", 0.8, 5),
+    ("chcr_p_2_3", (38, 62), (48, 16), "#1f1f1f", "chcr_2", 0.8, 5),
+    ("chcr_p_2_4", (38, 110), (48, 16), "#1f1f1f", "chcr_2", 0.8, 5),
+    ("chcr_p_2_5", (38, 174), (48, 16), "#1f1f1f", "chcr_2", 0.8, 5),
+
+    ("chcr_p_3_1", (38, 62), (48, 16), "#1f1f1f", "chcr_3", 0.8, 5),
+    ("chcr_p_3_2", (38, 94), (48, 16), "#1f1f1f", "chcr_3", 0.8, 5),
+    ("chcr_p_3_3", (38, 126), (48, 16), "#1f1f1f", "chcr_3", 0.8, 5),
+    ("chcr_p_3_4", (38, 158), (48, 16), "#1f1f1f", "chcr_3", 0.8, 5),
+    ("chcr_w_3_1", (135, 182), (93, 16), "#1f1f1f", "chcr_3", 1, 5),
+    ("chcr_p_3_5", (128, 200), (48, 16), "#1f1f1f", "chcr_3", 0.8, 5),
+    ("chcr_p_3_6", (182, 200), (48, 16), "#1f1f1f", "chcr_3", 0.8, 5),
+
+    ("chcr_w_4_1", (102, 62), (32, 16), "#1f1f1f", "chcr_4", 0.8, 5),
+    ("chcr_w_4_2", (158, 62), (32, 16), "#1f1f1f", "chcr_4", 0.8, 5),
+
     # ("chcr_k1_1_1", (120, 43), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_2", (120, 59), (48, 13), "#ffffff", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_3", (120, 75), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
@@ -368,7 +395,6 @@ SELECTABLE_RECTS = [
     # ("chcr_k1_1_4_6", (205, 149), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
     # ("chcr_k1_1_4_7", (205, 165), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
     # ("chcr_k1_1_4_8", (205, 181), (36, 15), "#e6e6e6", detect_chcr_0_4, 0.8, 5),
-
 ]
 
 class SelectableRectOverlay(OverlayWindow):
@@ -378,12 +404,14 @@ class SelectableRectOverlay(OverlayWindow):
         self.rect_x, self.rect_y = selectable_rect[1]
         self.rect_w, self.rect_h = selectable_rect[2]
         self.bg_color = selectable_rect[3]
-        self.detect_mark_fn = selectable_rect[4]
+        self.screen_cue_id = selectable_rect[4]
         self.font_scaling = selectable_rect[5]
         self.padding_x = selectable_rect[6] if len(selectable_rect) > 6 else 3
 
         self.db = db if db is not None else NotebookDatabase()
         self.pcr = pcr if pcr is not None else PoorCR(only_perfect=True, padding_x=self.padding_x)
+
+        self.is_cue_detected = False
 
         for key, val in SELECTABLE_RECT_GROUPS.items():
             if self.item_id.startswith(key):
@@ -416,19 +444,15 @@ class SelectableRectOverlay(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
-        # Sometimes the screenshot comes out black. This is a workaround for that.
-        if np.mean((r < 10) & (g < 10) & (b < 10)) > 0.6:
-            if self.is_hidden:
-                return False
-            return True
-
-        is_mark_there = self.detect_mark_fn(r, g, b)
-        if not is_mark_there:
+        if not self.is_cue_detected:
             return False
 
-        r = r[self.rect_x:self.rect_x + self.rect_w, self.rect_y:self.rect_y + self.rect_h]
-        g = g[self.rect_x:self.rect_x + self.rect_w, self.rect_y:self.rect_y + self.rect_h]
-        b = b[self.rect_x:self.rect_x + self.rect_w, self.rect_y:self.rect_y + self.rect_h]
+        # img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
+        # r, g, b = np.array(img_item.convert('RGB')).T
+
+        r = r[self.rect_x:(self.rect_x + self.rect_w), self.rect_y:(self.rect_y + self.rect_h)]
+        g = g[self.rect_x:(self.rect_x + self.rect_w), self.rect_y:(self.rect_y + self.rect_h)]
+        b = b[self.rect_x:(self.rect_x + self.rect_w), self.rect_y:(self.rect_y + self.rect_h)]
 
         is_unselected = self.group['is_unselected_fn'](r, g, b)
         is_selected = self.group['is_selected_fn'](r, g, b)
@@ -472,7 +496,11 @@ class SelectableRectOverlay(OverlayWindow):
 
         self.update(" " + text)
 
-    def step(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> None:
+    def step(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image, cue_dict: dict) -> None:
+        if self.screen_cue_id not in cue_dict:
+            raise ValueError(f"Screen cue {self.screen_cue_id} not found in cue_dict")
+
+        self.is_cue_detected = cue_dict[self.screen_cue_id]
         self.hide_if_not_needed(r, g, b, img_ss)
 
         if not self.is_hidden:
