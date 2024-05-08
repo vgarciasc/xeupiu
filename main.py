@@ -20,7 +20,7 @@ import image_processing as imp
 from text_database import TextDatabase
 from name_database import NameDatabase
 from poorcr import PoorCR
-from config import WINDOW_TITLE, CONFIG
+from config import WINDOW_TITLE, CONFIG, VERBOSE
 
 img_ss = None
 img_tb = None
@@ -75,6 +75,8 @@ try:
                         break
 
             if prerequisites_fulfilled:
+                if VERBOSE:
+                    print(f"Inspecting cue '{cue['id']}':")
                 is_detected = cue["fn"](*img_ss_rgb)
             else:
                 is_detected = False
@@ -210,16 +212,20 @@ try:
 
         # Save images on F12
         if keyboard.is_pressed("f12"):
-            print("F12 pressed. Saving images...")
-            curr_timestamp = time.strftime("%Y%m%d_%H%M%S")
-            img_ss.save(f"data/tmp/{curr_timestamp}_img_ss.png")
-            img_tb.save(f"data/tmp/{curr_timestamp}_img_tb.png")
-            img_tb_bw.save(f"data/tmp/{curr_timestamp}_img_tb_bw.png")
+            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            os.makedirs(f"data/log/{timestamp}", exist_ok=True)
+
+            with open(f"data/log/{timestamp}/log.txt", "w", encoding="utf-8") as f:
+                f.write("\n".join(print_str_history))
+
+            img_ss.save(f"data/log/{timestamp}/img_ss.png")
+            img_tb.save(f"data/log/{timestamp}/img_tb.png")
+            img_tb_bw.save(f"data/log/{timestamp}/img_tb_bw.png")
 
             if img_tb_name:
-                img_tb_name.save(f"data/tmp/{curr_timestamp}_img_tb_name.png")
+                img_tb_name.save(f"data/log/{timestamp}/img_tb_name.png")
             for i, img_tb_line in enumerate(img_tb_lines):
-                img_tb_line.save(f"data/tmp/{curr_timestamp}_img_tb_line_{i}.png")
+                img_tb_line.save(f"data/log/{timestamp}/img_tb_line_{i}.png")
 
 except Exception as e:
     timestamp = time.strftime("%Y%m%d_%H%M%S")
@@ -228,7 +234,7 @@ except Exception as e:
     with open(f"data/log/{timestamp}/error.txt", "w", encoding="utf-8") as f:
         f.write(traceback.format_exc())
 
-    with open(f"data/log/{timestamp}/log.txt", "a", encoding="utf-8") as f:
+    with open(f"data/log/{timestamp}/log.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(print_str_history))
 
     if img_ss is not None:

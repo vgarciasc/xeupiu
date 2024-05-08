@@ -10,6 +10,7 @@ import translator
 from constants import is_str_empty
 from notebook_database import NotebookDatabase
 from poorcr import PoorCR
+from config import VERBOSE
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 import image_processing as imp
@@ -161,10 +162,19 @@ def get_count_by_equality(red, green, blue, x, y, w, h, r, g, b):
 
 def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
     c = get_count_by_equality(red, green, blue, x, y, w, h, r, g, b)
+
+    if VERBOSE:
+        print(f"\tCount: {c}, expected: {count}")
+
     return c == count
 
 def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max, count):
-    return get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max) == count
+    c = get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max)
+
+    if VERBOSE:
+        print(f"\tCount: {c}, expected: {count}")
+
+    return c == count
 
 def detect_mark_textbox_choice1(red, green, blue):
     is_cursor_there = detect_mark_by_count(red, green, blue, 274, 170, 6, 47, 239, 230, 239, 4)
