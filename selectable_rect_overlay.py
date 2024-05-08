@@ -13,6 +13,7 @@ from poorcr import PoorCR
 from config import VERBOSE
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
+from image_processing import get_count_by_equality, get_count_by_thresholds
 import image_processing as imp
 
 SELECTABLE_RECT_GROUPS = {
@@ -145,20 +146,6 @@ SELECTABLE_RECT_GROUPS = {
         "is_selected_fn": lambda r, g, b: False,
     }
 }
-
-def get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max):
-    red = red[x:x + w, y:y + h]
-    green = green[x:x + w, y:y + h]
-    blue = blue[x:x + w, y:y + h]
-
-    return np.sum((red > r_min) & (red < r_max) & (green > g_min) & (green < g_max) & (blue > b_min) & (blue < b_max))
-
-def get_count_by_equality(red, green, blue, x, y, w, h, r, g, b):
-    red = red[x:x + w, y:y + h]
-    green = green[x:x + w, y:y + h]
-    blue = blue[x:x + w, y:y + h]
-
-    return np.sum((red == r) & (green == g) & (blue == b))
 
 def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
     c = get_count_by_equality(red, green, blue, x, y, w, h, r, g, b)
@@ -468,7 +455,15 @@ class SelectableRectOverlay(OverlayWindow):
         is_selected = self.group['is_selected_fn'](r, g, b)
         is_detected = is_unselected or is_selected
 
+        if VERBOSE and self.item_id == "nb_2col1_1.1":
+            img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
+            img_item.save(f"data/tmp/{self.item_id}.png")
+            print(f"{self.item_id} - Unselected: {is_unselected}, Selected: {is_selected}")
+
         if is_detected and self.is_hidden:
+            if VERBOSE and self.item_id == "nb_2col1_1.1":
+                print(f"Detected {self.item_id}")
+
             img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
             img_item_bw = self.group['bw_conversion_fn'](img_item)
 

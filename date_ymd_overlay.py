@@ -4,6 +4,7 @@ import tkinter as tk
 import numpy as np
 from PIL import Image
 
+from image_processing import get_count_by_equality
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 
@@ -38,12 +39,9 @@ class YearMonthDayOverlayWindow(OverlayWindow):
 
         self.root.update_idletasks()
         self.root.update()
-    def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
-        red   = r[288:320, 30:178]
-        green = g[288:320, 30:178]
-        blue  = b[288:320, 30:178]
 
-        c = np.sum((red == 247) & (green == 214) & (blue == 156))
+    def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
+        c = get_count_by_equality(r, g, b, 288, 30, 32, 148, 247, 214, 156)
         return c == 23
 
 if __name__ == "__main__":

@@ -171,6 +171,21 @@ def crop_textbox_image(img_ss):
 
     return img_tb
 
+def get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max):
+    red = red[x:x + w, y:y + h]
+    green = green[x:x + w, y:y + h]
+    blue = blue[x:x + w, y:y + h]
+
+    return np.sum((red > r_min) & (red < r_max) & (green > g_min) & (green < g_max) & (blue > b_min) & (blue < b_max))
+
+def get_count_by_equality(red, green, blue, x, y, w, h, r, g, b):
+    red = red[x:x + w, y:y + h]
+    green = green[x:x + w, y:y + h]
+    blue = blue[x:x + w, y:y + h]
+
+    epsilon = 2
+
+    return np.sum((red > r - epsilon) & (red < r + epsilon) & (green > g - epsilon) & (green < g + epsilon) & (blue > b - epsilon) & (blue < b + epsilon))
 
 if __name__ == "__main__":
     img_ss = Image.open("data/tmp/ss.png")

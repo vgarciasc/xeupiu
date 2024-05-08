@@ -1,11 +1,10 @@
 import time
 import tkinter as tk
-from ctypes import windll
 
 import numpy as np
-import win32gui
 from PIL import Image
 
+from image_processing import get_count_by_equality
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 
@@ -41,11 +40,8 @@ class AttributeOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
-        red   = r[213:245, 16:73]
-        green = g[213:245, 16:73]
-        blue  = b[213:245, 16:73]
-
-        return np.sum((red == 164) & (blue == 206) & (green == 206)) == 282
+        c = get_count_by_equality(r, g, b, 213, 16, 32, 57, 164, 206, 206)
+        return c == 282
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
