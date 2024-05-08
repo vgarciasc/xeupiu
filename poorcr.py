@@ -1,13 +1,14 @@
 import time
-from datetime import datetime
+import glob
+import os
 
 import numpy as np
 from PIL import Image
+from datetime import datetime
 
 import image_processing
+from config import CONFIG
 from image_processing import extract_characters, trim_char, pad_char
-import glob
-import os
 
 
 def load_character_db():
@@ -71,7 +72,7 @@ class PoorCR:
 
         os.makedirs("data/log", exist_ok=True)
 
-        self.calibration = None
+        self.calibration_history = []
 
     def detect(self, img_line_bw, should_recalibrate=False):
         """
@@ -84,20 +85,22 @@ class PoorCR:
         img_line_bw_np_original = np.array(img_line_bw.convert('1'))
 
         # Calibrate if no calibration exists
-        if self.calibration is None:
+        if not self.calibration_history:
             self.calibrate(img_line_bw_np_original)
-        img_line_bw_np = self.apply_calibration(img_line_bw_np_original)
 
-        # First try
-        char_imgs = extract_characters(img_line_bw_np, self.padding_x)
-        text = self.char_imgs_to_text(char_imgs)
+        for calibration in self.calibration_history:
+            img_line_bw_np = self.apply_calibration(img_line_bw_np_original, calibration)
+            char_imgs = extract_characters(img_line_bw_np, self.padding_x)
+            text = self.char_imgs_to_text(char_imgs)
+            perfect_detection = text.count("?") == 0
 
-        perfect_detection = text.count("?") == 0
-        if not perfect_detection and should_recalibrate:
+            if perfect_detection:
+                return text.strip()
+
+        if should_recalibrate:
             self.calibrate(img_line_bw_np_original)
-            img_line_bw_np = self.apply_calibration(img_line_bw_np_original)
+            img_line_bw_np = self.apply_calibration(img_line_bw_np_original, self.calibration_history[-1])
 
-            # Second try
             char_imgs = extract_characters(img_line_bw_np, self.padding_x)
             text = self.char_imgs_to_text(char_imgs)
 
@@ -166,8 +169,24 @@ class PoorCR:
         :return: None.
         """
 
+        calibration = None
         n_min_unrecognized = 99
         n_txt_length = 0
+
+        for pad_x in range(0, 5):
+            for pad_y in range(0, 5):
+                _img = np.pad(img_line_bw_np, ((pad_x, pad_x), (pad_y, pad_y)), mode='constant', constant_values=1)
+
+                char_imgs = extract_characters(_img, self.padding_x)
+                text = self.char_imgs_to_text(char_imgs)
+                n_unrecognized = text.count("?")
+
+                if text != '':
+                    if (n_unrecognized < n_min_unrecognized) or \
+                            (n_unrecognized == n_min_unrecognized and len(text) > n_txt_length):
+                        n_min_unrecognized = n_unrecognized
+                        n_txt_length = len(text)
+                        calibration = (pad_x, pad_y)
 
         for off_y in range(0, 11):
             for off_x in range(0, 11):
@@ -184,24 +203,12 @@ class PoorCR:
                             (n_unrecognized == n_min_unrecognized and len(text) > n_txt_length):
                         n_min_unrecognized = n_unrecognized
                         n_txt_length = len(text)
-                        self.calibration = (-off_y, -off_x)
+                        calibration = (-off_y, -off_x)
 
-        for pad_x in range(0, 5):
-            for pad_y in range(0, 5):
-                _img = np.pad(img_line_bw_np, ((pad_x, pad_x), (pad_y, pad_y)), mode='constant', constant_values=1)
+        self.calibration_history.append(calibration)
+        self.calibration_history = self.calibration_history[-CONFIG['calibration_history_size']:]
 
-                char_imgs = extract_characters(_img, self.padding_x)
-                text = self.char_imgs_to_text(char_imgs)
-                n_unrecognized = text.count("?")
-
-                if text != '':
-                    if (n_unrecognized < n_min_unrecognized) or \
-                            (n_unrecognized == n_min_unrecognized and len(text) > n_txt_length):
-                        n_min_unrecognized = n_unrecognized
-                        n_txt_length = len(text)
-                        self.calibration = (pad_x, pad_y)
-
-    def apply_calibration(self, img_line_bw_np):
+    def apply_calibration(self, img_line_bw_np, calibration):
         """
         Applies the calibration to an image. This is done by padding the image with white pixels and cropping it
         according to the class's current calibration.
@@ -210,14 +217,14 @@ class PoorCR:
         :return: The calibrated image.
         """
 
-        if self.calibration == (0, 0) or self.calibration is None:
+        if calibration == (0, 0) or calibration is None:
             return img_line_bw_np
 
-        img_line_bw_np = np.pad(img_line_bw_np, ((max(self.calibration[0], 0), 0),
-                                                 (max(self.calibration[1], 0), 0)),
+        img_line_bw_np = np.pad(img_line_bw_np, ((max(calibration[0], 0), 0),
+                                                 (max(calibration[1], 0), 0)),
                                 'constant', constant_values=1)
 
-        img_line_bw_np = img_line_bw_np[max(- self.calibration[1], 0):, max(- self.calibration[0], 0):]
+        img_line_bw_np = img_line_bw_np[max(-calibration[1], 0):, max(-calibration[0], 0):]
 
         return img_line_bw_np
 
