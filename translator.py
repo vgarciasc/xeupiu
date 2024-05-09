@@ -49,13 +49,16 @@ def translate_google_cloud(text, project_id="xeupiu"):
 def translate_deepl(text):
     return DEEPL_L.translate_text(text, source_lang="JA", target_lang="EN-US").text
 
-def translate_text(text, backend="google_cloud"):
+def translate_text(text, backend=None):
     if not text:
         return ""
 
     if text[0] in OPENING_QUOTES:
         if text[-1] not in CLOSING_QUOTES:
             text = text[1:] # Remove opening quote
+
+    if not backend:
+        backend = CONFIG["translation"]["backend"]
 
     if backend == "google_cloud":
         translated_text = translate_google_cloud(text)

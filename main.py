@@ -166,7 +166,7 @@ try:
             # Translating character name
             display_name = db_names.retrieve_translation(name_ocr)
             if display_name is None and name_ocr is not None and has_text_stopped_printing:
-                display_name = tr.translate_text(name_ocr, CONFIG["translation"]["backend"])
+                display_name = tr.translate_text(name_ocr)
                 db_names.insert_translation(name_ocr, display_name)
 
             # Translating character text
@@ -177,7 +177,7 @@ try:
             if n_matches == 0:
                 if has_text_stopped_printing:
                     # No match found, but text has stopped printing. Translate and add to database
-                    translated_text = tr.translate_text(text_ocr, CONFIG["translation"]["backend"])
+                    translated_text = tr.translate_text(text_ocr)
                     db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
                     display_text = translated_text
             elif n_matches == 1:

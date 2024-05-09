@@ -496,7 +496,7 @@ class SelectableRectOverlay(OverlayWindow):
         else:
             text_en = self.db.retrieve_translation(text_jp)
             if text_en is None:
-                text_en = translator.translate_text(text_jp, "google_cloud")
+                text_en = translator.translate_text(text_jp)
                 self.db.insert_translation(text_jp, text_en)
                 print(f"Adding new notebook item: {text_jp} - {text_en}")
             text = text_en
