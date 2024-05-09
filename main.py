@@ -185,7 +185,7 @@ try:
                 display_text = translated_text
             else:
                 # Multiple matches found. Display the first one.
-                print(f"Multiple matches found for '{text_ocr}'. Displaying the first one.")
+                print_str += f"Multiple matches found for '{text_ocr}'. Displaying the first one.\n"
                 display_text = translated_text
 
             last_translated_text_ocr = text_ocr
