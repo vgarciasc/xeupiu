@@ -23,7 +23,7 @@ class OverlayWindow:
         self.create_overlay(pos_x, pos_y, width, height)
 
         self.is_hidden = False
-        self.iterations_wout_gameobj = 0
+        self.iterations_wout_gameobj = 99
 
     def get_letterbox_offset(self, window_id: int):
         """
