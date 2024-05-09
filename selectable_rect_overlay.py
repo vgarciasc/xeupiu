@@ -22,8 +22,8 @@ SELECTABLE_RECT_GROUPS = {
         "textcolor": "#ffffff",
         "selected_color": "#39a930",
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
-        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.7,
-        "is_selected_fn": lambda r, g, b: np.mean((r > 30) & (r < 170) & (g > 150) & (b > 20) & (b < 120)) > 0.7,
+        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.65,
+        "is_selected_fn": lambda r, g, b: np.mean((r > 30) & (r < 170) & (g > 150) & (b > 20) & (b < 120)) > 0.65,
     },
     "nb": {
         "fullname": "notebook",
@@ -165,7 +165,7 @@ def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_
 
 def detect_mark_textbox_choice1(red, green, blue):
     is_cursor_there = detect_mark_by_count(red, green, blue, 274, 170, 6, 47, 239, 230, 239, 4)
-    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 260, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
+    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 260, 166, 6, 54, 60, 120, 120, 180, 50, 100, 96)
     return is_cursor_there and is_selection_there
 
 def detect_mark_textbox_choice2(red, green, blue):
@@ -287,6 +287,7 @@ SELECTABLE_RECTS = [
 
     ("dc_3row1_1", (39, 169), (230, 17), "#135800", "dc_3row1", 1),
     ("dc_3row1_2", (39, 185), (230, 17), "#135800", "dc_3row1", 1),
+    ("dc_3row1_3", (39, 201), (230, 17), "#135800", "dc_3row1", 1),
 
     ("dc_3row2_1", (32, 167), (252, 16), "#135800", "dc_3row2", 1),
     ("dc_3row2_2", (32, 183), (252, 16), "#135800", "dc_3row2", 1),
