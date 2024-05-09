@@ -82,9 +82,9 @@ class OverlayWindow:
 
         l_offset, r_offset, t_offset, b_offset = self.letterbox_offset
 
-        pos_x += l_offset
+        pos_x += l_offset + CONFIG["border_size"]["left_offset_correction"]
         pos_y += CONFIG["border_size"]["size_toolbar"] + CONFIG["border_size"]["size_window_border_top"] + t_offset
-        width -= (l_offset + r_offset)
+        width -= (l_offset + CONFIG["border_size"]["left_offset_correction"] + r_offset)
         height -= (CONFIG["border_size"]["size_toolbar"] + CONFIG["border_size"]["size_window_border_top"] + t_offset + b_offset)
 
         self.game_scaling = width // 320
