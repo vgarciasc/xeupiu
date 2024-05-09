@@ -455,15 +455,7 @@ class SelectableRectOverlay(OverlayWindow):
         is_selected = self.group['is_selected_fn'](r, g, b)
         is_detected = is_unselected or is_selected
 
-        if VERBOSE and self.item_id == "nb_2col1_1.1":
-            img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
-            img_item.save(f"data/tmp/{self.item_id}.png")
-            print(f"{self.item_id} - Unselected: {is_unselected}, Selected: {is_selected}")
-
         if is_detected and self.is_hidden:
-            if VERBOSE and self.item_id == "nb_2col1_1.1":
-                print(f"Detected {self.item_id}")
-
             img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
             img_item_bw = self.group['bw_conversion_fn'](img_item)
 
