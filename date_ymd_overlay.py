@@ -8,7 +8,7 @@ from image_processing import get_count_by_equality
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 
-DATE_COMPONENT_POS = [(298, 62), (298, 92), (298, 124)]
+DATE_COMPONENT_POS = [(295, 61), (295, 92), (295, 125)]
 DATE_COMPONENT_NAMES = ["YEAR", "MON", "DAY"]
 
 class YearMonthDayOverlayWindow(OverlayWindow):
@@ -20,9 +20,10 @@ class YearMonthDayOverlayWindow(OverlayWindow):
         attr_str = DATE_COMPONENT_NAMES[self.date_component_id]
         pos_x, pos_y = DATE_COMPONENT_POS[self.date_component_id]
         self.bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_DATE-DAY.png")
+
         self.font_size = min(self.game_scaling * 5, 24)
 
-        self.pos_x = window_pos_x + (pos_x * self.game_scaling)
+        self.pos_x = window_pos_x + int(pos_x * self.game_scaling)
         self.pos_y = window_pos_y + int(pos_y * self.game_scaling)
         self.textbox_width = int(18 * self.game_scaling)
         self.textbox_height = int(15 * self.game_scaling)

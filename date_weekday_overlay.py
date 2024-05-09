@@ -24,8 +24,12 @@ WEEKDAYS = {
 class WeekdayOverlayWindow(OverlayWindow):
     def __init__(self, window_id: int):
         self.pcr = PoorCR(only_perfect=True)
-        self.pos_x_gamescreen = 298
-        self.pos_y_gamescreen = 143
+        self.pos_x_gamescreen = 295
+        self.pos_y_gamescreen = 142
+        self.w = 18
+        self.h = 18
+        self.x_between_parenthesis = 298
+        self.y_between_parenthesis = 143
 
         super().__init__(window_id)
 
@@ -35,8 +39,8 @@ class WeekdayOverlayWindow(OverlayWindow):
 
         self.pos_x = window_pos_x + (self.pos_x_gamescreen * self.game_scaling)
         self.pos_y = window_pos_y + ((self.pos_y_gamescreen - 1) * self.game_scaling)
-        self.textbox_width = int(18 * self.game_scaling)
-        self.textbox_height = int(16 * self.game_scaling)
+        self.textbox_width = int(self.w * self.game_scaling)
+        self.textbox_height = int(self.h * self.game_scaling)
 
         self.root = tk.Toplevel()
         self.root.attributes("-alpha", 0.95)
@@ -56,11 +60,13 @@ class WeekdayOverlayWindow(OverlayWindow):
         return c == 23
 
     def update_weekday(self, img_ss: Image) -> None:
-        img_ss_bw = imp.convert_weekday_to_black_and_white(img_ss)
-        img_date = img_ss_bw.crop((self.pos_x_gamescreen, self.pos_y_gamescreen,
-                                   (self.pos_x_gamescreen + 11), (self.pos_y_gamescreen + 11)))
+        img_date = img_ss.crop((self.x_between_parenthesis,
+                                self.y_between_parenthesis,
+                                self.x_between_parenthesis + 11,
+                                self.y_between_parenthesis + 11))
+        img_date_bw = imp.convert_weekday_to_black_and_white(img_date)
 
-        img_date_np = np.array(img_date.convert('1'))
+        img_date_np = np.array(img_date_bw.convert('1'))
         weekday, _ = self.pcr.get_char_match(img_date_np)
 
         wd_label, wd_color = WEEKDAYS.get(weekday, ("--", "white"))
