@@ -22,7 +22,7 @@ SELECTABLE_RECT_GROUPS = {
         "textcolor": "#ffffff",
         "selected_color": "#39a930",
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
-        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.65,
+        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.5,
         "is_selected_fn": lambda r, g, b: np.mean((r > 30) & (r < 170) & (g > 150) & (b > 20) & (b < 120)) > 0.65,
     },
     "nb": {
@@ -173,6 +173,12 @@ def detect_mark_textbox_choice2(red, green, blue):
     is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 270, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
     return is_cursor_there and is_selection_there
 
+def detect_mark_textbox_choice3(red, green, blue):
+    is_selection_in_hgap_1 = detect_mark_by_count_with_thresholds(red, green, blue, 29, 183, 261, 3, 20, 105, 160, 190, 10, 100, 360)
+    is_selection_in_hgap_2 = detect_mark_by_count_with_thresholds(red, green, blue, 29, 199, 261, 3, 20, 105, 160, 190, 10, 100, 360)
+    is_selection_in_hgap_3 = detect_mark_by_count_with_thresholds(red, green, blue, 29, 215, 261, 3, 20, 120, 120, 190, 10, 100, 360)
+    return is_selection_in_hgap_1 or is_selection_in_hgap_2 or is_selection_in_hgap_3
+
 def detect_mark_character_selection_choice_1(red, green, blue):
     is_cursor_in_vgap_1 = detect_mark_by_count(red, green, blue, 80, 170, 16, 54, 239, 230, 239, 68)
     is_cursor_in_vgap_2 = detect_mark_by_count(red, green, blue, 144, 170, 16, 54, 239, 230, 239, 68)
@@ -188,6 +194,7 @@ def detect_mark_character_selection_choice_1(red, green, blue):
 SCREEN_CUES = [
     { "id": "dc_3row1", "fn": detect_mark_textbox_choice1, "prerequisites": [] },
     { "id": "dc_3row2", "fn": detect_mark_textbox_choice2, "prerequisites": [] },
+    { "id": "dc_2col1", "fn": detect_mark_textbox_choice3, "prerequisites": [] },
     { "id": "csc_1", "fn": detect_mark_character_selection_choice_1, "prerequisites": [] },
     { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": [] },
     { "id": "nb_2col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16), "prerequisites": [] },
@@ -292,6 +299,13 @@ SELECTABLE_RECTS = [
     ("dc_3row2_1", (32, 167), (252, 16), "#135800", "dc_3row2", 1),
     ("dc_3row2_2", (32, 183), (252, 16), "#135800", "dc_3row2", 1),
     ("dc_3row2_3", (32, 199), (252, 16), "#135800", "dc_3row2", 1),
+
+    ("dc_2col1_1.1", (32, 170), (120, 16), "#135800", "dc_2col1", 1),
+    ("dc_2col1_1.2", (32, 186), (120, 16), "#135800", "dc_2col1", 1),
+    ("dc_2col1_1.3", (32, 202), (120, 16), "#135800", "dc_2col1", 1),
+    ("dc_2col1_2.1", (152, 170), (120, 16), "#135800", "dc_2col1", 1),
+    ("dc_2col1_2.2", (152, 186), (120, 16), "#135800", "dc_2col1", 1),
+    ("dc_2col1_2.3", (152, 202), (120, 16), "#135800", "dc_2col1", 1),
 
     ("ngp_1_1", (21, 41), (44, 13), "#e0e0e0", "ng_1", 1),
     ("ngp_1_2", (21, 57), (30, 13), "#e0e0e0", "ng_1", 1),
