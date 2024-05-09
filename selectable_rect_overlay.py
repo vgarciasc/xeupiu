@@ -258,6 +258,19 @@ SELECTABLE_RECTS = [
     ("nb_2col1_1.6", (35, 115), (100, 13), "#e0e0e0", "nb_2col1", 1),
     ("nb_2col1_1.7", (35, 127), (100, 13), "#e0e0e0", "nb_2col1", 1),
     ("nb_2col1_1.8", (35, 139), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("ngp_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("ngp_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("ngp_2col1_1.3", (35, 79), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("ngp_2col1_1.4", (35, 91), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("ngp_2col1_1.5", (35, 103), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("ngp_2col1_1.6", (35, 115), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("ngp_2col1_1.7", (35, 127), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("ngp_2col1_1.8", (35, 139), (100, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_2.1", (155, 55), (111, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_2.2", (155, 71), (111, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_2.3", (155, 87), (111, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_2.4", (155, 103), (111, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_2.5", (155, 119), (111, 13), "#e0e0e0", "nb_2col1", 1),
 
     ("nb_2col2_h1", (31, 36), (98, 15), "#e0e0e0", "nb_2col2", 1),
     ("nb_2col2_h2", (158, 36), (109, 15), "#e0e0e0", "nb_2col2", 1),
@@ -443,9 +456,6 @@ class SelectableRectOverlay(OverlayWindow):
     def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
         if not self.is_cue_detected:
             return False
-
-        # img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
-        # r, g, b = np.array(img_item.convert('RGB')).T
 
         r = r[self.rect_x:(self.rect_x + self.rect_w), self.rect_y:(self.rect_y + self.rect_h)]
         g = g[self.rect_x:(self.rect_x + self.rect_w), self.rect_y:(self.rect_y + self.rect_h)]
