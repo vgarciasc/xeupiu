@@ -15,7 +15,12 @@ def convert_emerald_textbox_to_black_and_white(img_tb):
 def convert_to_black_and_white(img_ss, text_color=(132, 132, 164)):
     img_tb_np = np.array(img_ss.convert('RGB'))
     red, green, blue = img_tb_np.T
-    fg_pixels = ((red == text_color[0]) & (green == text_color[1]) & (blue == text_color[2]))
+
+    epsilon = 2
+    fg_pixels = ((red > text_color[0] - epsilon) & (red < text_color[0] + epsilon) &
+                 (green > text_color[1] - epsilon) & (green < text_color[1] + epsilon) &
+                 (blue > text_color[2] - epsilon) & (blue < text_color[2] + epsilon))
+
     img_tb_np[..., :] = (255, 255, 255)
     img_tb_np[..., :][fg_pixels.T] = (0, 0, 0)
     return Image.fromarray(img_tb_np)
