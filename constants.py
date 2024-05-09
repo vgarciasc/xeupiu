@@ -4,6 +4,23 @@ TB_WIDTH = 11 + (11 + 3) * 18 - 2
 TB_HEIGHT = 11 + (11 + 5) * 2 + 8
 
 CURSOR_WIDTH = 15
+JAP_DIGITS = {"0": "０", "1": "１", "2": "２", "3": "３", "4": "４", "5": "５", "6": "６", "7": "７", "8": "８", "9": "９"}
+
+def convert_birthday_to_str(month, day):
+    birthday_jp_str = ""
+    for digit in str(month):
+        birthday_jp_str += JAP_DIGITS[digit]
+    birthday_jp_str += "月"
+    for digit in str(day):
+        birthday_jp_str += JAP_DIGITS[digit]
+    birthday_jp_str += "日"
+
+    birthday_en_str = ["January", "February", "March", "April", "May", "June",
+                          "July", "September", "October", "November", "December"][month - 1]
+    birthday_en_str += f" {day}"
+
+    return birthday_jp_str, birthday_en_str
+
 
 def is_str_empty(str):
     return str.isspace() or not str
