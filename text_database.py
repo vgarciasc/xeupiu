@@ -2,6 +2,7 @@ import pandas as pd
 from thefuzz import fuzz
 
 from config import CONFIG
+from constants import format_translated_text
 from database import Database
 
 class TextDatabase(Database):
@@ -46,13 +47,7 @@ class TextDatabase(Database):
         jp_text = result["Japanese text"]
         eng_text = result["English text"]
         eng_text = Database.specify_player_variables(eng_text)
-
-        if jp_text[0] == "（":
-            eng_text = eng_text.replace("\"", "").replace("(", "").replace(")", "")
-            eng_text = "(" + eng_text + ")"
-        elif jp_text[0] == "「" or jp_text[0] == "『":
-            eng_text = eng_text.replace("\"", "")
-            eng_text = "\"" + eng_text + "\""
+        eng_text = format_translated_text(jp_text, eng_text)
 
         return n_matches, jp_text, eng_text
 

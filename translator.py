@@ -6,6 +6,8 @@ from config import CONFIG
 import openai
 import deepl
 
+from constants import format_translated_text
+
 OPENING_QUOTES = ["「", "『", "【", "（", "［", "《", "〈", "〔", "｛", "〖", "〘", "〚", "〝"]
 CLOSING_QUOTES = ["」", "』", "】", "）", "］", "》", "〉", "〕", "｝", "〗", "〙", "〛", "〞"]
 
@@ -53,19 +55,19 @@ def translate_text(text, backend=None):
     if not text:
         return ""
 
-    if text[0] in OPENING_QUOTES:
-        if text[-1] not in CLOSING_QUOTES:
-            text = text[1:] # Remove opening quote
+    text_to_translate = text
+    if text[0] in OPENING_QUOTES and text[-1] not in CLOSING_QUOTES:
+        text_to_translate = text[1:] # Remove opening quote
 
     if not backend:
         backend = CONFIG["translation"]["backend"]
 
     if backend == "google_cloud":
-        translated_text = translate_google_cloud(text)
+        translated_text = translate_google_cloud(text_to_translate)
     elif backend == "openai":
-        translated_text = translate_openai(text)
+        translated_text = translate_openai(text_to_translate)
     elif backend == "deepl":
-        translated_text = translate_deepl(text)
+        translated_text = translate_deepl(text_to_translate)
     elif backend == "none":
         translated_text = text
     else:
@@ -73,6 +75,8 @@ def translate_text(text, backend=None):
 
     translated_text = translated_text.replace("``", "\"")
     translated_text = translated_text.replace("''", "\"")
+    translated_text = format_translated_text(text, translated_text)
+
     return translated_text
 
 def should_translate_text(text):
