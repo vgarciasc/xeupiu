@@ -22,25 +22,28 @@ In other words, this works, while Textractor doesn't; moreover, even if Textract
 
 ## What does the database look like?
 
-It's a CSV, like [this](https://github.com/vgarciasc/xeupiu/blob/main/data/database_text.csv). Perhaps in the future it will be necessary to add more metadata, but for now it's quite simple, as you'll see. The file can be easily edited by competent translators, shared online, and future players who download this file will be able to interact with a high-quality translation, instead of a machine one.
+It's a CSV, like [this](https://github.com/vgarciasc/xeupiu/blob/main/data/texts/database_text.csv). Perhaps in the future it will be necessary to add more metadata, but for now it's quite simple, as you'll see. The file can be easily edited by competent translators, shared online, and future players who download this file will be able to interact with a high-quality translation, instead of a machine one.
 
 ## Can I already play this?
 
-The base engine is already working, so in the current version, all textboxes are being translated. However, there is still some real work to do since the game contains lots of edge cases that need to be handled somehow. For example:
+The tool is completely playable with machine translation, but human translation is still in progress.
 
-- [ ] The dates in the right side of the screen
-- [ ] The attributes on the activity selection screen
-- [ ] The club notebook
-- [ ] The tooltips that appear in festival activities
-- [ ] Yoshio's stalker notebook
-- [ ] The player name, nickname and birthday must be handled in a smart way to avoid re-translation
+## How can I help?
 
-As well as a few more things that I don't even know right now but that will surely appear with time and testing.
+As I envision it, the project is composed of three phases:
+
+1. **Programming**: developing the translation tool and making it work with the game.
+2. **Database creation**: creating a database of all the text in the game.
+3. **Translation**: translating the database.
+
+As most of the base programming is already done, we are currently moving from phase 1 to phase 2.
+This means that we need people to play through the game using the tool, so that we can both (1) populate
+the game's script database, and (2) find any bugs with the tool. Since the script is not done yet, all translation
+during this phase needs to be done using machine translation (we suggest DeepL since it's free and high-quality).
+If you are interested in helping with this, please reach out to `tokimemo (at) vinizinho (dot) net`!
 
 ## Is this specific to Tokimeki Memorial: Forever With You?
 
-There are several things in the current implementation that are specific to this game, since specific information allows us to create a more customized, high-quality translation experience. However, the overall approach can surely be ported to other games.
-
-## How do I contribute?
-
-For now I'm not looking for contributors, since the project is still a ways to go. However, when the programming part is done, we will be needing (1) testers and (2) translators to help with the database, since I don't speak any japanese and the default machine translation can be definitely improved. If you are interested in being a translator (or a tester), please reach out! My e-mail address is `vinizinho (at) vinizinho (dot) net` :)
+There are several things in the current implementation that are specific to this game, since specific information 
+allows us to create a more customized, high-quality translation experience. 
+However, the overall approach can surely be ported to other games.
