@@ -66,6 +66,8 @@ def translate_text(text, backend=None):
         translated_text = translate_openai(text)
     elif backend == "deepl":
         translated_text = translate_deepl(text)
+    elif backend == "none":
+        translated_text = text
     else:
         raise Exception(f"Unknown backend: {backend}")
 
