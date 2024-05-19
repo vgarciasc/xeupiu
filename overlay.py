@@ -160,7 +160,7 @@ class OverlayWindow:
         self.root.update()
         self.is_hidden = False
 
-    def update(self, new_text: str, char_name: str = None) -> None:
+    def update(self, new_text: str, char_name: str = None, color: str = None) -> None:
         """
         Updates the text displayed on the overlay.
 
@@ -176,6 +176,15 @@ class OverlayWindow:
         self.label.config(text=new_text)
         self.root.update_idletasks()
         self.root.update()
+
+    def update_color(self, color: str) -> None:
+        """
+        Updates the color of the text displayed on the overlay.
+
+        :param color: The new color of the text.
+        """
+
+        self.label.config(fg=color)
 
     @staticmethod
     def create_master():

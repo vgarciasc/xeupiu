@@ -44,6 +44,7 @@ try:
     overlay_weekday = WeekdayOverlayWindow(window_id)
 
     last_translated_text_ocr = None
+    last_inserted_text_ocr = None
     last_name_ocr = None
     last_img_tb_rgb = None
     iterations_wout_textbox = 0
@@ -158,8 +159,8 @@ try:
         display_text = text_ocr
 
         # Text is the same as the last translated text
-        # if text_ocr == last_translated_text_ocr:
-        #     continue
+        if text_ocr == last_translated_text_ocr:
+            continue
 
         n_matches = -1
         if tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:
@@ -179,14 +180,17 @@ try:
                     # No match found, but text has stopped printing. Translate and add to database
                     translated_text = tr.translate_text(text_ocr)
                     db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
+                    overlay_tb.update_color('yellow')
                     display_text = translated_text
             elif n_matches == 1:
                 # One match found. Display it.
                 display_text = translated_text
+                overlay_tb.update_color('white')
             else:
                 # Multiple matches found. Display the first one.
                 print_str += f"Multiple matches found for '{text_ocr}'. Displaying the first one.\n"
                 display_text = translated_text
+                overlay_tb.update_color('white')
 
             last_translated_text_ocr = text_ocr
 
