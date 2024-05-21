@@ -2,7 +2,6 @@ import os
 
 import numpy as np
 from PIL import Image
-from manga_ocr import MangaOcr
 
 # The goal of this script is to generate character image files. In general, we have images full of characters, and the
 # strings below tell us exactly which characters are in the image. We can use this information to generate a database
