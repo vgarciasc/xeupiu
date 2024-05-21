@@ -7,6 +7,7 @@ import numpy as np
 from PIL import Image
 from thefuzz import fuzz
 
+from character_creation_handler import CharacterCreationHandler
 from date_ymd_overlay import YearMonthDayOverlayWindow
 from date_weekday_overlay import WeekdayOverlayWindow
 from notebook_database import NotebookDatabase
@@ -42,6 +43,7 @@ try:
     overlay_dateymds = [YearMonthDayOverlayWindow(window_id, i) for i in range(3)]
     overlay_rects = [SelectableRectOverlay(window_id, i, db_notebook) for i in range(len(SELECTABLE_RECTS))]
     overlay_weekday = WeekdayOverlayWindow(window_id)
+    character_creation_handler = CharacterCreationHandler(window_id)
 
     last_translated_text_ocr = None
     last_inserted_text_ocr = None
@@ -64,6 +66,8 @@ try:
                                 img_ss.size[1] // overlay_tb.game_scaling),
                                Image.NEAREST)
         img_ss_rgb = np.array(img_ss.convert('RGB')).T
+
+        character_creation_handler.detect(img_ss_rgb, img_ss)
 
         # Detecting cues for various selectable rects
         cue_dict = {}
@@ -162,6 +166,7 @@ try:
         if text_ocr == last_translated_text_ocr:
             continue
 
+        new_text_entry = False
         n_matches = -1
         if tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:
             # Translating character name
@@ -180,22 +185,20 @@ try:
                     # No match found, but text has stopped printing. Translate and add to database
                     translated_text = tr.translate_text(text_ocr)
                     db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
-                    overlay_tb.update_color('yellow')
                     display_text = translated_text
+                    new_text_entry = True
             elif n_matches == 1:
                 # One match found. Display it.
                 display_text = translated_text
-                overlay_tb.update_color('white')
             else:
                 # Multiple matches found. Display the first one.
                 print_str += f"Multiple matches found for '{text_ocr}'. Displaying the first one.\n"
                 display_text = translated_text
-                overlay_tb.update_color('white')
 
             last_translated_text_ocr = text_ocr
 
         # Display
-        overlay_tb.update(display_text, display_name)
+        overlay_tb.update(display_text, display_name, color="yellow" if new_text_entry else "white")
 
         # Housekeeping
         history_text_ocr_lines.append(text_ocr_lines)

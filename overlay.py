@@ -173,6 +173,9 @@ class OverlayWindow:
 
         new_text = new_text.replace("\" \"", "\"\n\"")
 
+        if color:
+            self.update_color(color)
+
         self.label.config(text=new_text)
         self.root.update_idletasks()
         self.root.update()

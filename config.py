@@ -11,5 +11,13 @@ if CONFIG['fullscreen']:
 VERBOSE = CONFIG["debug"]
 WINDOW_TITLE = CONFIG["window_title"]
 
-PLAYER_BIRTHDAY_JP, PLAYER_BIRTHDAY_EN = convert_birthday_to_str(CONFIG["player"]["birthday"]["month"], CONFIG["player"]["birthday"]["day"])
-SHIORI_BIRTHDAY_JP, SHIORI_BIRTHDAY_EN = convert_birthday_to_str(CONFIG["player"]["shiori_birthday"]["month"], CONFIG["player"]["shiori_birthday"]["day"])
+PLAYER_BIRTHDAY_JP, PLAYER_BIRTHDAY_EN = convert_birthday_to_str(CONFIG["save"]["player"]["birth_month"],
+                                                                 CONFIG["save"]["player"]["birth_day"])
+SHIORI_BIRTHDAY_JP, SHIORI_BIRTHDAY_EN = convert_birthday_to_str(CONFIG["save"]["shiori"]["birth_month"],
+                                                                 CONFIG["save"]["shiori"]["birth_day"])
+
+def save_config_to_json(config):
+    global CONFIG
+    CONFIG = config
+
+    json.dump(config, open('config.json', 'w', encoding='utf-8'), indent=4, ensure_ascii=False)

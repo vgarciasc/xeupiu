@@ -15,8 +15,8 @@ class Database:
 
     @staticmethod
     def generalize_player_variables(text, lang='jp'):
-        text = text.replace(CONFIG["player"][f"{lang}_name"], "<PLAYER_NAME>")
-        text = text.replace(CONFIG["player"][f"{lang}_surname"], "<PLAYER_SURNAME>")
+        text = text.replace(CONFIG["save"]["player"][f"{lang}_name"], "<PLAYER_NAME>")
+        text = text.replace(CONFIG["save"]["player"][f"{lang}_surname"], "<PLAYER_SURNAME>")
 
         text = text.replace(PLAYER_BIRTHDAY_JP, "<PLAYER_BIRTHDAY>")
         text = text.replace(SHIORI_BIRTHDAY_JP, "<SHIORI_BIRTHDAY>")
@@ -25,8 +25,8 @@ class Database:
 
     @staticmethod
     def specify_player_variables(text, lang='en'):
-        text = text.replace("<PLAYER_NAME>", CONFIG["player"][f"{lang}_name"])
-        text = text.replace("<PLAYER_SURNAME>", CONFIG["player"][f"{lang}_surname"])
+        text = text.replace("<PLAYER_NAME>", CONFIG["save"]["player"][f"{lang}_name"])
+        text = text.replace("<PLAYER_SURNAME>", CONFIG["save"]["player"][f"{lang}_surname"])
 
         text = text.replace("<PLAYER_BIRTHDAY>", PLAYER_BIRTHDAY_EN)
         text = text.replace("<SHIORI_BIRTHDAY>", SHIORI_BIRTHDAY_EN)
