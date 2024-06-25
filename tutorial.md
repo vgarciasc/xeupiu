@@ -1,7 +1,5 @@
 ## How to install
 
-If you prefer a video tutorial of how to set it up, click here.
-
 ### Setting up the emulator
 
 1. Download the [latest version of the DuckStation emulator ](https://www.duckstation.org/)(latest version tested: 0.1-6759-gc015039a (dev))
