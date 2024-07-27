@@ -40,8 +40,8 @@ class AttributeOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
-        c = get_count_by_equality(r, g, b, 192, 10, 24, 20, 49, 0, 0)
-        return c == 96
+        c = get_count_by_equality(r, g, b, 192, 33, 24, 20, 49, 0, 0)
+        return c == 58
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
