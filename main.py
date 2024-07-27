@@ -1,7 +1,7 @@
 import os
 import time
 import traceback
-
+import ctypes
 import keyboard
 import numpy as np
 from PIL import Image
@@ -238,7 +238,7 @@ try:
                 img_tb_line.save(f"data/log/{timestamp}/img_tb_line_{i}.png")
 
 except Exception as e:
-    timestamp = time.strftime("%Y%m%d_%H%M%S")
+    timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
     os.makedirs(f"data/log/{timestamp}", exist_ok=True)
 
     with open(f"data/log/{timestamp}/error.txt", "w", encoding="utf-8") as f:
@@ -252,3 +252,6 @@ except Exception as e:
 
     if img_tb is not None:
         img_tb.save(f"data/log/{timestamp}/img_tb.png")
+
+    ctypes.windll.user32.MessageBoxW(0, f"An error has occurred. Please check full log at the folder named 'data/log/{timestamp}'", "Project XEUPIU - Error!", 1)
+
