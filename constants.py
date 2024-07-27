@@ -19,8 +19,17 @@ def convert_birthday_to_str(month, day):
         birthday_jp_str += JAP_DIGITS_INT2STR[digit]
     birthday_jp_str += "日"
 
+    if day % 10 == 1:
+        suffix = "st"
+    elif day % 10 == 2:
+        suffix = "nd"
+    elif day % 10 == 3:
+        suffix = "rd"
+    else:
+        suffix = "th"
+
     birthday_en_str = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][month - 1]
-    birthday_en_str += f" {day}"
+    birthday_en_str += f" {day}{suffix}"
 
     return birthday_jp_str, birthday_en_str
 
