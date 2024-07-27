@@ -1,0 +1,56 @@
+{
+    "window_title": "Tokimeki Memorial",
+    "debug": false,
+    "fullscreen": true,
+    "history_size": 10,
+    "iters_without_gameobj_without_minimizing": 1,
+    "print_str_history_size": 10,
+    "calibration_history_size": 5,
+    "border_size": {
+        "print_str_history_size": 10,
+        "size_window_border_top": 30,
+        "size_window_border_bottom": 22,
+        "size_toolbar": 21,
+        "left_offset_correction": 8
+    },
+    "databases": {
+        "names_filepath": "data/texts/database_names.csv",
+        "text_filepath": "data/texts/database_text.csv",
+        "notebook_filepath": "data/texts/database_notebook.csv",
+        "confession_filepath": "data/texts/database_confessions.csv"
+    },
+    "save": {
+        "player": {
+            "jp_name": "ＰＬＡ",
+            "jp_surname": "ＹＥＲ",
+            "jp_nickname": "ＰＬＡＹＡ",
+            "en_name": "Bruce",
+            "en_surname": "Willis",
+            "en_nickname": "Nickname",
+            "birth_month": 8,
+            "birth_day": 15,
+            "blood_type": "ＡＢ"
+        },
+        "shiori": {
+            "blood_type": "ＡＢ",
+            "birth_month": 9,
+            "birth_day": 19
+        }
+    },
+    "translation": {
+        "backend": "deepl",
+        "google_cloud": {
+            "credential_path": ""
+        },
+        "openai": {
+            "organization": "",
+            "api_key": ""
+        },
+        "deepl": {
+            "api_key": "S"
+        }
+    },
+    "size_window_border_top": 0,
+    "size_window_border_bottom": 0,
+    "size_toolbar": 0
+}

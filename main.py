@@ -8,6 +8,7 @@ from PIL import Image
 from thefuzz import fuzz
 
 from character_creation_handler import CharacterCreationHandler
+from confession_handler import ConfessionHandler
 from date_ymd_overlay import YearMonthDayOverlayWindow
 from date_weekday_overlay import WeekdayOverlayWindow
 from notebook_database import NotebookDatabase
@@ -44,6 +45,7 @@ try:
     overlay_rects = [SelectableRectOverlay(window_id, i, db_notebook) for i in range(len(SELECTABLE_RECTS))]
     overlay_weekday = WeekdayOverlayWindow(window_id)
     character_creation_handler = CharacterCreationHandler(window_id)
+    confession_handler = ConfessionHandler(window_id)
 
     last_translated_text_ocr = None
     last_inserted_text_ocr = None
@@ -68,6 +70,7 @@ try:
         img_ss_rgb = np.array(img_ss.convert('RGB')).T
 
         character_creation_handler.detect(img_ss_rgb, img_ss)
+        confession_handler.detect(img_ss_rgb)
 
         # Detecting cues for various selectable rects
         cue_dict = {}
