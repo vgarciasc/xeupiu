@@ -42,8 +42,8 @@ class YearMonthDayOverlayWindow(OverlayWindow):
         self.root.update()
 
     def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
-        c = get_count_by_equality(r, g, b, 288, 30, 32, 148, 247, 214, 156)
-        return c == 23
+        c = get_count_by_equality(r, g, b, 304, 30, 16, 148, 247, 214, 156)
+        return c == 11
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
@@ -51,16 +51,15 @@ if __name__ == "__main__":
     OverlayWindow.create_master()
     overlays = [YearMonthDayOverlayWindow(window_id, i) for i in range(3)]
 
-    img_ss = get_window_image(window_id,
-                              offset_x=(overlays[0].letterbox_offset[0], overlays[0].letterbox_offset[1]),
-                              offset_y=(overlays[0].letterbox_offset[2], overlays[0].letterbox_offset[3]),
-                              use_scaling=False)
-    img_ss = img_ss.resize((img_ss.size[0] // overlays[0].game_scaling,
-                            img_ss.size[1] // overlays[0].game_scaling),
-                           Image.NEAREST)
-
     while True:
-        time.sleep(1)
+        img_ss = get_window_image(window_id,
+                                  offset_x=(overlays[0].letterbox_offset[0], overlays[0].letterbox_offset[1]),
+                                  offset_y=(overlays[0].letterbox_offset[2], overlays[0].letterbox_offset[3]),
+                                  use_scaling=False)
+        img_ss = img_ss.resize((img_ss.size[0] // overlays[0].game_scaling,
+                                img_ss.size[1] // overlays[0].game_scaling),
+                               Image.NEAREST)
+        img_rgb = np.array(img_ss.convert('RGB')).T
 
         for overlay in overlays:
-            overlay.hide_if_not_needed(img_ss)
+            overlay.hide_if_not_needed(*img_rgb, img_ss)
