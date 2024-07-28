@@ -2,7 +2,7 @@ import pandas as pd
 from thefuzz import fuzz
 
 from config import CONFIG
-from constants import format_translated_text
+from constants import format_translated_text, convert_jp_date_to_en
 from database import Database
 
 class TextDatabase(Database):
@@ -13,10 +13,12 @@ class TextDatabase(Database):
                              fuzziness: int = 100, is_text_jp_complete: bool = True):
 
         char_name_en = char_name_en.strip() if char_name_en is not None else None
-        if char_name_en == CONFIG["save"]["player"]["en_name"]:
-            char_name_en = "<PLAYER_NAME>"
+        if char_name_en == CONFIG["save"]["player"]["jp_surname_ascii"]:
+            char_name_en = "<PNAME>"
 
-        text_jp = Database.generalize_player_variables(text_jp.strip())
+        text_jp = text_jp.strip()
+        text_jp, date_jp = Database.generalize_date(text_jp)
+        text_jp = Database.generalize_player_variables(text_jp)
         df = self.df.copy()
 
         if not is_text_jp_complete and len(text_jp) < 5:
@@ -47,15 +49,17 @@ class TextDatabase(Database):
         jp_text = result["Japanese text"]
         eng_text = result["English text"]
         eng_text = Database.specify_player_variables(eng_text)
+        eng_text = Database.specify_date(eng_text, convert_jp_date_to_en(date_jp))
         eng_text = format_translated_text(jp_text, eng_text)
 
         return n_matches, jp_text, eng_text
 
     def insert_translation(self, text_jp: str, text_en: str, char_name: str = "none"):
         char_name = char_name.strip() if char_name is not None else "none"
-        if char_name == CONFIG["save"]["player"]["en_name"]:
-            char_name = "<PLAYER_NAME>"
+        if char_name == CONFIG["save"]["player"]["jp_surname"]:
+            char_name = "<PNAME>"
 
+        text_jp, _ = Database.generalize_date(text_jp)
         text_jp = Database.generalize_player_variables(text_jp.strip())
         text_en = Database.generalize_player_variables(text_en.strip())
 
@@ -65,10 +69,10 @@ class TextDatabase(Database):
         self.df.to_csv(self.filepath, sep=";", index=False)
 
 if __name__ == "__main__":
-    name_db = TextDatabase()
+    text_db = TextDatabase()
 
     txt_jp = "「あなた、ＰＬＡＹＥＲね。"
     char_en = "Yuina"
 
-    txt = name_db.retrieve_translation(txt_jp, char_en)
+    txt = text_db.retrieve_translation(txt_jp, char_en)
     print(txt)

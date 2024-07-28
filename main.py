@@ -9,6 +9,7 @@ from thefuzz import fuzz
 
 from character_creation_handler import CharacterCreationHandler
 from confession_handler import ConfessionHandler
+from constants import convert_jp_date_to_en
 from database import Database
 from date_ymd_overlay import YearMonthDayOverlayWindow
 from date_weekday_overlay import WeekdayOverlayWindow
@@ -188,10 +189,12 @@ try:
                 if has_text_stopped_printing:
                     # No match found, but text has stopped printing. Translate and add to database
                     translated_text = tr.translate_text(text_ocr)
-                    db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
+                    db_texts.insert_translation(text_ocr, translated_text, char_name=name_ocr)
 
+                    _, date_jp = Database.generalize_date(text_ocr)
                     display_text = Database.generalize_player_variables(translated_text)
                     display_text = Database.specify_player_variables(display_text)
+                    display_text = Database.specify_date(display_text, convert_jp_date_to_en(date_jp))
                     new_text_entry = True
             elif n_matches == 1:
                 # One match found. Display it.

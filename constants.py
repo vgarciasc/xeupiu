@@ -18,9 +18,11 @@ def convert_jp_str_to_int(str):
 
 def convert_jp_date_to_int(date_jp: str):
     """ Expects strings in format '７月２３日'."""
+    if "月" not in date_jp or "日" not in date_jp:
+        return None, None
+
     date_jp = date_jp[:-1].split("月")
     return convert_jp_str_to_int(date_jp[0]), convert_jp_str_to_int(date_jp[1])
-
 
 def convert_date_to_jp_str(month, day):
     birthday_jp_str = ""
@@ -47,14 +49,24 @@ def convert_date_to_en_str(month, day):
     return f"{MONTHS_EN[month - 1]} {day}{suffix}"
 
 
+def convert_jp_date_to_en(date_jp: str):
+    if date_jp is None:
+        return None
+
+    return convert_date_to_en_str(*convert_jp_date_to_int(date_jp))
+
+
 def convert_birthday_to_str(month, day):
     return (convert_date_to_jp_str(month, day),
             convert_date_to_en_str(month, day))
 
 
 def format_translated_text(jp_text, eng_text):
+    eng_text = eng_text.replace("``", "\"")
+    eng_text = eng_text.replace("''", "\"")
+
     if jp_text[0] == "（":
-        eng_text = eng_text.replace("\"", "").replace("(", "").replace(")", "")
+        eng_text = eng_text.replace("\"", "").replace("(", "").replace(")", "").replace("（", "").replace("）", "")
         eng_text = "(" + eng_text + ")"
     elif jp_text[0] == "「" or jp_text[0] == "『":
         eng_text = eng_text.replace("\"", "")

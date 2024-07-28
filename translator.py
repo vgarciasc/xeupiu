@@ -7,6 +7,7 @@ import openai
 import deepl
 
 from constants import format_translated_text
+from database import Database
 
 OPENING_QUOTES = ["「", "『", "【", "（", "［", "《", "〈", "〔", "｛", "〖", "〘", "〚", "〝"]
 CLOSING_QUOTES = ["」", "』", "】", "）", "］", "》", "〉", "〕", "｝", "〗", "〙", "〛", "〞"]
@@ -59,6 +60,8 @@ def translate_text(text, backend=None):
     if text[0] in OPENING_QUOTES and text[-1] not in CLOSING_QUOTES:
         text_to_translate = text[1:] # Remove opening quote
 
+    text_to_translate, date_jp = Database.generalize_date(text_to_translate)
+
     if not backend:
         backend = CONFIG["translation"]["backend"]
 
@@ -73,8 +76,6 @@ def translate_text(text, backend=None):
     else:
         raise Exception(f"Unknown backend: {backend}")
 
-    translated_text = translated_text.replace("``", "\"")
-    translated_text = translated_text.replace("''", "\"")
     translated_text = format_translated_text(text, translated_text)
 
     return translated_text

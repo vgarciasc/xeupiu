@@ -13,7 +13,7 @@ class NameDatabase(Database):
         if char_name_jp is None:
             return None
 
-        if char_name_jp == CONFIG["save"]["player"]["jp_name"]:
+        if char_name_jp == CONFIG["save"]["player"]["jp_surname"]:
             return CONFIG["save"]["player"]["en_name"]
 
         char_name_jp = Database.generalize_player_variables(char_name_jp.strip())

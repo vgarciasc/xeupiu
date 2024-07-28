@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 from config import CONFIG, PLAYER_BIRTHDAY_JP, SHIORI_BIRTHDAY_JP, PLAYER_BIRTHDAY_EN, SHIORI_BIRTHDAY_EN
 
 class Database:
@@ -13,11 +14,6 @@ class Database:
         pass
 
     @staticmethod
-    def generalize_dates(text):
-
-        return text
-
-    @staticmethod
     def generalize_player_variables(text):
         config = CONFIG["save"]["player"]
 
@@ -27,7 +23,7 @@ class Database:
         text = text.replace(config["jp_nickname_ascii"], "<PNICKNAME>")
         text = text.replace(config["jp_name_ascii"], "<PNAME>")
         text = text.replace(config["jp_surname_ascii"], "<PSURNAME>")
-        text = text.replace("><", "> <")
+        text = text.replace("<PSURNAME><PNAME>", "<PNAME> <PSURNAME>")
 
         text = text.replace(PLAYER_BIRTHDAY_JP, "<PLAYER_BIRTHDAY>")
         text = text.replace(SHIORI_BIRTHDAY_JP, "<SHIORI_BIRTHDAY>")
@@ -46,3 +42,32 @@ class Database:
         text = text.replace("<SHIORI_BIRTHDAY>", SHIORI_BIRTHDAY_EN)
 
         return text
+
+    @staticmethod
+    def generalize_date(text):
+        date = re.search(r"[０１２３４５６７８９]+月[０１２３４５６７８９]+日", text)
+
+        if date:
+            date = date.group()
+            text = text.replace(date, "<DATE>")
+
+        return text, date
+
+    @staticmethod
+    def specify_date(text, date_en):
+        if date_en is None:
+            return text
+
+        if "<DATE>" not in text:
+            return text
+
+        return text.replace("<DATE>", date_en)
+
+if __name__ == "__main__":
+    text = "『７月２３日に、近所の公園へ行かない？"
+    text, date = Database.generalize_date(text)
+    print(text, date)
+
+    text = "『に、近所の公園へ行かない？"
+    text, date = Database.generalize_date(text)
+    print(text, date)
