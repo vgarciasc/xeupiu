@@ -1,6 +1,8 @@
 import pandas as pd
 import re
 from config import CONFIG, PLAYER_BIRTHDAY_JP, SHIORI_BIRTHDAY_JP, PLAYER_BIRTHDAY_EN, SHIORI_BIRTHDAY_EN
+from constants import convert_damage_jp2en, convert_date_jp2en
+
 
 class Database:
     def __init__(self, filepath: str):
@@ -12,6 +14,27 @@ class Database:
 
     def insert_translation(self, **kwargs):
         pass
+
+    @staticmethod
+    def generalize_string(text):
+        if text is None:
+            return
+
+        text = Database.generalize_player_variables(text)
+        text, jp_date = Database.generalize_date(text)
+        text, jp_damage = Database.generalize_damage(text)
+        return text, {"date": jp_date, "damage": jp_damage}
+
+    @staticmethod
+    def specify_string(text, metadata):
+        if text is None:
+            return
+
+        text = Database.specify_player_variables(text)
+        text = Database.specify_date(text, convert_date_jp2en(metadata["date"]))
+        text = Database.specify_damage(text, convert_damage_jp2en(metadata["damage"]))
+        return text
+
 
     @staticmethod
     def generalize_player_variables(text):
@@ -62,6 +85,26 @@ class Database:
             return text
 
         return text.replace("<DATE>", date_en)
+
+    @staticmethod
+    def generalize_damage(text):
+        damage = re.search(r"[０１２３４５６７８９]+のダメージ", text)
+
+        if damage:
+            damage = damage.group()
+            text = text.replace(damage, "<DAMAGE>")
+
+        return text, damage
+
+    @staticmethod
+    def specify_damage(text, damage_en):
+        if damage_en is None:
+            return text
+
+        if "<DAMAGE>" not in text:
+            return text
+
+        return text.replace("<DAMAGE>", damage_en)
 
 if __name__ == "__main__":
     text = "『７月２３日に、近所の公園へ行かない？"

@@ -26,6 +26,17 @@ def convert_to_black_and_white(img_ss, text_color=(132, 132, 164)):
     return Image.fromarray(img_tb_np)
 
 
+def convert_to_black_and_white_multiple(img_ss, text_colors):
+    _img = None
+
+    for text_color in text_colors:
+        _img = convert_to_black_and_white(img_ss, text_color)
+        white_pixels = np.array(_img.convert('1'))
+        if not np.all(white_pixels == 1):
+            return _img
+
+    return _img
+
 def convert_weekday_to_black_and_white(img_tb):
     img_tb_np = np.array(img_tb.convert('RGB'))
     red, green, blue = img_tb_np.T

@@ -2,7 +2,7 @@ import pandas as pd
 from thefuzz import fuzz
 
 from config import CONFIG
-from constants import format_translated_text, convert_jp_date_to_en
+from constants import format_translated_text, convert_date_jp2en
 from database import Database
 
 class TextDatabase(Database):
@@ -52,7 +52,7 @@ class TextDatabase(Database):
         jp_text = result["Japanese text"]
         eng_text = result["English text"]
         eng_text = Database.specify_player_variables(eng_text)
-        eng_text = Database.specify_date(eng_text, convert_jp_date_to_en(date_jp))
+        eng_text = Database.specify_date(eng_text, convert_date_jp2en(date_jp))
         eng_text = format_translated_text(jp_text, eng_text)
 
         return n_matches, jp_text, eng_text

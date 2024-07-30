@@ -1,6 +1,4 @@
 import pandas as pd
-from thefuzz import fuzz
-
 from database import Database
 from config import CONFIG
 
@@ -9,7 +7,7 @@ class NotebookDatabase(Database):
         super().__init__(CONFIG["databases"]["notebook_filepath"])
 
     def retrieve_translation(self, notebook_item_jp: str):
-        notebook_item_jp = notebook_item_jp.strip()
+        notebook_item_jp, str_metadata = self.generalize_string(notebook_item_jp.strip())
 
         if notebook_item_jp is None:
             return None
@@ -21,10 +19,13 @@ class NotebookDatabase(Database):
 
         result = df.iloc[0]
         eng_text = result["English text"]
+        eng_text = self.specify_string(eng_text, str_metadata)
 
         return eng_text
 
     def insert_translation(self, text_jp: str, text_en: str):
+        text_jp, _ = self.generalize_string(text_jp.strip())
+
         new_df = pd.DataFrame({"Japanese text": [text_jp.strip()], "English text": [text_en.strip()]})
         self.df = pd.concat([self.df, new_df])
         self.df.to_csv(self.filepath, sep=";", index=False)

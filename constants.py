@@ -49,7 +49,7 @@ def convert_date_to_en_str(month, day):
     return f"{MONTHS_EN[month - 1]} {day}{suffix}"
 
 
-def convert_jp_date_to_en(date_jp: str):
+def convert_date_jp2en(date_jp: str):
     if date_jp is None:
         return None
 
@@ -59,6 +59,19 @@ def convert_jp_date_to_en(date_jp: str):
 def convert_birthday_to_str(month, day):
     return (convert_date_to_jp_str(month, day),
             convert_date_to_en_str(month, day))
+
+
+def convert_damage_jp2en(damage_jp: str):
+    """
+    :param damage_jp: Damage string in the format ８８のダメージ
+    :return: damage string in english
+    """
+
+    if damage_jp is None or not "のダメージ" in damage_jp:
+        return None
+
+    damage_en = damage_jp[:-len("のダメージ")]
+    return f"{convert_jp_str_to_int(damage_en)} damage"
 
 
 def format_translated_text(jp_text, eng_text):

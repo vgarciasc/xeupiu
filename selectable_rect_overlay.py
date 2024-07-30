@@ -8,6 +8,7 @@ from PIL import Image
 
 import translator
 from constants import is_str_empty
+from database import Database
 from notebook_database import NotebookDatabase
 from poorcr import PoorCR
 from config import VERBOSE
@@ -104,6 +105,22 @@ SELECTABLE_RECT_GROUPS = {
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (230, 222, 239)),
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
+    },
+    "rpg_uig": {
+        "fullname": "rpg_ui_grey",
+        "textcolor": "#ffffff",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "rpg_uiw": {
+        "fullname": "rpg_ui_white",
+        "textcolor": "#ffffff",
+        "selected_color": "#631d1d",
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white_multiple(x, [(247, 247, 255), (255, 189, 189)]),
+        "is_unselected_fn": lambda r, g, b: not (np.mean((r > 100) & (g < 50) & (b < 50)) > 0.6),
+        "is_selected_fn": lambda r, g, b: np.mean((r > 100) & (g < 170) & (b < 170)) > 0.6,
     },
     "chcr_k1": {
         "fullname": "character_creation_black1",
@@ -237,6 +254,9 @@ SCREEN_CUES = [
     { "id": "chcr_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 307), "prerequisites": [] },
     { "id": "chcr_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 35, 255, 197, 247, 88), "prerequisites": [] },
     { "id": "chcr_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 123, 255, 197, 247, 371), "prerequisites": [] },
+    {"id": "rpg_ui_bottom_ui", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 5, 166, 20, 20, 255, 255, 0, 44), "prerequisites": []},
+    {"id": "rpg_ui_bottom_actions", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 106, 166, 20, 20, 255, 255, 0, 44), "prerequisites": ["rpg_ui_bottom_ui"]},
+    {"id": "rpg_ui_top", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 14, 6, 20, 40, 255, 255, 0, 88), "prerequisites": ["rpg_ui_bottom_ui"]},
 ]
 
 SELECTABLE_RECTS = [
@@ -405,6 +425,14 @@ SELECTABLE_RECTS = [
     ("chcr_w_4_1", (102, 62), (32, 16), "#1f1f1f", "chcr_4", 0.8, 5),
     ("chcr_w_4_2", (158, 62), (32, 16), "#1f1f1f", "chcr_4", 0.8, 5),
 
+    ("rpg_uig_t_alert", (33, 17), (260, 13), "#084aad", "rpg_ui_top", 1),
+    ("rpg_uig_b_enemy_1", (18, 186), (83, 15), "#084aad", "rpg_ui_bottom_ui", 1),
+    ("rpg_uig_b_party_1", (176, 178), (65, 15), "#084aad", "rpg_ui_bottom_ui", 1),
+    ("rpg_uig_b_party_2", (176, 194), (65, 15), "#084aad", "rpg_ui_bottom_ui", 1),
+    ("rpg_uiw_b_action_1", (122, 178), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6),
+    ("rpg_uiw_b_action_2", (122, 193), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6),
+    ("rpg_uiw_b_action_3", (122, 208), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6),
+
     # ("chcr_k1_1_1", (120, 43), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_2", (120, 59), (48, 13), "#ffffff", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_3", (120, 75), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
@@ -511,9 +539,10 @@ class SelectableRectOverlay(OverlayWindow):
         else:
             text_en = self.db.retrieve_translation(text_jp)
             if text_en is None:
-                text_en = translator.translate_text(text_jp)
+                text_jp_processed, _ = Database.generalize_string(text_jp)
+                text_en = translator.translate_text(text_jp_processed)
                 self.db.insert_translation(text_jp, text_en)
-                print(f"Adding new notebook item: {text_jp} - {text_en}")
+                print(f"Adding new notebook item: {text_jp_processed} - {text_en}")
             text = text_en
 
         self.update(" " + text)
