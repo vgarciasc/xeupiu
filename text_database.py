@@ -13,7 +13,7 @@ class TextDatabase(Database):
                              fuzziness: int = 100, is_text_jp_complete: bool = True):
 
         char_name_en = char_name_en.strip() if char_name_en is not None else None
-        if char_name_en == CONFIG["save"]["player"]["jp_surname_ascii"]:
+        if char_name_en == CONFIG["save"]["player"]["en_name"]:
             char_name_en = "<PNAME>"
 
         text_jp = text_jp.strip()
@@ -31,7 +31,10 @@ class TextDatabase(Database):
             if fuzziness == 100:
                 results = df[df["Japanese text"] == text_jp]
             else:
-                results = df[df.apply(lambda row: fuzz.ratio(row['Japanese text'], text_jp) > fuzziness, axis=1)]
+                df = df.assign(ratio=df.apply(lambda row: fuzz.ratio(row['Japanese text'], text_jp), axis=1))
+                df = df[df["ratio"] > fuzziness]
+                df.sort_values(by="ratio", ascending=False, inplace=True)
+                results = df
         else:
             txt_len = len(text_jp)
             if fuzziness == 100:
@@ -56,7 +59,7 @@ class TextDatabase(Database):
 
     def insert_translation(self, text_jp: str, text_en: str, char_name: str = "none"):
         char_name = char_name.strip() if char_name is not None else "none"
-        if char_name == CONFIG["save"]["player"]["jp_surname"]:
+        if char_name == CONFIG["save"]["player"]["en_name"]:
             char_name = "<PNAME>"
 
         text_jp, _ = Database.generalize_date(text_jp)

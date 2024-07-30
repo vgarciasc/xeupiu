@@ -189,7 +189,7 @@ try:
                 if has_text_stopped_printing:
                     # No match found, but text has stopped printing. Translate and add to database
                     translated_text = tr.translate_text(text_ocr)
-                    db_texts.insert_translation(text_ocr, translated_text, char_name=name_ocr)
+                    db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
 
                     _, date_jp = Database.generalize_date(text_ocr)
                     display_text = Database.generalize_player_variables(translated_text)
