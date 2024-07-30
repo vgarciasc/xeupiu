@@ -63,8 +63,8 @@ SELECTABLE_RECT_GROUPS = {
         "textcolor": "#ffffff",
         "selected_color": "#39a930",
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
-        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.6,
-        "is_selected_fn": lambda r, g, b: np.mean((r > 30) & (r < 170) & (g > 150) & (b > 20) & (b < 120)) > 0.55,
+        "is_unselected_fn": lambda r, g, b: np.mean((r < 30) & (g > 60) & (g < 140) & (b == 0)) > 0.5,
+        "is_selected_fn": lambda r, g, b: np.mean((r > 30) & (r < 170) & (g > 150) & (b > 20) & (b < 120)) > 0.5,
     },
     "an": {
         "fullname": "area_name",
@@ -208,11 +208,19 @@ def detect_mark_character_selection_choice_1(red, green, blue):
 
     return (is_cursor_in_vgap_1 or is_cursor_in_vgap_2 or is_cursor_in_vgap_3 or is_cursor_in_vgap_4) and (is_selection_in_hgap_1 or is_selection_in_hgap_2 or is_selection_in_hgap_3)
 
+def detect_mark_character_selection_choice_2(red, green, blue):
+    is_players_house = detect_mark_by_count(red, green, blue, 252, 105, 29, 32, 173, 107, 82, 5)
+
+    is_selection_on_textbox = 30 < get_count_by_thresholds(red, green, blue, 16, 160, 280, 63, 60, 120, 160, 190, 20, 80)
+
+    return is_players_house and is_selection_on_textbox
+
 SCREEN_CUES = [
     { "id": "dc_3row1", "fn": detect_mark_textbox_choice1, "prerequisites": [] },
     { "id": "dc_3row2", "fn": detect_mark_textbox_choice2, "prerequisites": [] },
     { "id": "dc_2col1", "fn": detect_mark_textbox_choice3, "prerequisites": [] },
     { "id": "csc_1", "fn": detect_mark_character_selection_choice_1, "prerequisites": [] },
+    { "id": "csc_2", "fn": detect_mark_character_selection_choice_2, "prerequisites": [] },
     { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": [] },
     { "id": "nb_2col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16), "prerequisites": [] },
     { "id": "nb_2col2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9), "prerequisites": [] },
@@ -254,9 +262,9 @@ SCREEN_CUES = [
     { "id": "chcr_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 307), "prerequisites": [] },
     { "id": "chcr_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 35, 255, 197, 247, 88), "prerequisites": [] },
     { "id": "chcr_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 123, 255, 197, 247, 371), "prerequisites": [] },
-    {"id": "rpg_ui_bottom_ui", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 5, 166, 20, 20, 255, 255, 0, 44), "prerequisites": []},
-    {"id": "rpg_ui_bottom_actions", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 106, 166, 20, 20, 255, 255, 0, 44), "prerequisites": ["rpg_ui_bottom_ui"]},
-    {"id": "rpg_ui_top", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 14, 6, 20, 40, 255, 255, 0, 88), "prerequisites": ["rpg_ui_bottom_ui"]},
+    { "id": "rpg_ui_bottom_ui", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 5, 166, 20, 20, 255, 255, 0, 44), "prerequisites": []},
+    { "id": "rpg_ui_bottom_actions", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 106, 166, 20, 20, 255, 255, 0, 44), "prerequisites": ["rpg_ui_bottom_ui"]},
+    { "id": "rpg_ui_top", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 14, 6, 20, 40, 255, 255, 0, 88), "prerequisites": ["rpg_ui_bottom_ui"]},
 ]
 
 SELECTABLE_RECTS = [
@@ -370,8 +378,21 @@ SELECTABLE_RECTS = [
     ("csc_1_11", (224, 186), (48, 16), "#135800", "csc_1", 1),
     ("csc_1_12", (224, 202), (48, 15), "#135800", "csc_1", 1),
 
+    ("csc_2_1", (32, 168), (28, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_2", (32, 184), (28, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_3", (32, 200), (28, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_4", (96, 168), (42, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_5", (96, 184), (28, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_6", (96, 200), (42, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_7", (160, 168), (28, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_8", (160, 184), (28, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_9", (160, 200), (42, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_10", (224, 168), (42, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_11", (224, 184), (42, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_12", (224, 200), (42, 16), "#135800", "csc_2", 0.7),
+
     ("an_2", (17, 31), (29, 15), "#135800", "an_2", 0.7),
-    ("an_3", (17, 31), (44, 15), "#135800", "an_3", 0.8),
+    ("an_3", (17, 31), (44, 15), "#135800", "an_3", 0.7),
     ("an_4", (17, 31), (59, 15), "#135800", "an_4", 1),
     ("an_5", (17, 31), (74, 15), "#135800", "an_5", 1),
     ("an_6", (17, 31), (89, 15), "#135800", "an_6", 1),
