@@ -170,7 +170,7 @@ def detect_mark_textbox_choice1(red, green, blue):
 
 def detect_mark_textbox_choice2(red, green, blue):
     is_cursor_there = detect_mark_by_count(red, green, blue, 278, 166, 6, 47, 239, 230, 239, 4)
-    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 270, 166, 6, 50, 60, 120, 150, 180, 50, 100, 96)
+    is_selection_there = detect_mark_by_count_with_thresholds(red, green, blue, 276, 168, 4, 50, 60, 120, 120, 180, 50, 100, 64)
     return is_cursor_there and is_selection_there
 
 def detect_mark_textbox_choice3(red, green, blue):
@@ -551,7 +551,8 @@ if __name__ == "__main__":
         img_ss = img_ss.resize((img_ss.size[0] // overlays[0].game_scaling,
                                 img_ss.size[1] // overlays[0].game_scaling),
                                Image.NEAREST)
+        img_rgb = np.array(img_ss.convert('RGB')).T
 
         for overlay in overlays:
-            overlay.hide_if_not_needed(img_ss)
+            overlay.hide_if_not_needed(*img_rgb, img_ss)
             overlay.update_text(img_ss)
