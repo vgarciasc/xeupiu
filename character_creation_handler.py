@@ -33,8 +33,8 @@ class CharacterCreationHandler:
         configs = {}
 
         for field, (x, y, w, h) in [
-            ("jp_name", (103, 64, 103 + 45, 64 + 13)),
-            ("jp_surname", (159, 64, 159 + 45, 64 + 13)),
+            ("jp_surname", (103, 64, 103 + 45, 64 + 13)),
+            ("jp_name", (159, 64, 159 + 45, 64 + 13)),
             ("jp_nickname", (103, 96, 103 + 77, 96 + 13)),
             ("birth_month", (103, 127, 103 + 29, 127 + 13)),
             ("birth_day", (151, 127, 151 + 29, 127 + 13)),

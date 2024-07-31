@@ -11,7 +11,7 @@ from constants import is_str_empty
 from database import Database
 from notebook_database import NotebookDatabase
 from poorcr import PoorCR
-from config import VERBOSE
+from config import VERBOSE, CONFIG
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 from image_processing import get_count_by_equality, get_count_by_thresholds
@@ -161,6 +161,14 @@ SELECTABLE_RECT_GROUPS = {
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (255, 197, 247)),
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
+    },
+    "sss_k": {
+        "fullname": "save_selection_screen_black",
+        "textcolor": "#000000",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (8, 0, 0)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
     }
 }
 
@@ -266,168 +274,173 @@ SCREEN_CUES = [
     { "id": "rpg_ui_bottom_ui", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 5, 166, 20, 20, 255, 255, 0, 44), "prerequisites": []},
     { "id": "rpg_ui_bottom_actions", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 106, 166, 20, 20, 255, 255, 0, 44), "prerequisites": ["rpg_ui_bottom_ui"]},
     { "id": "rpg_ui_top", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 14, 6, 20, 40, 255, 255, 0, 88), "prerequisites": ["rpg_ui_bottom_ui"]},
+    { "id": "save_selection_screen", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 9, 209, 78, 18, 197, 189, 189, 64), "prerequisites": []},
+    { "id": "save_selection_screen_load", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 98, 132, 97, 16, 0, 58, 132, 95), "prerequisites": ["save_selection_screen"]},
 ]
 
 SELECTABLE_RECTS = [
-    ("nb_3col1_h", (20, 35), (256, 16), "#e0e0e0", "nb_3col1", 1),
-    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", "nb_3col1", 1),
-    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", "nb_3col1", 1),
-    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", "nb_3col1", 1),
-    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", "nb_3col1", 1),
-    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", "nb_3col1", 1),
-    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", "nb_3col1", 1),
-    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", "nb_3col1", 1),
-    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", "nb_3col1", 1),
-    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", "nb_3col1", 1),
-    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", "nb_3col1", 1),
-    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", "nb_3col1", 1),
-    ("nb_3col1_3.2", (200, 80), (72, 16), "#d5d5d5", "nb_3col1", 1),
-    ("nb_3col1_3.3", (200, 96), (72, 16), "#d2d2d2", "nb_3col1", 1),
-    ("nb_3col1_3.4", (200, 112), (72, 16), "#cacaca", "nb_3col1", 1),
-    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", "nb_3col1", 1),
+    ("nb_3col1_h", (20, 35), (256, 16), "#e0e0e0", "nb_3col1", 1, 3),
+    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
+    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
+    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
+    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
+    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", "nb_3col1", 1, 3),
+    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
+    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", "nb_3col1", 1, 3),
+    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", "nb_3col1", 1, 3),
+    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", "nb_3col1", 1, 3),
+    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", "nb_3col1", 1, 3),
+    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", "nb_3col1", 1, 3),
+    ("nb_3col1_3.2", (200, 80), (72, 16), "#d5d5d5", "nb_3col1", 1, 3),
+    ("nb_3col1_3.3", (200, 96), (72, 16), "#d2d2d2", "nb_3col1", 1, 3),
+    ("nb_3col1_3.4", (200, 112), (72, 16), "#cacaca", "nb_3col1", 1, 3),
+    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", "nb_3col1", 1, 3),
 
-    ("nb_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_1.3", (35, 79), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_1.4", (35, 91), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_1.5", (35, 103), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_1.6", (35, 115), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_1.7", (35, 127), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_1.8", (35, 139), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("ngp_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("ngp_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("ngp_2col1_1.3", (35, 79), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("ngp_2col1_1.4", (35, 91), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("ngp_2col1_1.5", (35, 103), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("ngp_2col1_1.6", (35, 115), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("ngp_2col1_1.7", (35, 127), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("ngp_2col1_1.8", (35, 139), (100, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_2.1", (155, 55), (111, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_2.2", (155, 71), (111, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_2.3", (155, 87), (111, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_2.4", (155, 103), (111, 13), "#e0e0e0", "nb_2col1", 1),
-    ("nb_2col1_2.5", (155, 119), (111, 13), "#e0e0e0", "nb_2col1", 1),
+    ("nb_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_1.3", (35, 79), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_1.4", (35, 91), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_1.5", (35, 103), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_1.6", (35, 115), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_1.7", (35, 127), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_1.8", (35, 139), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("ngp_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("ngp_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("ngp_2col1_1.3", (35, 79), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("ngp_2col1_1.4", (35, 91), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("ngp_2col1_1.5", (35, 103), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("ngp_2col1_1.6", (35, 115), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("ngp_2col1_1.7", (35, 127), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("ngp_2col1_1.8", (35, 139), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_2.1", (155, 55), (111, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_2.2", (155, 71), (111, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_2.3", (155, 87), (111, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_2.4", (155, 103), (111, 13), "#e0e0e0", "nb_2col1", 1, 3),
+    ("nb_2col1_2.5", (155, 119), (111, 13), "#e0e0e0", "nb_2col1", 1, 3),
 
-    ("nb_2col2_h1", (31, 36), (98, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_h2", (158, 36), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_1.1", (23, 62), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_1.2", (23, 78), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_1.3", (23, 94), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_1.4", (23, 110), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_1.5", (23, 126), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_2.1", (158, 62), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_2.2", (158, 78), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_2.3", (158, 94), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_2.4", (158, 110), (109, 15), "#e0e0e0", "nb_2col2", 1),
-    ("nb_2col2_2.5", (158, 126), (109, 15), "#e0e0e0", "nb_2col2", 1),
+    ("nb_2col2_h1", (31, 36), (98, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_h2", (158, 36), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_1.1", (23, 62), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_1.2", (23, 78), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_1.3", (23, 94), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_1.4", (23, 110), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_1.5", (23, 126), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_2.1", (158, 62), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_2.2", (158, 78), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_2.3", (158, 94), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_2.4", (158, 110), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
+    ("nb_2col2_2.5", (158, 126), (109, 15), "#e0e0e0", "nb_2col2", 1, 3),
 
-    ("dc_3row1_1", (39, 169), (230, 17), "#135800", "dc_3row1", 1),
-    ("dc_3row1_2", (39, 185), (230, 17), "#135800", "dc_3row1", 1),
-    ("dc_3row1_3", (39, 201), (230, 17), "#135800", "dc_3row1", 1),
+    ("dc_3row1_1", (39, 169), (230, 17), "#135800", "dc_3row1", 1, 3),
+    ("dc_3row1_2", (39, 185), (230, 17), "#135800", "dc_3row1", 1, 3),
+    ("dc_3row1_3", (39, 201), (230, 17), "#135800", "dc_3row1", 1, 3),
 
-    ("dc_3row2_1", (32, 167), (252, 16), "#135800", "dc_3row2", 1),
-    ("dc_3row2_2", (32, 183), (252, 16), "#135800", "dc_3row2", 1),
-    ("dc_3row2_3", (32, 199), (252, 16), "#135800", "dc_3row2", 1),
+    ("dc_3row2_1", (32, 167), (252, 16), "#135800", "dc_3row2", 1, 3),
+    ("dc_3row2_2", (32, 183), (252, 16), "#135800", "dc_3row2", 1, 3),
+    ("dc_3row2_3", (32, 199), (252, 16), "#135800", "dc_3row2", 1, 3),
 
-    ("dc_2col1_1.1", (32, 170), (120, 16), "#135800", "dc_2col1", 1),
-    ("dc_2col1_1.2", (32, 186), (120, 16), "#135800", "dc_2col1", 1),
-    ("dc_2col1_1.3", (32, 202), (120, 16), "#135800", "dc_2col1", 1),
-    ("dc_2col1_2.1", (152, 170), (120, 16), "#135800", "dc_2col1", 1),
-    ("dc_2col1_2.2", (152, 186), (120, 16), "#135800", "dc_2col1", 1),
-    ("dc_2col1_2.3", (152, 202), (120, 16), "#135800", "dc_2col1", 1),
+    ("dc_2col1_1.1", (32, 170), (120, 16), "#135800", "dc_2col1", 1, 3),
+    ("dc_2col1_1.2", (32, 186), (120, 16), "#135800", "dc_2col1", 1, 3),
+    ("dc_2col1_1.3", (32, 202), (120, 16), "#135800", "dc_2col1", 1, 3),
+    ("dc_2col1_2.1", (152, 170), (120, 16), "#135800", "dc_2col1", 1, 3),
+    ("dc_2col1_2.2", (152, 186), (120, 16), "#135800", "dc_2col1", 1, 3),
+    ("dc_2col1_2.3", (152, 202), (120, 16), "#135800", "dc_2col1", 1, 3),
 
-    ("ngp_1_1", (21, 41), (44, 13), "#e0e0e0", "ng_1", 1),
-    ("ngp_1_2", (21, 57), (30, 13), "#e0e0e0", "ng_1", 1),
-    ("ngp_1_3", (21, 73), (44, 13), "#e0e0e0", "ng_1", 1),
-    ("ngp_1_4", (21, 89), (44, 13), "#e0e0e0", "ng_1", 1),
-    ("ngp_1_5", (21, 105), (44, 13), "#e0e0e0", "ng_1", 1),
-    ("ngp_1_6", (21, 121), (30, 13), "#e0e0e0", "ng_1", 1),
-    ("ngg_1_h", (31, 21), (91, 13), "#e0e0e0", "ng_1", 1),
-    ("ngg_1_1", (71, 41), (115, 13), "#e0e0e0", "ng_1", 1),
-    ("ngg_1_2", (71, 57), (115, 13), "#e0e0e0", "ng_1", 1),
-    ("ngg_1_3", (71, 73), (115, 13), "#e0e0e0", "ng_1", 1),
-    ("ngg_1_4", (71, 89), (115, 13), "#e0e0e0", "ng_1", 1),
-    ("ngg_1_5", (71, 105), (115, 13), "#e0e0e0", "ng_1", 1),
-    ("ngg_1_6", (71, 121), (215, 13), "#e0e0e0", "ng_1", 1),
-    ("ngg_1_6", (71, 137), (215, 13), "#e0e0e0", "ng_1", 1),
-    ("ngb_1_1", (127, 21), (60, 13), "#e0e0e0", "ng_1", 1),
+    ("ngp_1_1", (21, 41), (44, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngp_1_2", (21, 57), (30, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngp_1_3", (21, 73), (44, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngp_1_4", (21, 89), (44, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngp_1_5", (21, 105), (44, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngp_1_6", (21, 121), (30, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngg_1_h", (31, 21), (91, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngg_1_1", (71, 41), (115, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngg_1_2", (71, 57), (115, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngg_1_3", (71, 73), (115, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngg_1_4", (71, 89), (115, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngg_1_5", (71, 105), (115, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngg_1_6", (71, 121), (215, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngg_1_6", (71, 137), (215, 13), "#e0e0e0", "ng_1", 1, 3),
+    ("ngb_1_1", (127, 21), (60, 13), "#e0e0e0", "ng_1", 1, 3),
 
-    ("ngp_1_h", (31, 21), (114, 13), "#e0e0e0", "ng_2", 1),
-    ("ngg_1_1", (29, 47), (70, 13), "#e0e0e0", "ng_2", 1),
-    ("ngg_1_2", (29, 63), (70, 13), "#e0e0e0", "ng_2", 1),
-    ("ngg_1_3", (29, 79), (70, 13), "#e0e0e0", "ng_2", 1),
-    ("ngg_1_4", (29, 95), (70, 13), "#e0e0e0", "ng_2", 1),
-    ("ngg_1_5", (29, 111), (70, 13), "#e0e0e0", "ng_2", 1),
-    ("ngg_1_6", (29, 127), (70, 13), "#e0e0e0", "ng_2", 1),
-    ("ngg_2_1", (159, 47), (70, 13), "#e0e0e0", "ng_2", 1),
-    ("ngg_2_2", (159, 63), (70, 13), "#d9d9d9", "ng_2", 1),
-    ("ngg_2_3", (159, 79), (70, 13), "#d9d9d9", "ng_2", 1),
-    ("ngg_2_4", (159, 95), (70, 13), "#d9d9d9", "ng_2", 1),
-    ("ngg_2_5", (159, 111), (70, 13), "#cccccc", "ng_2", 1),
-    ("ngg_2_6", (159, 127), (70, 13), "#cccccc", "ng_2", 1),
+    ("ngp_1_h", (31, 21), (114, 13), "#e0e0e0", "ng_2", 1, 3),
+    ("ngg_1_1", (29, 47), (70, 13), "#e0e0e0", "ng_2", 1, 3),
+    ("ngg_1_2", (29, 63), (70, 13), "#e0e0e0", "ng_2", 1, 3),
+    ("ngg_1_3", (29, 79), (70, 13), "#e0e0e0", "ng_2", 1, 3),
+    ("ngg_1_4", (29, 95), (70, 13), "#e0e0e0", "ng_2", 1, 3),
+    ("ngg_1_5", (29, 111), (70, 13), "#e0e0e0", "ng_2", 1, 3),
+    ("ngg_1_6", (29, 127), (70, 13), "#e0e0e0", "ng_2", 1, 3),
+    ("ngg_2_1", (159, 47), (70, 13), "#e0e0e0", "ng_2", 1, 3),
+    ("ngg_2_2", (159, 63), (70, 13), "#d9d9d9", "ng_2", 1, 3),
+    ("ngg_2_3", (159, 79), (70, 13), "#d9d9d9", "ng_2", 1, 3),
+    ("ngg_2_4", (159, 95), (70, 13), "#d9d9d9", "ng_2", 1, 3),
+    ("ngg_2_5", (159, 111), (70, 13), "#cccccc", "ng_2", 1, 3),
+    ("ngg_2_6", (159, 127), (70, 13), "#cccccc", "ng_2", 1, 3),
 
-    ("csc_1_1", (32, 170), (48, 16), "#135800", "csc_1", 1),
-    ("csc_1_2", (32, 186), (48, 16), "#135800", "csc_1", 1),
-    ("csc_1_3", (32, 202), (48, 15), "#135800", "csc_1", 1),
-    ("csc_1_4", (96, 170), (48, 16), "#135800", "csc_1", 1),
-    ("csc_1_5", (96, 186), (48, 16), "#135800", "csc_1", 1),
-    ("csc_1_6", (96, 202), (48, 15), "#135800", "csc_1", 1),
-    ("csc_1_7", (160, 170), (48, 16), "#135800", "csc_1", 1),
-    ("csc_1_8", (160, 186), (48, 16), "#135800", "csc_1", 1),
-    ("csc_1_9", (160, 202), (48, 15), "#135800", "csc_1", 1),
-    ("csc_1_10", (224, 170), (48, 16), "#135800", "csc_1", 1),
-    ("csc_1_11", (224, 186), (48, 16), "#135800", "csc_1", 1),
-    ("csc_1_12", (224, 202), (48, 15), "#135800", "csc_1", 1),
+    ("csc_1_1", (32, 170), (48, 16), "#135800", "csc_1", 1, 3),
+    ("csc_1_2", (32, 186), (48, 16), "#135800", "csc_1", 1, 3),
+    ("csc_1_3", (32, 202), (48, 15), "#135800", "csc_1", 1, 3),
+    ("csc_1_4", (96, 170), (48, 16), "#135800", "csc_1", 1, 3),
+    ("csc_1_5", (96, 186), (48, 16), "#135800", "csc_1", 1, 3),
+    ("csc_1_6", (96, 202), (48, 15), "#135800", "csc_1", 1, 3),
+    ("csc_1_7", (160, 170), (48, 16), "#135800", "csc_1", 1, 3),
+    ("csc_1_8", (160, 186), (48, 16), "#135800", "csc_1", 1, 3),
+    ("csc_1_9", (160, 202), (48, 15), "#135800", "csc_1", 1, 3),
+    ("csc_1_10", (224, 170), (48, 16), "#135800", "csc_1", 1, 3),
+    ("csc_1_11", (224, 186), (48, 16), "#135800", "csc_1", 1, 3),
+    ("csc_1_12", (224, 202), (48, 15), "#135800", "csc_1", 1, 3),
 
-    ("csc_2_1", (32, 168), (28, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_2", (32, 184), (28, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_3", (32, 200), (28, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_4", (96, 168), (42, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_5", (96, 184), (28, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_6", (96, 200), (42, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_7", (160, 168), (28, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_8", (160, 184), (28, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_9", (160, 200), (42, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_10", (224, 168), (42, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_11", (224, 184), (42, 16), "#135800", "csc_2", 0.7),
-    ("csc_2_12", (224, 200), (42, 16), "#135800", "csc_2", 0.7),
+    ("csc_2_1", (32, 168), (28, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_2", (32, 184), (28, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_3", (32, 200), (28, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_4", (96, 168), (42, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_5", (96, 184), (28, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_6", (96, 200), (42, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_7", (160, 168), (28, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_8", (160, 184), (28, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_9", (160, 200), (42, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_10", (224, 168), (42, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_11", (224, 184), (42, 16), "#135800", "csc_2", 0.7, 3),
+    ("csc_2_12", (224, 200), (42, 16), "#135800", "csc_2", 0.7, 3),
 
-    ("an_2", (17, 31), (29, 15), "#135800", "an_2", 0.7),
-    ("an_3", (17, 31), (44, 15), "#135800", "an_3", 0.7),
-    ("an_4", (17, 31), (59, 15), "#135800", "an_4", 1),
-    ("an_5", (17, 31), (74, 15), "#135800", "an_5", 1),
-    ("an_6", (17, 31), (89, 15), "#135800", "an_6", 1),
-    ("an_7", (17, 31), (104, 15), "#135800", "an_7", 1),
-    ("an_8", (17, 31), (119, 15), "#135800", "an_8", 1),
-    ("an_9", (17, 31), (134, 15), "#135800", "an_9", 1),
-    ("an_10", (17, 31), (149, 15), "#135800", "an_10", 1),
+    ("an_2", (17, 31), (29, 15), "#135800", "an_2", 0.7, 3),
+    ("an_3", (17, 31), (44, 15), "#135800", "an_3", 0.7, 3),
+    ("an_4", (17, 31), (59, 15), "#135800", "an_4", 1, 3),
+    ("an_5", (17, 31), (74, 15), "#135800", "an_5", 1, 3),
+    ("an_6", (17, 31), (89, 15), "#135800", "an_6", 1, 3),
+    ("an_7", (17, 31), (104, 15), "#135800", "an_7", 1, 3),
+    ("an_8", (17, 31), (119, 15), "#135800", "an_8", 1, 3),
+    ("an_9", (17, 31), (134, 15), "#135800", "an_9", 1, 3),
+    ("an_10", (17, 31), (149, 15), "#135800", "an_10", 1, 3),
 
-    ("an_exr_h", (103, 13), (112, 14), "#135800", "exr", 0.8),
-    ("exr_1_1", (31, 37), (90, 13), "#e0e0e0", "exr_0", 1),
-    ("exr_1_2", (31, 53), (90, 13), "#e0e0e0", "exr_1", 1),
-    ("exr_1_3", (31, 69), (90, 13), "#e0e0e0", "exr_2", 1),
-    ("exr_1_4", (31, 85), (90, 13), "#e0e0e0", "exr_3", 1),
-    ("exr_1_5", (31, 101), (90, 13), "#e0e0e0", "exr_4", 1),
-    ("exr_1_6", (31, 117), (90, 13), "#e0e0e0", "exr_5", 1),
-    ("exr_1_7", (31, 133), (90, 13), "#e0e0e0", "exr_6", 1),
-    ("exr_2_1", (191, 37), (90, 13), "#e0e0e0", "exr_7", 1),
-    ("exr_2_2", (191, 53), (90, 13), "#e0e0e0", "exr_8", 1),
-    ("exr_2_3", (191, 69), (90, 13), "#e0e0e0", "exr_9", 1),
-    ("exr_2_4", (191, 85), (90, 13), "#e0e0e0", "exr_10", 1),
-    ("exr_2_5", (191, 101), (90, 13), "#e0e0e0", "exr_11", 1),
-    ("exr_2_6", (191, 117), (90, 13), "#e0e0e0", "exr_12", 1),
-    ("exr_2_7", (191, 133), (90, 13), "#e0e0e0", "exr_13", 1),
+    ("an_exr_h", (103, 13), (112, 14), "#135800", "exr", 0.8, 3),
+    ("exr_1_1", (31, 37), (90, 13), "#e0e0e0", "exr_0", 1, 3),
+    ("exr_1_2", (31, 53), (90, 13), "#e0e0e0", "exr_1", 1, 3),
+    ("exr_1_3", (31, 69), (90, 13), "#e0e0e0", "exr_2", 1, 3),
+    ("exr_1_4", (31, 85), (90, 13), "#e0e0e0", "exr_3", 1, 3),
+    ("exr_1_5", (31, 101), (90, 13), "#e0e0e0", "exr_4", 1, 3),
+    ("exr_1_6", (31, 117), (90, 13), "#e0e0e0", "exr_5", 1, 3),
+    ("exr_1_7", (31, 133), (90, 13), "#e0e0e0", "exr_6", 1, 3),
+    ("exr_2_1", (191, 37), (90, 13), "#e0e0e0", "exr_7", 1, 3),
+    ("exr_2_2", (191, 53), (90, 13), "#e0e0e0", "exr_8", 1, 3),
+    ("exr_2_3", (191, 69), (90, 13), "#e0e0e0", "exr_9", 1, 3),
+    ("exr_2_4", (191, 85), (90, 13), "#e0e0e0", "exr_10", 1, 3),
+    ("exr_2_5", (191, 101), (90, 13), "#e0e0e0", "exr_11", 1, 3),
+    ("exr_2_6", (191, 117), (90, 13), "#e0e0e0", "exr_12", 1, 3),
+    ("exr_2_7", (191, 133), (90, 13), "#e0e0e0", "exr_13", 1, 3),
 
-    ("mg_movie", (188, 25), (116, 13), "#003abd", "magazine", 1),
-    ("mg_concert", (188, 57), (116, 13), "#f763a3", "magazine", 1),
-    ("mg_event_1", (16, 105), (225, 13), "#7b4ace", "mg_event_1", 1),
-    ("mg_event_2", (16, 121), (225, 13), "#7b4ace", "mg_event_2", 1),
-    ("mg_event_3", (16, 137), (225, 13), "#7b4ace", "mg_event_3", 1),
+    ("mg_movie", (188, 25), (116, 13), "#003abd", "magazine", 1, 3),
+    ("mg_concert", (188, 57), (116, 13), "#f763a3", "magazine", 1, 3),
+    ("mg_event_1", (16, 105), (225, 13), "#7b4ace", "mg_event_1", 1, 3),
+    ("mg_event_2", (16, 121), (225, 13), "#7b4ace", "mg_event_2", 1, 3),
+    ("mg_event_3", (16, 137), (225, 13), "#7b4ace", "mg_event_3", 1, 3),
 
     ("chcr_g_h_1", (6, 14), (300, 15), "#1f1f1f", "chcr_1", 1, 5),
     ("chcr_w_h_1", (6, 14), (300, 15), "#1f1f1f", "chcr_1", 1, 5),
     ("chcr_p_1_1", (14, 30), (32, 16), "#1f1f1f", "chcr_1", 0.8, 5),
     ("chcr_p_1_1", (174, 30), (48, 16), "#1f1f1f", "chcr_1", 0.8, 5),
+
+    ("chcr_g_info_1", (46, 175), (255, 15), "#000000", "chcr_1", 1, 5, f"XEUPIU VERSION {CONFIG['version']}:"),
+    ("chcr_g_info_2", (46, 190), (255, 48), "#1f1f1f", "chcr_1", 0.9, 5, "Currently, the tool expects the player data to be 'PLA' for surname, 'YER' for name, and 'PLAYA' for nickname (third menu on the left). For the tool to work as intended, please follow this pattern, and fill in the configuration file with your desired character name. Character's birthday may be chosen as you wish.\n\nWe thank you for your understanding."),
 
     ("chcr_w_h_2", (6, 14), (300, 15), "#1f1f1f", "chcr_2", 1, 5),
     ("chcr_p_2_1", (20, 30), (48, 16), "#1f1f1f", "chcr_2", 0.8, 5),
@@ -447,13 +460,33 @@ SELECTABLE_RECTS = [
     ("chcr_w_4_1", (102, 62), (32, 16), "#1f1f1f", "chcr_4", 0.8, 5),
     ("chcr_w_4_2", (158, 62), (32, 16), "#1f1f1f", "chcr_4", 0.8, 5),
 
-    ("rpg_uig_t_alert", (33, 17), (260, 13), "#084aad", "rpg_ui_top", 1),
-    ("rpg_uig_b_enemy_1", (18, 186), (83, 15), "#084aad", "rpg_ui_bottom_ui", 1),
-    ("rpg_uig_b_party_1", (176, 178), (65, 15), "#084aad", "rpg_ui_bottom_ui", 1),
-    ("rpg_uig_b_party_2", (176, 194), (65, 15), "#084aad", "rpg_ui_bottom_ui", 1),
-    ("rpg_uiw_b_action_1", (122, 178), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6),
-    ("rpg_uiw_b_action_2", (122, 193), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6),
-    ("rpg_uiw_b_action_3", (122, 208), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6),
+    ("rpg_uig_t_alert", (33, 17), (260, 13), "#084aad", "rpg_ui_top", 1, 3),
+    ("rpg_uig_b_enemy_1", (18, 186), (83, 15), "#084aad", "rpg_ui_bottom_ui", 1, 3),
+    ("rpg_uig_b_party_1", (176, 178), (65, 15), "#084aad", "rpg_ui_bottom_ui", 1, 3),
+    ("rpg_uig_b_party_2", (176, 194), (65, 15), "#084aad", "rpg_ui_bottom_ui", 1, 3),
+    ("rpg_uiw_b_action_1", (122, 178), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6, 3),
+    ("rpg_uiw_b_action_2", (122, 193), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6, 3),
+    ("rpg_uiw_b_action_3", (122, 208), (27, 13), "#084aad", "rpg_ui_bottom_actions", 0.6, 3),
+
+    ("sss_k_slot", (18, 86), (30, 14), "#ffffff", "save_selection_screen", 0.8, 3, "SLOT"),
+    ("sss_k_nb1_1", (96, 151), (195, 13), "#ffffff", "save_selection_screen", 0.8, 3),
+    ("sss_k_nb1_2", (96, 167), (195, 13), "#ffffff", "save_selection_screen", 0.8, 3),
+    ("sss_k_nb1_3", (96, 183), (195, 13), "#ffffff", "save_selection_screen", 0.8, 3),
+    ("sss_k_nb1_4", (96, 199), (195, 13), "#ffffff", "save_selection_screen", 0.8, 3),
+    ("sss_k_save_1_1", (120, 44), (48, 13), "#e6e6e6", "save_selection_screen", 1, 3, "Name"),
+    ("sss_k_save_1_2", (120, 60), (48, 13), "#ffffff", "save_selection_screen", 1, 3, "Nickname"),
+    ("sss_k_save_1_3", (120, 76), (48, 13), "#e6e6e6", "save_selection_screen", 1, 3, "Club"),
+    ("sss_k_save_1_4", (120, 92), (48, 15), "#ffffff", "save_selection_screen", 1, 3, "Endings"),
+    ("sss_k_save_2_h", (98, 132), (97, 16), "#63bdce", "save_selection_screen_load", 1, 3, "Attributes"),
+    ("sss_k_save_2_1", (98, 151), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "HEALTH"),
+    ("sss_k_save_2_2", (98, 167), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "HUMAN"),
+    ("sss_k_save_2_3", (98, 183), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "SCIENC"),
+    ("sss_k_save_2_4", (98, 199), (42, 15), "#e6e6e6", "save_selection_screen_load", 1, 3, "ARTS"),
+    ("sss_k_save_2_5", (200, 133), (42, 15), "#e6e6e6", "save_selection_screen_load", 1, 3, "EXERC"),
+    ("sss_k_save_2_6", (200, 151), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "TRIVIA"),
+    ("sss_k_save_2_6", (200, 167), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "STYLE"),
+    ("sss_k_save_2_6", (200, 183), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "GUTS"),
+    ("sss_k_save_2_6", (200, 199), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "STRESS"),
 
     # ("chcr_k1_1_1", (120, 43), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_2", (120, 59), (48, 13), "#ffffff", detect_chcr_0, 0.8, 5),
@@ -481,7 +514,8 @@ class SelectableRectOverlay(OverlayWindow):
         self.bg_color = selectable_rect[3]
         self.screen_cue_id = selectable_rect[4]
         self.font_scaling = selectable_rect[5]
-        self.padding_x = selectable_rect[6] if len(selectable_rect) > 6 else 3
+        self.padding_x = selectable_rect[6]
+        self.fixed_text = selectable_rect[7] if len(selectable_rect) > 7 else None
 
         self.db = db if db is not None else NotebookDatabase()
         self.pcr = pcr if pcr is not None else PoorCR(only_perfect=True, padding_x=self.padding_x)
@@ -530,7 +564,8 @@ class SelectableRectOverlay(OverlayWindow):
         is_selected = self.group['is_selected_fn'](r, g, b)
         is_detected = is_unselected or is_selected
 
-        if is_detected and self.is_hidden:
+        # Calibrate if previously hidden
+        if is_detected and self.is_hidden and self.fixed_text is None:
             img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
             img_item_bw = self.group['bw_conversion_fn'](img_item)
 
@@ -546,26 +581,34 @@ class SelectableRectOverlay(OverlayWindow):
         return is_detected
 
     def update_text(self, img_ss: Image):
-        img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
-        img_item_bw = self.group['bw_conversion_fn'](img_item)
-        img_item_bw = imp.trim_text(img_item_bw)
-
-        if imp.check_is_text_empty(img_item_bw):
-            self.hide()
-            return
-
-        text_jp = self.pcr.detect(img_item_bw)
-        if is_str_empty(text_jp):
-            self.hide()
-            text = text_jp
+        if self.fixed_text is not None:
+            text = self.fixed_text
         else:
-            text_en = self.db.retrieve_translation(text_jp)
-            if text_en is None:
-                text_jp_processed, _ = Database.generalize_string(text_jp)
-                text_en = translator.translate_text(text_jp_processed)
-                self.db.insert_translation(text_jp, text_en)
-                print(f"Adding new notebook item: {text_jp_processed} - {text_en}")
-            text = text_en
+            img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
+            img_item_bw = self.group['bw_conversion_fn'](img_item)
+            img_item_bw = imp.trim_text(img_item_bw)
+
+            if imp.check_is_text_empty(img_item_bw):
+                self.hide()
+                return
+
+            text_jp = self.pcr.detect(img_item_bw)
+            if "?" in text_jp:
+                img_item_bw_np = np.array(img_item_bw.convert('1'))
+                self.pcr.calibrate(img_item_bw_np)
+                text_jp = self.pcr.detect(img_item_bw)
+
+            if is_str_empty(text_jp):
+                self.hide()
+                text = text_jp
+            else:
+                text_en = self.db.retrieve_translation(text_jp)
+                if text_en is None:
+                    text_jp_processed, _ = Database.generalize_string(text_jp)
+                    text_en = translator.translate_text(text_jp_processed)
+                    self.db.insert_translation(text_jp, text_en)
+                    print(f"Adding new notebook item: {text_jp_processed} - {text_en}")
+                text = text_en
 
         self.update(" " + text)
 

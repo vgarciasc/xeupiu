@@ -71,6 +71,10 @@ class OverlayWindow:
             print(f"Letterbox calibration done before window was fully rendered. Retrying...")
             return self.get_letterbox_offset(window_id)
 
+        # EXPERIMENTING! This is a hack added because in the title screen, there is no left flicker.
+        # This is solving my problems right now, but perhaps won't in the future. Keep this in mind.
+        left_offset = right_offset
+
         return left_offset, right_offset, top_offset, bottom_offset
 
     def get_window_dims(self, window_id: int):
