@@ -3,11 +3,16 @@ from constants import convert_birthday_to_str
 
 CONFIG = json.load(open('config.json', 'r', encoding='utf-8'))
 
+SIZE_WINDOW_BORDER_TOP = CONFIG["border_size"]["size_window_border_top"]
+SIZE_WINDOW_BORDER_BOTTOM = CONFIG["border_size"]["size_window_border_bottom"]
+SIZE_TOOLBAR = CONFIG["border_size"]["size_toolbar"]
+LEFT_OFFSET_CORRECTION = CONFIG["border_size"]["left_offset_correction"]
+
 if CONFIG['fullscreen']:
-    CONFIG["border_size"]["size_window_border_top"] = 0
-    CONFIG["border_size"]["size_window_border_bottom"] = 0
-    CONFIG["border_size"]["size_toolbar"] = 0
-    CONFIG["border_size"]["left_offset_correction"] = 0
+    SIZE_WINDOW_BORDER_TOP = 0
+    SIZE_WINDOW_BORDER_BOTTOM = 0
+    SIZE_TOOLBAR = 0
+    LEFT_OFFSET_CORRECTION = 0
 
 VERBOSE = CONFIG["debug"]
 WINDOW_TITLE = CONFIG["window_title"]

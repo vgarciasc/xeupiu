@@ -8,7 +8,7 @@ from PIL import Image
 
 from constants import *
 from screenshot import get_window_by_title, get_window_image
-from config import CONFIG
+from config import CONFIG, LEFT_OFFSET_CORRECTION, SIZE_WINDOW_BORDER_TOP, SIZE_TOOLBAR
 
 bg_img = None
 
@@ -82,10 +82,10 @@ class OverlayWindow:
 
         l_offset, r_offset, t_offset, b_offset = self.letterbox_offset
 
-        pos_x += l_offset + CONFIG["border_size"]["left_offset_correction"]
-        pos_y += CONFIG["border_size"]["size_toolbar"] + CONFIG["border_size"]["size_window_border_top"] + t_offset
-        width -= (l_offset + CONFIG["border_size"]["left_offset_correction"] + r_offset)
-        height -= (CONFIG["border_size"]["size_toolbar"] + CONFIG["border_size"]["size_window_border_top"] + t_offset + b_offset)
+        pos_x += l_offset + LEFT_OFFSET_CORRECTION
+        pos_y += SIZE_TOOLBAR + SIZE_WINDOW_BORDER_TOP + t_offset
+        width -= (l_offset + LEFT_OFFSET_CORRECTION + r_offset)
+        height -= (SIZE_TOOLBAR + SIZE_WINDOW_BORDER_TOP + t_offset + b_offset)
 
         self.game_scaling = width // 320
         self.font_size = min(self.game_scaling * 6, 24)
