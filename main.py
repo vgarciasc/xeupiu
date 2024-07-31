@@ -8,6 +8,7 @@ from PIL import Image
 from thefuzz import fuzz
 
 from character_creation_handler import CharacterCreationHandler
+from title_screen_overlay import TitleScreenOverlayWindow
 from confession_handler import ConfessionHandler
 from constants import convert_date_jp2en
 from database import Database
@@ -46,6 +47,7 @@ try:
     overlay_dateymds = [YearMonthDayOverlayWindow(window_id, i) for i in range(3)]
     overlay_rects = [SelectableRectOverlay(window_id, i, db_notebook) for i in range(len(SELECTABLE_RECTS))]
     overlay_weekday = WeekdayOverlayWindow(window_id)
+    overlay_tss = [TitleScreenOverlayWindow(window_id, i) for i in range(2)]
     character_creation_handler = CharacterCreationHandler(window_id)
     confession_handler = ConfessionHandler(window_id)
 
@@ -100,6 +102,8 @@ try:
         for overlay_rect in overlay_rects:
             overlay_rect.step(*img_ss_rgb, img_ss, cue_dict)
         overlay_weekday.hide_if_not_needed(*img_ss_rgb, img_ss)
+        for overlay_ts in overlay_tss:
+            overlay_ts.hide_if_not_needed(*img_ss_rgb, img_ss)
         overlay_weekday.update_weekday(img_ss)
 
         img_tb = imp.crop_textbox_image(img_ss)
