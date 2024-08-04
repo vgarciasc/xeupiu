@@ -66,13 +66,14 @@ class PoorCR:
     to detect text in images. We can do this for the textboxes because the font is always the same (MS Gothic 11x11).
     """
 
-    def __init__(self, only_perfect=False, padding_x=3):
+    def __init__(self, only_perfect=False, padding_x=3, should_calibrate=True):
         self.only_perfect = only_perfect
         self.padding_x = padding_x
 
         os.makedirs("data/log", exist_ok=True)
 
         self.calibration_history = []
+        self.should_calibrate = should_calibrate
 
     def detect(self, img_line_bw, should_recalibrate=False):
         """
@@ -86,7 +87,10 @@ class PoorCR:
 
         # Calibrate if no calibration exists
         if not self.calibration_history:
-            self.calibrate(img_line_bw_np_original)
+            if self.should_calibrate:
+                self.calibrate(img_line_bw_np_original)
+            else:
+                self.calibration_history = [(0, 0)]
 
         for calibration in self.calibration_history:
             img_line_bw_np = self.apply_calibration(img_line_bw_np_original, calibration)

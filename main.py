@@ -8,6 +8,7 @@ from PIL import Image
 from thefuzz import fuzz
 
 from character_creation_handler import CharacterCreationHandler
+from scrolling_epilogue_handler import ScrollingEpilogueHandler
 from title_screen_overlay import TitleScreenOverlayWindow
 from save_selection_overlay import SaveSelectionOverlayWindow
 from confession_handler import ConfessionHandler
@@ -52,6 +53,7 @@ try:
     overlay_sss = [SaveSelectionOverlayWindow(window_id, i) for i in range(4)]
     character_creation_handler = CharacterCreationHandler(window_id)
     confession_handler = ConfessionHandler(window_id)
+    scrolling_epilogue_handler = ScrollingEpilogueHandler(window_id)
 
     last_translated_text_ocr = None
     last_inserted_text_ocr = None
@@ -75,8 +77,9 @@ try:
                                Image.NEAREST)
         img_ss_rgb = np.array(img_ss.convert('RGB')).T
 
-        character_creation_handler.detect(img_ss_rgb, img_ss)
-        confession_handler.detect(img_ss_rgb)
+        character_creation_handler.handle(img_ss_rgb, img_ss)
+        confession_handler.handle(img_ss_rgb)
+        scrolling_epilogue_handler.handle(img_ss_rgb, img_ss)
 
         # Detecting cues for various selectable rects
         cue_dict = {}

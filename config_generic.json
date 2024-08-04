@@ -17,7 +17,8 @@
         "names_filepath": "data/texts/database_names.csv",
         "text_filepath": "data/texts/database_text.csv",
         "notebook_filepath": "data/texts/database_notebook.csv",
-        "confession_filepath": "data/texts/database_confessions.csv"
+        "confession_filepath": "data/texts/database_confessions.csv",
+        "epilogue_filepath": "data/texts/database_epilogues.csv"
     },
     "save": {
         "player": {

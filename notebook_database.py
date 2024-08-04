@@ -3,8 +3,8 @@ from database import Database
 from config import CONFIG
 
 class NotebookDatabase(Database):
-    def __init__(self):
-        super().__init__(CONFIG["databases"]["notebook_filepath"])
+    def __init__(self, filepath=CONFIG["databases"]["notebook_filepath"]):
+        super().__init__(filepath)
 
     def retrieve_translation(self, notebook_item_jp: str):
         notebook_item_jp, str_metadata = self.generalize_string(notebook_item_jp.strip())

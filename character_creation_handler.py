@@ -22,7 +22,7 @@ class CharacterCreationHandler:
         self.window_id = window_id
         self.pcr = PoorCR(padding_x=4)
 
-    def detect(self, img_ss_rgb: np.ndarray, img_ss: Image):
+    def handle(self, img_ss_rgb: np.ndarray, img_ss: Image):
         if detect_character_creation_player(img_ss_rgb):
             self.handle_character_creation_player(img_ss)
 
@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
     img_ss_rgb = np.array(img_ss.convert('RGB')).T
 
-    cch.detect(img_ss_rgb, img_ss)
+    cch.handle(img_ss_rgb, img_ss)
 
 
 

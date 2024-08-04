@@ -31,10 +31,11 @@ class ConfessionHandler:
         self.window_id = window_id
         # self.pcr = PoorCR(padding_x=4)
         self.db = ConfessionDatabase()
+        self.confession_made = False
         self.subtitle_overlay = ConfessionSubtitleOverlay(window_id)
 
-    def detect(self, img_ss_rgb: np.ndarray) -> None:
-        if detect_confession(img_ss_rgb):
+    def handle(self, img_ss_rgb: np.ndarray) -> None:
+        if detect_confession(img_ss_rgb) and not self.confession_made:
             character = detect_confession_character(img_ss_rgb)
             if character is not None:
                 self.subtitle_overlay.show()
@@ -58,6 +59,7 @@ class ConfessionHandler:
                 time_elapsed = tok - tik
                 time.sleep(max(0, row["Duration"] - time_elapsed))
 
+        self.confession_made = True
         self.subtitle_overlay.hide()
 
     def display_text_subtitle(self, text: str, speed : float = 1, color: str = 'white'):
@@ -89,7 +91,7 @@ if __name__ == "__main__":
 
         img_ss_rgb = np.array(img_ss.convert('RGB')).T
 
-        ch.detect(img_ss_rgb)
+        ch.handle(img_ss_rgb)
 
 
 
