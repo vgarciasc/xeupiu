@@ -180,6 +180,14 @@ def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
 
     return c == count
 
+def detect_mark_by_count_min(red, green, blue, x, y, w, h, r, g, b, min):
+    c = get_count_by_equality(red, green, blue, x, y, w, h, r, g, b)
+
+    if VERBOSE:
+        print(f"\tCount: {c}, expected: greater than {min}")
+
+    return c > min
+
 def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max, count):
     c = get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max)
 
@@ -233,6 +241,20 @@ SCREEN_CUES = [
     { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": [] },
     { "id": "nb_2col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16), "prerequisites": [] },
     { "id": "nb_2col2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9), "prerequisites": [] },
+    { "id": "nb_3col_1_1.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_1.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_1.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_1.4", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 112, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_1.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_2.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_2.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_2.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_2.4", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 112, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_2.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_3.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_3.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_3.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col_1_3.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
     { "id": "ng_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42), "prerequisites": [] },
     { "id": "ng_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,160, 21, 16, 15, 41, 164, 255, 76), "prerequisites": [] },
     { "id": "an", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 7, 16, 8, 45, 49, 0, 0, 87), "prerequisites": [] },
@@ -280,21 +302,21 @@ SCREEN_CUES = [
 
 SELECTABLE_RECTS = [
     ("nb_3col1_h", (20, 35), (256, 16), "#e0e0e0", "nb_3col1", 1, 3),
-    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
-    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
-    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
-    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
-    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", "nb_3col1", 1, 3),
-    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", "nb_3col1", 1, 3),
-    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", "nb_3col1", 1, 3),
-    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", "nb_3col1", 1, 3),
-    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", "nb_3col1", 1, 3),
-    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", "nb_3col1", 1, 3),
-    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", "nb_3col1", 1, 3),
-    ("nb_3col1_3.2", (200, 80), (72, 16), "#d5d5d5", "nb_3col1", 1, 3),
-    ("nb_3col1_3.3", (200, 96), (72, 16), "#d2d2d2", "nb_3col1", 1, 3),
-    ("nb_3col1_3.4", (200, 112), (72, 16), "#cacaca", "nb_3col1", 1, 3),
-    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", "nb_3col1", 1, 3),
+    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", "nb_3col_1_1.1", 1, 3, "Yoshio Saotome"),
+    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", "nb_3col_1_1.2", 1, 3, "Shiori Fujisaki"),
+    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", "nb_3col_1_1.3", 1, 3, "Mio Kisaragi"),
+    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", "nb_3col_1_1.4", 1, 3, "Yuina Himoo"),
+    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", "nb_3col_1_1.5", 1, 3, "Ayako Katagiri"),
+    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", "nb_3col_1_2.1", 1, 3, "Saki Nijino"),
+    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", "nb_3col_1_2.2", 1, 3, "Yukari Koshiki"),
+    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", "nb_3col_1_2.3", 1, 3, "Nozomi Kiyokawa"),
+    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", "nb_3col_1_2.4", 1, 3, "Mira Kagami"),
+    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", "nb_3col_1_2.5", 1, 3, "Yuko Asahina"),
+    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", "nb_3col_1_3.1", 1, 3, "Megumi Mikihara"),
+    ("nb_3col1_3.2", (200, 80), (72, 16), "#d5d5d5", "nb_3col_1_3.2", 1, 3, "Yumi Saotome"),
+    ("nb_3col1_3.3", (200, 96), (72, 16), "#d2d2d2", "nb_3col_1_3.3", 1, 3, "Rei Ijuin"),
+    # ("nb_3col1_3.4", (200, 112), (72, 16), "#cacaca", ", 1, 3),
+    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", "nb_3col_1_3.5", 1, 3, "Cancel"),
 
     ("nb_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
     ("nb_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
