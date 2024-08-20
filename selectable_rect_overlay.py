@@ -238,23 +238,39 @@ SCREEN_CUES = [
     { "id": "dc_2col1", "fn": detect_mark_textbox_choice3, "prerequisites": [] },
     { "id": "csc_1", "fn": detect_mark_character_selection_choice_1, "prerequisites": [] },
     { "id": "csc_2", "fn": detect_mark_character_selection_choice_2, "prerequisites": [] },
-    { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": [] },
     { "id": "nb_2col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16), "prerequisites": [] },
     { "id": "nb_2col2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9), "prerequisites": [] },
-    { "id": "nb_3col_1_1.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_1.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_1.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_1.4", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 112, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_1.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_2.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_2.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_2.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_2.4", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 112, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_2.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_3.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_3.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_3.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
-    { "id": "nb_3col_1_3.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": [] },
+    { "id": "nb_3col1_club", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,20, 35, 256, 16, 132, 132, 164, 165), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col1_club_1.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_1.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_1.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_1.4", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 112, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_1.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_2.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_2.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_2.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_2.4", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 112, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_2.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_3.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_3.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_3.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_club_3.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
+    { "id": "nb_3col1_phone", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,20, 35, 256, 16, 132, 132, 164, 209), "prerequisites": ["nb_3col1"] },
+    { "id": "nb_3col1_phone_1.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_1.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_1.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_1.4", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 112, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_1.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_2.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_2.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_2.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_2.4", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 112, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_2.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 108, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_3.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_3.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_3.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
+    { "id": "nb_3col1_phone_3.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
     { "id": "ng_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42), "prerequisites": [] },
     { "id": "ng_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,160, 21, 16, 15, 41, 164, 255, 76), "prerequisites": [] },
     { "id": "an", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 7, 16, 8, 45, 49, 0, 0, 87), "prerequisites": [] },
@@ -301,22 +317,34 @@ SCREEN_CUES = [
 ]
 
 SELECTABLE_RECTS = [
-    ("nb_3col1_h", (20, 35), (256, 16), "#e0e0e0", "nb_3col1", 1, 3),
-    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", "nb_3col_1_1.1", 1, 3, "Yoshio Saotome"),
-    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", "nb_3col_1_1.2", 1, 3, "Shiori Fujisaki"),
-    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", "nb_3col_1_1.3", 1, 3, "Mio Kisaragi"),
-    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", "nb_3col_1_1.4", 1, 3, "Yuina Himoo"),
-    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", "nb_3col_1_1.5", 1, 3, "Ayako Katagiri"),
-    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", "nb_3col_1_2.1", 1, 3, "Saki Nijino"),
-    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", "nb_3col_1_2.2", 1, 3, "Yukari Koshiki"),
-    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", "nb_3col_1_2.3", 1, 3, "Nozomi Kiyokawa"),
-    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", "nb_3col_1_2.4", 1, 3, "Mira Kagami"),
-    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", "nb_3col_1_2.5", 1, 3, "Yuko Asahina"),
-    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", "nb_3col_1_3.1", 1, 3, "Megumi Mikihara"),
-    ("nb_3col1_3.2", (200, 80), (72, 16), "#d5d5d5", "nb_3col_1_3.2", 1, 3, "Yumi Saotome"),
-    ("nb_3col1_3.3", (200, 96), (72, 16), "#d2d2d2", "nb_3col_1_3.3", 1, 3, "Rei Ijuin"),
-    # ("nb_3col1_3.4", (200, 112), (72, 16), "#cacaca", ", 1, 3),
-    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", "nb_3col_1_3.5", 1, 3, "Cancel"),
+    ("nb_3col1_h", (20, 35), (256, 16), "#e0e0e0", "nb_3col1_club", 1, 3, "Club list"),
+    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", "nb_3col1_club_1.1", 1, 3, "Literature"),
+    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", "nb_3col1_club_1.2", 1, 3, "Theatre"),
+    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", "nb_3col1_club_1.3", 1, 3, "Science"),
+    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", "nb_3col1_club_1.4", 1, 3, "Cyber"),
+    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", "nb_3col1_club_1.5", 1, 3, "Art"),
+    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", "nb_3col1_club_2.1", 1, 3, "Brass band"),
+    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", "nb_3col1_club_2.2", 1, 3, "Baseball"),
+    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", "nb_3col1_club_2.3", 1, 3, "Soccer"),
+    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", "nb_3col1_club_2.4", 1, 3, "Tennis"),
+    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", "nb_3col1_club_2.5", 1, 3, "Swimming"),
+    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", "nb_3col1_club_3.1", 1, 3, "Basketball"),
+    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", "nb_3col1_club_3.5", 1, 3, "Cancel"),
+    ("nb_3col1_h", (20, 35), (256, 16), "#e0e0e0", "nb_3col1_phone", 1, 3, "Contacts"),
+    ("nb_3col1_1.1", (24, 64), (72, 16), "#e0e0e0", "nb_3col1_phone_1.1", 1, 3, "Yoshio Saotome"),
+    ("nb_3col1_1.2", (24, 80), (72, 16), "#e0e0e0", "nb_3col1_phone_1.2", 1, 3, "Shiori Fujisaki"),
+    ("nb_3col1_1.3", (24, 96), (72, 16), "#e0e0e0", "nb_3col1_phone_1.3", 1, 3, "Mio Kisaragi"),
+    ("nb_3col1_1.4", (24, 112), (72, 16), "#e0e0e0", "nb_3col1_phone_1.4", 1, 3, "Yuina Himoo"),
+    ("nb_3col1_1.5", (24, 128), (72, 16), "#dddddd", "nb_3col1_phone_1.5", 1, 3, "Ayako Katagiri"),
+    ("nb_3col1_2.1", (108, 64), (72, 16), "#e0e0e0", "nb_3col1_phone_2.1", 1, 3, "Saki Nijino"),
+    ("nb_3col1_2.2", (108, 80), (72, 16), "#dedede", "nb_3col1_phone_2.2", 1, 3, "Yukari Koshiki"),
+    ("nb_3col1_2.3", (108, 96), (72, 16), "#d8d8d8", "nb_3col1_phone_2.3", 1, 3, "Nozomi Kiyokawa"),
+    ("nb_3col1_2.4", (108, 112), (72, 16), "#d3d3d3", "nb_3col1_phone_2.4", 1, 3, "Mira Kagami"),
+    ("nb_3col1_2.5", (108, 128), (72, 16), "#cecece", "nb_3col1_phone_2.5", 1, 3, "Yuko Asahina"),
+    ("nb_3col1_3.1", (200, 64), (72, 16), "#d8d8d8", "nb_3col1_phone_3.1", 1, 3, "Megumi Mikihara"),
+    ("nb_3col1_3.2", (200, 80), (72, 16), "#d5d5d5", "nb_3col1_phone_3.2", 1, 3, "Yumi Saotome"),
+    ("nb_3col1_3.3", (200, 96), (72, 16), "#d2d2d2", "nb_3col1_phone_3.3", 1, 3, "Rei Ijuin"),
+    ("nb_3col1_3.5", (200, 128), (72, 16), "#c8c8c8", "nb_3col1_phone_3.5", 1, 3, "Cancel"),
 
     ("nb_2col1_1.1", (35, 55), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
     ("nb_2col1_1.2", (35, 67), (100, 13), "#e0e0e0", "nb_2col1", 1, 3),
@@ -543,6 +571,7 @@ class SelectableRectOverlay(OverlayWindow):
         self.pcr = pcr if pcr is not None else PoorCR(only_perfect=True, padding_x=self.padding_x)
 
         self.is_cue_detected = False
+        self.last_overlay_area_rgb = None
 
         for key, val in SELECTABLE_RECT_GROUPS.items():
             if self.item_id.startswith(key):
@@ -607,6 +636,11 @@ class SelectableRectOverlay(OverlayWindow):
             text = self.fixed_text
         else:
             img_item = img_ss.crop((self.rect_x, self.rect_y, (self.rect_x + self.rect_w), (self.rect_y + self.rect_h)))
+            img_item_rgb = np.array(img_item.convert('RGB')).T
+
+            if self.last_overlay_area_rgb is not None and np.all(self.last_overlay_area_rgb == img_item_rgb):
+                return
+
             img_item_bw = self.group['bw_conversion_fn'](img_item)
             img_item_bw = imp.trim_text(img_item_bw)
 
