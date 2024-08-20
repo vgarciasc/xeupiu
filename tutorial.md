@@ -26,7 +26,6 @@ The game is already playable, but the game script has not been fully collected y
 1. Download the latest XEUPIU tool release [here](https://github.com/vgarciasc/xeupiu).
 2. Unzip it somewhere.
 3. Start up the game's ROM
-4. In the game's title screen, press START
-5. In the screen that follows, press START twice
-   
-   From this character naming screen onwards, the game is fully translated. 
+4. Once you're at the game's title screen, press START.
+5. Open the XEUPIU tool.
+6. Enjoy!
