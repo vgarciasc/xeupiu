@@ -1,10 +1,13 @@
 import time
+from datetime import datetime
+
 import pandas as pd
 import numpy as np
 from PIL import Image
 from config import CONFIG, save_config_to_json
 from constants import convert_jp_str_to_int
-from image_processing import get_count_by_equality, convert_to_black_and_white, extract_characters
+from image_processing import get_count_by_equality, convert_to_black_and_white, extract_characters, \
+    get_count_by_thresholds
 from confession_subtitle_overlay import ConfessionSubtitleOverlay
 from overlay import OverlayWindow
 from poorcr import PoorCR
@@ -45,28 +48,26 @@ class ConfessionHandler:
 
     def start_confession(self, character: str):
         script = self.db.retrieve_confession_script(character)
+
         for i, row in script.iterrows():
+            tik = time.perf_counter()
             if row["Character"] == "<PLAYER_NAME>":
-                tik = time.perf_counter()
                 self.display_text_subtitle(row["Text"], color='grey')
-                tok = time.perf_counter()
-                time_elapsed = tok - tik
-                time.sleep(max(0, row["Duration"] - time_elapsed))
             else:
-                tik = time.perf_counter()
                 self.subtitle_overlay.update(row["Text"], color='white')
-                tok = time.perf_counter()
-                time_elapsed = tok - tik
-                time.sleep(max(0, row["Duration"] - time_elapsed))
+            tok = time.perf_counter()
+            time_elapsed = tok - tik
+
+            time.sleep(max(0, row["Duration"] - time_elapsed))
 
         self.confession_made = True
         self.subtitle_overlay.hide()
 
     def display_text_subtitle(self, text: str, speed : float = 1, color: str = 'white'):
-        for i, _ in enumerate(text):
-            self.subtitle_overlay.update(text[:i+1], color=color)
-            time.sleep(0.05 * 1/speed)
-        self.subtitle_overlay.update(text)
+        # for i, _ in enumerate(text):
+        #     self.subtitle_overlay.update(text[:i+1], color=color)
+        #     time.sleep(0.05 * 1/speed)
+        self.subtitle_overlay.update(text, color=color)
 
 
 
