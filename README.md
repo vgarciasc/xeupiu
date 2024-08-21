@@ -26,7 +26,7 @@ It's a CSV, like [this](https://github.com/vgarciasc/xeupiu/blob/main/data/texts
 
 ## Can I already play this?
 
-The tool is completely playable with machine translation, but human translation is still in progress.
+The tool is completely playable with machine translation, but human translation is still in progress. A tutorial on how to set it up can be found [here](tutorial.md).
 
 ## How can I help?
 
