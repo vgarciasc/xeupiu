@@ -1,3 +1,5 @@
+# Running XEUPIU
+
 ## How to install
 
 ### Setting up the emulator
@@ -29,3 +31,21 @@ The game is already playable, but the game script has not been fully collected y
 4. Once you're at the game's title screen, press START.
 5. Open the XEUPIU tool.
 6. Enjoy!
+
+## Frequently Asked Questions
+
+### 1. The overlays are being shown even when the game is minimized!
+
+We are aware of this issue, however it's low priority right now. For the time being, we suggest simply closing the tool when you are not playing the game, to make the overlays go away.
+
+### 2. I moved the game screen, but the overlays did not follow!
+
+Just as above: we are aware of this issue, however it's low priority right now. Please maintain the game screen in the same position after opening the tool; if you want to change its position, simply close the tool and reopen it again.
+
+### 3. During phone conversations, the textbox overlay disappears after choosing which girl to get info on!
+
+Most probable cause is that the cursor became free-form. Please move it outside the textbox so it can be correctly detected.
+
+### 4. The game crashed and I don't know why!
+
+If none of the questions above apply to your case, please reach out on our [Discord server](https://discord.gg/QzYTyPQn)!
