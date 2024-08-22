@@ -73,9 +73,6 @@ class App:
             self.handle_error(e)
 
     def step(self):
-        img_ss = None
-        img_tb = None
-
         try:
             print_str = ""
             tik = time.perf_counter_ns()
@@ -89,6 +86,9 @@ class App:
                                     img_ss.size[1] // self.overlay_tb.game_scaling),
                                    Image.NEAREST)
             img_ss_rgb = np.array(img_ss.convert('RGB')).T
+
+            self.img_ss = img_ss
+            self.img_ss_rgb = img_ss_rgb
 
             self.character_creation_handler.handle(img_ss_rgb, img_ss)
             self.confession_handler.handle(img_ss_rgb)
@@ -254,24 +254,15 @@ class App:
                 print(print_str)
 
         except Exception as e:
-            self.handle_error(e, img_ss, img_tb)
+            self.handle_error(e)
 
-    def handle_error(self, e, img_ss=None, img_tb=None):
+    def handle_error(self, e):
         timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
-        os.makedirs(f"data/log/{timestamp}", exist_ok=True)
 
-        with open(f"data/log/{timestamp}/error.txt", "w", encoding="utf-8") as f:
+        self.log_everything(timestamp)
+
+        with open(f"data/log/{timestamp}/error_{timestamp}.txt", "w", encoding="utf-8") as f:
             f.write(traceback.format_exc())
-
-        if self.print_str_history:
-            with open(f"data/log/{timestamp}/log.txt", "w", encoding="utf-8") as f:
-                f.write("\n".join(self.print_str_history))
-
-        if img_ss is not None:
-            img_ss.save(f"data/log/{timestamp}/img_ss.png")
-
-        if img_tb is not None:
-            img_tb.save(f"data/log/{timestamp}/img_tb.png")
 
         ctypes.windll.user32.MessageBoxW(0,
                                          f"An error has occurred:\n\"{e}\"\n\nPlease check full log at the folder "
@@ -279,6 +270,27 @@ class App:
                                          "Project XEUPIU - Error!", 0x40000)
 
         raise e
+
+    def log_everything(self, timestamp=None, print_history=None):
+        if timestamp is None:
+            timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
+
+        os.makedirs(f"data/log/{timestamp}", exist_ok=True)
+
+        if print_history is None:
+            print_history = "\n".join(self.print_str_history)
+
+        if print_history is not None:
+            with open(f"data/log/{timestamp}/log_{timestamp}.txt", "w", encoding="utf-8") as f:
+                f.write(print_history)
+
+        if self.img_ss is not None:
+            self.img_ss.save(f"data/log/{timestamp}/img_ss_{timestamp}.png")
+
+        if self.img_tb is not None:
+            self.img_tb.save(f"data/log/{timestamp}/img_tb_{timestamp}.png")
+
+        print(f"Logged everything at folder 'data/log/{timestamp}'.")
 
     def close(self):
         for overlay in self.overlays:

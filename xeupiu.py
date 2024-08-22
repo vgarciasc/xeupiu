@@ -33,7 +33,7 @@ class XeupiuControlPanel:
         root.resizable(False, False)
         root.iconbitmap("data/resources/icon.ico")
 
-        window_width = 900
+        window_width = 1024
         window_height = 800
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
@@ -43,11 +43,16 @@ class XeupiuControlPanel:
         root.geometry(f"{window_width}x{window_height}+{x_coordinate}+{y_coordinate}")
 
         # Create frames for left and right panels
-        left_frame = tk.Frame(root)
+        left_frame = tk.Frame(root, width=10)
         left_frame.pack(side=tk.LEFT, padx=10, pady=10)
+        # left_frame.grid_columnconfigure(0, weight=1)
+        # left_frame.grid_columnconfigure(1, weight=1)
 
-        right_frame = tk.Frame(root)
-        right_frame.pack(side=tk.RIGHT, padx=10, pady=10)
+        right_frame = tk.Frame(root, width=40)
+        right_frame.pack(side=tk.RIGHT, padx=10, pady=10, fill=tk.BOTH, expand=True)
+
+        # right_frame.grid_columnconfigure(0, weight=1)
+        # right_frame.grid_columnconfigure(1, weight=1)
 
         # Left panel - Input fields
         jp_name_var = tk.StringVar(value=CONFIG['save']['player']['jp_name'])
@@ -63,53 +68,56 @@ class XeupiuControlPanel:
 
         tk.Label(left_frame, text="Japanese surname:").grid(row=2, column=0, sticky=tk.W)
         self.jp_surname_entry = tk.Entry(left_frame, textvariable=jp_surname_var, state="disabled")
-        self.jp_surname_entry.grid(row=2, column=1)
+        self.jp_surname_entry.grid(row=2, column=1, sticky=tk.E)
 
         tk.Label(left_frame, text="Japanese name:").grid(row=3, column=0, sticky=tk.W)
         self.jp_name_entry = tk.Entry(left_frame, textvariable=jp_name_var, state="disabled")
-        self.jp_name_entry.grid(row=3, column=1)
+        self.jp_name_entry.grid(row=3, column=1, sticky=tk.E)
 
         tk.Label(left_frame, text="Japanese nickname:").grid(row=4, column=0, sticky=tk.W)
         self.jp_nickname_entry = tk.Entry(left_frame, textvariable=jp_nickname_var, state="disabled")
-        self.jp_nickname_entry.grid(row=4, column=1)
+        self.jp_nickname_entry.grid(row=4, column=1, sticky=tk.E)
 
         tk.Label(left_frame, text="English name:").grid(row=5, column=0, sticky=tk.W)
         self.en_name_entry = tk.Entry(left_frame, textvariable=en_name_var)
-        self.en_name_entry.grid(row=5, column=1)
+        self.en_name_entry.grid(row=5, column=1, sticky=tk.E)
 
         tk.Label(left_frame, text="English surname:").grid(row=6, column=0, sticky=tk.W)
         self.en_surname_entry = tk.Entry(left_frame, textvariable=en_surname_var)
-        self.en_surname_entry.grid(row=6, column=1)
+        self.en_surname_entry.grid(row=6, column=1, sticky=tk.E)
 
         tk.Label(left_frame, text="English nickname:").grid(row=7, column=0, sticky=tk.W)
         self.en_nickname_entry = tk.Entry(left_frame, textvariable=en_nickname_var)
-        self.en_nickname_entry.grid(row=7, column=1)
+        self.en_nickname_entry.grid(row=7, column=1, sticky=tk.E)
 
         tk.Label(left_frame, text="DeepL Key:").grid(row=8, column=0, sticky=tk.W)
         self.deepL_key_entry = tk.Entry(left_frame, textvariable=deepL_key_var, show="*")
-        self.deepL_key_entry.grid(row=8, column=1)
+        self.deepL_key_entry.grid(row=8, column=1, sticky=tk.E)
 
         tk.Label(left_frame, text="Verbose level:").grid(row=9, column=0, sticky=tk.W)
         self.verbose_var = tk.IntVar(value=CONFIG['verbose_level'])
         self.verbose_entry = tk.Entry(left_frame, textvariable=self.verbose_var)
-        self.verbose_entry.grid(row=9, column=1)
+        self.verbose_entry.grid(row=9, column=1, sticky=tk.E)
 
         self.fullscreen_var = tk.IntVar(value=CONFIG['fullscreen'])
         self.fullscreen_checkbox = tk.Checkbutton(left_frame, text="Fullscreen", variable=self.fullscreen_var)
-        self.fullscreen_checkbox.grid(row=10, columnspan=2, column=0, sticky=tk.W)
+        self.fullscreen_checkbox.grid(row=10, column=0, columnspan=2, sticky=tk.W)
 
-        self.run_button = tk.Button(left_frame, text="Save and run", command=self.save_and_run)
+        self.run_button = tk.Button(left_frame, text="Save and run", command=self.save_and_run, width=15)
         self.run_button.grid(row=11, column=0, pady=5, sticky=tk.E)
 
-        self.exit_button = tk.Button(left_frame, text="Close app", command=self.close)
+        self.exit_button = tk.Button(left_frame, text="Close app", command=self.close, width=15)
         self.exit_button.grid(row=11, column=1, pady=5, padx=5, sticky=tk.W)
         self.exit_button.config(state="disabled")
 
+        self.log_button = tk.Button(left_frame, text="(DEBUG) Log everything", command=self.log_everything)
+        self.log_button.grid(row=12, column=0, columnspan=2, pady=5)
+
         separator = ttk.Separator(left_frame, orient="horizontal")
-        separator.grid(row=12, columnspan=2, pady=10, sticky="ew")
+        separator.grid(row=13, columnspan=2, pady=10, sticky="ew")
 
         notes_label = tk.Label(left_frame, text="NOTES:", font=("Arial", 10, "bold"))
-        notes_label.grid(row=13, column=0, columnspan=2, sticky=tk.W)
+        notes_label.grid(row=14, column=0, columnspan=2, sticky=tk.W)
 
         notes_text = tk.Label(left_frame, text='1. When creating your save, please make sure to input the japanese '
                                                'name, surname, and nickname displayed above. This will guarantee that '
@@ -117,24 +125,23 @@ class XeupiuControlPanel:
                                                'with your desired names you want to use in the game.\n\n'
                                                '2. At the current phase of the project, a valid DeepL Key is required '
                                                'for the translation of the game. Please make sure to input a valid key '
-                                               '-- the free ones are limited to 500k characters per month, but this is '
-                                               'more than enough to play through the game multiple times. '
-                                               'Visit the DeepL website for more information.\n\n'
+                                               '-- the free ones are more than enough to play through the game multiple '
+                                               'times. Visit the DeepL website for more information.\n\n'
                                                '3. If you encounter any problems, please read the FAQ in the ' 
                                                'XEUPIU GitHub repository.\n\n'
                                                '4. Enjoy the game!',
-                              wraplength=300, justify=tk.LEFT)
-        notes_text.grid(row=14, column=0, columnspan=2, sticky=tk.W)
+                              wraplength=0.3*window_width, justify=tk.LEFT)
+        notes_text.grid(row=15, column=0, columnspan=2, sticky=tk.W)
 
         separator = ttk.Separator(left_frame, orient="horizontal")
-        separator.grid(row=15, columnspan=2, pady=10, sticky="ew")
+        separator.grid(row=16, columnspan=2, pady=10, sticky="ew")
 
         notes_label = tk.Label(left_frame, text=f"XEUPIU {CONFIG['version']}\n"
                                                 f"typed in brazil by vinizinho, 2024", font=("Courier", 10, "italic"))
-        notes_label.grid(row=16, column=0, columnspan=2, sticky=tk.W)
+        notes_label.grid(row=17, column=0, columnspan=2, sticky=tk.N)
 
         # Right panel - Text area
-        self.output_text = scrolledtext.ScrolledText(right_frame, wrap=tk.WORD, width=70, height=50, bg="black",
+        self.output_text = scrolledtext.ScrolledText(right_frame, wrap=tk.WORD, bg="black", height=50,
                                                      fg="white", font=("MS Gothic", 12))
         self.output_text.pack()
 
@@ -192,6 +199,11 @@ class XeupiuControlPanel:
         # self.exit_button.config(state="disabled")
         # self.run_button.config(state="active")
         # self.app.close()
+
+    def log_everything(self):
+        print_history = self.output_text.get("1.0", 'end-1c')
+        if self.app is not None:
+            self.app.log_everything(print_history=print_history)
 
 if __name__ == "__main__":
     xcp = XeupiuControlPanel()
