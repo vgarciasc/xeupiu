@@ -111,7 +111,7 @@ class OverlayWindow:
         bg_img = tk.PhotoImage(file="data/backgrounds/emerald_bg_4x.png")
 
         self.root.geometry(f"{self.textbox_width}x{self.textbox_height}+{self.pos_x}+{self.pos_y}")
-        self.label = tk.Label(self.root, text="asdf", font=("MS PGothic", self.font_size), fg='white',
+        self.label = tk.Label(self.root, text="Loading...", font=("MS PGothic", self.font_size), fg='white',
                               wraplength=self.textbox_width, justify='left',
                               image=bg_img, compound='center')
         self.label.pack()
