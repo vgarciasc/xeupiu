@@ -227,17 +227,19 @@ def detect_mark_character_selection_choice_1(red, green, blue):
 def detect_mark_character_selection_choice_2(red, green, blue):
     is_players_house = detect_mark_by_count(red, green, blue, 252, 105, 29, 32, 173, 107, 82, 5)
     is_shinto_shrine = detect_mark_by_count(red, green, blue, 13, 90, 23, 27, 239, 222, 222, 64)
+    is_corridor_school = detect_mark_by_count(red, green, blue, 9, 20, 50, 90, 58, 74, 66, 24)
 
     is_selection_on_textbox = 30 < get_count_by_thresholds(red, green, blue, 16, 160, 280, 63, 60, 120, 160, 190, 20, 80) < 300
 
-    return (is_players_house or is_shinto_shrine) and is_selection_on_textbox
+    return (is_players_house or is_shinto_shrine or is_corridor_school) and is_selection_on_textbox
 
 SCREEN_CUES = [
-    { "id": "dc_3row1", "fn": detect_mark_textbox_choice1, "prerequisites": [] },
-    { "id": "dc_3row2", "fn": detect_mark_textbox_choice2, "prerequisites": [] },
-    { "id": "dc_2col1", "fn": detect_mark_textbox_choice3, "prerequisites": [] },
-    { "id": "csc_1", "fn": detect_mark_character_selection_choice_1, "prerequisites": [] },
-    { "id": "csc_2", "fn": detect_mark_character_selection_choice_2, "prerequisites": [] },
+    { "id": "textbox", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 16, 159, 288, 64, 164, 49, 25, 800), "prerequisites": []},
+    { "id": "dc_3row1", "fn": detect_mark_textbox_choice1, "prerequisites": ["textbox"] },
+    { "id": "dc_3row2", "fn": detect_mark_textbox_choice2, "prerequisites": ["textbox"] },
+    { "id": "dc_2col1", "fn": detect_mark_textbox_choice3, "prerequisites": ["textbox"] },
+    { "id": "csc_1", "fn": detect_mark_character_selection_choice_1, "prerequisites": ["textbox"] },
+    { "id": "csc_2", "fn": detect_mark_character_selection_choice_2, "prerequisites": ["textbox"] },
     { "id": "nb_2col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16), "prerequisites": [] },
     { "id": "nb_2col2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9), "prerequisites": [] },
     { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": [] },
