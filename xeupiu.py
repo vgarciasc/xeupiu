@@ -5,6 +5,7 @@ import sys
 from app import App
 from config import CONFIG, save_config_to_json
 
+
 class StdoutRedirector:
     def __init__(self, text_area):
         self.text_area = text_area
@@ -88,19 +89,21 @@ class XeupiuControlPanel:
         self.deepL_key_entry = tk.Entry(left_frame, textvariable=deepL_key_var, show="*")
         self.deepL_key_entry.grid(row=8, column=1)
 
+        tk.Label(left_frame, text="Verbose level:").grid(row=9, column=0, sticky=tk.W)
+        self.verbose_var = tk.IntVar(value=CONFIG['verbose_level'])
+        self.verbose_entry = tk.Entry(left_frame, textvariable=self.verbose_var)
+        self.verbose_entry.grid(row=9, column=1)
+
         self.fullscreen_var = tk.IntVar(value=CONFIG['fullscreen'])
         self.fullscreen_checkbox = tk.Checkbutton(left_frame, text="Fullscreen", variable=self.fullscreen_var)
-        self.fullscreen_checkbox.grid(row=9, columnspan=2, column=0, sticky=tk.W)
-
-        self.debug_var = tk.IntVar(value=CONFIG['debug'])
-        self.debug_checkbox = tk.Checkbutton(left_frame, text="Debug", variable=self.debug_var)
-        self.debug_checkbox.grid(row=10, columnspan=2, column=0, sticky=tk.W)
+        self.fullscreen_checkbox.grid(row=10, columnspan=2, column=0, sticky=tk.W)
 
         self.run_button = tk.Button(left_frame, text="Save and run", command=self.save_and_run)
         self.run_button.grid(row=11, column=0, pady=5, sticky=tk.E)
 
         self.exit_button = tk.Button(left_frame, text="Close app", command=self.close)
         self.exit_button.grid(row=11, column=1, pady=5, padx=5, sticky=tk.W)
+        self.exit_button.config(state="disabled")
 
         separator = ttk.Separator(left_frame, orient="horizontal")
         separator.grid(row=12, columnspan=2, pady=10, sticky="ew")
@@ -150,7 +153,7 @@ class XeupiuControlPanel:
         CONFIG['save']['player']['en_nickname'] = self.en_nickname_entry.get()
         CONFIG['translation']['deepl']['api_key'] = self.deepL_key_entry.get()
         CONFIG['fullscreen'] = bool(self.fullscreen_var.get())
-        CONFIG['debug'] = bool(self.debug_var.get())
+        CONFIG['verbose_level'] = self.verbose_var.get()
 
         self.jp_name_entry.config(state="disabled")
         self.jp_surname_entry.config(state="disabled")
@@ -159,9 +162,10 @@ class XeupiuControlPanel:
         self.en_surname_entry.config(state="disabled")
         self.en_nickname_entry.config(state="disabled")
         self.deepL_key_entry.config(state="disabled")
-        self.run_button.config(state="disabled")
+        self.verbose_entry.config(state="disabled")
         self.fullscreen_checkbox.config(state="disabled")
-        self.debug_checkbox.config(state="disabled")
+        self.run_button.config(state="disabled")
+        self.exit_button.config(state="active")
 
         save_config_to_json(CONFIG)
 
@@ -185,6 +189,9 @@ class XeupiuControlPanel:
         print("Exiting...")
         self.received_stop_signal = True
         sys.exit(0)
+        # self.exit_button.config(state="disabled")
+        # self.run_button.config(state="active")
+        # self.app.close()
 
 if __name__ == "__main__":
     xcp = XeupiuControlPanel()

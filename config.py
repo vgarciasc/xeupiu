@@ -14,9 +14,6 @@ if CONFIG['fullscreen']:
     SIZE_TOOLBAR = 0
     LEFT_OFFSET_CORRECTION = 0
 
-VERBOSE = CONFIG["debug"]
-WINDOW_TITLE = CONFIG["window_title"]
-
 PLAYER_BIRTHDAY_JP, PLAYER_BIRTHDAY_EN = convert_birthday_to_str(CONFIG["save"]["player"]["birth_month"],
                                                                  CONFIG["save"]["player"]["birth_day"])
 SHIORI_BIRTHDAY_JP, SHIORI_BIRTHDAY_EN = convert_birthday_to_str(CONFIG["save"]["shiori"]["birth_month"],

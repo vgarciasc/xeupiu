@@ -28,7 +28,7 @@ import image_processing as imp
 from text_database import TextDatabase
 from name_database import NameDatabase
 from poorcr import PoorCR
-from config import WINDOW_TITLE, CONFIG, VERBOSE
+from config import CONFIG
 
 class App:
     def __init__(self):
@@ -52,9 +52,9 @@ class App:
             self.db_names = NameDatabase()
             self.db_notebook = NotebookDatabase()
 
-            self.window_id = get_window_by_title(WINDOW_TITLE)
+            self.window_id = get_window_by_title(CONFIG["window_title"])
 
-            OverlayWindow.create_master()
+            self.overlay_master = OverlayWindow.create_master()
             self.overlay_tb = TextboxOverlayWindow(self.window_id)
             self.overlay_attrs = [AttributeOverlayWindow(self.window_id, i) for i in range(9)]
             self.overlay_dateymds = [YearMonthDayOverlayWindow(self.window_id, i) for i in range(3)]
@@ -62,6 +62,10 @@ class App:
             self.overlay_weekday = WeekdayOverlayWindow(self.window_id)
             self.overlay_tss = [TitleScreenOverlayWindow(self.window_id, i) for i in range(2)]
             self.overlay_sss = [SaveSelectionOverlayWindow(self.window_id, i) for i in range(4)]
+
+            self.overlays = [self.overlay_tb, *self.overlay_attrs, *self.overlay_dateymds, *self.overlay_rects,
+                             self.overlay_weekday, *self.overlay_tss, *self.overlay_sss]
+
             self.character_creation_handler = CharacterCreationHandler(self.window_id)
             self.confession_handler = ConfessionHandler(self.window_id)
             self.scrolling_epilogue_handler = ScrollingEpilogueHandler(self.window_id)
@@ -101,7 +105,7 @@ class App:
                             break
 
                 if prerequisites_fulfilled:
-                    if VERBOSE:
+                    if CONFIG["verbose_level"] > 1:
                         print(f"Inspecting cue '{cue['id']}':")
                     is_detected = cue["fn"](*img_ss_rgb)
                 else:
@@ -236,16 +240,18 @@ class App:
             self.last_name_ocr = name_ocr if name_ocr is not None else self.last_name_ocr
 
             tok = time.perf_counter_ns()
-            print_str += f"Name (detected):\t\t {name_ocr}\n"
-            print_str += f"Name (displayed):\t\t {display_name}\n"
-            print_str += f"Text (detected):\t\t {text_ocr}\n"
-            print_str += f"Text (displayed, {n_matches}):\t {display_text}\n"
-            print_str += f"[[{time.strftime('%H:%M:%S')} ; {(tok - tik) / 1000000:.2f} ms]]\n"
-            print_str += "=" * 100 + "\n"
 
             self.print_str_history.append(print_str)
             self.print_str_history = self.print_str_history[-CONFIG["print_str_history_size"]:]
-            print(print_str)
+
+            if CONFIG["verbose_level"] > 0:
+                print_str += f"Name (detected):\t\t {name_ocr}\n"
+                print_str += f"Name (displayed):\t\t {display_name}\n"
+                print_str += f"Text (detected):\t\t {text_ocr}\n"
+                print_str += f"Text (displayed, {n_matches}):\t {display_text}\n"
+                print_str += f"[[{time.strftime('%H:%M:%S')} ; {(tok - tik) / 1000000:.2f} ms]]\n"
+                print_str += "=" * 100 + "\n"
+                print(print_str)
 
         except Exception as e:
             self.handle_error(e, img_ss, img_tb)
@@ -273,6 +279,11 @@ class App:
                                          "Project XEUPIU - Error!", 0x40000)
 
         raise e
+
+    def close(self):
+        for overlay in self.overlays:
+            overlay.root.destroy()
+
 
 if __name__ == "__main__":
     app = App()

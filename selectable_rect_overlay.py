@@ -11,7 +11,7 @@ from constants import is_str_empty
 from database import Database
 from notebook_database import NotebookDatabase
 from poorcr import PoorCR
-from config import VERBOSE, CONFIG
+from config import CONFIG
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 from image_processing import get_count_by_equality, get_count_by_thresholds
@@ -175,7 +175,7 @@ SELECTABLE_RECT_GROUPS = {
 def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
     c = get_count_by_equality(red, green, blue, x, y, w, h, r, g, b)
 
-    if VERBOSE:
+    if CONFIG["verbose_level"] > 1:
         print(f"\tCount: {c}, expected: {count}")
 
     return c == count
@@ -183,7 +183,7 @@ def detect_mark_by_count(red, green, blue, x, y, w, h, r, g, b, count):
 def detect_mark_by_count_min(red, green, blue, x, y, w, h, r, g, b, min):
     c = get_count_by_equality(red, green, blue, x, y, w, h, r, g, b)
 
-    if VERBOSE:
+    if CONFIG["verbose_level"] > 1:
         print(f"\tCount: {c}, expected: greater than {min}")
 
     return c > min
@@ -191,7 +191,7 @@ def detect_mark_by_count_min(red, green, blue, x, y, w, h, r, g, b, min):
 def detect_mark_by_count_with_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max, count):
     c = get_count_by_thresholds(red, green, blue, x, y, w, h, r_min, r_max, g_min, g_max, b_min, b_max)
 
-    if VERBOSE:
+    if CONFIG["verbose_level"] > 1:
         print(f"\tCount: {c}, expected: {count}")
 
     return c == count

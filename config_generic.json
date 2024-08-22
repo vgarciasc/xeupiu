@@ -2,7 +2,7 @@
     "version": "v1.1.0-alpha",
     "window_title": "Tokimeki Memorial",
     "cmd_max_lines": 100,
-    "debug": false,
+    "verbose_level": 0,
     "fullscreen": false,
     "history_size": 10,
     "iters_without_gameobj_without_minimizing": 1,
