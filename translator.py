@@ -17,7 +17,11 @@ openai.api_key = CONFIG["translation"]["openai"]["api_key"]
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = CONFIG["translation"]["google_cloud"]["credential_path"]
 
-DEEPL_L = deepl.Translator(auth_key=CONFIG["translation"]["deepl"]["api_key"])
+deepl_api_key = CONFIG["translation"]["deepl"]["api_key"]
+if deepl_api_key is not None and deepl_api_key != "":
+    DEEPL_L = deepl.Translator(auth_key=deepl_api_key)
+else:
+    DEEPL_L = None
 
 def translate_openai(desc):
     completion = openai.ChatCompletion.create(
@@ -50,6 +54,9 @@ def translate_google_cloud(text, project_id="xeupiu"):
     return response.translations[0].translated_text
 
 def translate_deepl(text):
+    if DEEPL_L is None:
+        raise Exception("DeepL API key is not set.")
+
     return DEEPL_L.translate_text(text, source_lang="JA", target_lang="EN-US").text
 
 def translate_text(text, backend=None):
