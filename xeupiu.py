@@ -99,25 +99,30 @@ class XeupiuControlPanel:
         self.verbose_entry = tk.Entry(left_frame, textvariable=self.verbose_var)
         self.verbose_entry.grid(row=9, column=1, sticky=tk.E)
 
+        tk.Label(left_frame, text="History size:").grid(row=10, column=0, sticky=tk.W)
+        self.history_size_var = tk.IntVar(value=CONFIG['history_size'])
+        self.history_size_entry = tk.Entry(left_frame, textvariable=self.history_size_var)
+        self.history_size_entry.grid(row=10, column=1, sticky=tk.E)
+
         self.fullscreen_var = tk.IntVar(value=CONFIG['fullscreen'])
         self.fullscreen_checkbox = tk.Checkbutton(left_frame, text="Fullscreen", variable=self.fullscreen_var)
-        self.fullscreen_checkbox.grid(row=10, column=0, columnspan=2, sticky=tk.W)
+        self.fullscreen_checkbox.grid(row=11, column=0, columnspan=2, sticky=tk.W)
 
         self.run_button = tk.Button(left_frame, text="Save and run", command=self.save_and_run, width=15)
-        self.run_button.grid(row=11, column=0, pady=5, sticky=tk.E)
+        self.run_button.grid(row=12, column=0, pady=5, sticky=tk.E)
 
         self.exit_button = tk.Button(left_frame, text="Close app", command=self.close, width=15)
-        self.exit_button.grid(row=11, column=1, pady=5, padx=5, sticky=tk.W)
+        self.exit_button.grid(row=12, column=1, pady=5, padx=5, sticky=tk.W)
         self.exit_button.config(state="disabled")
 
         self.log_button = tk.Button(left_frame, text="(DEBUG) Log everything", command=self.log_everything)
-        self.log_button.grid(row=12, column=0, columnspan=2, pady=5)
+        self.log_button.grid(row=13, column=0, columnspan=2, pady=5)
 
         separator = ttk.Separator(left_frame, orient="horizontal")
-        separator.grid(row=13, columnspan=2, pady=10, sticky="ew")
+        separator.grid(row=14, columnspan=2, pady=10, sticky="ew")
 
         notes_label = tk.Label(left_frame, text="NOTES:", font=("Arial", 10, "bold"))
-        notes_label.grid(row=14, column=0, columnspan=2, sticky=tk.W)
+        notes_label.grid(row=15, column=0, columnspan=2, sticky=tk.W)
 
         notes_text = tk.Label(left_frame, text='1. When creating your save, please make sure to input the japanese '
                                                'name, surname, and nickname displayed above. This will guarantee that '
@@ -131,14 +136,14 @@ class XeupiuControlPanel:
                                                'XEUPIU GitHub repository.\n\n'
                                                '4. Enjoy the game!',
                               wraplength=0.3*window_width, justify=tk.LEFT)
-        notes_text.grid(row=15, column=0, columnspan=2, sticky=tk.W)
+        notes_text.grid(row=16, column=0, columnspan=2, sticky=tk.W)
 
         separator = ttk.Separator(left_frame, orient="horizontal")
-        separator.grid(row=16, columnspan=2, pady=10, sticky="ew")
+        separator.grid(row=17, columnspan=2, pady=10, sticky="ew")
 
         notes_label = tk.Label(left_frame, text=f"XEUPIU {CONFIG['version']}\n"
                                                 f"typed in brazil by vinizinho, 2024", font=("Courier", 10, "italic"))
-        notes_label.grid(row=17, column=0, columnspan=2, sticky=tk.N)
+        notes_label.grid(row=18, column=0, columnspan=2, sticky=tk.N)
 
         # Right panel - Text area
         self.output_text = scrolledtext.ScrolledText(right_frame, wrap=tk.WORD, bg="black", height=50,
@@ -161,6 +166,7 @@ class XeupiuControlPanel:
         CONFIG['translation']['deepl']['api_key'] = self.deepL_key_entry.get()
         CONFIG['fullscreen'] = bool(self.fullscreen_var.get())
         CONFIG['verbose_level'] = self.verbose_var.get()
+        CONFIG['history_size'] = self.history_size_var.get()
 
         self.jp_name_entry.config(state="disabled")
         self.jp_surname_entry.config(state="disabled")
@@ -170,6 +176,7 @@ class XeupiuControlPanel:
         self.en_nickname_entry.config(state="disabled")
         self.deepL_key_entry.config(state="disabled")
         self.verbose_entry.config(state="disabled")
+        self.history_size_entry.config(state="disabled")
         self.fullscreen_checkbox.config(state="disabled")
         self.run_button.config(state="disabled")
         self.exit_button.config(state="active")
