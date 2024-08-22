@@ -148,7 +148,7 @@ class XeupiuControlPanel:
         CONFIG['save']['player']['en_name'] = self.en_name_entry.get()
         CONFIG['save']['player']['en_surname'] = self.en_surname_entry.get()
         CONFIG['save']['player']['en_nickname'] = self.en_nickname_entry.get()
-        CONFIG['save']['player']['deepL_key'] = self.deepL_key_entry.get()
+        CONFIG['translation']['deepl']['api_key'] = self.deepL_key_entry.get()
         CONFIG['fullscreen'] = bool(self.fullscreen_var.get())
         CONFIG['debug'] = bool(self.debug_var.get())
 
