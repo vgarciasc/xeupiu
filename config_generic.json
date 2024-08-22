@@ -1,7 +1,9 @@
 {
+    "version": "v1.1.0-alpha",
     "window_title": "Tokimeki Memorial",
+    "cmd_max_lines": 100,
     "debug": false,
-    "fullscreen": true,
+    "fullscreen": false,
     "history_size": 10,
     "iters_without_gameobj_without_minimizing": 1,
     "print_str_history_size": 10,
@@ -22,23 +24,23 @@
     },
     "save": {
         "player": {
-            "jp_name": "ＰＬＡ",
-            "jp_surname": "ＹＥＲ",
+            "jp_name": "ＹＥＲ",
+            "jp_surname": "ＰＬＡ",
             "jp_nickname": "ＰＬＡＹＡ",
-            "jp_name_ascii": "PLA",
-            "jp_surname_ascii": "YER",
+            "jp_name_ascii": "YER",
+            "jp_surname_ascii": "PLA",
             "jp_nickname_ascii": "PLAYA",
-            "en_name": "Bruce",
-            "en_surname": "Willis",
-            "en_nickname": "Nickname",
-            "birth_month": 8,
-            "birth_day": 15,
-            "blood_type": "ＡＢ"
+            "en_name": "John",
+            "en_surname": "Smith",
+            "en_nickname": "Johnny",
+            "birth_month": 12,
+            "birth_day": 25,
+            "blood_type": "Ａ"
         },
         "shiori": {
-            "blood_type": "ＡＢ",
-            "birth_month": 9,
-            "birth_day": 19
+            "blood_type": "Ｂ",
+            "birth_month": 4,
+            "birth_day": 1
         }
     },
     "translation": {
@@ -51,10 +53,7 @@
             "api_key": ""
         },
         "deepl": {
-            "api_key": "S"
+            "api_key": ""
         }
-    },
-    "size_window_border_top": 0,
-    "size_window_border_bottom": 0,
-    "size_toolbar": 0
+    }
 }
