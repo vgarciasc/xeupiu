@@ -193,7 +193,7 @@ class App:
             display_text = text_ocr
 
             # Text is the same as the last translated text
-            if text_ocr == self.last_translated_text_ocr:
+            if text_ocr == self.last_translated_text_ocr and self.last_name_ocr is not None:
                 return
 
             new_text_entry = False
@@ -207,7 +207,7 @@ class App:
 
                 # Translating character text
                 n_matches, matched_jp_text, translated_text = self.db_texts.retrieve_translation(
-                    text_ocr, char_name_en=display_name, fuzziness=90,
+                    text_ocr, char_name_en=display_name, fuzziness=CONFIG["translation_fuzziness"]*100,
                     is_text_jp_complete=has_text_stopped_printing)
 
                 if n_matches == 0:
