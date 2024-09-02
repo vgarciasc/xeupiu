@@ -3,7 +3,8 @@ import tkinter as tk
 from tkinter import scrolledtext, ttk
 import sys
 from app import App
-from config import CONFIG, save_config_to_json
+from config import CONFIG, save_config_to_json, update_config
+from translator import update_deepl_key
 
 
 class StdoutRedirector:
@@ -163,10 +164,12 @@ class XeupiuControlPanel:
         CONFIG['save']['player']['en_name'] = self.en_name_entry.get()
         CONFIG['save']['player']['en_surname'] = self.en_surname_entry.get()
         CONFIG['save']['player']['en_nickname'] = self.en_nickname_entry.get()
-        CONFIG['translation']['deepl']['api_key'] = self.deepL_key_entry.get()
         CONFIG['fullscreen'] = bool(self.fullscreen_var.get())
         CONFIG['verbose_level'] = self.verbose_var.get()
         CONFIG['history_size'] = self.history_size_var.get()
+
+        CONFIG['translation']['deepl']['api_key'] = self.deepL_key_entry.get()
+        update_deepl_key(CONFIG['translation']['deepl']['api_key'])
 
         self.jp_name_entry.config(state="disabled")
         self.jp_surname_entry.config(state="disabled")

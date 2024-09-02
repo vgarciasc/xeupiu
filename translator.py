@@ -17,11 +17,13 @@ openai.api_key = CONFIG["translation"]["openai"]["api_key"]
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = CONFIG["translation"]["google_cloud"]["credential_path"]
 
-deepl_api_key = CONFIG["translation"]["deepl"]["api_key"]
-if deepl_api_key is not None and deepl_api_key != "":
-    DEEPL_L = deepl.Translator(auth_key=deepl_api_key)
-else:
-    DEEPL_L = None
+DEEPL_L = None
+def update_deepl_key(deepl_api_key):
+    global DEEPL_L
+    if deepl_api_key is not None and deepl_api_key != "":
+        DEEPL_L = deepl.Translator(auth_key=deepl_api_key)
+
+update_deepl_key(CONFIG["translation"]["deepl"]["api_key"])
 
 def translate_openai(desc):
     completion = openai.ChatCompletion.create(
