@@ -156,7 +156,7 @@ SELECTABLE_RECT_GROUPS = {
     },
     "chcr_p": {
         "fullname": "character_creation_pink",
-        "textcolor": "#e600a5",
+        "textcolor": "#ffffff",
         "selected_color": None,
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (255, 197, 247)),
         "is_unselected_fn": lambda r, g, b: True,
@@ -234,7 +234,7 @@ def detect_mark_character_selection_choice_2(red, green, blue):
     return (is_players_house or is_shinto_shrine or is_corridor_school) and is_selection_on_textbox
 
 SCREEN_CUES = [
-    { "id": "textbox", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 16, 159, 288, 64, 164, 49, 25, 800), "prerequisites": []},
+    { "id": "textbox", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 16, 159, 288, 64, 164, 49, 25, 650), "prerequisites": []},
     { "id": "dc_3row1", "fn": detect_mark_textbox_choice1, "prerequisites": ["textbox"] },
     { "id": "dc_3row2", "fn": detect_mark_textbox_choice2, "prerequisites": ["textbox"] },
     { "id": "dc_2col1", "fn": detect_mark_textbox_choice3, "prerequisites": ["textbox"] },
