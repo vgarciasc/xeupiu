@@ -23,7 +23,7 @@ from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 from textbox_overlay import TextboxOverlayWindow
 from attribute_overlay import AttributeOverlayWindow
-import translator as tr
+from translator import Translator
 import image_processing as imp
 from text_database import TextDatabase
 from name_database import NameDatabase
@@ -51,6 +51,7 @@ class App:
             self.db_texts = TextDatabase()
             self.db_names = NameDatabase()
             self.db_notebook = NotebookDatabase()
+            self.tr = Translator()
 
             self.window_id = get_window_by_title(CONFIG["window_title"])
 
@@ -198,11 +199,11 @@ class App:
 
             new_text_entry = False
             n_matches = -1
-            if tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:
+            if self.tr.should_translate_text(text_ocr) and (not "?" in text_ocr) and has_text_stopped_printing:
                 # Translating character name
                 display_name = self.db_names.retrieve_translation(name_ocr)
                 if display_name is None and name_ocr is not None and has_text_stopped_printing:
-                    display_name = tr.translate_text(name_ocr)
+                    display_name = self.tr.translate(name_ocr)
                     self.db_names.insert_translation(name_ocr, display_name)
 
                 # Translating character text
@@ -213,7 +214,7 @@ class App:
                 if n_matches == 0:
                     if has_text_stopped_printing:
                         # No match found, but text has stopped printing. Translate and add to database
-                        translated_text = tr.translate_text(text_ocr)
+                        translated_text = self.tr.translate(text_ocr)
                         self.db_texts.insert_translation(text_ocr, translated_text, char_name=display_name)
 
                         _, date_jp = Database.generalize_date(text_ocr)

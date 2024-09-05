@@ -1,7 +1,7 @@
 import time
 from ctypes import windll
 
-from config import CONFIG, SIZE_TOOLBAR, SIZE_WINDOW_BORDER_BOTTOM
+from config import CONFIG
 import win32gui
 import win32ui
 from PIL import Image
@@ -74,10 +74,12 @@ def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=Tr
     mfcDC.DeleteDC()
     win32gui.ReleaseDC(window_id, hwndDC)
 
+    border_config = CONFIG.get_borders_var()
+
     img = img.crop((offset_x[0],
-                    offset_y[0] + SIZE_TOOLBAR,
+                    offset_y[0] + border_config["size_toolbar"],
                     img.width - offset_x[1],
-                    img.height - offset_y[1] - SIZE_WINDOW_BORDER_BOTTOM))
+                    img.height - offset_y[1] - border_config["size_window_border_bottom"]))
 
     return img
 

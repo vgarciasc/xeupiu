@@ -1,14 +1,14 @@
 import numpy as np
 from PIL import Image
 
-from config import WINDOW_TITLE
+from config import CONFIG
 from overlay import OverlayWindow
 from screenshot import get_window_by_title, get_window_image
 from textbox_overlay import TextboxOverlayWindow
 import image_processing as imp
 
 if __name__ == "__main__":
-    window_id = get_window_by_title(WINDOW_TITLE)
+    window_id = get_window_by_title(CONFIG["window_title"])
 
     OverlayWindow.create_master()
     overlay_tb = TextboxOverlayWindow(window_id)

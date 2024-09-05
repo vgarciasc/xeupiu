@@ -1,40 +1,41 @@
 import json
 from constants import convert_birthday_to_str
 
-CONFIG = json.load(open('config.json', 'r', encoding='utf-8'))
 
-PLAYER_BIRTHDAY_JP, PLAYER_BIRTHDAY_EN = convert_birthday_to_str(CONFIG["save"]["player"]["birth_month"],
-                                                                 CONFIG["save"]["player"]["birth_day"])
-SHIORI_BIRTHDAY_JP, SHIORI_BIRTHDAY_EN = convert_birthday_to_str(CONFIG["save"]["shiori"]["birth_month"],
-                                                                 CONFIG["save"]["shiori"]["birth_day"])
+class Configuration():
+    def __init__(self):
+        self.reload()
 
-SIZE_WINDOW_BORDER_TOP = CONFIG["border_size"]["size_window_border_top"]
-SIZE_WINDOW_BORDER_BOTTOM = CONFIG["border_size"]["size_window_border_bottom"]
-SIZE_TOOLBAR = CONFIG["border_size"]["size_toolbar"]
-LEFT_OFFSET_CORRECTION = CONFIG["border_size"]["left_offset_correction"]
+    def reload(self):
+        self.config = json.load(open('config.json', 'r', encoding='utf-8'))
+        self.reload_birthdays()
 
-def update_config(config):
-    global CONFIG
-    CONFIG = config
+    def __getitem__(self, key):
+        return self.config[key]
 
-    global SIZE_WINDOW_BORDER_TOP
-    global SIZE_WINDOW_BORDER_BOTTOM
-    global SIZE_TOOLBAR
-    global LEFT_OFFSET_CORRECTION
+    def __setitem__(self, key, value):
+        self.config[key] = value
+        json.dump(self.config, open('config.json', 'w', encoding='utf-8'), indent=4, ensure_ascii=False)
 
-    SIZE_WINDOW_BORDER_TOP = CONFIG["border_size"]["size_window_border_top"]
-    SIZE_WINDOW_BORDER_BOTTOM = CONFIG["border_size"]["size_window_border_bottom"]
-    SIZE_TOOLBAR = CONFIG["border_size"]["size_toolbar"]
-    LEFT_OFFSET_CORRECTION = CONFIG["border_size"]["left_offset_correction"]
+    def get_borders_var(self):
+        if self.config["fullscreen"]:
+            return {
+                "size_window_border_top": 0,
+                "size_window_border_bottom": 0,
+                "size_toolbar": 0,
+                "left_offset_correction": 0
+            }
+        else:
+            return self.config["border_size"]
 
-    if CONFIG['fullscreen']:
-        SIZE_WINDOW_BORDER_TOP = 0
-        SIZE_WINDOW_BORDER_BOTTOM = 0
-        SIZE_TOOLBAR = 0
-        LEFT_OFFSET_CORRECTION = 0
+    def reload_birthdays(self):
+        self.plbday_jp, self.plbday_en = convert_birthday_to_str(self.config["save"]["player"]["birth_month"],
+                                                                 self.config["save"]["player"]["birth_day"])
+        self.shbday_jp, self.shbday_en = convert_birthday_to_str(self.config["save"]["shiori"]["birth_month"],
+                                                                 self.config["save"]["shiori"]["birth_day"])
 
-def save_config_to_json(config):
-    global CONFIG
-    CONFIG = config
 
-    json.dump(config, open('config.json', 'w', encoding='utf-8'), indent=4, ensure_ascii=False)
+CONFIG = Configuration()
+
+if __name__ == "__main__":
+    print(CONFIG['translation']['deepl']['api_key'])

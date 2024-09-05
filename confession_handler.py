@@ -4,7 +4,7 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 from PIL import Image
-from config import CONFIG, save_config_to_json
+from config import CONFIG
 from constants import convert_jp_str_to_int
 from image_processing import get_count_by_equality, convert_to_black_and_white, extract_characters, \
     get_count_by_thresholds

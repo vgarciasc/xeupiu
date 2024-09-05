@@ -1,8 +1,7 @@
 import pandas as pd
 import re
-from config import CONFIG, PLAYER_BIRTHDAY_JP, SHIORI_BIRTHDAY_JP, PLAYER_BIRTHDAY_EN, SHIORI_BIRTHDAY_EN
+from config import CONFIG
 from constants import convert_damage_jp2en, convert_date_jp2en
-
 
 class Database:
     def __init__(self, filepath: str):
@@ -48,8 +47,8 @@ class Database:
         text = text.replace(config["jp_surname_ascii"], "<PSURNAME>")
         text = text.replace("<PSURNAME><PNAME>", "<PNAME> <PSURNAME>")
 
-        text = text.replace(PLAYER_BIRTHDAY_JP, "<PLAYER_BIRTHDAY>")
-        text = text.replace(SHIORI_BIRTHDAY_JP, "<SHIORI_BIRTHDAY>")
+        text = text.replace(CONFIG.plbday_jp, "<PLAYER_BIRTHDAY>")
+        text = text.replace(CONFIG.shbday_jp, "<SHIORI_BIRTHDAY>")
 
         return text
 
@@ -61,8 +60,8 @@ class Database:
         text = text.replace("<PSURNAME>", config["en_surname"])
         text = text.replace("<PNICKNAME>", config["en_nickname"])
 
-        text = text.replace("<PLAYER_BIRTHDAY>", PLAYER_BIRTHDAY_EN)
-        text = text.replace("<SHIORI_BIRTHDAY>", SHIORI_BIRTHDAY_EN)
+        text = text.replace("<PLAYER_BIRTHDAY>", CONFIG.plbday_en)
+        text = text.replace("<SHIORI_BIRTHDAY>", CONFIG.shbday_en)
 
         return text
 

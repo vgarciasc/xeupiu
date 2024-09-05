@@ -9,7 +9,7 @@ from poorcr import PoorCR
 from screenshot import get_window_by_title, get_window_image
 from overlay import OverlayWindow
 from scrolling_epilogue_database import ScrollingEpilogueDatabase
-from translator import translate_text
+from translator import Translator
 
 SCROLLING_BOX = [
     (87, 55, 155, 13),
@@ -26,6 +26,7 @@ class ScrollingEpilogueHandler:
         self.window_id = window_id
         self.db = ScrollingEpilogueDatabase()
         self.pcr = PoorCR(only_perfect=True, padding_x=3, should_calibrate=False)
+        self.tt = Translator()
 
         self.overlay = ScrollingEpilogueOverlayWindow(window_id)
 
@@ -46,7 +47,7 @@ class ScrollingEpilogueHandler:
     def update_text(self, text: str):
         translation = self.db.retrieve_translation(text)
         if translation is None:
-            translation = translate_text(text)
+            translation = self.tt.translate(text)
             self.db.insert_translation(text, translation)
 
         self.overlay.update(translation)

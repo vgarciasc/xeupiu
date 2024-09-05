@@ -3,8 +3,7 @@ import tkinter as tk
 from tkinter import scrolledtext, ttk
 import sys
 from app import App
-from config import CONFIG, save_config_to_json, update_config
-from translator import update_deepl_key
+from config import CONFIG
 
 
 class StdoutRedirector:
@@ -167,9 +166,7 @@ class XeupiuControlPanel:
         CONFIG['fullscreen'] = bool(self.fullscreen_var.get())
         CONFIG['verbose_level'] = self.verbose_var.get()
         CONFIG['history_size'] = self.history_size_var.get()
-
         CONFIG['translation']['deepl']['api_key'] = self.deepL_key_entry.get()
-        update_deepl_key(CONFIG['translation']['deepl']['api_key'])
 
         self.jp_name_entry.config(state="disabled")
         self.jp_surname_entry.config(state="disabled")
@@ -183,8 +180,6 @@ class XeupiuControlPanel:
         self.fullscreen_checkbox.config(state="disabled")
         self.run_button.config(state="disabled")
         self.exit_button.config(state="active")
-
-        save_config_to_json(CONFIG)
 
         if self.deepL_key_entry.get() == "":
             ctypes.windll.user32.MessageBoxW(0, "DeepL key is not set. If any novel text is encountered, the tool "
