@@ -182,7 +182,7 @@ class PoorCR:
                 _img = np.pad(img_line_bw_np, ((pad_x, pad_x), (pad_y, pad_y)), mode='constant', constant_values=1)
 
                 char_imgs = extract_characters(_img, self.padding_x)
-                text = self.char_imgs_to_text(char_imgs)
+                text = self.char_imgs_to_text(char_imgs).strip()
                 n_unrecognized = text.count("?")
 
                 if text != '':
