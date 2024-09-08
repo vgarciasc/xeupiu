@@ -59,7 +59,7 @@ class App:
             self.overlay_tb = TextboxOverlayWindow(self.window_id)
             self.overlay_attrs = [AttributeOverlayWindow(self.window_id, i) for i in range(9)]
             self.overlay_dateymds = [YearMonthDayOverlayWindow(self.window_id, i) for i in range(3)]
-            self.overlay_rects = [SelectableRectOverlay(self.window_id, i, self.db_notebook) for i in range(len(SELECTABLE_RECTS))]
+            self.overlay_rects = [SelectableRectOverlay(self.window_id, i, self.db_notebook, None, self.tr) for i in range(len(SELECTABLE_RECTS))]
             self.overlay_weekday = WeekdayOverlayWindow(self.window_id)
             self.overlay_tss = [TitleScreenOverlayWindow(self.window_id, i) for i in range(2)]
             self.overlay_sss = [SaveSelectionOverlayWindow(self.window_id, i) for i in range(4)]

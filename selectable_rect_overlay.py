@@ -6,7 +6,7 @@ from numba import jit
 import numpy as np
 from PIL import Image
 
-import translator
+from translator import Translator
 from constants import is_str_empty
 from database import Database
 from notebook_database import NotebookDatabase
@@ -558,7 +558,7 @@ SELECTABLE_RECTS = [
 ]
 
 class SelectableRectOverlay(OverlayWindow):
-    def __init__(self, window_id: int, item_idx: int, db: NotebookDatabase, pcr: PoorCR = None):
+    def __init__(self, window_id: int, item_idx: int, db: NotebookDatabase, pcr: PoorCR = None, tt: Translator = None):
         selectable_rect = SELECTABLE_RECTS[item_idx]
         self.item_id = selectable_rect[0]
         self.rect_x, self.rect_y = selectable_rect[1]
@@ -571,6 +571,7 @@ class SelectableRectOverlay(OverlayWindow):
 
         self.db = db if db is not None else NotebookDatabase()
         self.pcr = pcr if pcr is not None else PoorCR(only_perfect=True, padding_x=self.padding_x)
+        self.tt = tt if tt is not None else Translator()
 
         self.is_cue_detected = False
         self.last_overlay_area_rgb = None
@@ -663,7 +664,7 @@ class SelectableRectOverlay(OverlayWindow):
                 text_en = self.db.retrieve_translation(text_jp)
                 if text_en is None:
                     text_jp_processed, _ = Database.generalize_string(text_jp)
-                    text_en = translator.translate_text(text_jp_processed)
+                    text_en = self.tt.translate(text_jp_processed)
                     self.db.insert_translation(text_jp, text_en)
                     print(f"Adding new notebook item: {text_jp_processed} - {text_en}")
                 text = text_en
