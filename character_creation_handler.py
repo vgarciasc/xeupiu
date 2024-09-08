@@ -21,6 +21,8 @@ class CharacterCreationHandler:
     def __init__(self, window_id: int):
         self.window_id = window_id
         self.pcr = PoorCR(padding_x=4)
+        self.has_saved_once_player = False
+        self.has_saved_once_shiori = False
 
     def handle(self, img_ss_rgb: np.ndarray, img_ss: Image):
         if detect_character_creation_player(img_ss_rgb):
@@ -47,12 +49,15 @@ class CharacterCreationHandler:
         configs["birth_month"] = convert_jp_str_to_int(configs["birth_month"])
         configs["birth_day"] = convert_jp_str_to_int(configs["birth_day"])
 
-        for entry in CONFIG["save"]["player"].keys():
-            if entry in configs.keys():
-                CONFIG["save"]["player"][entry] = configs[entry]
+        if not self.has_saved_once_player:
+            for entry in CONFIG["save"]["player"].keys():
+                if entry in configs.keys():
+                    CONFIG["save"]["player"][entry] = configs[entry]
 
-        save_config_to_json(CONFIG)
-        print(f"Saved player config (Player character info).")
+            CONFIG.save()
+            print(f"Saved player config (Player character info).")
+
+            self.has_saved_once_player = True
 
     def handle_character_creation_shiori(self, img_ss: Image):
         configs = {}
@@ -69,11 +74,15 @@ class CharacterCreationHandler:
         configs["birth_month"] = convert_jp_str_to_int(configs["birth_month"])
         configs["birth_day"] = convert_jp_str_to_int(configs["birth_day"])
 
-        for entry in CONFIG["save"]["shiori"].keys():
-            if entry in configs.keys():
-                CONFIG["save"]["shiori"][entry] = configs[entry]
+        if not self.has_saved_once_shiori:
+            for entry in CONFIG["save"]["shiori"].keys():
+                if entry in configs.keys():
+                    CONFIG["save"]["shiori"][entry] = configs[entry]
 
-        print(f"Saved player config (Shiori info).")
+            CONFIG.save()
+            print(f"Saved player config (Shiori info).")
+
+            self.has_saved_once_shiori = True
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")

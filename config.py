@@ -15,6 +15,9 @@ class Configuration():
 
     def __setitem__(self, key, value):
         self.config[key] = value
+        self.save()
+
+    def save(self):
         json.dump(self.config, open('config.json', 'w', encoding='utf-8'), indent=4, ensure_ascii=False)
 
     def get_borders_var(self):

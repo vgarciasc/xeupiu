@@ -168,6 +168,8 @@ class XeupiuControlPanel:
         CONFIG['history_size'] = self.history_size_var.get()
         CONFIG['translation']['deepl']['api_key'] = self.deepL_key_entry.get()
 
+        CONFIG.save()
+
         self.jp_name_entry.config(state="disabled")
         self.jp_surname_entry.config(state="disabled")
         self.jp_nickname_entry.config(state="disabled")
