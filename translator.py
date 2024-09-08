@@ -54,7 +54,9 @@ class Translator():
 
     def translate_deepl(self, text):
         if CONFIG["translation"]["deepl"]["api_key"] == "" or CONFIG["translation"]["deepl"]["api_key"] is None:
-            raise Exception("DeepL API key is not set.")
+            # raise Exception("DeepL API key is not set.")
+            print("WARNING: DeepL API key is not set. Returning japanese text.")
+            return text
 
         if self.deepl_model is None:
             self.deepl_model = deepl.Translator(auth_key=CONFIG["translation"]["deepl"]["api_key"])
