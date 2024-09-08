@@ -18,8 +18,8 @@ class ConfessionDatabase(Database):
             raise ValueError(f"No confession script found for {char_name}.")
 
         df['Start time'] = pd.to_datetime(df['Start time'], format='%M:%S,%f')
-        df['End time'] = pd.to_datetime(df['End time'], format='%M:%S,%f')
-        df['Duration'] = (df['End time'] - df['Start time']).dt.total_seconds()
+        df['Duration'] = (df['Start time'] - df['Start time'].shift(1)).shift(-1).dt.total_seconds()
+        df.loc[df.index[-1], 'Duration'] = 5.0
 
         return df
 
