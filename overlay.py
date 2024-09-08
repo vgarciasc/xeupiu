@@ -73,7 +73,7 @@ class OverlayWindow:
 
         # EXPERIMENTING! This is a hack added because in the title screen, there is no left flicker.
         # This is solving my problems right now, but perhaps won't in the future. Keep this in mind.
-        left_offset = right_offset
+        left_offset += (img_ss.width - left_offset - right_offset) % 320
 
         return left_offset, right_offset, top_offset, bottom_offset
 
