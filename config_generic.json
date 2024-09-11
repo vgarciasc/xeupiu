@@ -1,10 +1,10 @@
 {
-    "version": "v2.0.2-alpha",
+    "version": "v2.0.3-alpha",
     "window_title": "Tokimeki Memorial",
     "cmd_max_lines": 100,
-    "verbose_level": 0,
+    "verbose_level": 1,
     "fullscreen": false,
-    "history_size": 15,
+    "history_size": 10,
     "iters_without_gameobj_without_minimizing": 1,
     "print_str_history_size": 10,
     "calibration_history_size": 5,
@@ -18,10 +18,10 @@
     },
     "databases": {
         "names_filepath": "data/texts/database_names.csv",
-        "text_filepath": "data/texts/database_text.csv",
-        "notebook_filepath": "data/texts/database_notebook.csv",
+        "text_filepath": "data/texts/database_text_v2.csv",
+        "notebook_filepath": "data/texts/database_notebook_v2.csv",
         "confession_filepath": "data/texts/database_confessions.csv",
-        "epilogue_filepath": "data/texts/database_epilogues.csv"
+        "epilogue_filepath": "data/texts/database_epilogues_v2.csv"
     },
     "save": {
         "player": {
@@ -34,14 +34,14 @@
             "en_name": "",
             "en_surname": "",
             "en_nickname": "",
-            "birth_month": 12,
-            "birth_day": 25,
+            "birth_month": 1,
+            "birth_day": 1,
             "blood_type": "Ａ"
         },
         "shiori": {
             "blood_type": "Ｂ",
-            "birth_month": 4,
-            "birth_day": 1
+            "birth_month": 3,
+            "birth_day": 16
         }
     },
     "translation": {
