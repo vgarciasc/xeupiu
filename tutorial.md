@@ -4,7 +4,7 @@
 
 ### Setting up the emulator
 
-1. Download the [latest version of the DuckStation emulator ](https://www.duckstation.org/)(latest version tested: 0.1-6759-gc015039a (dev))
+1. Download the [latest version of the DuckStation emulator ](https://www.duckstation.org/) (latest version tested: 0.1-6759-gc015039a (dev))
 2. Install the emulator and set it up with your PSX BIOS
 3. Download the Tokimeki Memorial - Forever With You (Rev 4) ROM in Japanese
 4. Configure the emulator by accessing Settings -> Graphics and changing:
@@ -14,7 +14,7 @@
 
 ### Setting up the translation backend
 
-The game is already playable, but the game script has not been fully collected yet, which means that only machine translation works for now. Our tool supports machine translation via Google Translate, OpenAI's GPT, or DeepL. If you don't have a key for one of these services, we suggest using DeepL, since it is free and easy to set up:
+The game is already playable, but the game script has not been fully collected yet, which means that only machine translation works for now. This tool supports machine translation via Google Translate, OpenAI's GPT, or DeepL. If you don't have a key for one of these services, I suggest using DeepL, since it is free and easy to set up:
 
 1. Go to [DeepL's website](https://www.deepl.com/en/pro-api?cta=header-pro-api)
 2. Sign up for free (credit card required)
@@ -36,11 +36,11 @@ The game is already playable, but the game script has not been fully collected y
 
 ### 1. The overlays are being shown even when the game is minimized!
 
-We are aware of this issue, however it's low priority right now. For the time being, we suggest simply closing the tool when you are not playing the game, to make the overlays go away.
+I'm aware of this issue, however it's low priority right now. For the time being, I suggest simply closing the tool when you are not playing the game, to make the overlays go away.
 
 ### 2. I moved the game screen, but the overlays did not follow!
 
-Just as above: we are aware of this issue, however it's low priority right now. Please maintain the game screen in the same position after opening the tool; if you want to change its position, simply close the tool and reopen it again.
+Just as above: I are aware of this issue, however it's low priority right now. Please maintain the game screen in the same position after opening the tool; if you want to change its position, simply close the tool and reopen it again.
 
 ### 3. During phone conversations, the textbox overlay disappears after choosing which girl to get info on!
 
