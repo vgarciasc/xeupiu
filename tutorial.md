@@ -19,18 +19,18 @@ The game is already playable, but the game script has not been fully collected y
 1. Go to [DeepL's website](https://www.deepl.com/en/pro-api?cta=header-pro-api)
 2. Sign up for free (credit card required)
 3. Go to the [Keys panel](https://www.deepl.com/your-account/keys)
-4. Copy your API key 
-5. Open the `config.json` configuration file and paste your API key in the `deepl` > `api_key` field
-6. Confirm that `translation` > `backend` is set up as "`deepl`"
+4. Copy your API key
 
 ### Setting up the translation system
 
 1. Download the latest XEUPIU tool release [here](https://github.com/vgarciasc/xeupiu).
 2. Unzip it somewhere.
-3. Start up the game's ROM
+3. Start up the game in DuckStation.
 4. Once you're at the game's title screen, press START.
 5. Open the XEUPIU tool.
-6. Enjoy!
+6. Fill the empty fields with your DeepL API Key, desired player character name, surname, and nickname.
+7. Follow the on-screen instructions.
+8. Enjoy!
 
 ## Frequently Asked Questions
 
@@ -48,4 +48,4 @@ Most probable cause is that the cursor became free-form. Please move it outside 
 
 ### 4. The game crashed and I don't know why!
 
-If none of the questions above apply to your case, please reach out on our [Discord server](https://discord.gg/QzYTyPQn)!
+If none of the questions above apply to your case, please reach out on our [Discord server](https://discord.gg/QzYTyPQn). I am only one person with a busy job so I apologize upfront if I take a while to answer.
