@@ -184,8 +184,8 @@ class XeupiuControlPanel:
         self.exit_button.config(state="active")
 
         if self.deepL_key_entry.get() == "":
-            ctypes.windll.user32.MessageBoxW(0, "DeepL key is not set. If any novel text is encountered, the tool "
-                                                "will quit. Be aware!", "Project XEUPIU - Error!", 0x40000)
+            ctypes.windll.user32.MessageBoxW(0, "DeepL key is not set. If any novel text is encountered, it will "
+                                                "remain untranslated.", "Project XEUPIU - Error!", 0x40000)
 
         try:
             self.app = App()
