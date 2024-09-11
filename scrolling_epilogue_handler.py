@@ -110,7 +110,7 @@ class ScrollingEpilogueOverlayWindow(OverlayWindow):
 
         self.root.geometry(f"{self.textbox_width}x{self.textbox_height}+{self.pos_x}+{self.pos_y}")
         self.label = tk.Label(self.root, text=" ", font=("MS PGothic", self.font_size), fg='white',
-                              bg='black', wraplength=self.textbox_width, justify='left', compound='center',
+                              bg='black', wraplength=self.textbox_width, justify='center', compound='center',
                               width=self.textbox_width, height=self.textbox_height)
         self.label.pack()
 
