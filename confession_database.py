@@ -20,7 +20,7 @@ class ConfessionDatabase(Database):
         df['Text'] = df['Text'].str.replace("\\n", "\n")
         df['Start time'] = pd.to_datetime(df['Start time'], format='%M:%S,%f')
         df['Duration'] = (df['Start time'] - df['Start time'].shift(1)).shift(-1).dt.total_seconds()
-        df.loc[df.index[-1], 'Duration'] = 5.0
+        df.loc[df.index[-1], 'Duration'] = 7.0
 
         return df
 
