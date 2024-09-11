@@ -15,7 +15,9 @@ from screenshot import get_window_by_title, get_window_image
 from confession_database import ConfessionDatabase
 
 CHARACTER_CUES = [
-    ("Ayako", (156, 33, 20, 20), (164, 164, 206), 87)
+    ("Ayako", (156, 33, 20, 20), (164, 164, 206), 87),
+    ("Yuko", (115, 14, 38, 32), (255, 255, 255), 146),
+    ("Nozomi", (211, 144, 30, 41), (164, 255, 206), 41),
 ]
 
 def detect_confession(img_ss_rgb: np.ndarray) -> bool:
@@ -50,25 +52,26 @@ class ConfessionHandler:
         script = self.db.retrieve_confession_script(character)
 
         for i, row in script.iterrows():
-            tik = time.perf_counter()
+            total_time_waited = 0
             if row["Character"] == "<PLAYER_NAME>":
-                self.display_text_subtitle(row["Text"], color='grey')
+                total_time_waited += self.display_text_subtitle(row["Text"], row['Text speed'], color='grey')
             else:
                 self.subtitle_overlay.update(row["Text"], color='white')
-            tok = time.perf_counter()
-            time_elapsed = tok - tik
 
-            time.sleep(max(0, row["Duration"] - time_elapsed))
+            time.sleep(max(0, row["Duration"] - total_time_waited))
 
         self.confession_made = True
         self.subtitle_overlay.hide()
 
     def display_text_subtitle(self, text: str, speed : float = 1, color: str = 'white'):
-        # for i, _ in enumerate(text):
-        #     self.subtitle_overlay.update(text[:i+1], color=color)
-        #     time.sleep(0.05 * 1/speed)
-        self.subtitle_overlay.update(text, color=color)
-
+        total_time_waited = 0
+        for i, _ in enumerate(text):
+            self.subtitle_overlay.update(text[:i+1], color=color)
+            duration = 0.1 * 1/speed
+            time.sleep(duration)
+            total_time_waited += duration
+        # self.subtitle_overlay.update(text, color=color)
+        return total_time_waited
 
 
 if __name__ == "__main__":

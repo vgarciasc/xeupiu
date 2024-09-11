@@ -17,6 +17,7 @@ class ConfessionDatabase(Database):
         if df.empty:
             raise ValueError(f"No confession script found for {char_name}.")
 
+        df['Text'] = df['Text'].str.replace("\\n", "\n")
         df['Start time'] = pd.to_datetime(df['Start time'], format='%M:%S,%f')
         df['Duration'] = (df['Start time'] - df['Start time'].shift(1)).shift(-1).dt.total_seconds()
         df.loc[df.index[-1], 'Duration'] = 5.0
@@ -27,5 +28,5 @@ class ConfessionDatabase(Database):
 if __name__ == "__main__":
     conf_db = ConfessionDatabase()
 
-    txt = conf_db.retrieve_confession_script("Ayako")
+    txt = conf_db.retrieve_confession_script("Nozomi")
     print(txt)

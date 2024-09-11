@@ -1,30 +1,95 @@
-Confession_ID;Character;Text;Start time;End time;Text speed
-Ayako;<PLAYER_NAME>;K-Katagiri-san...;0:05,000;0:09,100;0.8
-Ayako;Ayako;Oh, sorry. Did you wait long? Sorry for calling you here...;0:09,100;0:15,140;1
-Ayako;<PLAYER_NAME>;It's fine. What's up?;0:15,140;0:19,370;0.8
-Ayako;Ayako;Um...;0:19,370;0:22,470;0.5
-Ayako;Ayako;I wanted to ask you something...;0:22,870;0:25,870;1
-Ayako;Ayako;Do you dislike girls who are rough around the edges?;0:25,870;0:28,860;1.5
-Ayako;<PLAYER_NAME>;No, I like them... Why?;0:28,860;0:34,200;0.8
-Ayako;Ayako;Ｏｈ ｗａｉｔ, just a moment...;0:34,100;0:37,120;1
-Ayako;Ayako;That's not the real reason I called you.;0:37,120;0:39,450;1
-Ayako;Ayako;There's something I really want to tell you...;0:39,450;0:44,060;1
-Ayako;Ayako;Ah...;0:44,060;0:47,180;1
-Ayako;Ayako;I know I may not have seemed that way, since I talk to everyone easily...;0:47,180;0:54,240;1
-Ayako;Ayako;...but when I talk with you, I feel the most relaxed.;0:54,500;0:59,700;1
-Ayako;Ayako;I only realized this recently.;0:59,700;1:04,330;1
-Ayako;Ayako;The thought of graduating and not being able to see you anymore...;1:04,330;1:11,090;1
-Ayako;Ayako;It made me really sad, and I didn't know what to do.;1:11,090;1:20,350;1
-Ayako;Ayako;I'm a pretty easy-going person, but I've thought seriously about this, and I've made up my mind.;1:20,350;1:29,050;1
-Ayako;Ayako;It's really embarrassing for a girl to say this, but I want you to hear my true feelings...;1:29,050;1:35,100;1
-Ayako;Ayako;Just listen to them, that is enough.;1:35,100;1:41,390;1
-Ayako;<PLAYER_NAME>;...;1:41,390;1:44,600;1
-Ayako;Ayako;I'll miss you.;1:44,600;1:46,360;1
-Ayako;Ayako;I feel lonely without you... So... So, please...;1:46,360;1:54,200;1
-Ayako;<PLAYER_NAME>;Didn't I say earlier that I like girls that are rough around the edges?;1:54,200;1:59,310;1
-Ayako;<PLAYER_NAME>;Actually, I meant I like you, Katagiri-san.;1:59,310;2:05,290;0.8
-Ayako;Ayako;Oh my goodness, I can't believe it! Really?;2:08,160;2:11,550;1
-Ayako;<PLAYER_NAME>;I wouldn't joke at a time like this.;2:11,550;2:17,510;1
-Ayako;Ayako;Ah, ah... Unbelievable!! I can't believe it...;2:17,510;2:24,030;1
-Ayako;Ayako;This is the happiest day of my life. I'll never forget it.;2:24,030;2:29,040;1
-Ayako;Ayako;I'll never forget it as long as I live...!;2:29,040;2:35,280;1
+Confession_ID;Character;Text;Start time;Text speed
+Ayako;<PLAYER_NAME>;K-Katagiri-san...;0:05,000;1
+Ayako;Ayako;Oh, sorry. Did you wait long?\nSorry for calling you here...;0:08,950;1
+Ayako;<PLAYER_NAME>;It's fine. What's up?;0:15,180;1
+Ayako;Ayako;Um...;0:19,370;0.5
+Ayako;Ayako;I wanted to ask you something...;0:22,870;1
+Ayako;Ayako;...Do you dislike girls who are rough around the edges?;0:25,870;1
+Ayako;<PLAYER_NAME>;No, I like them... Why?;0:28,660;0.8
+Ayako;Ayako;Ｏｈ ｗａｉｔ, just a moment...;0:34,200;1
+Ayako;Ayako;That's not the real reason I called you.;0:37,120;1
+Ayako;Ayako;There's something I really want to tell you...;0:39,450;1
+Ayako;Ayako;Ah...;0:44,060;1
+Ayako;Ayako;I know I may not have seemed that way,\nsince I talk to everyone easily...;0:47,180;1
+Ayako;Ayako;...but when I talk with you, I feel the most relaxed.;0:54,500;1
+Ayako;Ayako;I only realized this recently.;0:59,700;1
+Ayako;Ayako;The thought of graduating and not being able to see you anymore...;1:04,330;1
+Ayako;Ayako;It made me really sad, and I didn't know what to do...;1:11,090;1
+Ayako;Ayako;I'm a pretty easy-going person, but I've thought seriously\nabout this, and I've made up my mind.;1:20,350;1
+Ayako;Ayako;It's really embarrassing for a girl to say this,\nbut I want you to hear my true feelings...;1:29,050;1
+Ayako;Ayako;Just listen to them, that is enough.;1:35,100;1
+Ayako;<PLAYER_NAME>;..........;1:41,690;1
+Ayako;Ayako;Ｉ'ｌｌ ｍｉｓｓ ｙｏｕ.;1:44,200;1
+Ayako;Ayako;I feel lonely without you...\nSo... So, please...;1:46,660;1
+Ayako;<PLAYER_NAME>;Didn't I say earlier that I like girls\nthat are rough around the edges?;1:54,800;1.3
+Ayako;<PLAYER_NAME>;Actually... I meant I like you, Katagiri-san.;2:00,710;1.3
+Ayako;Ayako;Oh my goodness, I can't believe it! Really?;2:06,990;1
+Ayako;<PLAYER_NAME>;I wouldn't joke at a time like this.;2:12,650;1.3
+Ayako;Ayako;Ah, ah... Ｕｎｂｅｌｉｅｖａｂｌｅ!! I can't believe it...;2:17,710;1
+Ayako;Ayako;This is the happiest day of my life!\nＩ'ｌｌ ｎｅｖｅｒ ｆｏｒｇｅｔ!;2:24,230;1
+Ayako;Ayako;I'll remember it as long as I live...!;2:29,640;1
+Yuko;<PLAYER_NAME>;A-Asahina san...;0:00,100;0.8
+Yuko;Yuko;I don't know why I called you out here...;0:04,060;1
+Yuko;Yuko;But there's something I want to say before graduation...\nHow can I say it?;0:09,250;1
+Yuko;<PLAYER_NAME>;Something you want to say...?;0:15,370;0.8
+Yuko;Yuko;I used to love going to all the trendy places\nand follow fads, but...;0:20,030;1
+Yuko;Yuko;I don't know how to explain it.\nLately, I've gotten tired of it.;0:26,190;1
+Yuko;Yuko;I feel like, if I'm with someone I like,\nI'll have fun no matter where we go!;0:32,380;1
+Yuko;Yuko;Like right now, being with you feels that way.;0:38,040;1
+Yuko;<PLAYER_NAME>;So you've gotten tired of it, huh?;0:40,070;0.8
+Yuko;Yuko;You're such an idiot sometimes.\nI'm saying that being with you is fun for me!;0:44,240;1
+Yuko;<PLAYER_NAME>;W-What does that mean...?;0:51,390;0.8
+Yuko;Yuko;It's embarrassing to say, but...;0:55,000;1
+Yuko;Yuko;I think... I've fallen for you.;0:59,210;1
+Yuko;Yuko;As long as I have you, I don't need anything else!\nI don't care about trends anymore.;1:03,120;1
+Yuko;Yuko;So, please, go out with me.;1:11,510;1
+Yuko;<PLAYER_NAME>;Actually, I... I've liked you too, Asahina-san...;1:14,250;0.8
+Yuko;Yuko;That's amazing, I'm so happy!;1:19,550;1
+Yuko;Yuko;But still, isn't it more fun to go somewhere,\nrather than just being together all the time?;1:21,580;1
+Yuko;<PLAYER_NAME>;Y-Yeah, you're right. ;1:27,050;0.8
+Yuko;Yuko;Then, once we graduate, let's go on a trip somewhere!;1:30,220;1
+Yuko;<PLAYER_NAME>;Sure, sounds good.;1:33,230;0.8
+Yuko;Yuko;Then let's head to the travel agency right now. Come on, hurry, hurry!;1:36,350;1
+Yuko;<PLAYER_NAME>;(Well, she hasn’t changed at all... but I guess that's okay.);1:42,040;0.8
+Nozomi;<PLAYER_NAME>;K-Kiyokawa-san...;0:00,400;0.8
+Nozomi;Nozomi;Sorry for calling you out here.;0:03,990;1
+Nozomi;<PLAYER_NAME>;It's fine, really. What's wrong?;0:08,190;1
+Nozomi;Nozomi;Since we're graduating today, there’s something I really need to tell you.\nJust listening is enough...;0:13,390;1
+Nozomi;<PLAYER_NAME>;Yeah... I'll listen.;0:20,590;1
+Nozomi;Nozomi;Up until now, I've only focused on swimming,\nI never had time for love or romance...;0:24,370;1
+Nozomi;Nozomi;...and the guys around me were all so weak,\nnone of them ever caught my interest.;0:31,390;1
+Nozomi;Nozomi;So I never paid any attention to that stuff.;0:36,880;1
+Nozomi;Nozomi;But lately, something changed, and I don't know when.;0:40,480;1
+Nozomi;Nozomi;I started to think more and more about you...;0:44,780;1
+Nozomi;Nozomi;I couldn't even focus on my training anymore.;0:48,740;1
+Nozomi;Nozomi;Lately, I can’t even sleep at night...;0:51,640;1
+Nozomi;Nozomi;...and my heart has been restless.;0:55,630;1
+Nozomi;Nozomi;People have always told me that I look like a boy,\nbut that never bothered me.;0:58,710;1
+Nozomi;Nozomi;But with you... I don't want you to see me that way.;1:06,480;1
+Nozomi;Nozomi;That’s why I’ve tried not to speak roughly in front of you,\nand I’ve even watched how I act.;1:10,520;1
+Nozomi;Nozomi;If none of that’s enough, then I’ll give up swimming.;1:19,570;1
+Nozomi;Nozomi;I’ll grow my hair out as long as you want it!;1:23,780;1
+Nozomi;Nozomi;S-Sorry...  know I’m saying all these selfish things...;1:27,820;1
+Nozomi;Nozomi;But it’s okay if you reject me.;1:31,430;1
+Nozomi;Nozomi;I just don’t want to graduate with these feelings bottled up. ;1:36,430;1
+Nozomi;Nozomi;I wanted you to hear how I feel...;1:41,410;1
+Nozomi;<PLAYER_NAME>;Okay...;1:43,750;1
+Nozomi;Nozomi;I love you.;1:47,350;1
+Nozomi;Nozomi;So much I can't sleep at night.;1:48,760;1
+Nozomi;<PLAYER_NAME>;............;1:50,770;1
+Nozomi;Nozomi;I-I see, of course!!;1:53,650;1
+Nozomi;Nozomi;Of course, someone like me isn’t good enough!;1:56,390;1
+Nozomi;Nozomi;But at least I feel relieved having said it.\nThank you for listening.;2:00,850;1
+Nozomi;<PLAYER_NAME>;K-Kiyokawa-san. Wait.;2:07,360;1
+Nozomi;Nozomi;Don’t stop me. If you stop me, I’ll start hoping.;2:11,860;1
+Nozomi;Nozomi;And if you say something just to comfort me,\nI’ll feel miserable...;2:16,500;1
+Nozomi;<PLAYER_NAME>;Kiyokawa-san. I love you too.;2:20,450;1
+Nozomi;Nozomi;W-what did you just say...?;2:25,340;1
+Nozomi;<PLAYER_NAME>;I said, I love you, Kiyokawa-san.;2:29,480;1
+Nozomi;Nozomi;R-Really? Even someone like me,\nwho's only good at swimming...?;2:37,310;1
+Nozomi;<PLAYER_NAME>;Of course.;2:44,480;1
+Nozomi;Nozomi;I-I can't... Now I can't stop crying... ;2:48,370;1
+Nozomi;Nozomi;Please... ;2:55,690;1
+Nozomi;Nozomi;Let me cry in your arms.;2:57,710;1
+Nozomi;<PLAYER_NAME>;It's okay.;3:00,830;1
+Nozomi;Nozomi;I’m so happy. This is the best feeling ever...;3:03,480;1

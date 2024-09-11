@@ -25,14 +25,14 @@ class ConfessionSubtitleOverlay(OverlayWindow):
         self.textbox_height = int(height * self.game_scaling)
 
         self.root = tk.Toplevel()
-        self.root.attributes("-alpha", 0.95)  # Make the window semi-transparent
+        self.root.attributes("-alpha", 0.99)  # Make the window semi-transparent
         self.root.attributes("-topmost", True)  # Make the window semi-transparent
         self.root.overrideredirect(True)  # Remove window decorations (border, title bar)
         self.bg_img = tk.PhotoImage(file="data/backgrounds/subtitle_bg_4x.png")
 
         self.root.geometry(f"{self.textbox_width}x{self.textbox_height}+{self.pos_x}+{self.pos_y}")
-        self.label = tk.Label(self.root, text="Lorem ipsum dolor", font=("MS PGothic", self.font_size), fg='white',
-                              image=self.bg_img, wraplength=self.textbox_width, justify='left', compound='center')
+        self.label = tk.Label(self.root, text="", font=("MS PGothic", self.font_size), fg='white',
+                              image=self.bg_img, wraplength=self.textbox_width, justify='center', compound='center')
         self.label.pack()
 
 if __name__ == "__main__":
