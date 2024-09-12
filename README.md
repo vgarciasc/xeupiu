@@ -22,7 +22,7 @@ In other words, this works, while Textractor doesn't; moreover, even if Textract
 
 ## What does the database look like?
 
-It's a CSV, like [this](https://github.com/vgarciasc/xeupiu/blob/main/data/texts/database_text.csv). Perhaps in the future it will be necessary to add more metadata, but for now it's quite simple, as you'll see. The file can be easily edited by competent translators, shared online, and future players who download this file will be able to interact with a high-quality translation, instead of a machine one.
+It's a CSV, like [this](https://github.com/vgarciasc/xeupiu/blob/main/data/texts/database_text_v2.csv). Perhaps in the future it will be necessary to add more metadata, but for now it's quite simple, as you'll see. The file can be easily edited by competent translators, shared online, and future players who download this file will be able to interact with a high-quality translation, instead of a machine one.
 
 ## Can I already play this?
 
