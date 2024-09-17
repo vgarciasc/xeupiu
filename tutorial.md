@@ -48,4 +48,4 @@ Most probable cause is that the cursor became free-form. Please move it outside 
 
 ### 4. The game crashed and I don't know why!
 
-If none of the questions above apply to your case, please reach out on the [Discord server](https://discord.gg/QzYTyPQn). I am only one person with a busy job so I apologize upfront if I take a while to answer.
+If none of the questions above apply to your case, please reach out on the [Discord server](https://discord.gg/A9W3uRP2). I am only one person with a busy job so I apologize upfront if I take a while to answer.
