@@ -229,10 +229,11 @@ def detect_mark_character_selection_choice_2(red, green, blue):
     is_shinto_shrine = detect_mark_by_count(red, green, blue, 13, 90, 23, 27, 239, 222, 222, 64)
     is_shinto_shrine_2 = detect_mark_by_count(red, green, blue, 17, 50, 21, 24, 74, 66, 58, 30)
     is_corridor_school = detect_mark_by_count(red, green, blue, 9, 20, 50, 90, 58, 74, 66, 24)
+    is_front_school = detect_mark_by_count(red, green, blue, 13, 7, 52, 127, 8, 8, 16, 17)
 
     is_selection_on_textbox = 30 < get_count_by_thresholds(red, green, blue, 16, 160, 280, 63, 60, 120, 160, 190, 20, 80) < 300
 
-    return (is_players_house or is_shinto_shrine or is_shinto_shrine_2 or is_corridor_school) and is_selection_on_textbox
+    return (is_players_house or is_shinto_shrine or is_shinto_shrine_2 or is_corridor_school or is_front_school) and is_selection_on_textbox
 
 SCREEN_CUES = [
     { "id": "textbox", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 16, 159, 288, 64, 164, 49, 25, 650), "prerequisites": []},
