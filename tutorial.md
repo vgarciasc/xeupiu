@@ -40,7 +40,7 @@ I'm aware of this issue, however it's low priority right now. For the time being
 
 ### 2. I moved the game screen, but the overlays did not follow!
 
-Just as above: I are aware of this issue, however it's low priority right now. Please maintain the game screen in the same position after opening the tool; if you want to change its position, simply close the tool and reopen it again.
+Just as above: I am aware of this issue, however it's low priority right now. Please maintain the game screen in the same position after opening the tool; if you want to change its position, simply close the tool and reopen it again.
 
 ### 3. During phone conversations, the textbox overlay disappears after choosing which girl to get info on!
 
