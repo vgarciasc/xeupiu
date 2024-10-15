@@ -84,6 +84,9 @@ def format_translated_text(jp_text, eng_text):
     elif jp_text[0] == "「" or jp_text[0] == "『":
         eng_text = eng_text.replace("\"", "")
         eng_text = "\"" + eng_text + "\""
+
+    eng_text = eng_text.replace("Mr. ", "").replace("Ms. ", "")
+    eng_text = eng_text.replace("String-o", "Himoo").replace("Stringo", "Himoo")
     return eng_text
 
 
