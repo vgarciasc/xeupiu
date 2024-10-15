@@ -25,7 +25,7 @@ class OverlayWindow:
         self.is_hidden = False
         self.iterations_wout_gameobj = 99
 
-    def get_letterbox_offset(self, window_id: int):
+    def get_letterbox_offset(self, window_id: int, n_tries=0):
         """
         Removes black letterboxes on the sides of the game window.
         :return: The x and y offsets of the game window.
@@ -68,8 +68,13 @@ class OverlayWindow:
             top_offset -= 1 * local_game_scaling
 
         if right_offset - left_offset < 0:
-            print(f"Letterbox calibration done before window was fully rendered. Retrying...")
-            return self.get_letterbox_offset(window_id)
+            if n_tries < 50:
+                print(f"Letterbox calibration done before window was fully rendered. Retrying...")
+                print(f"Offsets: {left_offset}, {right_offset}, {top_offset}, {bottom_offset}")
+                return self.get_letterbox_offset(window_id, n_tries+1)
+            else:
+                print(f"Letterbox calibration failed. Offsets: {left_offset}, {right_offset}, {top_offset}, {bottom_offset}")
+                raise Exception("Letterbox calibration failed.")
 
         # EXPERIMENTING! This is a hack added because in the title screen, there is no left flicker.
         # This is solving my problems right now, but perhaps won't in the future. Keep this in mind.
