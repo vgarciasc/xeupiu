@@ -79,10 +79,10 @@ def format_translated_text(jp_text, eng_text):
     eng_text = eng_text.replace("''", "\"")
 
     if jp_text[0] == "（":
-        eng_text = eng_text.replace("\"", "").replace("(", "").replace(")", "").replace("（", "").replace("）", "")
+        eng_text = eng_text.replace("\"", "").replace("”", "").replace("“", "").replace("(", "").replace(")", "").replace("（", "").replace("）", "")
         eng_text = "(" + eng_text + ")"
     elif jp_text[0] == "「" or jp_text[0] == "『":
-        eng_text = eng_text.replace("\"", "")
+        eng_text = eng_text.replace("\"", "").replace("”", "").replace("“", "")
         eng_text = "\"" + eng_text + "\""
 
     eng_text = eng_text.replace("Mr. ", "").replace("Ms. ", "")
