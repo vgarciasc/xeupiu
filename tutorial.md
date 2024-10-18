@@ -55,13 +55,15 @@ There are some known Windows configurations that affect the tool in its current 
 
 If these items are true for your PC but the tool keeps crashing, read on.
 
-### 5. The tool was working well, but now when I try to open it, it crashes immediately!
+### 5. The tool was working well, but now when I try to open it, it crashes with "not enough image data"!
 
-This is a known issue with the Windows internal screenshotting API. Please do the following:
+This is a known issue with the Windows internal screenshotting API, due to interference caused by other 
+applications (most commonly, web browsers). Please do the following:
 
-1. Close both XEUPIU and the emulator.
-2. Close other windows in your computer.
-3. Reopen XEUPIU and the emulator.
+1. Close the emulator, XEUPIU, and your open web browser windows.
+2. Reopen the emulator, XEUPIU, and try to run XEUPIU again.
+3. If it is still not working, close other windows beyond the web browser, and try again.
+4. If XEUPIU worked, feel free to reopen all other windows.
 
 If this does not solve your issue, read on.
 
