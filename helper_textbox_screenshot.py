@@ -15,8 +15,7 @@ if __name__ == "__main__":
 
     img_ss = get_window_image(window_id,
                               offset_x=(overlay_tb.letterbox_offset[0], overlay_tb.letterbox_offset[1]),
-                              offset_y=(overlay_tb.letterbox_offset[2], overlay_tb.letterbox_offset[3]),
-                              use_scaling=True)
+                              offset_y=(overlay_tb.letterbox_offset[2], overlay_tb.letterbox_offset[3]))
     img_ss = img_ss.resize((img_ss.size[0] // overlay_tb.game_scaling,
                             img_ss.size[1] // overlay_tb.game_scaling),
                            Image.NEAREST)

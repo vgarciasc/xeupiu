@@ -6,8 +6,9 @@ import numpy as np
 import win32gui
 from PIL import Image
 
+from config import CONFIG
 from constants import TB_POS_X, TB_POS_Y, TB_WIDTH, TB_HEIGHT
-from screenshot import get_window_by_title, get_window_image
+from screenshot import get_window_by_title, RESOLUTION_SCALE_OFFSET_Y
 from overlay import OverlayWindow
 
 class TextboxOverlayWindow(OverlayWindow):
@@ -17,8 +18,8 @@ class TextboxOverlayWindow(OverlayWindow):
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
         global bg_img
 
-        self.pos_x = window_pos_x + int(TB_POS_X * self.game_scaling) + 4
-        self.pos_y = window_pos_y + int(TB_POS_Y * self.game_scaling) - 1
+        self.pos_x = window_pos_x + int(TB_POS_X * self.game_scaling)
+        self.pos_y = window_pos_y + int(TB_POS_Y * self.game_scaling)
         self.textbox_width = int(TB_WIDTH * self.game_scaling)
         self.textbox_height = int(TB_HEIGHT * self.game_scaling)
 
@@ -47,7 +48,7 @@ if __name__ == "__main__":
     for _ in range(1000):
         overlay.update(time.strftime("%H:%M:%S") + " lorem ipsum dorem sit amet " * 1, None)
         time.sleep(0.5)
-        overlay.hide()
-        time.sleep(0.5)
-        overlay.show()
-        time.sleep(0.5)
+        # overlay.hide()
+        # time.sleep(0.5)
+        # overlay.show()
+        # time.sleep(0.5)

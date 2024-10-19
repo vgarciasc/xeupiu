@@ -127,8 +127,7 @@ if __name__ == "__main__":
     while True:
         img_ss = get_window_image(window_id,
                                   offset_x=(handler.overlay.letterbox_offset[0], handler.overlay.letterbox_offset[1]),
-                                  offset_y=(handler.overlay.letterbox_offset[2], handler.overlay.letterbox_offset[3]),
-                                  use_scaling=False)
+                                  offset_y=(handler.overlay.letterbox_offset[2], handler.overlay.letterbox_offset[3]))
         img_ss = img_ss.resize((img_ss.size[0] // handler.overlay.game_scaling,
                                 img_ss.size[1] // handler.overlay.game_scaling),
                                Image.NEAREST)

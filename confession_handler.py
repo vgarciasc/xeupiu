@@ -88,8 +88,7 @@ if __name__ == "__main__":
     while True:
         img_ss = get_window_image(window_id,
                                   offset_x=(overlay.letterbox_offset[0], overlay.letterbox_offset[1]),
-                                  offset_y=(overlay.letterbox_offset[2], overlay.letterbox_offset[3]),
-                                  use_scaling=False)
+                                  offset_y=(overlay.letterbox_offset[2], overlay.letterbox_offset[3]))
 
         img_ss = img_ss.resize((img_ss.size[0] // overlay.game_scaling,
                                 img_ss.size[1] // overlay.game_scaling),

@@ -12,7 +12,7 @@ from database import Database
 from notebook_database import NotebookDatabase
 from poorcr import PoorCR
 from config import CONFIG
-from screenshot import get_window_by_title, get_window_image
+from screenshot import get_window_by_title, get_window_image, RESOLUTION_SCALE_OFFSET_Y
 from overlay import OverlayWindow
 from image_processing import get_count_by_equality, get_count_by_thresholds
 import image_processing as imp
@@ -789,8 +789,7 @@ if __name__ == "__main__":
     while True:
         img_ss = get_window_image(window_id,
                                   offset_x=(overlays[0].letterbox_offset[0], overlays[0].letterbox_offset[1]),
-                                  offset_y=(overlays[0].letterbox_offset[2], overlays[0].letterbox_offset[3]),
-                                  use_scaling=False)
+                                  offset_y=(overlays[0].letterbox_offset[2], overlays[0].letterbox_offset[3]))
         img_ss = img_ss.resize((img_ss.size[0] // overlays[0].game_scaling,
                                 img_ss.size[1] // overlays[0].game_scaling),
                                Image.NEAREST)
