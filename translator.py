@@ -61,7 +61,7 @@ class Translator():
         if self.deepl_model is None:
             self.deepl_model = deepl.Translator(auth_key=CONFIG["translation"]["deepl"]["api_key"])
 
-        return self.deepl_model.translate_text(text, source_lang="JA", target_lang="EN-US").text
+        return self.deepl_model.translate_text(text, source_lang="JA", target_lang=CONFIG["translation"]["lang"]).text
 
     def translate(self, text, backend=None):
         if not text:

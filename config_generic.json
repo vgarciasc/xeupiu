@@ -46,6 +46,7 @@
     },
     "translation": {
         "backend": "deepl",
+        "lang": "EN-US",
         "google_cloud": {
             "credential_path": ""
         },
