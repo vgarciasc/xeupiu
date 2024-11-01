@@ -18,10 +18,10 @@
     },
     "databases": {
         "names_filepath": "data/texts/database_names.csv",
-        "text_filepath": "data/texts/database_text_v2.csv",
-        "notebook_filepath": "data/texts/database_notebook_v2.csv",
+        "text_filepath": "data/texts/database_text.csv",
+        "notebook_filepath": "data/texts/database_notebook.csv",
         "confession_filepath": "data/texts/database_confessions.csv",
-        "epilogue_filepath": "data/texts/database_epilogues_v2.csv"
+        "epilogue_filepath": "data/texts/database_epilogues.csv"
     },
     "save": {
         "player": {
