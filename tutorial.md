@@ -23,7 +23,7 @@ The game is already playable, but the game script has not been fully collected y
 
 ### Setting up the translation system
 
-1. Download the latest XEUPIU tool release [here](https://github.com/vgarciasc/xeupiu).
+1. Download the latest XEUPIU tool release [here](https://github.com/vgarciasc/xeupiu/releases/).
 2. Unzip it somewhere.
 3. Start up the game in DuckStation.
 4. Once you're at the game's title screen, press START.
