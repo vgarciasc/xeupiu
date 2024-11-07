@@ -31,10 +31,17 @@ Japanese text;English text
 伊集院レイ;Rei Ijuuin
 早乙女好雄;Yoshio Saotome
 早乙女優美;Yumi Saotome
+虹野沙希;Saki Nijino
 藤崎詩織;Shiori Fujisaki
+如月未緒;Mio Kisaragi
+紐緒結奈;Yuina Himoo
 片桐彩子;Ayako Katagiri
 古式ゆかり;Yukari Koshiki
-虹野沙希;Saki Nijino
+清川望;Nozomi Kiyokawa
+鏡魅羅;Mira Kagami
+朝日奈夕子;Yuuko Asahina
+美樹原愛;Ai Mikihara
+館林見晴;Miharu Tatebayashi
 文字表示速度;Text Display Speed
 アイコンモード;Icon Mode
 マウス設定;Mouse Settings
@@ -66,7 +73,6 @@ Japanese text;English text
 文字速度;Text speed
 システム設定画面;System settings screen
 廊下;Hallway
-紐緒結奈;Yuna Himu
 デートスポット;Date spot
 次のページへ;To the next page
 きらめき中央公園;Kirameki Central Park
@@ -108,7 +114,6 @@ Japanese text;English text
 クラブをやめる;Quit the club.
 情報誌;Information magazine.
 ８月６日に神社で縁日があります;Festival at the shrine on August 6th.
-如月未緒;Mio Kisaragi.
 ９月３０日;September 30th.
 Ｂ型;Type B.
 ８６．６０．８６;86.60.86
@@ -154,7 +159,6 @@ Japanese text;English text
 ８０．５９．８２;80.59.82
 身体が弱いことを、気にしている;Worried about being physically weak.
 ゲーテの詩集がお気に入り;Fond of Goethe’s poetry collection.
-館林見晴;Miharu Takanashi
 前のページへ;To the previous page
 映画館;Cinema
 コンサート会場;Concert venue
@@ -272,55 +276,54 @@ Japanese text;English text
 修学旅行;School trip
 京都．奈良;Kyoto, Nara
 ホテル．ロビー;Hotel lobby
-うん、―緒に行こう。』;"Yeah, let's go together."""
-いや、やめておくよ。』;"No, I'd rather not."""
+うん、―緒に行こう。』;Yeah, let's go together.
+いや、やめておくよ。』;No, I'd rather not.
 社寺巡り;Temple and shrine tour
-恋愛小説』;"Romance novel"""
-サンダル』;"Sandals"""
-ヘアーバンド』;"Hairband"""
+恋愛小説』;Romance novel
+サンダル』;Sandals
+ヘアーバンド』;Hairband
 土産屋;Souvenir shop
-―緒に逃げよう。』;"Let's run away together."""
-ここは任せて、早く逃げて。』;"Leave this to me, run quickly."""
+―緒に逃げよう。』;Let's run away together.
+ここは任せて、早く逃げて。』;Leave this to me, run quickly.
 ボーリング場;Bowling alley
 ８０．５９．８３;80.59.83
 激しいスポーツはしない;I don't do intense sports
 落ち着ける音楽が好み;I prefer calming music
-コンサート会場で、待ち合わせ』;"Meet you at the concert venue."""
-ゲームセンターで、待ち合わせ』;"Meet you at the game center."""
+コンサート会場で、待ち合わせ』;Meet you at the concert venue.
+ゲームセンターで、待ち合わせ』;Meet you at the game center.
 コンサート会場で、;At the concert venue,
-確かこの場所だつた。』;"I'm sure it was this place."""
-ゲームセンターだつたかな。』;"Was it the game center?"""
-ビデオゲームコーナーに行く。』;"I'll go to the video game corner."""
-メダルゲームコーナーに行く。』;"I'll go to the medal game corner."""
+確かこの場所だつた。』;I'm sure it was this place.
+ゲームセンターだつたかな。』;Was it the game center?
+ビデオゲームコーナーに行く。』;I'll go to the video game corner.
+メダルゲームコーナーに行く。』;I'll go to the medal game corner.
 ビデオゲームコーナー;Video game corner
-別にかまわないよ。』;"I don't really mind."""
-最近は、女の子も結構来てるよ。』;"Lately, girls are also coming a lot."""
-不良になつちゃう？』;"Will you become a delinquent?"""
-ガーギー画集輸入版』;"Imported Giger artbook"""
-香水』;"Perfume"""
-水中メガネ』;"Swim goggles"""
-ボーリング場で、待ち合わせ』;"Meet you at the bowling alley."""
-ショッピング街で、待ち合わせ』;"Meet you at the shopping district."""
+別にかまわないよ。』;I don't really mind.
+最近は、女の子も結構来てるよ。』;Lately, girls are also coming a lot.
+不良になつちゃう？』;Will you become a delinquent?
+ガーギー画集輸入版』;Imported Giger artbook
+香水』;Perfume
+水中メガネ』;Swim goggles
+ボーリング場で、待ち合わせ』;Meet you at the bowling alley.
+ショッピング街で、待ち合わせ』;Meet you at the shopping district.
 ボーリング場で、;At the bowling alley,
-片桐さんには絶対取れないね。』;"Katsuragi can't possibly get it."""
-片桐さんなら取れるつて。』;"Katsuragi can get it, you know."""
-何とかなるんじゃない。』;"It'll work out somehow."""
-もう満足した？』;"Are you satisfied now?"""
-いいね。行こうか。』;"Sounds good. Shall we go?"""
+片桐さんには絶対取れないね。』;Katsuragi can't possibly get it.
+片桐さんなら取れるつて。』;Katsuragi can get it, you know.
+何とかなるんじゃない。』;It'll work out somehow.
+もう満足した？』;Are you satisfied now?
+いいね。行こうか。』;Sounds good. Shall we go?
 ジャンク屋;Junk shop
-女のくせにおかしいぜ。』;"It's weird for a girl."""
-フーン好きなんだ。』;"Hmm, you like it."""
-サイバーな感覚だよね。』;"It feels cyber, doesn't it."""
-そうだね、そう思うよ。』;"Yeah, I think so too."""
-何億年も前の輝きなんだよね。』;"It's a shine from billions of years ago."""
-あんなのただの光だよ。』;"That's just a light."""
+女のくせにおかしいぜ。』;It's weird for a girl.
+フーン好きなんだ。』;Hmm, you like it.
+サイバーな感覚だよね。』;It feels cyber, doesn't it.
+そうだね、そう思うよ。』;Yeah, I think so too.
+何億年も前の輝きなんだよね。』;It's a shine from billions of years ago.
+あんなのただの光だよ。』;That's just a light.
 貧血の薬』;Anemia medicine.
 シェークスピア全集』;Complete Works of Shakespeare.
 俺は、ちょつと怖かつたよ。』;I was a little scared.
 あれで？おかしいんじゃない。』;With that? Isn't it strange?
 確かにすごかつたね。』;It was certainly amazing.
 校舎裏;Behind the school building.
-美樹原愛;Aiko Mikihara.
 Ｐ;P.
 ９月 ５日;September 5th.
 ７８．５８．７９;78.58.79.
@@ -371,7 +374,7 @@ Japanese text;English text
 何か気分がいいね。』;I'm feeling good for some reason.
 散歩は、お腹がすいてくるね。』;Going for a walk makes me hungry.
 この絵、如月さんに似てるね。』;This picture looks like Kisaragi-san.
-昇り龍乱れ七変化つて奴だね。』;"It's a thing called ""Rising Dragon, Disordered Seven Transformations."""
+昇り龍乱れ七変化つて奴だね。』;It's a thing called Rising Dragon, Disordered Seven Transformations.
 線香花火の方がいいな。』;I prefer sparklers.
 本当、奇麗だね。』;Really, it's beautiful.
 ウサギの手ぶくろ』;Rabbit gloves
@@ -406,9 +409,8 @@ Japanese text;English text
 二流大学を受験する;Apply to a second-tier university
 三流大学を受験する;Apply to a third-tier university
 いい;Good
-鏡魅羅;Kyoko Mira
 １１月１５日;November 15
-９０．６０．８８;90.60.88 (body measurements)
+９０．６０．８８;90.60.88
 美人で俺好み;Beautiful and my type
 趣味はウィンドウショッピング;Hobby is window shopping
 プール内;In the pool
@@ -418,9 +420,8 @@ Japanese text;English text
 海岸;Coast
 浜辺;Beach
 俺、ファンなんだ。』;I'm a fan.
-朝日奈夕子;Asahina Yuko
 １０月１７日;October 17
-８３．５９．８５;83.59.85 (body measurements)
+８３．５９．８５;83.59.85
 流行に敏感で、遊び歩く;Trendy and always out and about
 勉強は苦手で、うるさい;Not good at studying and noisy
 女の子でも誘つて行こうかな？』;Should I invite a girl to come along?
@@ -563,7 +564,6 @@ Japanese text;English text
 ―流企業の試験を受ける;Take a test for a first-tier company
 二流企業の試験を受ける;Take a test for a second-tier company
 三流企業の試験を受ける;Take a test for a third-tier company
-清川望;Nozomu Kiyokawa
 １２月 ３日;December 3rd
 ８２．５８．８３;82-58-83
 スポーツ万能、水泳は国体レベル;Versatile in sports, swimming at national level
@@ -700,7 +700,7 @@ Japanese text;English text
 不良パンチ;Delinquent punch
 ポコポコ乱れ撃ち;Rapid-fire poke attack
 不良Ａの攻撃;Delinquent A's attack
-不良「そんな攻撃では、;"Delinquent: ""With that kind of attack, "
+不良「そんな攻撃では、;Delinquent: With that kind of attack, 
 不良Ｃの攻撃;Delinquent C's attack
 ＰＬＡは８８のダメージを受けた;PLA took 88 points of damage
 ＰＬＡの攻撃;PLA's attack
@@ -712,42 +712,42 @@ Japanese text;English text
 <PSURNAME>;<PSURNAME>
 <PSURNAME>は<DAMAGE>を受けた;<PSURNAME> took <DAMAGE> damage
 ハーメルンのホラ吹き;The Piper of Hamelin
-不良「くつ！ なかなかやるなつ！;"Delinquent: ""Kutsu! Not bad!"
+不良「くつ！ なかなかやるなつ！;Delinquent: Kutsu! Not bad!
 しかたねぇ、番長様に御報告だ！;No choice, gotta report to the boss!
 戦闘に勝つた！！;Won the battle!!
 経験値 ：２３６０ＥＸＰ;Experience Points: 2360 EXP
 お金  ：３６００ゴールド;Money: 3600 Gold
 おたから：ミスリル学ラン;Treasure: Mithril School Uniform
-？？「ちょつと待てぇーい！;"???: ""Wait a minute!"
-<PSURNAME>「誰だつ！;"<PSURNAME>: ""Who is it!"
+？？「ちょつと待てぇーい！;???: Wait a minute!
+<PSURNAME>「誰だつ！;<PSURNAME>: Who is it!
 番長;Boss
-番長「俺様は、この世界の番長だ！;"Boss: ""I am the boss of this world!"
+番長「俺様は、この世界の番長だ！;Boss: I am the boss of this world!
 子分達が随分と世話になつたようだな。;Seems like my underlings owe you a lot.
 だが、茶番はここまでだ！;But, the farce ends here!
 礼をさせてもらうぞ。;I'll show you my gratitude.
 超眼力！;Super Vision!
-番長「ふつ、思い知つたか。;"Boss: ""Hah, have you realized?"
+番長「ふつ、思い知つたか。;Boss: Hah, have you realized?
 俺様に逆らう者の末路はこうなるのだ。;This is the fate of those who oppose me.
 はつはつはつはつはつ．．．;Hahahaha...
 どこからともなく声が聞こえてきた;A voice came from nowhere
-天使の声「お願い、立ちあがつて。;"Angel's voice: ""Please, stand up."
+天使の声「お願い、立ちあがつて。;Angel's voice: Please, stand up.
 あなたには、;You still have
 まだやるべきことがあるのよ！;Things you need to do!
 そうよ、あなたにならできるわ！;Yes, you can do it!
 新しい力をあげる。;I'll give you new power.
 彼女を．．．守つてあげて！;Protect her...
-番長「なにぃぃぃー！？;"Boss: ""What..."
-<PSURNAME>「もう超眼力は見切つたぜ！;"<PSURNAME>: ""I've already seen through Super Vision!"
+番長「なにぃぃぃー！？;Boss: What...
+<PSURNAME>「もう超眼力は見切つたぜ！;<PSURNAME>: I've already seen through Super Vision!
 番長！ 負ける訳にはいかない！！;Boss! I can't lose!!
-番長「こわつぱが、;"Boss: ""You little brat,"
+番長「こわつぱが、;Boss: You little brat,
 超眼力を見切つた程度で図に乗りおつて;Getting cocky just because you saw through Super Vision
 俺様の真の力を見せてくれる。;I'll show you my true power.
 ゆくぞーつ！;Here I go!
-番長「袖竜！;"Boss: ""Sleeve Dragon!"
+番長「袖竜！;Boss: Sleeve Dragon!
 おたから：炎のＴシャツ;Treasure: Flame T-shirt
 <PSURNAME>の体力が５％回復した;<PSURNAME>'s health recovered by 5%
 <PSURNAME>の攻撃;<PSURNAME>'s attack
-番長「貴様の力はそんなもんか！;"Boss: ""Is that all your strength!"
+番長「貴様の力はそんなもんか！;Boss: Is that all your strength!
 やめる;Quit
 ８４．５８．８４;84.58.84
 電脳部;Cyber Club
@@ -836,16 +836,16 @@ Japanese text;English text
 鹿．グレートが襲つてきた！;Great Deer has attacked!
 暴れん坊頭突き;Rampaging Headbutt
 スタンピート;Stampede
-<PSURNAME>「だめだ！ 体が動かない！;" <PSURNAME> ""Damn! My body won't move!"
-？？？「拙僧にまかせなされ。;" ??? ""Leave it to me."
-<PSURNAME>「？！;"<PSURNAME> ""?!"
+<PSURNAME>「だめだ！ 体が動かない！; <PSURNAME> Damn! My body won't move!
+？？？「拙僧にまかせなされ。; ??? Leave it to me.
+<PSURNAME>「？！;<PSURNAME> ?!
 虚無僧;Komuso (Traveling Monk)
 正義の虚無僧推参！;The righteous komuso has arrived!
-虚無僧「迷える大鹿よ、;"Komuso: ""O troubled great deer,"
+虚無僧「迷える大鹿よ、;Komuso: O troubled great deer,
 怒りを静め給え。;please quell your anger.
 現世忘却の呪文;Spell of Temporal Oblivion
 鹿．グレートは去つていつた。;Great Deer has left.
-虚無僧「はしたないところを;"Komuso: ""I apologize for my unseemly behavior."
+虚無僧「はしたないところを;Komuso: I apologize for my unseemly behavior.
 お見せしてしまつた。;Please forgive me for showing you such a sight.
 では、拙僧はこれにて。;Now, I will take my leave.
 ありがとう、正義の虚無僧;Thank you, righteous komuso
@@ -901,8 +901,8 @@ Japanese text;English text
 桐;Kiri
 友達に噂とかされると、;When friends gossip about me,
 失礼するわ。;it's rude.
-早乙女「さようならつ。;"Saotome: ""Goodbye."
-"<PSURNAME>（プレゼントをすることはないな。）""";<PSURNAME> (I won't give presents.)
+早乙女「さようならつ。;Saotome: Goodbye.
+<PSURNAME>（プレゼントをすることはないな。）;<PSURNAME> (I won't give presents.)
 ８番アルバムを;Album #8.
 <PSURNAME>『さ;<PSURNAME> 'Sa.
 休館;Closed!
@@ -956,7 +956,6 @@ Japanese text;English text
 スポットがありません;No spots available
 デートスポットを聞く;Ask about dating spots  
 １番アルバムを;Number one album  
-<SHIORI_BIRTHDAY>;  
 ８１．５９．８２;81.59.82  
 サッカー部;Soccer club  
 運動部のアイドルで、趣味は料理;The idol of the sports club, with cooking as a hobby  
@@ -968,7 +967,6 @@ Japanese text;English text
 アイコンモ‐ド;Icon mode  
 フリ;Free  
 リー;Lee  
-‘;'  
 族館;Family museum  
 ームセンター;Amusement center  
 ー;-  
@@ -982,19 +980,27 @@ Japanese text;English text
 ラネタリウム;Planetarium  
 ナイトパレード;Night parade  
 不良達が襲つてきた！;Delinquents have attacked!  
-清川「フザケンナヨー！;"Kiyokawa: ""Don't mess with me!""  "
+清川「フザケンナヨー！;Kiyokawa: Don't mess with me!  
 あつ！いや、なんでもない．．．;Ah! No, it's nothing...  
 水竜破;Water Dragon Break  
 おたから：源氏のかたな;Treasure: Genji's katana  
 これでもくらえぇーい！;Take this!  
-番長「片腹痛いわ！;"Boss: ""That's laughable!""  "
-番長「なかなかやるな！;"Boss: ""You're quite good!""  "
+番長「片腹痛いわ！;Boss: That's laughable!  
+番長「なかなかやるな！;Boss: You're quite good!  
 <PSURNAME>の攻撃は失敗した;<PSURNAME>'s attack failed  
-番長「少しはできそうだな。;"Boss: ""Seems like you can do a little.""  "
-番長「男の意地にかけて、;"Boss: ""By a man's pride,""  "
+番長「少しはできそうだな。;Boss: Seems like you can do a little.  
+番長「男の意地にかけて、;Boss: By a man's pride,  
 負ける訳にはいかねぇ！;I can't afford to lose!  
-番長「うぬぬぬぬ．．．;"Boss: ""Ughhhh...""  "
-番長「ふつ！ 情けない。;"Boss: ""Pft! Pathetic.""  "
+番長「うぬぬぬぬ．．．;Boss: Ughhhh...  
+番長「ふつ！ 情けない。;Boss: Pft! Pathetic.  
 俺様に楯突こうとは十年早いわ！;You're ten years too early to defy me!  
 ゲームセンタ‐;Game center  
 コンサ‐ 会場;Concert hall  
+２月 ２日;Feb. 2
+?;?
+?集院;Ijuuin
+ョッ????;Please see ????
+??????;??????
+??;?
+うん、いい眺めだつたね。』;Yes, it was a nice view.
+鏡さんの顔ばかり見てたから⋯。』;I've been looking at Kagami's face...
