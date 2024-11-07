@@ -67,6 +67,10 @@ applications (most commonly, web browsers). Please do the following:
 
 If this does not solve your issue, read on.
 
-### 6. The game crashed and I don't know why!
+### 6. The tool is slow!
+
+Try reducing the "History size" parameter in the XEUPIU menu from 10 to 5. This will make the tool wait less time before trying to translate the text.  
+
+### 7. The game crashed and I don't know why!
 
 If none of the questions above apply to your case, please reach out on the [Discord server](https://discord.gg/aH5meFKRB7). I am only one person with a busy job so I apologize upfront if I take a while to answer.
