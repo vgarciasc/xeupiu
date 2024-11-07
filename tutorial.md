@@ -46,7 +46,15 @@ Just as above: I am aware of this issue, however it's low priority right now. Pl
 
 Most probable cause is that the cursor became free-form. Please move it outside the textbox so it can be correctly detected.
 
-### 4. I have set up the tool correctly, but when I try to run it, it crashes immediately!
+### 4. The tool is slow!
+
+Try reducing the "History size" parameter in the XEUPIU menu from 10 to 5. This will make the tool wait less time before trying to translate the text.  
+
+### 5. I have changed the game cursor and don't know how to change it back!
+
+Press the `SQUARE` button until you cycle the cursor icon back to the default one (blue pointing hand). **The tool will produce mistakes if the default cursor is not used.**
+
+### 6. I have set up the tool correctly, but when I try to run it, it crashes immediately!
 
 There are some known Windows configurations that affect the tool in its current form; we are working on fixing this for future versions. In the meantime, before opening the tool, please guarantee that:
 
@@ -55,7 +63,7 @@ There are some known Windows configurations that affect the tool in its current 
 
 If these items are true for your PC but the tool keeps crashing, read on.
 
-### 5. The tool was working well, but now when I try to open it, it crashes with "not enough image data"!
+### 7. The tool was working well, but now when I try to open it, it crashes with "not enough image data"!
 
 This is a known issue with the Windows internal screenshotting API, due to interference caused by other 
 applications (most commonly, web browsers). Please do the following:
@@ -67,10 +75,6 @@ applications (most commonly, web browsers). Please do the following:
 
 If this does not solve your issue, read on.
 
-### 6. The tool is slow!
-
-Try reducing the "History size" parameter in the XEUPIU menu from 10 to 5. This will make the tool wait less time before trying to translate the text.  
-
-### 7. The game crashed and I don't know why!
+### 8. The game crashed and I don't know why!
 
 If none of the questions above apply to your case, please reach out on the [Discord server](https://discord.gg/aH5meFKRB7). I am only one person with a busy job so I apologize upfront if I take a while to answer.
