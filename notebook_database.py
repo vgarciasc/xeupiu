@@ -25,10 +25,13 @@ class NotebookDatabase(Database):
 
     def insert_translation(self, text_jp: str, text_en: str):
         text_jp, _ = self.generalize_string(text_jp.strip())
+        text_en = text_en.replace("\"", "")
 
         new_df = pd.DataFrame({"Japanese text": [text_jp.strip()], "English text": [text_en.strip()]})
         self.df = pd.concat([self.df, new_df])
         self.df.to_csv(self.filepath, sep=";", index=False)
+
+        print(f"Adding new notebook item: [{text_jp} ; {text_en}]")
 
 if __name__ == "__main__":
     name_db = NotebookDatabase()

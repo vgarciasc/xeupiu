@@ -783,7 +783,6 @@ class SelectableRectOverlay(OverlayWindow):
                     text_jp_processed, _ = Database.generalize_string(text_jp)
                     text_en = self.tt.translate(text_jp_processed)
                     self.db.insert_translation(text_jp, text_en)
-                    print(f"Adding new notebook item: {text_jp_processed} - {text_en}")
                 text = text_en
 
         self.update(" " + text)
