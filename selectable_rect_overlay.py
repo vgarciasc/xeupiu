@@ -201,6 +201,22 @@ SELECTABLE_RECT_GROUPS = {
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (8, 0, 0)),
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
+    },
+    "bes": {
+        "fullname": "bad_ending_song",
+        "textcolor": "#a4cece",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "ngameplus": {
+        "fullname": "new_game_plus",
+        "textcolor": "#0f0f0f",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (8, 0, 0)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
     }
 }
 
@@ -266,6 +282,12 @@ def detect_mark_character_selection_choice_2(red, green, blue):
     is_selection_on_textbox = 30 < get_count_by_thresholds(red, green, blue, 16, 160, 280, 63, 60, 120, 160, 190, 20, 80) < 300
 
     return (is_players_house or is_shinto_shrine or is_shinto_shrine_2 or is_corridor_school or is_front_school) and is_selection_on_textbox
+
+def detect_ending_game_save_menu(red, green, blue):
+    cue1 = detect_mark_by_count(red, green, blue, 264, 30, 40, 40, 134, 166, 209, 65)
+    cue2 = detect_mark_by_count_min(red, green, blue, 27, 166, 266, 52, 166, 209, 209, 5)
+    cue3 = detect_mark_by_count_min(red, green, blue, 27, 166, 266, 52, 233, 134, 255, 5)
+    return cue1 and not (cue2 or cue3)
 
 SCREEN_CUES = [
     { "id": "textbox", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 16, 159, 288, 64, 164, 49, 25, 650), "prerequisites": []},
@@ -377,6 +399,8 @@ SCREEN_CUES = [
     { "id": "rpg_ui_top", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 14, 6, 20, 40, 255, 255, 0, 88), "prerequisites": ["rpg_ui_bottom_ui"]},
     { "id": "save_selection_screen", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 9, 209, 78, 18, 197, 189, 189, 64), "prerequisites": []},
     { "id": "save_selection_screen_load", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 98, 132, 97, 16, 0, 58, 132, 95), "prerequisites": ["save_selection_screen"]},
+    { "id": "bad_ending_song", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 100, 49, 185, 136, 230, 255, 230, 2314), "prerequisites": []},
+    { "id": "new_game_plus", "fn": detect_ending_game_save_menu, "prerequisites": []},
 ]
 
 SELECTABLE_RECTS = [
@@ -625,6 +649,9 @@ SELECTABLE_RECTS = [
     ("sss_k_save_2_6", (200, 167), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "STYLE"),
     ("sss_k_save_2_6", (200, 183), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "GUTS"),
     ("sss_k_save_2_6", (200, 199), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "STRESS"),
+
+    ("bes_subtitle", (70, 198), (190, 15), "#000000", "bad_ending_song", 0.8, 3),
+    ("ngameplus_prompt", (15, 55), (240, 15), "#c3c3c3", "new_game_plus", 1, 3),
 
     # ("chcr_k1_1_1", (120, 43), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_2", (120, 59), (48, 13), "#ffffff", detect_chcr_0, 0.8, 5),
