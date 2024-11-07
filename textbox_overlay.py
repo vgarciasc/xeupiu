@@ -38,8 +38,9 @@ class TextboxOverlayWindow(OverlayWindow):
     def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
         emerald_bg = np.mean((r < 30) & (g > 86) & (g < 137) & (b == 0)) > 0.4
         has_highlight = np.any((r > 100) & (r < 150) & (g > 170) & (g < 200) & (b > 30))
+        has_selection = np.sum((r > 90) & (g > 170) & (b < 100)) > 20
 
-        return emerald_bg and not has_highlight
+        return emerald_bg and not has_highlight and not has_selection
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
