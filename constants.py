@@ -86,7 +86,7 @@ def format_translated_text(jp_text, eng_text):
         eng_text = "\"" + eng_text + "\""
 
     eng_text = eng_text.replace("Mr. ", "").replace("Ms. ", "")
-    eng_text = eng_text.replace("String-o", "Himoo").replace("Stringo", "Himoo")
+    eng_text = eng_text.replace("String-o", "Himoo").replace("Stringo", "Himoo").replace("Cordao", "Himoo")
     return eng_text
 
 
