@@ -648,7 +648,7 @@ Japanese text;English text
 恋愛物の映画が好み;Likes romantic movies
 近所の公園で、待ち合わせ』;Meet at the neighborhood park』
 遊園地で、;At the amusement park,
-虹野さんを待つか。）;Shall we wait for Ms. Nijino?』
+虹野さんを待つか。）;Shall we wait for Nijino?』
 根性が足りないんじゃない。』;Don't you think you lack guts?』
 大丈夫、顔が青いよ。;Are you okay? You look pale.
 無理には誘わないからね。;I won't force you to join.
@@ -758,7 +758,7 @@ Japanese text;English text
 そ、それじゃ、帰ろうか⋯。;W-Well, shall we go home then...?
 ムチ;Whip
 第６世代コンピュータ理論の本;A book on sixth-generation computer theory
-<PNAME> <PSURNAME>; <PNAME> <PSURNAME>
+<PNAME> <PSURNAME>;<PNAME> <PSURNAME>
 紐緒さんと乗るぜ。;I'll ride with Himo'o-san.
 紐緒さんと入るぜ。;I'll enter with Himo'o-san.
 電脳部室;Cyber Club room
@@ -792,13 +792,13 @@ Japanese text;English text
 本当、眠かつたよ。;I was really sleepy.
 いい眺めじゃなかつた？;Wasn't it a good view?
 紐緒さんばかり見てたから⋯。;Because I was only looking at Himo'o-san...
-‐ド; -do
-ニ‐; Ni-
-ド; -do
-‐ト; -to
-ニュ; Nyu
-コピ; Kopi
-コピ❘; Kopi |
+‐ド;-do
+ニ‐;Ni-
+ド;-do
+‐ト;-to
+ニュ;Nyu
+コピ;Kopi
+コピ❘;Kopi |
 ア;A
 クリア人数はそのままで、;The number of clears will remain the same,
 プロローグからゲームを;and the game will start from the prologue.
@@ -836,8 +836,8 @@ Japanese text;English text
 鹿．グレートが襲つてきた！;Great Deer has attacked!
 暴れん坊頭突き;Rampaging Headbutt
 スタンピート;Stampede
-<PSURNAME>「だめだ！ 体が動かない！; <PSURNAME> Damn! My body won't move!
-？？？「拙僧にまかせなされ。; ??? Leave it to me.
+<PSURNAME>「だめだ！ 体が動かない！;<PSURNAME> Damn! My body won't move!
+？？？「拙僧にまかせなされ。;??? Leave it to me.
 <PSURNAME>「？！;<PSURNAME> ?!
 虚無僧;Komuso (Traveling Monk)
 正義の虚無僧推参！;The righteous komuso has arrived!
@@ -954,48 +954,48 @@ Japanese text;English text
 プールにウ?ータースライダー完成;Wooter Slider completed in the pool. Water slider completed in the pool.
 今月号は、紹介できる;This month's issue can introduce
 スポットがありません;No spots available
-デートスポットを聞く;Ask about dating spots  
-１番アルバムを;Number one album  
-８１．５９．８２;81.59.82  
-サッカー部;Soccer club  
-運動部のアイドルで、趣味は料理;The idol of the sports club, with cooking as a hobby  
-運動はやるより、見るタイプ;Prefers watching sports over doing them  
-所の公園;A local park  
-術館;Gym  
-川望;River view  
-‐;-  
-アイコンモ‐ド;Icon mode  
-フリ;Free  
-リー;Lee  
-族館;Family museum  
-ームセンター;Amusement center  
-ー;-  
-次のペー へ;To the next page  
-デ‐．スポット;Dating spot  
-‐ー;  
-前のページ;Previous page  
-実験室;Laboratory  
-―;-  
-シ‐．ピング街;Shopping street  
-ラネタリウム;Planetarium  
-ナイトパレード;Night parade  
-不良達が襲つてきた！;Delinquents have attacked!  
-清川「フザケンナヨー！;Kiyokawa: Don't mess with me!  
-あつ！いや、なんでもない．．．;Ah! No, it's nothing...  
-水竜破;Water Dragon Break  
-おたから：源氏のかたな;Treasure: Genji's katana  
-これでもくらえぇーい！;Take this!  
-番長「片腹痛いわ！;Boss: That's laughable!  
-番長「なかなかやるな！;Boss: You're quite good!  
-<PSURNAME>の攻撃は失敗した;<PSURNAME>'s attack failed  
-番長「少しはできそうだな。;Boss: Seems like you can do a little.  
-番長「男の意地にかけて、;Boss: By a man's pride,  
-負ける訳にはいかねぇ！;I can't afford to lose!  
-番長「うぬぬぬぬ．．．;Boss: Ughhhh...  
-番長「ふつ！ 情けない。;Boss: Pft! Pathetic.  
-俺様に楯突こうとは十年早いわ！;You're ten years too early to defy me!  
-ゲームセンタ‐;Game center  
-コンサ‐ 会場;Concert hall  
+デートスポットを聞く;Ask about dating spots
+１番アルバムを;Number one album
+８１．５９．８２;81.59.82
+サッカー部;Soccer club
+運動部のアイドルで、趣味は料理;The idol of the sports club, with cooking as a hobby
+運動はやるより、見るタイプ;Prefers watching sports over doing them
+所の公園;A local park
+術館;Gym
+川望;River view
+‐;-
+アイコンモ‐ド;Icon mode
+フリ;Free
+リー;Lee
+族館;Family museum
+ームセンター;Amusement center
+ー;-
+次のペー へ;To the next page
+デ‐．スポット;Dating spot
+‐ー;
+前のページ;Previous page
+実験室;Laboratory
+―;-
+シ‐．ピング街;Shopping street
+ラネタリウム;Planetarium
+ナイトパレード;Night parade
+不良達が襲つてきた！;Delinquents have attacked!
+清川「フザケンナヨー！;Kiyokawa: Don't mess with me!
+あつ！いや、なんでもない．．．;Ah! No, it's nothing...
+水竜破;Water Dragon Break
+おたから：源氏のかたな;Treasure: Genji's katana
+これでもくらえぇーい！;Take this!
+番長「片腹痛いわ！;Boss: That's laughable!
+番長「なかなかやるな！;Boss: You're quite good!
+<PSURNAME>の攻撃は失敗した;<PSURNAME>'s attack failed
+番長「少しはできそうだな。;Boss: Seems like you can do a little.
+番長「男の意地にかけて、;Boss: By a man's pride,
+負ける訳にはいかねぇ！;I can't afford to lose!
+番長「うぬぬぬぬ．．．;Boss: Ughhhh...
+番長「ふつ！ 情けない。;Boss: Pft! Pathetic.
+俺様に楯突こうとは十年早いわ！;You're ten years too early to defy me!
+ゲームセンタ‐;Game center
+コンサ‐ 会場;Concert hall
 ２月 ２日;Feb. 2
 ?;?
 ?集院;Ijuuin
@@ -1032,3 +1032,116 @@ Japanese text;English text
 右の窓からのぞく。』;Looking through the window on the right.
 ラッキー！のぞいちゃえ！』;Lucky! Take a peek!
 いや、やめとこう。』;No, let's not.
+このゲームのデータがありませ;The data for this game is not available.
+新たにアルバムを作成し、;Create a new album,
+はい⋯  いいえ⋯;Yes...  No...
+ゲームをプレイしますか？;Do you want to play the game?
+作成しますか？;Do you want to create?
+システムファイルを作成する;Create a system file.
+サブゲームのデータなどの;For data such as sub-games,
+セーブができるようになります;It will be possible to save.
+システムファイルを作成します;Create a system file.
+はい．．  ボタン;Yes... Button.
+システムファイルを;The system file...
+１番アルバム と、;Number one album, and,
+それじゃ あだ名は？;So, what's your nickname?
+ＬＡ『女の子達が;LA The girls
+吹奏楽部を退部した。;quit the brass band.
+詩織と乗るぜ。』;I'll ride with Shiori.
+＂;
+別にい;Not really.
+さりげなく趣味とかを聞き出す。』;Casually find out their hobbies.
+それとなく好きな場所を探る。』;Subtly explore their favorite places.
+お隣;Next door
+詩織の顔ばかり見てたから⋯。』;Because I was just looking at Shiori's face...
+グランド;Grand
+知らなかつたの？』;Didn't you know?
+本当、そうだね。』;Really, that's right.
+８６．５９．８６;86.59.86
+静かなところは苦手;I'm not good with quiet places.
+図書館で、;In the library,
+．Ｉ;I
+さあ、入りましょう。;Let's go in, shall we?
+美術館で、待ち合わせ』;Meet at the museum.
+美術館で、;At the museum,
+この絵の人、詩織に似てない？』;Doesn't the person in this painting look like Shiori?
+ＬＡ『女の;LA The woman
+人体解剖モデル』;Anatomical model
+子猫のぬいぐるみ』;Kitten plushie
+ツインビーのぬいぐるみ』;TwinBee plushie
+キラーヒグマ;Killer Higuma
+キラーヒグマが襲つてきた！;The Killer Higuma attacked!
+クラッシュ．クロー;Crash Claw
+サーモンブーメラン;Salmon Boomerang
+<PSURNAME>「だめだ！ 喰われてしまう！;<PSURNAME> No! I'll be eaten!
+くそつたれめー！;Damn you!
+マタギ;Matagi
+正義のマタギ見参！;The righteous Matagi appears!
+名銃「次郎丸」ショット;Famous gun Jirōmaru shot
+次郎丸」エネルギー充填;Jirōmaru energy charge
+マタギ「こつたらとこ来たらだめだべ！;Matagi You're not supposed to come to a place like this!
+早くけえれ！;Go back quickly!
+ありがとう、マタギのおじさん;Thank you, Matagi!
+経験値 ：１０２４ＥＸＰ;Experience Points: 1024 EXP
+お金  ：５３ゴールド;Money: 53 Gold
+おたから：熊の片腕;Treasure: Bear's Arm
+８１．６０．８４;81.60.84
+テニス以外のスポーツは苦手;I am not good at sports other than tennis
+うるさいものは嫌いらしい;Seems to dislike noisy things
+<PSURNAME>（何をプレゼン;<PSURNAME> (What to present
+公開デッサン;Public Sketch
+近所の公園で、;At the local park,
+古式さんを待つか。);Shall I wait for Koshiki?)
+美樹原「;Mikihara:
+片桐さんを待つか。);Shall I wait for Katagiri?)
+ゲームセンターで、;At the game center,
+最近は、女の子も多いんだよ。』;Recently, there are many girls too.'
+紐緒さんは、嫌いなの？』;Do you hate Himoo-san?'
+そ、それじゃ、帰ろうか⋯。』;Th-then, shall we go home...?'
+さあ乗りましょう;Let's get on
+揺れる？全然気付かなかつたよ。』;Was it shaking? I didn't notice at all.'
+園内で、―番怖い乗り物かもね。』;It might be the scariest ride in the park.'
+詩織と―緒だから平気だつたよ。』;I was fine because I was with Shiori.'
+<PSURNAME>（何をプレゼ;<PSURNAME> (What to present
+詩織を誘つて見に行く。』;Invite Shiori to go see it.'
+いいから行こうよ。』;It's fine, let's go.'
+それじゃやめよう。』;Then let's stop.'
+さあ乗りましょう。;Let's get on.
+ＬＡ『女の子;LA 'Girl
+でも、面白かつたね。』;But it was fun, right?'
+急ぐのよ。;Hurry up.
+<PSURNAME>（何をプレゼントしようかな？;<PSURNAME> (What should I give as a present?
+ＴＶゲーム』;TV Game'
+観葉植物の鉢植え』;Potted Houseplant'
+７色の毛糸の玉』;7 Colored Balls of Yarn'
+美樹原「は、はい;Mikihara: Y-Yes
+Ｒ２００００チップ』;R20000 Chip'
+ドラムカン』;Drum Can'
+白衣』;White Coat'
+朝日奈「そうだね。;Asahina: That's right.
+そつちの方が多いかな。;Maybe there are more of those.
+動物は自然の中が―番だね。』;Animals are best in nature.'
+全然。捕まるほうが悪いんだよ。』;Not at all. It's the one's fault who gets caught.'
+でも、動物園がないとなぁ。』;But it's not the same without a zoo.'
+<PSURNAME>（何をプレゼント;<PSURNAME> (What to present
+色素分解;Pigment decomposition
+美樹原「は、はい⋯。;Mikihara: Y-Yes...
+あ、ありがとう;Ah, thank you
+ＬＡ『;LA '
+朝日奈「それじ;Asahina: That
+恥ず;Embarrass
+映画館で、待ち合わせ』;Meeting at the cinema'
+油絵展示;Oil Painting Exhibition
+映画館で、;At the cinema,
+早乙女「うん、いい;Saotome: Yeah, good
+コンサート、つまらなかつたね？』;The concert wasn't boring, right?
+コンサート、良かつたね？』;The concert was good, right?
+コンサート、まあまあだつたね？』;The concert was so-so, right?
+．．;...
+練習あるのみだよ。』;It's all about practice.
+才能が豊かな人なんだよ。』;You're a talented person.
+<PSURNAME>（何をプレゼントしようかな？）;<PSURNAME> (What should I give as a present?)
+虹野さんの１／８フィギュア』;A 1/8 scale figure of Nijino-san.
+お料理の鉄人ビデオ全４巻』;The Iron Chef cooking video, all 4 volumes.
+ハンドクリーム』;Hand cream.
+＂．;.
