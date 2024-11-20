@@ -15,17 +15,19 @@ from screenshot import get_window_by_title, get_window_image
 from confession_database import ConfessionDatabase
 
 CHARACTER_CUES = [
-    # ("Ayako", (156, 33, 20, 20), (164, 164, 206), 87),
-    # ("Yuko", (115, 14, 38, 32), (255, 255, 255), 146),
-    # ("Nozomi", (211, 144, 30, 41), (164, 255, 206), 41),
-    # ("Yuina", (115, 8, 36, 26), (255, 255, 255), 76),
-    # ("Shiori", (125, 6, 33, 28), (255, 255, 255), 78),
-    # ("Mira", (66, 72, 13, 9), (206, 132, 255), 10),
-    ("Rei", (105, 56, 24, 18), (255, 255, 164), 25)
+    ("Ayako", (156, 33, 20, 20), (164, 164, 206), 87),
+    ("Yuko", (115, 14, 38, 32), (255, 255, 255), 146),
+    ("Nozomi", (211, 144, 30, 41), (164, 255, 206), 41),
+    ("Yuina", (115, 8, 36, 26), (255, 255, 255), 76),
+    ("Shiori", (125, 6, 33, 28), (255, 255, 255), 78),
+    ("Mira", (66, 72, 13, 9), (206, 132, 255), 10),
+    ("Rei", (105, 56, 24, 18), (255, 255, 164), 25),
+    ("Miharu", (84, 14, 31, 26), (230, 99, 0), 87)
 ]
 
 def detect_confession(img_ss_rgb: np.ndarray) -> bool:
-    return get_count_by_equality(*img_ss_rgb, 269, 10, 20, 20, 107, 107, 99) == 45
+    #tatebayashi's horns make it 16
+    return get_count_by_equality(*img_ss_rgb, 269, 10, 20, 20, 107, 107, 99) in [45, 34]
 
 def detect_confession_character(img_ss_rgb: np.ndarray) -> str:
     for char, coords, color, count in CHARACTER_CUES:
