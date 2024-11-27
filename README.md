@@ -47,3 +47,9 @@ If you are interested in helping with this, please reach out to `tokimemo (at) v
 There are several things in the current implementation that are specific to this game, since specific information 
 allows us to create a more customized, high-quality translation experience. 
 However, the overall approach can surely be ported to other games.
+
+## Credits
+
+- **Programming**: vinizinho
+- **Translation**: nightmaresinclr
+- **Playtesters**: Takehime, nightmaresinclr, BadWolf42, RosePurrnima, Dan MacGregor, Sibley 
