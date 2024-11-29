@@ -217,6 +217,14 @@ SELECTABLE_RECT_GROUPS = {
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (8, 0, 0)),
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
+    },
+    "si": {
+        "fullname": "sports_instructions",
+        "textcolor": "#000000",
+        "selected_color": None,
+        "bw_conversion_fn": None,
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
     }
 }
 
@@ -401,6 +409,12 @@ SCREEN_CUES = [
     { "id": "save_selection_screen_load", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 98, 132, 97, 16, 0, 58, 132, 95), "prerequisites": ["save_selection_screen"]},
     { "id": "bad_ending_song", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 100, 49, 185, 136, 230, 255, 230, 2314), "prerequisites": []},
     { "id": "new_game_plus", "fn": detect_ending_game_save_menu, "prerequisites": []},
+    { "id": "sports_instructions", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 0, 0, 320, 20, 99, 197, 255, 1276), "prerequisites": [] },
+    { "id": "sports_instructions_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 404), "prerequisites": ["sports_instructions"] },
+    { "id": "sports_instructions_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 388), "prerequisites": ["sports_instructions"] },
+    { "id": "sports_instructions_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 501), "prerequisites": ["sports_instructions"] },
+    { "id": "sports_instructions_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 408), "prerequisites": ["sports_instructions"] },
+
 ]
 
 SELECTABLE_RECTS = [
@@ -652,6 +666,15 @@ SELECTABLE_RECTS = [
 
     ("bes_subtitle", (70, 198), (190, 15), "#000000", "bad_ending_song", 0.8, 3),
     ("ngameplus_prompt", (15, 55), (240, 15), "#c3c3c3", "new_game_plus", 1, 3),
+
+    ("si_1_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_1", 1, 3, "BALL ROLLING"),
+    ("si_1_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_1", 1, 3, "First, choose a girl to partner with. Then, during the game, use the D-Pad to move forward, backward, left and right, and push the ball with ◯. Make sure to push the left and right buttons evenly."),
+    ("si_2_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_2", 1, 3, "SPOON RELAY"),
+    ("si_2_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_2", 1, 3, "Press ◯ repeatedly to run. When the egg is moving to the left, press the L1 button, and when it is moving to the right, press the R1 button. Keep your balance so it doesn't fall!"),
+    ("si_3_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_3", 1, 3, "BORROWING RACE"),
+    ("si_3_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_3", 1, 3, "Press ◯ repeatedly to run. When you arrive at the stop, use the D-Pad to find the girl written on the envelope and take her with you to the goal."),
+    ("si_4_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_4", 1, 3, "THREE-LEGGED RACE"),
+    ("si_4_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_4", 1, 3, "Follow my voice! Press the L1 button when I say 'left' (hidari), and R1 when I say 'right' (migi). If you press the wrong button you'll fall, so be careful! We'll start with left. Ready?"),
 
     # ("chcr_k1_1_1", (120, 43), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_2", (120, 59), (48, 13), "#ffffff", detect_chcr_0, 0.8, 5),
