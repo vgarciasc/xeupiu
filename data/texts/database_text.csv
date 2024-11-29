@@ -3380,12 +3380,12 @@ Saotome;「優美おかしくないもん。;Yumi isn't acting weird.
 Kagami;「このブロンズ像、なかなかのものね。;This bronze statue is quite something.
 Kagami;「貴方には、美を見る目がないのね。;You don't have the eye to appreciate beauty.
 <PNAME>;『勉強は不得意科目がなぁ⋯。;I'm not good at studying...
-<PNAME>;『えーと、紐緒さんは、―流企業に就職かぁ。紐緒さんは就職するのか。;Uh, Himo-san is joining a top-tier company. So Himo-san is getting a job.
+<PNAME>;『えーと、紐緒さんは、―流企業に就職かぁ。紐緒さんは就職するのか。;Uh, Himoo-san is joining a top-tier company. So Himoo-san is getting a job.
 <PNAME>;『えーと、虹野さんは、料理の専門学校に進学かぁ。;Uh, Nijino-san is going to culinary school.
 <PNAME>;『えーと、清川さんは、水泳を続ける様だ。実業団に行くのかな？;Uh, Kiyokawa-san seems to be continuing with swimming. Is she joining a business team?
 <PNAME>;『えーと、鏡さんは、二流企業に就職かぁ。;Uh, Kagami-san is joining a second-rate company.
 <PNAME>;三流大学か。ふーん、好雄は進学するんだ。;A third-rate university, huh. So Yoshio is going to college.
-<PNAME>;（俺は、紐緒さんと、楽しく下校した。）;I had a pleasant walk home with Himo-san.
+<PNAME>;（俺は、紐緒さんと、楽しく下校した。）;I had a pleasant walk home with Himoo-san.
 Kiyokawa;「野球のチケットがあるんだけど、―緒に行かない？;I have baseball tickets, do you want to go together?
 Kiyokawa;「見るのと、実際にプレイするの、どつちが好き？;Which do you prefer, watching or playing?
 Kiyokawa;「私も、プレイするほうが好きだよ。;I also prefer playing.
@@ -3890,9 +3890,9 @@ Himoo;「ま、たまには研究をしない休みもいいわね。;Well, a br
 <PNAME>;『そう、良かつた。;Yeah, that's good.
 Fujisaki;「本をとつてきてあげる。何がいいかな？;I'll get you a book. What would you like?
 Fujisaki;「漫画なんて、あるわけないじゃない。;There’s no way I'd have manga.
-<PNAME>;『あつ、紐緒さん。どうしたの？;Oh, Himo-san. What's up?
+<PNAME>;『あつ、紐緒さん。どうしたの？;Oh, Himoo-san. What's up?
 Himoo;「今日は、あなたの誕生日のはずね。プレゼントよ。;Today should be your birthday, right? Here's a present.
-<PNAME>;『紐緒さんが、俺に？;Himo-san, for me?
+<PNAME>;『紐緒さんが、俺に？;Himoo-san, for me?
 Himoo;「み、未来の部下に対する配慮よ。;It's for my future subordinate.
 Kagami;「私は、スキーにでも行こうかしら。;I think I might go skiing.
 <PNAME>;『スキーか⋯。いいな。;Skiing, huh... Nice.
@@ -3900,9 +3900,9 @@ Saotome;「よかつたら、―緒にボーリングに行きませんか？;If
 Saotome;「ボールが、うまく真つ直ぐに転がらないよー。;I can't roll the ball straight!
 Saotome;「優美わかんなーい。;Yumi doesn't get it.
 none;鏡さんのプレゼントだ！おぉつ！鏡魅羅握手券！！これは使うしか！;Kagami-san's present! Wow, a Kagami Mira handshake ticket!! I have to use this!
-<PNAME>;（やつた！紐緒さんと、鏡さんから、年賀状をもらつたラッキー。);(I did it! Got New Year’s cards from Himo-san and Kagami-san. Lucky.)
+<PNAME>;（やつた！紐緒さんと、鏡さんから、年賀状をもらつたラッキー。);(I did it! Got New Year’s cards from Himoo-san and Kagami-san. Lucky.)
 Himoo;「明けましておめでとう。;Happy New Year.
-<PNAME>;『明けまして、おめでとう。紐緒さんが家に来るなんて、新年早々、めずらしいね。;Happy New Year. It's rare for Himo-san to come to my house so early in the year.
+<PNAME>;『明けまして、おめでとう。紐緒さんが家に来るなんて、新年早々、めずらしいね。;Happy New Year. It's rare for Himoo-san to come to my house so early in the year.
 Himoo;「別にいいじゃない。さあ、これから初詣に行くわよ。;It's fine, isn't it? Now, let's go for our first shrine visit of the year.
 Himoo;「当然ね。ほら、早く行くわよ。;Of course. Come on, let's go.
 Himoo;「秘密よ。;It's a secret.
@@ -4700,7 +4700,7 @@ Tonoi;「また来て下さつたのですね。こんな事しかできませ�
 <PNAME>;『なんか、やだなぁ⋯。;I don't know, I feel uneasy...
 none;紐緒さんのプレゼントだ！ノート型スーパーコンピュータ！使えるかなぁ⋯;Himoo-san's gift! A notebook supercomputer! I wonder if I can use it...```csv
 String;「‥‥;「‥‥
-<PNAME>;『おーい、紐緒さん⋯。待つてくれー。;Oh, Himo-chan... Wait for me.
+<PNAME>;『おーい、紐緒さん⋯。待つてくれー。;Oh, Himoo-chan... Wait for me.
 <PNAME>;（やつた！虹野さんと、優美ちゃんから、年賀状をもらつたラッキー。;(Yatta! I got New Year's cards from Nijino-san and Yumi-chan. Lucky me.
 <PNAME>;『あつ、虹野さん。明けまして、おめでとう。新年早々、どうしたの？;Ah, Nijino-san. Happy New Year. What's up so early in the new year?
 Nijino;「暇だつたらでいいんだけど、これから初詣に行かない？;If you're not busy, why don't we go for the first shrine visit of the year?
@@ -4736,7 +4736,7 @@ Nijino;「―体何を見に来たの？;What exactly did you come to see?
 Nijino;「絵の事はよくわからないけど、いいと思うな。;I don't really understand art, but I think it's good.
 Nijino;「これ可愛いね？;This is cute, right?
 Nijino;「ありがとう。お世辞でも、嬉しいわ。;Thank you. Even if it’s just flattery, I'm happy.
-<PNAME>;（どうやら好雄の話では、俺が紐緒さんを、傷つけたといううわさが、流れてたそうだ。）;(According to Yoshio, there's a rumor that I hurt Himo-chan.)
+<PNAME>;（どうやら好雄の話では、俺が紐緒さんを、傷つけたといううわさが、流れてたそうだ。）;(According to Yoshio, there's a rumor that I hurt Himoo-chan.)
 Nijino;「あつ、<PSURNAME>君これ、チョコレート。;Ah, <PSURNAME>-kun, this is chocolate.
 Nijino;「今日はお弁当を作つてきたの。―緒に食べましょう。;I made a bento today. Let's eat together.
 <PNAME>;『本当？嬉しいな。;Really? I'm so happy.
@@ -5989,9 +5989,9 @@ Himoo;「何の用？;What do you want?
 Himoo;「ありがとう。開けても、いいわよね？;Thank you. Can I open it?
 Himoo;「ああ、<PSURNAME>君。私に、何か用？;Ah, <PSURNAME>-kun. Do you need something from me?
 none;『コンサート会場で、待ち合わせ』『遊園地で、待ち合わせ』;Meet up at the concert venue. Meet up at the amusement park.
-none;『詩織と乗るぜ。』『紐緒さんと乗るぜ。』;I'll ride with Shiori. I'll ride with Himo-san.
+none;『詩織と乗るぜ。』『紐緒さんと乗るぜ。』;I'll ride with Shiori. I'll ride with Himoo-san.
 Himoo;「つまらない、乗り物ね。;This is a boring ride.
-<PNAME>;（えつ！？紐緒さんのことかな？）;Huh!? Is it about Himo-san?
+<PNAME>;（えつ！？紐緒さんのことかな？）;Huh!? Is it about Himoo-san?
 Kiyokawa;「あつ、<PNICKNAME>。—緒に、特別練習ね。;Ah, <PNICKNAME>. Let's have special training together.
 <PNAME>;『びつくりしたよ。俺が、特別練習のメンバーになれるなんて。;I was surprised to be chosen as a member for the special training.
 Kiyokawa;「もうかなりの実力があるから、自信持つていいと思うな。;You're quite skilled already, so you should be confident.
@@ -7021,10 +7021,10 @@ Asahina;「用が無いなら切るよ。急いでるんだから。;If you don'
 Asahina;「ふーん、そうなんだ。それじゃ、急ぐから。;Hmm, I see. Well, I'm in a rush, so...
 <PNAME>;（良かつた。何とか、朝日奈さんの機嫌も直つたみたいだぞ。）;Good. Somehow, Asahina-san's mood seems to have improved.
 Yoshio;『さつき、小耳に挟んだんだけど⋯。;I just overheard something...
-Yoshio;「お前つて、紐緒さんに嫌われてるぜ;You're hated by Himo-san, you know.
-<PNAME>;（そうかつ！紐緒さんは、怒つて来なかつたのか。）;Is that so? Himo-san didn't come here angry?
-<PNAME>;『紐緒さんは、まだ来てないようだな。;Himo-san hasn't arrived yet.
-<PNAME>;（紐緒さん、遅いなあ。まだ来ないのかなぁ。）;Himo-san is late. I wonder if she'll come at all.
+Yoshio;「お前つて、紐緒さんに嫌われてるぜ;You're hated by Himoo-san, you know.
+<PNAME>;（そうかつ！紐緒さんは、怒つて来なかつたのか。）;Is that so? Himoo-san didn't come here angry?
+<PNAME>;『紐緒さんは、まだ来てないようだな。;Himoo-san hasn't arrived yet.
+<PNAME>;（紐緒さん、遅いなあ。まだ来ないのかなぁ。）;Himoo-san is late. I wonder if she'll come at all.
 <PNAME>;（ウルトラショーック）;Ultra shock.
 <PNAME>;（電話しなきゃ⋯⋯⋯。）;I need to call...
 Kisaragi;「ごめんなさい。遅れてしまつて⋯。;I'm sorry. I'm late...
@@ -7158,7 +7158,7 @@ Himoo;「あら、安全よ。それに、あれじゃないと、迫力に欠�
 <PNAME>;『安全？;Safe?
 Himoo;「半径３キロメール以内に、近づかなければ大丈夫よ。;As long as you don't come within a 3-kilometer radius, it's fine.
 Himoo;「まあ、いいわ。今回は、許してあげる。;Well, fine. I'll forgive you this time.
-<PNAME>;（ん？どうしたんだ。紐緒さんらしくないぞ。）;(Huh? What's going on? That's not like Himo-san.)
+<PNAME>;（ん？どうしたんだ。紐緒さんらしくないぞ。）;(Huh? What's going on? That's not like Himoo-san.)
 Himoo;「来年は、私の科学力を見せつけてあげるわ。うふふ⋯。;Next year, I'll show off my scientific skills. Ufufu...
 Himoo;「やつぱり、あのレーザーじゃないとつまらないわね。;After all, it's boring without that laser.
 Himoo;「あぁ、来年が待ちどおしいわ。;Ah, I can't wait for next year.
@@ -7176,7 +7176,7 @@ Himoo;「私には、人生の目標があるから、それに向かうだけ�
 <PNAME>;『そうなんだ。それつて、かつこいいね。;I see. That's cool.
 Kisaragi;「そうですか？こんなに奇麗じゃないと思いますけど⋯。;Is that so? I don't think it's that pretty...
 Kisaragi;「絵を見に来たんじゃないんですか？;Didn't you come to see the paintings?
-<PNAME>;（やつた！紐緒さんと、優美ちゃんから、年賀状をもらつたラッキー。;Yes! I got New Year's cards from Himo-san and Yumi-chan. Lucky.
+<PNAME>;（やつた！紐緒さんと、優美ちゃんから、年賀状をもらつたラッキー。;Yes! I got New Year's cards from Himoo-san and Yumi-chan. Lucky.
 Kisaragi;「<PSURNAME>君新年、明けましておめでとうございます。;Happy New Year, <PSURNAME>-kun.
 <PNAME>;『あ、如月さん。明けまして、おめでとう。新年早々、どうしたの？;Ah, Kisaragi-san. Happy New Year. What brings you here so early in the year?
 Kisaragi;「あの⋯、良かつたら⋯、これから初詣に行きませんか？;Um... if you'd like... would you like to go to the New Year's shrine visit?
@@ -7320,7 +7320,7 @@ Kagami;「連絡もなしですつぽかすなんて、男として最低ね。;
 <PNAME>;（しまつた！！今日は、鏡さんとデートの約束があつたんだ。;Oops!! I had a date with Kagami-san today.
 <PNAME>;『あつ、如月さん。どうしたの？;Oh, Kisaragi-san. What's up?
 Himoo;「私との約束を破つたわね。覚悟しなさい。;You broke your promise with me. Prepare yourself.
-<PNAME>;（しまつた！！今日は、紐緒さんとデートの約束があつたんだ。;Oops!! I had a date with Himo-san today.
+<PNAME>;（しまつた！！今日は、紐緒さんとデートの約束があつたんだ。;Oops!! I had a date with Himoo-san today.
 Kisaragi;「そう言えば、もうすぐ卒業ですね。;Speaking of which, we graduate soon.
 Kisaragi;「もう、高校生活ともお別れなんですね。;It's goodbye to high school life soon.
 Himoo;「あつ、<PNAME>君これ、実験のついで作つたからあげるわ。;Oh, <PNAME>-kun, I made this as a part of my experiment, so here you go.
