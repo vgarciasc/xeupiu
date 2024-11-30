@@ -414,7 +414,8 @@ SCREEN_CUES = [
     { "id": "sports_instructions_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 388), "prerequisites": ["sports_instructions"] },
     { "id": "sports_instructions_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 501), "prerequisites": ["sports_instructions"] },
     { "id": "sports_instructions_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 408), "prerequisites": ["sports_instructions"] },
-
+    { "id": "shrine_instructions_1_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 105, 32, 112, 17, 255, 164, 41, 151), "prerequisites": []},
+    { "id": "shrine_instructions_1_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 104, 69, 102, 21, 255, 41, 99, 484), "prerequisites": []},
 ]
 
 SELECTABLE_RECTS = [
@@ -675,6 +676,10 @@ SELECTABLE_RECTS = [
     ("si_3_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_3", 1, 3, "Press ◯ repeatedly to run. When you arrive at the stop, use the D-Pad to find the girl written on the envelope and take her with you to the goal."),
     ("si_4_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_4", 1, 3, "THREE-LEGGED RACE"),
     ("si_4_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_4", 1, 3, "Follow my voice! Press the L1 button when I say 'left' (hidari), and R1 when I say 'right' (migi). If you press the wrong button you'll fall, so be careful! We'll start with left. Ready?"),
+
+    ("si_s_1_h", (46, 187), (226, 15), "#eeeeee", "shrine_instructions_1_1", 1, 3, "GOLDFISH SCOOPING"),
+    ("si_s_1_t", (46, 202), (226, 35), "#ffffff", "shrine_instructions_1_1", 1, 3, "Use the D-Pad to move the net. Press ◯ to dip the net into the water, and release it to scoop it up."),
+    ("si_s_1_h", (105, 69), (103, 21), "#cee6e6", "shrine_instructions_1_2", 1, 3, "TODAY'S RESULTS"),
 
     # ("chcr_k1_1_1", (120, 43), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_2", (120, 59), (48, 13), "#ffffff", detect_chcr_0, 0.8, 5),
