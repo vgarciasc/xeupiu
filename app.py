@@ -100,7 +100,11 @@ class App:
                 prerequisites_fulfilled = True
                 if cue["prerequisites"]:
                     for prerequisite in cue["prerequisites"]:
-                        if not cue_dict.get(prerequisite):
+                        if prerequisite.startswith("not!"):
+                            if cue_dict.get(prerequisite[4:]):
+                                prerequisites_fulfilled = False
+                                break
+                        elif not cue_dict.get(prerequisite):
                             prerequisites_fulfilled = False
                             break
 
