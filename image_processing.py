@@ -26,16 +26,24 @@ def convert_to_black_and_white(img_ss, text_color=(132, 132, 164)):
     return Image.fromarray(img_tb_np)
 
 
-def convert_to_black_and_white_multiple(img_ss, text_colors):
+def convert_to_black_and_white_multiple(img_ss, text_colors, mode="first"):
     _img = None
+    output = _img
 
     for text_color in text_colors:
         _img = convert_to_black_and_white(img_ss, text_color)
         white_pixels = np.array(_img.convert('1'))
-        if not np.all(white_pixels == 1):
+        if mode == "first" and not np.all(white_pixels == 1):
             return _img
+        elif mode == "blend":
+            if output is None:
+                output = _img
+            else:
+                black_1 = ~np.array(output.convert('1'))
+                black_2 = ~np.array(_img.convert('1'))
+                output = Image.fromarray((~np.logical_or(black_1, black_2)).astype(np.uint8) * 255)
 
-    return _img
+    return output
 
 def convert_weekday_to_black_and_white(img_tb):
     img_tb_np = np.array(img_tb.convert('RGB'))
