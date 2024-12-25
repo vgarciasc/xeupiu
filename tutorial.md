@@ -4,13 +4,13 @@
 
 ### Setting up the emulator
 
-1. Download the [latest version of the DuckStation emulator ](https://www.duckstation.org/) (latest version tested: 0.1-6759-gc015039a (dev))
+1. Download the [latest version of the DuckStation emulator ](https://www.duckstation.org/) (latest version tested: v0.1-7371)
 2. Install the emulator and set it up with your PSX BIOS
 3. Download the Tokimeki Memorial - Forever With You (Rev 4) ROM in Japanese
 4. Configure the emulator by accessing Settings -> Graphics and changing:
 	1. Aspect ratio: 4:3
-	2. Crop: All Borders
-	3. Scaling: Nearest Neighbor (Integer)
+ 	2. Scaling: Nearest Neighbor (Integer)
+	3. Crop: "All Borders (Aspect Uncorrected)", if such an option is present, or if it isn't, simply "All Borders"
 
 ### Setting up the translation backend
 
@@ -54,7 +54,11 @@ Try reducing the "History size" parameter in the XEUPIU menu from 10 to 5. This 
 
 Press the `SQUARE` button until you cycle the cursor icon back to the default one (blue pointing hand). **The tool will produce mistakes if the default cursor is not used.**
 
-### 6. I have set up the tool correctly, but when I try to run it, it crashes immediately!
+### 6. I have set up everything correctly, but when I try to run XEUPIU, the overlays are misaligned and nothing is being translated!
+
+This is a known issue currently being investigated. Please download and run an earlier version of Duckstation such as [v0.1-7371](https://github.com/stenzek/duckstation/releases/tag/v0.1-7371).
+
+### 7. I have set up the tool correctly, but when I try to run it, it crashes immediately!
 
 There are some known Windows configurations that affect the tool in its current form; we are working on fixing this for future versions. In the meantime, before opening the tool, please guarantee that:
 
@@ -63,7 +67,7 @@ There are some known Windows configurations that affect the tool in its current 
 
 If these items are true for your PC but the tool keeps crashing, read on.
 
-### 7. The tool was working well, but now when I try to open it, it crashes with "not enough image data"!
+### 8. The tool was working well, but now when I try to open it, it crashes with "not enough image data"!
 
 This is a known issue with the Windows internal screenshotting API, due to interference caused by other 
 applications (most commonly, web browsers). Please do the following:
@@ -75,6 +79,6 @@ applications (most commonly, web browsers). Please do the following:
 
 If this does not solve your issue, read on.
 
-### 8. The game crashed and I don't know why!
+### 9. The game crashed and I don't know why!
 
 If none of the questions above apply to your case, please reach out on the [Discord server](https://discord.gg/aH5meFKRB7). I am only one person with a busy job so I apologize upfront if I take a while to answer.
