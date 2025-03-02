@@ -1,37 +1,61 @@
 {
-  "window_title": "Tokimeki Memorial",
-  "history_size": 5,
-  "iters_without_gameobj_without_minimizing": 1,
-  "border_size": {
+    "version": "v2.2.1-alpha",
+    "window_title": "Tokimeki Memorial",
+    "cmd_max_lines": 100,
+    "verbose_level": 1,
+    "fullscreen": false,
+    "history_size": 10,
+    "iters_without_gameobj_without_minimizing": 1,
     "print_str_history_size": 10,
-    "size_window_border_top": 30,
-    "size_window_border_bottom": 22,
-    "size_toolbar": 21
-  },
-  "databases": {
-    "names_filepath": "data/texts/database_names.csv",
-    "text_filepath": "data/texts/database_text.csv",
-    "notebook_filepath": "data/texts/database_notebook.csv"
-  },
-  "player": {
-    "jp_name": "ＰＬＡ",
-    "jp_surname": "ＹＥＲ",
-    "en_name": "Pla",
-    "en_surname": "Yer",
-    "nickname": "AAA",
-    "date_of_birth": {
-      "day": 1,
-      "month": 1
-    }
-  },
-  "translation": {
-    "backend": "openai",
-    "google_cloud": {
-      "credential_path": "--"
+    "calibration_history_size": 5,
+    "translation_fuzziness": 1.0,
+    "border_size": {
+        "print_str_history_size": 10,
+        "size_window_border_top": 30,
+        "size_window_border_bottom": 22,
+        "size_toolbar": 21,
+        "left_offset_correction": 7
     },
-    "openai": {
-      "organization": "--",
-      "api_key": "--"
+    "databases": {
+        "names_filepath": "data/texts/database_names.csv",
+        "text_filepath": "data/texts/database_text.csv",
+        "notebook_filepath": "data/texts/database_notebook.csv",
+        "confession_filepath": "data/texts/database_confessions.csv",
+        "epilogue_filepath": "data/texts/database_epilogues.csv"
+    },
+    "save": {
+        "player": {
+            "jp_name": "ＹＥＲ",
+            "jp_surname": "ＰＬＡ",
+            "jp_nickname": "ＰＬＡＹＡ",
+            "jp_name_ascii": "YER",
+            "jp_surname_ascii": "PLA",
+            "jp_nickname_ascii": "PLAYA",
+            "en_name": "John",
+            "en_surname": "Doe",
+            "en_nickname": "Jay",
+            "birth_month": 1,
+            "birth_day": 1,
+            "blood_type": "Ａ"
+        },
+        "shiori": {
+            "blood_type": "Ｂ",
+            "birth_month": 3,
+            "birth_day": 16
+        }
+    },
+    "translation": {
+        "backend": "deepl",
+        "lang": "EN-US",
+        "google_cloud": {
+            "credential_path": ""
+        },
+        "openai": {
+            "organization": "",
+            "api_key": ""
+        },
+        "deepl": {
+            "api_key": ""
+        }
     }
-  }
 }
