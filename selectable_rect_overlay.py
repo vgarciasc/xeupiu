@@ -12,7 +12,7 @@ from database import Database
 from notebook_database import NotebookDatabase
 from poorcr import PoorCR
 from config import CONFIG
-from screenshot import get_window_by_title, get_window_image
+from screenshot import get_window_by_title, get_window_image, RESOLUTION_SCALE_OFFSET_Y
 from overlay import OverlayWindow
 from image_processing import get_count_by_equality, get_count_by_thresholds
 import image_processing as imp
@@ -106,6 +106,38 @@ SELECTABLE_RECT_GROUPS = {
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
     },
+    "mg_genre": {
+        "fullname": "magazine_genre",
+        "textcolor": "#8484a4",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (132, 132, 164)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "mg_stadium": {
+        "fullname": "magazine_stadium",
+        "textcolor": "#ffffff",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (222, 222, 230)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "mg_info": {
+        "fullname": "magazine_info",
+        "textcolor": "#8484a4",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (132, 132, 164)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "mg_dspot": {
+        "fullname": "magazine_date_spot",
+        "textcolor": "#8484a4",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: None,
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
     "rpg_uig": {
         "fullname": "rpg_ui_grey",
         "textcolor": "#ffffff",
@@ -169,6 +201,46 @@ SELECTABLE_RECT_GROUPS = {
         "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (8, 0, 0)),
         "is_unselected_fn": lambda r, g, b: True,
         "is_selected_fn": lambda r, g, b: False,
+    },
+    "bes": {
+        "fullname": "bad_ending_song",
+        "textcolor": "#a4cece",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "ngameplus": {
+        "fullname": "new_game_plus",
+        "textcolor": "#0f0f0f",
+        "selected_color": None,
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (8, 0, 0)),
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "si": {
+        "fullname": "sports_instructions",
+        "textcolor": "#000000",
+        "selected_color": None,
+        "bw_conversion_fn": None,
+        "is_unselected_fn": lambda r, g, b: True,
+        "is_selected_fn": lambda r, g, b: False,
+    },
+    "exm": {
+        "fullname": "extras_menu",
+        "textcolor": "#ffffff",
+        "selected_color": "#ffc552",
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white(x, (164, 206, 206)),
+        "is_unselected_fn": lambda r, g, b: np.sum((r == 255) & (g == 255) & (b == 0)) < 15,
+        "is_selected_fn": lambda r, g, b: np.sum((r == 255) & (g == 255) & (b == 0)) > 15,
+    },
+    "exb": {
+        "fullname": "extras_menu_bonus",
+        "textcolor": "#ffffff",
+        "selected_color": "#ffc552",
+        "bw_conversion_fn": lambda x: imp.convert_to_black_and_white_multiple(x, [(90, 90, 90), (255, 255, 0), (247, 214, 0), (239, 197, 0), (230, 181, 0), (230, 156, 0), (222, 140, 0), (247, 214, 0), (230, 123, 0)], mode="blend"),
+        "is_unselected_fn": lambda r, g, b: np.sum((r == 255) & (g == 255) & (b == 0)) < 15,
+        "is_selected_fn": lambda r, g, b: np.sum((r == 255) & (g == 255) & (b == 0)) > 15,
     }
 }
 
@@ -227,11 +299,19 @@ def detect_mark_character_selection_choice_1(red, green, blue):
 def detect_mark_character_selection_choice_2(red, green, blue):
     is_players_house = detect_mark_by_count(red, green, blue, 252, 105, 29, 32, 173, 107, 82, 5)
     is_shinto_shrine = detect_mark_by_count(red, green, blue, 13, 90, 23, 27, 239, 222, 222, 64)
+    is_shinto_shrine_2 = detect_mark_by_count(red, green, blue, 17, 50, 21, 24, 74, 66, 58, 30)
     is_corridor_school = detect_mark_by_count(red, green, blue, 9, 20, 50, 90, 58, 74, 66, 24)
+    is_front_school = detect_mark_by_count(red, green, blue, 13, 7, 52, 127, 8, 8, 16, 17)
 
     is_selection_on_textbox = 30 < get_count_by_thresholds(red, green, blue, 16, 160, 280, 63, 60, 120, 160, 190, 20, 80) < 300
 
-    return (is_players_house or is_shinto_shrine or is_corridor_school) and is_selection_on_textbox
+    return (is_players_house or is_shinto_shrine or is_shinto_shrine_2 or is_corridor_school or is_front_school) and is_selection_on_textbox
+
+def detect_ending_game_save_menu(red, green, blue):
+    cue1 = detect_mark_by_count(red, green, blue, 264, 30, 40, 40, 134, 166, 209, 65)
+    cue2 = detect_mark_by_count_min(red, green, blue, 27, 166, 266, 52, 166, 209, 209, 5)
+    cue3 = detect_mark_by_count_min(red, green, blue, 27, 166, 266, 52, 233, 134, 255, 5)
+    return cue1 and not (cue2 or cue3)
 
 SCREEN_CUES = [
     { "id": "textbox", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 16, 159, 288, 64, 164, 49, 25, 650), "prerequisites": []},
@@ -240,9 +320,10 @@ SCREEN_CUES = [
     { "id": "dc_2col1", "fn": detect_mark_textbox_choice3, "prerequisites": ["textbox"] },
     { "id": "csc_1", "fn": detect_mark_character_selection_choice_1, "prerequisites": ["textbox"] },
     { "id": "csc_2", "fn": detect_mark_character_selection_choice_2, "prerequisites": ["textbox"] },
-    { "id": "nb_2col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16), "prerequisites": [] },
-    { "id": "nb_2col2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9), "prerequisites": [] },
-    { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": [] },
+    { "id": "nb_spiral", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,1, 91, 15, 8, 49, 49, 49, 9), "prerequisites": ["textbox"] },
+    { "id": "nb_2col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 37, 7, 8, 99, 132, 164, 16), "prerequisites": ["nb_spiral"] },
+    { "id": "nb_2col2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,145, 35, 7, 15, 41, 132, 164, 9), "prerequisites": ["nb_spiral"] },
+    { "id": "nb_3col1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,100, 56, 9, 9, 41, 132, 164, 7), "prerequisites": ["nb_spiral"] },
     { "id": "nb_3col1_club", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,20, 35, 256, 16, 132, 132, 164, 165), "prerequisites": ["nb_3col1"] },
     { "id": "nb_3col1_club_1.1", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 64, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
     { "id": "nb_3col1_club_1.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 24, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_club"] },
@@ -273,8 +354,8 @@ SCREEN_CUES = [
     { "id": "nb_3col1_phone_3.2", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 80, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
     { "id": "nb_3col1_phone_3.3", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 96, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
     { "id": "nb_3col1_phone_3.5", "fn": lambda r, g, b: detect_mark_by_count_min(r, g, b, 200, 128, 72, 16, 132, 132, 164, 5), "prerequisites": ["nb_3col1_phone"] },
-    { "id": "ng_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42), "prerequisites": [] },
-    { "id": "ng_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,160, 21, 16, 15, 41, 164, 255, 76), "prerequisites": [] },
+    { "id": "ng_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,23, 20, 8, 14, 230, 0, 164, 42), "prerequisites": ["nb_spiral"] },
+    { "id": "ng_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b,160, 21, 16, 15, 41, 164, 255, 76), "prerequisites": ["nb_spiral"] },
     { "id": "an", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 7, 16, 8, 45, 49, 0, 0, 87), "prerequisites": [] },
     { "id": "an_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 47, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
     { "id": "an_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 61, 23, 6, 32, 49, 0, 0, 70), "prerequisites": ["an"] },
@@ -301,21 +382,57 @@ SCREEN_CUES = [
     { "id": "exr_12", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 117, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
     { "id": "exr_13", "fn": lambda r, g, b: not detect_mark_by_count(r, g, b, 191, 133, 90, 13, 132, 132, 164, 88), "prerequisites": ["exr"] },
     { "id": "magazine", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 6, 10, 97, 36, 255, 41, 0, 816), "prerequisites": [] },
+    { "id": "mg_info", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 1, 59, 139, 13, 132, 132, 164) > 20, "prerequisites": ["magazine"] },
+    { "id": "mg_dspot_1", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 8, 56, 160, 24, 0, 230, 164) > 20, "prerequisites": ["magazine"] },
+    { "id": "mg_dspot_2", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 8, 56, 160, 24, 255, 41, 164) > 20, "prerequisites": ["magazine"] },
+    { "id": "mg_dspot_3", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 8, 56, 160, 24, 123, 189, 255) > 20, "prerequisites": ["magazine"] },
+    { "id": "mg_dspot_4", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 8, 56, 160, 24, 255, 140, 0) > 20, "prerequisites": ["magazine"] },
+    { "id": "mg_dspot_5", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 8, 56, 160, 24, 247, 132, 197) > 50, "prerequisites": ["magazine"] },
+    { "id": "mg_dspot_6", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 8, 56, 160, 24, 255, 214, 0) > 20, "prerequisites": ["magazine"] },
+    { "id": "mg_dspot_7", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 8, 56, 160, 24, 206, 156, 255) > 20, "prerequisites": ["magazine"] },
+    { "id": "mg_dspot_8", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 8, 56, 160, 24, 255, 132, 99) > 20, "prerequisites": ["magazine"] },
     { "id": "mg_event_1", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 16, 105, 225, 13, 230, 222, 239) > 10, "prerequisites": ["magazine"] },
     { "id": "mg_event_2", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 16, 121, 225, 13, 230, 222, 239) > 10, "prerequisites": ["magazine"] },
     { "id": "mg_event_3", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 11, 137, 225, 13, 230, 222, 239) > 10, "prerequisites": ["magazine"] },
-    { "id": "chcr_0", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 7, 1, 103, 15, 82, 197, 206, 68), "prerequisites": [] },
-    { "id": "chcr_0_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 130, 132, 8, 83, 247, 239, 239, 32), "prerequisites": [] },
-    { "id": "chcr_0_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 130, 132, 8, 83, 230, 230, 230, 407), "prerequisites": [] },
-    { "id": "chcr_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 203), "prerequisites": [] },
-    { "id": "chcr_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 307), "prerequisites": [] },
-    { "id": "chcr_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 35, 255, 197, 247, 88), "prerequisites": [] },
-    { "id": "chcr_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 123, 255, 197, 247, 371), "prerequisites": [] },
+    { "id": "mg_genre_m", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 240, 16, 64, 8, 132, 132, 164) > 5, "prerequisites": ["magazine"]},
+    { "id": "mg_genre_m1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 16, 64, 8, 132, 132, 164, 59), "prerequisites": ["mg_genre_m"]},
+    { "id": "mg_genre_m2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 16, 64, 8, 132, 132, 164, 90), "prerequisites": ["mg_genre_m"]},
+    { "id": "mg_genre_m3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 16, 64, 8, 132, 132, 164, 63), "prerequisites": ["mg_genre_m"]},
+    { "id": "mg_genre_m4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 16, 64, 8, 132, 132, 164, 37), "prerequisites": ["mg_genre_m"]},
+    { "id": "mg_genre_m5", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 16, 64, 8, 132, 132, 164, 35), "prerequisites": ["mg_genre_m"]},
+    { "id": "mg_genre_c", "fn": lambda r, g, b: get_count_by_equality(r, g, b, 240, 48, 64, 8, 132, 132, 164) > 5, "prerequisites": ["magazine"]},
+    { "id": "mg_genre_c1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 48, 64, 8, 132, 132, 164, 64), "prerequisites": ["mg_genre_c"]},
+    { "id": "mg_genre_c2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 48, 64, 8, 132, 132, 164, 49), "prerequisites": ["mg_genre_c"]},
+    { "id": "mg_genre_c3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 48, 64, 8, 132, 132, 164, 42), "prerequisites": ["mg_genre_c"]},
+    { "id": "mg_genre_c4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 240, 48, 64, 8, 132, 132, 164, 97), "prerequisites": ["mg_genre_c"]},
+    { "id": "mg_stadium", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 166, 78, 75, 26, 173, 189, 189, 273), "prerequisites": ["magazine"]},
+    { "id": "mg_stadium_3_1_b", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 272, 88, 33, 15, 222, 222, 230, 113), "prerequisites": ["mg_stadium"]},
+    { "id": "mg_stadium_3_1_w", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 272, 88, 33, 15, 222, 222, 230, 75), "prerequisites": ["mg_stadium"]},
+    { "id": "mg_stadium_3_2_b", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 272, 104, 33, 15, 222, 222, 230, 113), "prerequisites": ["mg_stadium"]},
+    { "id": "mg_stadium_3_2_w", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 272, 104, 33, 15, 222, 222, 230, 75), "prerequisites": ["mg_stadium"]},
+    { "id": "mg_stadium_3_3_b", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 272, 120, 33, 15, 222, 222, 230, 113), "prerequisites": ["mg_stadium"]},
+    { "id": "mg_stadium_3_3_w", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 272, 120, 33, 15, 222, 222, 230, 75), "prerequisites": ["mg_stadium"]},
+    { "id": "chcr_h", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 214, 5, 40, 9, 247, 222, 247, 79), "prerequisites": []},
+    { "id": "chcr_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 203), "prerequisites": ["chcr_h"] },
+    { "id": "chcr_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 22, 30, 283, 16, 255, 197, 247, 307), "prerequisites": ["chcr_h"] },
+    { "id": "chcr_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 35, 255, 197, 247, 88), "prerequisites": ["chcr_h"] },
+    { "id": "chcr_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 33, 56, 60, 123, 255, 197, 247, 371), "prerequisites": ["chcr_h"] },
     { "id": "rpg_ui_bottom_ui", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 5, 166, 20, 20, 255, 255, 0, 44), "prerequisites": []},
     { "id": "rpg_ui_bottom_actions", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 106, 166, 20, 20, 255, 255, 0, 44), "prerequisites": ["rpg_ui_bottom_ui"]},
     { "id": "rpg_ui_top", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 14, 6, 20, 40, 255, 255, 0, 88), "prerequisites": ["rpg_ui_bottom_ui"]},
     { "id": "save_selection_screen", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 9, 209, 78, 18, 197, 189, 189, 64), "prerequisites": []},
     { "id": "save_selection_screen_load", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 98, 132, 97, 16, 0, 58, 132, 95), "prerequisites": ["save_selection_screen"]},
+    { "id": "bad_ending_song", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 100, 49, 185, 136, 230, 255, 230, 2314), "prerequisites": ["not!textbox"]},
+    { "id": "new_game_plus", "fn": detect_ending_game_save_menu, "prerequisites": ["not!textbox"]},
+    { "id": "sports_instructions", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 0, 0, 320, 20, 99, 197, 255, 1276), "prerequisites": ["not!textbox"]},
+    { "id": "sports_instructions_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 404), "prerequisites": ["sports_instructions"] },
+    { "id": "sports_instructions_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 388), "prerequisites": ["sports_instructions"] },
+    { "id": "sports_instructions_3", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 501), "prerequisites": ["sports_instructions"] },
+    { "id": "sports_instructions_4", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 56, 39, 213, 18, 74, 74, 74, 408), "prerequisites": ["sports_instructions"] },
+    { "id": "shrine_instructions_1_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 105, 32, 112, 17, 255, 164, 41, 151), "prerequisites": ["not!textbox"]},
+    { "id": "shrine_instructions_1_2", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 104, 69, 102, 21, 255, 41, 99, 484), "prerequisites": ["not!textbox"]},
+    # { "id": "extras_menu_1", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 24, 16, 128, 8, 148, 74, 0, 132), "prerequisites": []},
+    # { "id": "extras_menu_bonus", "fn": lambda r, g, b: detect_mark_by_count(r, g, b, 80, 128, 128, 8, 148, 74, 0, 132), "prerequisites": []},
 ]
 
 SELECTABLE_RECTS = [
@@ -480,11 +597,36 @@ SELECTABLE_RECTS = [
     ("exr_2_6", (191, 117), (90, 13), "#e0e0e0", "exr_12", 1, 3),
     ("exr_2_7", (191, 133), (90, 13), "#e0e0e0", "exr_13", 1, 3),
 
-    ("mg_movie", (188, 25), (116, 13), "#003abd", "magazine", 1, 3),
-    ("mg_concert", (188, 57), (116, 13), "#f763a3", "magazine", 1, 3),
+    ("mg_info_1", (1, 59), (139, 15), "#e0e0e0", "mg_info", 0.8, 3),
+    ("mg_info_2", (1, 75), (139, 15), "#e0e0e0", "mg_info", 0.8, 3),
+    ("mg_movie", (188, 25), (116, 15), "#003abd", "magazine", 1, 3),
+    ("mg_concert", (188, 57), (116, 15), "#f763a3", "magazine", 1, 3),
     ("mg_event_1", (16, 105), (225, 13), "#7b4ace", "mg_event_1", 1, 3),
     ("mg_event_2", (16, 121), (225, 13), "#7b4ace", "mg_event_2", 1, 3),
     ("mg_event_3", (16, 137), (225, 13), "#7b4ace", "mg_event_3", 1, 3),
+    ("mg_genre_c1", (240, 48), (64, 8), "#e0e0e0", "mg_genre_c1", 0.8, 3, "Classical"),
+    ("mg_genre_c2", (240, 48), (64, 8), "#e0e0e0", "mg_genre_c2", 0.8, 3, "Idol"),
+    ("mg_genre_c3", (240, 48), (64, 8), "#e0e0e0", "mg_genre_c3", 0.8, 3, "Rock"),
+    ("mg_genre_c4", (240, 48), (64, 8), "#e0e0e0", "mg_genre_c4", 0.8, 3, "New Music"),
+    ("mg_genre_m1", (240, 16), (64, 8), "#e0e0e0", "mg_genre_m1", 0.8, 3, "Comedy"),
+    ("mg_genre_m2", (240, 16), (64, 8), "#e0e0e0", "mg_genre_m2", 0.8, 3, "Romance"),
+    ("mg_genre_m3", (240, 16), (64, 8), "#e0e0e0", "mg_genre_m3", 0.8, 3, "Action"),
+    ("mg_genre_m4", (240, 16), (64, 8), "#e0e0e0", "mg_genre_m4", 0.8, 3, "Horror"),
+    ("mg_genre_m5", (240, 16), (64, 8), "#e0e0e0", "mg_genre_m5", 0.8, 3, "Anime"),
+    ("mg_stadium_3_1_b", (272, 88), (32, 15), "#526a6a", "mg_stadium_3_1_b", 0.8, 3, "Baseball"),
+    ("mg_stadium_3_2_b", (272, 104), (32, 15), "#526a6a", "mg_stadium_3_2_b", 0.8, 3, "Baseball"),
+    ("mg_stadium_3_3_b", (272, 120), (32, 15), "#526a6a", "mg_stadium_3_3_b", 0.8, 3, "Baseball"),
+    ("mg_stadium_3_1_w", (272, 88), (32, 15), "#526a6a", "mg_stadium_3_1_w", 0.8, 3, "Wrestling"),
+    ("mg_stadium_3_2_w", (272, 104), (32, 15), "#526a6a", "mg_stadium_3_2_w", 0.8, 3, "Wrestling"),
+    ("mg_stadium_3_3_w", (272, 120), (32, 15), "#526a6a", "mg_stadium_3_3_w", 0.8, 3, "Wrestling"),
+    ("mg_dspot_1", (14, 80), (148, 8), "#e0e0e0", "mg_dspot_1", 0.8, 3, "(Kirameki Central Park introduced!)"),
+    ("mg_dspot_2", (14, 80), (148, 8), "#e0e0e0", "mg_dspot_2", 0.8, 3, "(Art Museum completed!)"),
+    ("mg_dspot_3", (14, 80), (148, 8), "#e0e0e0", "mg_dspot_3", 0.8, 3, "(Aquarium special feature!)"),
+    ("mg_dspot_4", (14, 80), (148, 8), "#e0e0e0", "mg_dspot_4", 0.8, 3, "(Stadium completed!)"),
+    ("mg_dspot_5", (14, 80), (148, 8), "#e0e0e0", "mg_dspot_5", 0.8, 3, "(Botanical Garden special feature!)"),
+    ("mg_dspot_6", (14, 80), (148, 8), "#e0e0e0", "mg_dspot_6", 0.8, 3, "(Bowling Alley special feature!)"),
+    ("mg_dspot_7", (14, 80), (148, 8), "#e0e0e0", "mg_dspot_7", 0.8, 3, "(Planetarium special feature!)"),
+    ("mg_dspot_8", (14, 80), (148, 8), "#e0e0e0", "mg_dspot_8", 0.8, 3, "(Karaoke BOX special feature!)"),
 
     ("chcr_g_h_1", (6, 14), (300, 15), "#1f1f1f", "chcr_1", 1, 5),
     ("chcr_w_h_1", (6, 14), (300, 15), "#1f1f1f", "chcr_1", 1, 5),
@@ -540,6 +682,35 @@ SELECTABLE_RECTS = [
     ("sss_k_save_2_6", (200, 183), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "GUTS"),
     ("sss_k_save_2_6", (200, 199), (42, 13), "#e6e6e6", "save_selection_screen_load", 1, 3, "STRESS"),
 
+    ("bes_subtitle", (70, 198), (190, 15), "#000000", "bad_ending_song", 0.8, 3),
+    ("ngameplus_prompt", (15, 55), (240, 15), "#c3c3c3", "new_game_plus", 1, 3),
+
+    ("si_1_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_1", 1, 3, "BALL ROLLING"),
+    ("si_1_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_1", 1, 3, "First, choose a girl to partner with. Then, during the game, use the D-Pad to move forward, backward, left and right, and push the ball with ◯. Make sure to push the left and right buttons evenly."),
+    ("si_2_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_2", 1, 3, "SPOON RELAY"),
+    ("si_2_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_2", 1, 3, "Press ◯ repeatedly to run. When the egg is moving to the left, press the L1 button, and when it is moving to the right, press the R1 button. Keep your balance so it doesn't fall!"),
+    ("si_3_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_3", 1, 3, "BORROWING RACE"),
+    ("si_3_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_3", 1, 3, "Press ◯ repeatedly to run. When you arrive at the stop, use the D-Pad to find the girl written on the envelope and take her with you to the goal."),
+    ("si_4_h", (46, 187), (226, 15), "#cccccc", "sports_instructions_4", 1, 3, "THREE-LEGGED RACE"),
+    ("si_4_t", (46, 202), (226, 35), "#ffffff", "sports_instructions_4", 1, 3, "Follow my voice! Press the L1 button when I say 'left' (hidari), and R1 when I say 'right' (migi). If you press the wrong button you'll fall, so be careful! We'll start with left. Ready?"),
+
+    ("si_s_1_h", (46, 187), (226, 15), "#eeeeee", "shrine_instructions_1_1", 1, 3, "GOLDFISH SCOOPING"),
+    ("si_s_1_t", (46, 202), (226, 35), "#ffffff", "shrine_instructions_1_1", 1, 3, "Use the D-Pad to move the net. Press ◯ to dip the net into the water, and release it to scoop it up."),
+    ("si_s_1_h", (105, 69), (103, 21), "#cee6e6", "shrine_instructions_1_2", 1, 3, "TODAY'S RESULTS"),
+
+    # ("exm_1_1", (38, 31), (102, 15), "#83939b", "extras_menu_1", 1, 3),
+    # ("exm_1_2", (38, 51), (102, 15), "#83939b", "extras_menu_1", 1, 3),
+    # ("exm_1_3", (38, 71), (102, 15), "#83939b", "extras_menu_1", 1, 3),
+    # ("exm_1_4", (38, 91), (102, 15), "#83939b", "extras_menu_1", 1, 3),
+    # ("exm_1_5", (38, 111), (102, 15), "#83939b", "extras_menu_1", 1, 3),
+    # ("exm_1_6", (38, 131), (102, 15), "#83939b", "extras_menu_1", 1, 3),
+    # ("exm_1_7", (38, 151), (102, 15), "#83939b", "extras_menu_1", 1, 3),
+    # ("exm_1_8", (38, 171), (102, 15), "#83939b", "extras_menu_1", 1, 3),
+    # ("exb_b_1", (95, 143), (99, 13), "#83939b", "extras_menu_bonus", 1, 3),
+    # ("exb_b_2", (95, 159), (99, 13), "#83939b", "extras_menu_bonus", 1, 3),
+    # ("exb_b_3", (95, 175), (99, 13), "#83939b", "extras_menu_bonus", 1, 3),
+    # ("exb_b_4", (95, 191), (99, 13), "#83939b", "extras_menu_bonus", 1, 3),
+
     # ("chcr_k1_1_1", (120, 43), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_2", (120, 59), (48, 13), "#ffffff", detect_chcr_0, 0.8, 5),
     # ("chcr_k1_1_3", (120, 75), (48, 13), "#e6e6e6", detect_chcr_0, 0.8, 5),
@@ -576,10 +747,14 @@ class SelectableRectOverlay(OverlayWindow):
         self.is_cue_detected = False
         self.last_overlay_area_rgb = None
 
+        self.group = None
         for key, val in SELECTABLE_RECT_GROUPS.items():
             if self.item_id.startswith(key):
                 self.group = val
                 break
+
+        if self.group is None:
+            raise ValueError(f"SelectableRectOverlay: No group found for {self.item_id}")
 
         super().__init__(window_id)
 
@@ -666,7 +841,6 @@ class SelectableRectOverlay(OverlayWindow):
                     text_jp_processed, _ = Database.generalize_string(text_jp)
                     text_en = self.tt.translate(text_jp_processed)
                     self.db.insert_translation(text_jp, text_en)
-                    print(f"Adding new notebook item: {text_jp_processed} - {text_en}")
                 text = text_en
 
         self.update(" " + text)
@@ -699,8 +873,7 @@ if __name__ == "__main__":
     while True:
         img_ss = get_window_image(window_id,
                                   offset_x=(overlays[0].letterbox_offset[0], overlays[0].letterbox_offset[1]),
-                                  offset_y=(overlays[0].letterbox_offset[2], overlays[0].letterbox_offset[3]),
-                                  use_scaling=False)
+                                  offset_y=(overlays[0].letterbox_offset[2], overlays[0].letterbox_offset[3]))
         img_ss = img_ss.resize((img_ss.size[0] // overlays[0].game_scaling,
                                 img_ss.size[1] // overlays[0].game_scaling),
                                Image.NEAREST)

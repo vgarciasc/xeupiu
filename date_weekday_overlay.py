@@ -80,7 +80,7 @@ if __name__ == "__main__":
     OverlayWindow.create_master()
     overlay = WeekdayOverlayWindow(window_id)
 
-    img_ss = get_window_image(window_id, use_scaling=False)
+    img_ss = get_window_image(window_id)
     img_ss = img_ss.resize((img_ss.size[0] // overlay.game_scaling,
                             img_ss.size[1] // overlay.game_scaling),
                            Image.NEAREST)

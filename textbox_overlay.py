@@ -6,8 +6,9 @@ import numpy as np
 import win32gui
 from PIL import Image
 
+from config import CONFIG
 from constants import TB_POS_X, TB_POS_Y, TB_WIDTH, TB_HEIGHT
-from screenshot import get_window_by_title, get_window_image
+from screenshot import get_window_by_title, RESOLUTION_SCALE_OFFSET_Y
 from overlay import OverlayWindow
 
 class TextboxOverlayWindow(OverlayWindow):
@@ -17,8 +18,8 @@ class TextboxOverlayWindow(OverlayWindow):
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
         global bg_img
 
-        self.pos_x = window_pos_x + int(TB_POS_X * self.game_scaling) + 4
-        self.pos_y = window_pos_y + int(TB_POS_Y * self.game_scaling) - 1
+        self.pos_x = window_pos_x + int(TB_POS_X * self.game_scaling)
+        self.pos_y = window_pos_y + int(TB_POS_Y * self.game_scaling)
         self.textbox_width = int(TB_WIDTH * self.game_scaling)
         self.textbox_height = int(TB_HEIGHT * self.game_scaling)
 
@@ -37,8 +38,9 @@ class TextboxOverlayWindow(OverlayWindow):
     def detect_gameobj(self, r: np.ndarray, g: np.ndarray, b: np.ndarray, img_ss: Image) -> bool:
         emerald_bg = np.mean((r < 30) & (g > 86) & (g < 137) & (b == 0)) > 0.4
         has_highlight = np.any((r > 100) & (r < 150) & (g > 170) & (g < 200) & (b > 30))
+        has_selection = np.sum((r > 90) & (g > 170) & (b < 100)) > 20
 
-        return emerald_bg and not has_highlight
+        return emerald_bg and not has_highlight and not has_selection
 
 if __name__ == "__main__":
     window_id = get_window_by_title("Tokimeki Memorial")
@@ -47,7 +49,7 @@ if __name__ == "__main__":
     for _ in range(1000):
         overlay.update(time.strftime("%H:%M:%S") + " lorem ipsum dorem sit amet " * 1, None)
         time.sleep(0.5)
-        overlay.hide()
-        time.sleep(0.5)
-        overlay.show()
-        time.sleep(0.5)
+        # overlay.hide()
+        # time.sleep(0.5)
+        # overlay.show()
+        # time.sleep(0.5)

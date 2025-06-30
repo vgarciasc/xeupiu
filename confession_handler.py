@@ -16,14 +16,20 @@ from confession_database import ConfessionDatabase
 
 CHARACTER_CUES = [
     ("Ayako", (156, 33, 20, 20), (164, 164, 206), 87),
-    ("Yuko", (115, 14, 38, 32), (255, 255, 255), 146),
+    ("Yuko", (164, 1, 13, 15), (255, 99, 132), 20),
     ("Nozomi", (211, 144, 30, 41), (164, 255, 206), 41),
-    ("Yuina", (115, 8, 36, 26), (255, 255, 255), 76),
-    ("Shiori", (125, 6, 33, 28), (255, 255, 255), 78)
+    ("Yuina", (133, 3, 55, 25), (0, 41, 230), 72),
+    ("Shiori", (166, 0, 21, 8), (255, 164, 164), 19),
+    ("Mira", (66, 72, 13, 9), (206, 132, 255), 10),
+    ("Rei", (105, 56, 24, 18), (255, 255, 164), 25),
+    ("Miharu", (84, 14, 31, 26), (230, 99, 0), 87),
+    ("Yumi", (106, 7, 105, 31), (107, 255, 230), 1185),
+    ("Mio", (160, 26, 37, 17), (0, 99, 99), 102),
 ]
 
 def detect_confession(img_ss_rgb: np.ndarray) -> bool:
-    return get_count_by_equality(*img_ss_rgb, 269, 10, 20, 20, 107, 107, 99) == 45
+    #tatebayashi's horns make it 16
+    return get_count_by_equality(*img_ss_rgb, 269, 10, 20, 20, 107, 107, 99) in [45, 34]
 
 def detect_confession_character(img_ss_rgb: np.ndarray) -> str:
     for char, coords, color, count in CHARACTER_CUES:
@@ -88,8 +94,7 @@ if __name__ == "__main__":
     while True:
         img_ss = get_window_image(window_id,
                                   offset_x=(overlay.letterbox_offset[0], overlay.letterbox_offset[1]),
-                                  offset_y=(overlay.letterbox_offset[2], overlay.letterbox_offset[3]),
-                                  use_scaling=False)
+                                  offset_y=(overlay.letterbox_offset[2], overlay.letterbox_offset[3]))
 
         img_ss = img_ss.resize((img_ss.size[0] // overlay.game_scaling,
                                 img_ss.size[1] // overlay.game_scaling),

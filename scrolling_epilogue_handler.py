@@ -53,7 +53,9 @@ class ScrollingEpilogueHandler:
         self.overlay.update(translation)
 
     def detect_scrolling_epilogue_screen(self, img_ss_rgb: np.ndarray) -> bool:
-        return imp.get_count_by_equality(*img_ss_rgb, 16, 187, 40, 40, 107, 173, 58) in [188, 193]
+        girl_ending = imp.get_count_by_equality(*img_ss_rgb, 16, 187, 40, 40, 107, 173, 58) in [188, 193]
+        alone_ending = imp.get_count_by_equality(*img_ss_rgb, 273, 121, 42, 56, 156, 140, 140) == 37
+        return girl_ending or alone_ending
 
     def read_onscreen_text(self, img_ss: Image) -> str:
         texts = []
@@ -127,8 +129,7 @@ if __name__ == "__main__":
     while True:
         img_ss = get_window_image(window_id,
                                   offset_x=(handler.overlay.letterbox_offset[0], handler.overlay.letterbox_offset[1]),
-                                  offset_y=(handler.overlay.letterbox_offset[2], handler.overlay.letterbox_offset[3]),
-                                  use_scaling=False)
+                                  offset_y=(handler.overlay.letterbox_offset[2], handler.overlay.letterbox_offset[3]))
         img_ss = img_ss.resize((img_ss.size[0] // handler.overlay.game_scaling,
                                 img_ss.size[1] // handler.overlay.game_scaling),
                                Image.NEAREST)

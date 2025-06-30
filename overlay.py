@@ -1,14 +1,14 @@
 import time
 import tkinter as tk
-from ctypes import windll
+from ctypes import windll, c_int
 
 import numpy as np
 import win32gui
 from PIL import Image
 
 from constants import *
-from screenshot import get_window_by_title, get_window_image
-from config import CONFIG
+from screenshot import get_window_by_title, get_window_image, get_window_base_dims
+from config import CONFIG, RES_SCALE_FACTOR
 
 bg_img = None
 
@@ -25,13 +25,13 @@ class OverlayWindow:
         self.is_hidden = False
         self.iterations_wout_gameobj = 99
 
-    def get_letterbox_offset(self, window_id: int):
+    def get_letterbox_offset(self, window_id: int, n_tries=0):
         """
         Removes black letterboxes on the sides of the game window.
         :return: The x and y offsets of the game window.
         """
 
-        img_ss = get_window_image(window_id, use_scaling=False)
+        img_ss = get_window_image(window_id)
         img_ss_np = np.array(img_ss.convert('RGBA'))
 
         left_offset = 0
@@ -67,9 +67,19 @@ class OverlayWindow:
         if (img_ss.height - top_offset - bottom_offset) % 240 != 0 and top_offset != 0:
             top_offset -= 1 * local_game_scaling
 
-        if right_offset - left_offset < 0:
-            print(f"Letterbox calibration done before window was fully rendered. Retrying...")
-            return self.get_letterbox_offset(window_id)
+        if RES_SCALE_FACTOR > 1 and left_offset - right_offset <= local_game_scaling:
+            # EXPERIMENTING! This is a hack to fix rounding differences between how windows does resolution scaling
+            # and how the game does it. This is a hack and should be removed if it causes problems.
+            print(f"Fixing off-by-one error in resolution scaling...")
+            pass
+        elif right_offset < left_offset:
+            if n_tries < 50:
+                print(f"Letterbox calibration done before window was fully rendered. Retrying...")
+                print(f"Offsets: {left_offset}, {right_offset}, {top_offset}, {bottom_offset}")
+                return self.get_letterbox_offset(window_id, n_tries+1)
+            else:
+                print(f"Letterbox calibration failed. Offsets: {left_offset}, {right_offset}, {top_offset}, {bottom_offset}")
+                raise Exception("Letterbox calibration failed.")
 
         # EXPERIMENTING! This is a hack added because in the title screen, there is no left flicker.
         # This is solving my problems right now, but perhaps won't in the future. Keep this in mind.
@@ -78,24 +88,20 @@ class OverlayWindow:
         return left_offset, right_offset, top_offset, bottom_offset
 
     def get_window_dims(self, window_id: int):
-        windll.user32.SetProcessDPIAware()
-
-        left, top, right, bot = win32gui.GetWindowRect(window_id)
-        width, height = right - left, bot - top
-        pos_x, pos_y = left, top
-
         l_offset, r_offset, t_offset, b_offset = self.letterbox_offset
 
+        x, y, w, h = get_window_base_dims(window_id)
+
         border_config = CONFIG.get_borders_var()
-        pos_x += l_offset + border_config["left_offset_correction"]
-        pos_y += border_config["size_toolbar"] + border_config["size_window_border_top"] + t_offset
-        width -= (l_offset + border_config["left_offset_correction"] + r_offset)
-        height -= (border_config["size_toolbar"] + border_config["size_window_border_top"] + t_offset + b_offset)
+        x += l_offset + border_config["left_offset_correction"]
+        y += border_config["size_toolbar"] + border_config["size_window_border_top"] + t_offset
+        w -= (l_offset + r_offset)
+        h -= (border_config["size_window_border_bottom"] + border_config["size_toolbar"] + t_offset + b_offset)
 
-        self.game_scaling = width // 320
-        self.font_size = min(self.game_scaling * 6, 24)
+        self.game_scaling = w // 320
+        self.font_size = min(self.game_scaling * 6, 32)
 
-        return pos_x, pos_y, width, height
+        return x, y, w, h
 
     def create_overlay(self, window_pos_x: int, window_pos_y: int, window_width: int, window_height: int) -> None:
         global bg_img

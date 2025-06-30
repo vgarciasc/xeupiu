@@ -65,6 +65,7 @@ class TextDatabase(Database):
         text_jp, _ = Database.generalize_date(text_jp)
         text_jp = Database.generalize_player_variables(text_jp.strip())
         text_en = Database.generalize_player_variables(text_en.strip())
+        text_en = text_en.replace("\"", "")
 
         self.df = pd.concat([self.df, pd.DataFrame({"Character name": [char_name],
                                                     "Japanese text": [text_jp],

@@ -1,5 +1,5 @@
 {
-    "version": "v2.0.3-alpha",
+    "version": "v2.2.1-alpha",
     "window_title": "Tokimeki Memorial",
     "cmd_max_lines": 100,
     "verbose_level": 1,
@@ -14,14 +14,14 @@
         "size_window_border_top": 30,
         "size_window_border_bottom": 22,
         "size_toolbar": 21,
-        "left_offset_correction": 8
+        "left_offset_correction": 7
     },
     "databases": {
         "names_filepath": "data/texts/database_names.csv",
-        "text_filepath": "data/texts/database_text_v2.csv",
-        "notebook_filepath": "data/texts/database_notebook_v2.csv",
+        "text_filepath": "data/texts/database_text.csv",
+        "notebook_filepath": "data/texts/database_notebook.csv",
         "confession_filepath": "data/texts/database_confessions.csv",
-        "epilogue_filepath": "data/texts/database_epilogues_v2.csv"
+        "epilogue_filepath": "data/texts/database_epilogues.csv"
     },
     "save": {
         "player": {
@@ -46,6 +46,7 @@
     },
     "translation": {
         "backend": "deepl",
+        "lang": "EN-US",
         "google_cloud": {
             "credential_path": ""
         },

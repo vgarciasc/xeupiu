@@ -1,12 +1,14 @@
+import math
 import time
 from ctypes import windll
 
-from config import CONFIG
+from config import CONFIG, RES_SCALE_FACTOR
 import win32gui
 import win32ui
 from PIL import Image
 
-SCALE_FACTOR = windll.shcore.GetScaleFactorForDevice(0)
+RESOLUTION_SCALE_OFFSET_Y = (round((CONFIG.get_borders_var()["size_toolbar"] + CONFIG.get_borders_var()["size_window_border_top"]) * RES_SCALE_FACTOR) - (CONFIG.get_borders_var()["size_toolbar"] + CONFIG.get_borders_var()["size_window_border_top"]))
+BASE_DIMS = [None, None, None, None]
 
 def get_window_by_title(window_title):
     """
@@ -32,23 +34,15 @@ def get_window_by_title(window_title):
 
     return window_id
 
-def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=True):
+def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0)):
     """
     Returns a PIL image of the window with the given ID.
 
     :param window_id: The window ID of the window to capture.
-    :param use_scaling: Whether to use the scaling factor of Windows to scale the image.
     :return: A PIL image of the window with the given ID.
     """
 
-    if use_scaling:
-        scaling = SCALE_FACTOR / 100
-    else:
-        scaling = 1.0
-
-    left, top, right, bot = win32gui.GetClientRect(window_id)
-    w = int((right - left) * scaling)
-    h = int((bot - top) * scaling)
+    _, _, w, h = get_window_base_dims(window_id)
 
     hwndDC = win32gui.GetWindowDC(window_id)
     mfcDC = win32ui.CreateDCFromHandle(hwndDC)
@@ -60,14 +54,12 @@ def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=Tr
     saveDC.SelectObject(saveBitMap)
 
     result = windll.user32.PrintWindow(window_id, saveDC.GetSafeHdc(), 3)
-
-    bmpinfo = saveBitMap.GetInfo()
     bmpstr = saveBitMap.GetBitmapBits(True)
 
-    img = Image.frombuffer(
-        'RGB',
-        (bmpinfo['bmWidth'], bmpinfo['bmHeight']),
-        bmpstr, 'raw', 'BGRX', 0, 1)
+    try:
+        img = Image.frombuffer('RGB', (w, h), bmpstr, 'raw', 'BGRX', 0, 1)
+    except ValueError:
+        raise Exception("Image Buffer Error: failed to capture game screen.")
 
     win32gui.DeleteObject(saveBitMap.GetHandle())
     saveDC.DeleteDC()
@@ -83,15 +75,26 @@ def get_window_image(window_id, offset_x=(0, 0), offset_y=(0, 0), use_scaling=Tr
 
     return img
 
-def get_window_pos(window_id):
+def get_window_base_dims(window_id):
     """
-    Returns the position of the window with the given ID.
+    Returns the position and size of the window with the given ID.
 
     :param window_id: The window ID of the window to capture.
     :return: The position of the window with the given ID.
     """
-    _, _, left, top = win32gui.GetClientRect(window_id)
-    return left, top
+    global BASE_DIMS
+
+    if BASE_DIMS == [None, None, None, None]:
+        x0, y0, x1, y1 = win32gui.GetClientRect(window_id)
+        w = round((x1 - x0) * RES_SCALE_FACTOR)
+        h = round((y1 - y0) * RES_SCALE_FACTOR)
+
+        windll.shcore.SetProcessDpiAwareness(1)
+        x, y, _, _ = win32gui.GetWindowRect(window_id)
+
+        BASE_DIMS = [x, y, w, h]
+
+    return BASE_DIMS
 
 if __name__ == "__main__":
     # Capture the entire screen

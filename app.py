@@ -81,8 +81,7 @@ class App:
             # Take screenshot, crop textbox
             img_ss = get_window_image(self.window_id,
                                       offset_x=self.overlay_tb.letterbox_offset[0:2],
-                                      offset_y=self.overlay_tb.letterbox_offset[2:4],
-                                      use_scaling=True)
+                                      offset_y=self.overlay_tb.letterbox_offset[2:4])
             img_ss = img_ss.resize((img_ss.size[0] // self.overlay_tb.game_scaling,
                                     img_ss.size[1] // self.overlay_tb.game_scaling),
                                    Image.NEAREST)
@@ -101,7 +100,11 @@ class App:
                 prerequisites_fulfilled = True
                 if cue["prerequisites"]:
                     for prerequisite in cue["prerequisites"]:
-                        if not cue_dict.get(prerequisite):
+                        if prerequisite.startswith("not!"):
+                            if cue_dict.get(prerequisite[4:]):
+                                prerequisites_fulfilled = False
+                                break
+                        elif not cue_dict.get(prerequisite):
                             prerequisites_fulfilled = False
                             break
 

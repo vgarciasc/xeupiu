@@ -28,7 +28,7 @@ Ayako;<PLAYER_NAME>;I wouldn't joke at a time like this.;2:13,250;1.3
 Ayako;Ayako;Ah, ah... Ｕｎｂｅｌｉｅｖａｂｌｅ!! I can't believe it...;2:18,310;1.0
 Ayako;Ayako;This is the happiest day of my life!\nＩ'ｌｌ ｎｅｖｅｒ ｆｏｒｇｅｔ!;2:24,830;1.0
 Ayako;Ayako;I'll remember it as long as I live...!;2:30,240;1.0
-Yuko;<PLAYER_NAME>;A-Asahina san...;0:00,700;0.8
+Yuko;<PLAYER_NAME>;A-Asahina-san...;0:00,700;0.8
 Yuko;Yuko;I don't know why I called you out here...;0:04,660;1.0
 Yuko;Yuko;But there's something I want to say before graduation...\nHow can I say it?;0:09,850;1.0
 Yuko;<PLAYER_NAME>;Something you want to say...?;0:15,970;0.8
@@ -125,7 +125,7 @@ Yuina;Yuina;I'm so happy...;2:15,770;1.0
 Yuina;Yuina;Even if I had taken over the world,\nI don’t think I could have been this happy...;2:18,140;1.0
 Yuina;<PLAYER_NAME>;I’m happy, too!;2:25,860;1.0
 Yuina;Yuina;I'll try harder and harder... to become a girl you like even more.;2:29,160;1.0
-Shiori;<PLAYER_NAME>;S-shiori-san?;0:00,700;1.0
+Shiori;<PLAYER_NAME>;Sh-Shiori-san?;0:00,700;1.0
 Shiori;Shiori;I'm sorry to call you out to a place like this.;0:04,040;1.0
 Shiori;Shiori;There’s something I really need to tell you today...;0:09,150;1.0
 Shiori;<PLAYER_NAME>;What's wrong, Shiori?;0:11,940;1.0
@@ -154,3 +154,167 @@ Shiori;Shiori;I can really believe this, right? You really mean it?;1:48,780;1.0
 Shiori;<PLAYER_NAME>;Of course I do. I love you, Shiori.;1:52,120;1.0
 Shiori;Shiori;I'm happy... I'm so happy...;1:58,120;1.0
 Shiori;Shiori;Please, never let me go...;2:02,070;1.0
+Mira;<PLAYER_NAME>;Oh, Kagami-san.;0:00,000;1.25
+Mira;Mira;I'm sorry for calling you out to a place like this.;0:03,480;1
+Mira;<PLAYER_NAME>;W-Wait, did Kagami-san just apologize...?;0:07,220;1
+Mira;Mira;Oh, there's no need to be so surprised.;0:13,160;1
+Mira;Mira;But, please, listen to what I have to say.;0:17,010;1
+Mira;<PLAYER_NAME>;........;0:21,140;1
+Mira;Mira;I moved to this town back when I was in middle school.;0:24,220;1
+Mira;Mira;In my last town... I got dumped by boys so many times.;0:29,340;1
+Mira;Mira;So, when I came here, I thought...;0:35,450;1
+Mira;Mira;"I’ll reinvent myself. I’ll make boys want me,\nand I'll be the one doing the dumping.";0:41,190;1
+Mira;Mira;With a lot of effort, I became that girl.;0:46,290;1
+Mira;Mira;And then, I took on this high and mighty attitude,\nand sought my revenge.;0:53,340;1
+Mira;<PLAYER_NAME>;S-So that’s how it was...;0:59,010;1
+Mira;Mira;At first, it was fun... I was happy to be admired by boys.;1:03,270;1
+Mira;Mira;But it didn’t satisfy my heart.;1:10,510;1
+Mira;Mira;Of course it didn’t. Living a lie could never fulfill me.;1:16,450;1
+Mira;Mira;If I hadn’t met you, I might never have realized this...;1:24,210;1
+Mira;Mira;Meeting you made me think about a lot of stuff.;1:28,580;1
+Mira;Mira;If it was with you, I could finally abandon this charade!;1:32,230;1
+Mira;Mira;Except... I didn’t have the courage to give up who I had become.;1:36,110;1
+Mira;Mira;I didn’t want to go back to my old self...;1:42,050;1
+Mira;Mira;But now I finally found this courage!;1:45,550;1
+Mira;Mira;I can’t stand the thought of graduating\nwhile you still think of me as this kind of girl!;1:50,290;1
+Mira;Mira;You're different from the others...;1:55,420;1
+Mira;Mira;I just want you by my side. Only you can heal the scars in my heart.;2:02,330;1
+Mira;Mira;I love you. Stay with me forever... Please...;2:08,180;1
+Mira;<PLAYER_NAME>;So that’s how it is...;2:13,590;1
+Mira;Mira;Still, I'm probably not good enough, am I?;2:17,450;1
+Mira;<PLAYER_NAME>;No, not at all! I'm here for you.;2:20,470;1.25
+Mira;Mira;Really? That makes me so happy!\nI can finally be my true self.;2:24,470;1
+Mira;<PLAYER_NAME>;But the other guys might hate me, you know?;2:28,980;1
+Mira;Mira;It’s okay. You’re the one I chose.;2:35,460;1
+Mira;Mira;No one else would dare complain.;2:40,100;1
+Mira;<PLAYER_NAME>;Yeah, right. We'll see about that...;2:42,450;1
+Rei;<PLAYER_NAME>;Eh? Who are you?;0:00,000;1
+Rei;<PLAYER_NAME>;Have we met somewhere before?;0:03,200;1
+Rei;Rei;I... I’m Ijuuin.;0:08,380;1
+Rei;<PLAYER_NAME>;Ijuuin? I don’t remember him having a sister.;0:12,250;1.5
+Rei;Rei;No... I’m Ijuuin Rei.;0:17,130;1
+Rei;<PLAYER_NAME>;Eh?;0:20,210;0.5
+Rei;Rei;I’m sorry. All this time,\nI’ve been pretending to be a boy... lying to you.;0:22,190;1
+Rei;<PLAYER_NAME>;That’s... quite a lie.;0:29,270;1
+Rei;Rei;In the Ijuuin family, girls are required to live as boys\noutside the house until they graduate.;0:32,350;1
+Rei;<PLAYER_NAME>;Like in a manga...;0:40,530;1.2
+Rei;Rei;But I... Even though there was only one day left,\nI couldn’t take it anymore.;0:43,540;1
+Rei;Rei;I’m sorry for calling you out like this.;0:51,150;1
+Rei;<PLAYER_NAME>;I-It’s fine. Really...;0:54,510;1
+Rei;Rei;I’m sorry for always being so harsh with you...;0:59,050;1
+Rei;Rei;But the truth is, I said all those things\nbecause I wanted you to hate me.;1:03,000;1
+Rei;Rei;I thought that if you hated me, I could forget about you...;1:10,310;1
+Rei;Rei;But no matter how awful I was, you kept calling me...;1:15,880;1
+Rei;Rei;Even after I said such terrible things,\nyou kept calling me, over and over.;1:21,570;1
+Rei;Rei;And every time, I cried on the other end of the line,\nbecause I was so happy!;1:27,290;1
+Rei;Rei;And when I was kidnapped...\nyou even went to that abandoned factory to save me.;1:32,340;1
+Rei;Rei;I couldn’t believe someone would worry about me like that.;1:39,070;1
+Rei;Rei;I’ve always tried to live strong, but...;1:44,280;1
+Rei;Rei;I’m just a normal girl.;1:47,500;1
+Rei;Rei;I wanted to hang out with everyone, chat, and go out like normal.;1:51,080;1
+Rei;Rei;Even on Valentine’s Day, I wanted to...;1:57,280;1
+Rei;Rei;Starting tomorrow, I’ll finally be able to live like that.\nBut right now, I want you to see the real me.;2:01,470;1
+Rei;Rei;I don’t care about the Ijuuin family anymore.;2:08,540;1
+Rei;Rei;So... I love you.;2:12,190;1
+Rei;Rei;I’m sorry for lying to you all this time.;2:16,150;1
+Rei;Rei;But... will you go out with me?;2:19,500;1
+Rei;<PLAYER_NAME>;Ijuuin... No, Ijuuin-san...;2:23,190;1
+Rei;Rei;I know this might be a bother, but...\nPlease tell me how you feel.;2:28,490;1
+Rei;Rei;If I can hear it, maybe I can give up...;2:33,440;1
+Rei;<PLAYER_NAME>;There’s no way I could reject someone who likes me so much.;2:36,000;1
+Rei;Rei;R-Really...?;2:43,340;1
+Rei;<PLAYER_NAME>;Of course. The answer is yes.;2:46,080;1
+Rei;Rei;I... I don’t even know what to say...;2:50,280;1
+Rei;Rei;I finally feel like I’ve become a normal girl...;2:56,150;1
+Rei;<PLAYER_NAME>;Can I ask you one thing, though?;2:58,340;1
+Rei;Rei;Hm?;3:03,340;1
+Rei;<PLAYER_NAME>;That time when Takayoshi collapsed...;3:04,560;1
+Rei;Rei;I-I'm sorry... When Takayoshi-kun realized that I was a girl,\nI had to alter his memory.;3:10,270;1
+Rei;<PLAYER_NAME>;I thought so...;3:20,110;1
+Rei;Rei;Do you... despise me for it?;3:25,370;1
+Rei;<PLAYER_NAME>;No... I understand why you did it...;3:28,170;1
+Rei;Rei;Thank you... You’re so kind... ;3:34,050;1
+Rei;Rei;I’m so glad I fell in love with you!;3:38,300;1
+Miharu;<PLAYER_NAME>;Ah, you're...;0:00,000;1
+Miharu;Miharu;I’m sorry for everything up until now.;0:03,310;1
+Miharu;Miharu;My name is Miharu Tatebayashi.;0:06,330;1
+Miharu;Miharu;I called you out here because...;0:11,170;1
+Miharu;Miharu;...there’s something I absolutely have to tell you!;0:14,320;1
+Miharu;<PLAYER_NAME>;Something you have to tell me?;0:18,160;1
+Miharu;Miharu;All those times I bumped into you...\nWell, it wasn’t by coincidence.;0:22,400;1
+Miharu;<PLAYER_NAME>;Yeah, I figured out that much.;0:27,560;1
+Miharu;Miharu;I-I see...!;0:33,910;1
+Miharu;Miharu;The truth is, I fell in love with you at first sight.\nI've always been watching you!;0:36,190;1
+Miharu;Miharu;So I did those things...\nbecause I wanted you to at least remember my face.;0:43,260;1
+Miharu;Miharu;I’m so sorry.;0:49,410;1
+Miharu;<PLAYER_NAME>;I-I see... So that's what happened...;0:50,600;1
+Miharu;Miharu;Umm... I know it’s selfish after what I did, but...;0:56,260;1
+Miharu;Miharu;I still believe in love at first sight.\nPlease go out with me!;1:03,000;1
+Miharu;<PLAYER_NAME>;Actually, I’ve also been thinking about you, Tatebayashi-san.;1:07,410;1
+Miharu;Miharu;So... is that an OK!?;1:14,530;1
+Miharu;Miharu;I’m so happy!!!;1:17,360;1
+Miharu;Miharu;Let’s get to know each other from now on!;1:20,260;1
+Miharu;<PLAYER_NAME>;Yeah, let's.;1:23,320;1
+Mio;<PLAYER_NAME>;K-Kisaragi-san...;0:00,000;1
+Mio;Mio;I'm sorry. I know it's rude, but...;0:04,090;1
+Mio;Mio;I called you here because there’s something\nI absolutely have to tell you today.;0:09,280;1
+Mio;<PLAYER_NAME>;It's fine, please go ahead.;0:17,230;1
+Mio;Mio;I’ve always been weak physically,\nso I didn’t have many friends.;0:23,320;1
+Mio;Mio;My only real hobby has been reading books.;0:30,420;1
+Mio;Mio;And every time I read, I found myself\nadmiring the romances in those stories...;0:35,120;1
+Mio;Mio;...but also feeling a little jealous.;0:41,490;1
+Mio;Mio;It made me ashamed of myself,\ntoo timid to share my real feelings.;0:47,050;1
+Mio;Mio;I’ve always hated that about me...;0:52,100;1
+Mio;Mio;But starting today, I want to change who I’ve been.;0:54,540;1
+Mio;<PLAYER_NAME>;W-Why today?;1:02,180;1.5
+Mio;Mio;I've read many books, and in my memory,\nthere are countless stories...;1:05,240;1
+Mio;Mio;But I don't want my time in high school,\nmy time with you, to be just another memory!;1:12,580;1
+Mio;Mio;I don't want to let it be just another one of my fantasies...;1:22,070;1
+Mio;Mio;So, with all the courage I have in my lifetime, I'll say it...;1:27,570;1
+Mio;Mio;I love you.;1:34,070;1
+Mio;Mio;Even if we’re just friends, that’s okay.;1:36,380;1
+Mio;Mio;As long as I can keep seeing you, even after graduation...;1:40,430;1
+Mio;<PLAYER_NAME>;To tell you the truth...;1:44,380;1.75
+Mio;<PLAYER_NAME>;I’ve also been thinking about you, Kisaragi-san...;1:46,410;1.75
+Mio;Mio;Re-Really...?;1:50,580;1
+Mio;Mio;You’d really accept someone like me...?;1:56,040;1
+Mio;<PLAYER_NAME>;Of course.;1:59,440;1.5
+Mio;<PLAYER_NAME>;I love you, Kisaragi-san.;2:02,020;1.5
+Mio;Mio;I’m so happy... Ah!;2:05,280;1
+Mio;<PLAYER_NAME>;Oh no, be careful, Kisaragi-san!;2:10,010;1.5
+Mio;Mio;*giggles*;2:14,480;1
+Mio;Mio;Being weak isn’t so bad after all.;2:19,140;1
+Mio;Mio;Because it means I get to be held by you like this...;2:24,090;1
+Mio;Mio;Please, let us stay like this for just a little longer...;2:29,250;1
+Yumi;<PLAYER_NAME>;Y-Yumi-chan...;0:00,000;1.5
+Yumi;Yumi;I-I’m sorry...!;0:04,150;1
+Yumi;Yumi;For calling you out to a place like this...;0:06,210;1
+Yumi;<PLAYER_NAME>;No, it’s fine.;0:08,310;1.5
+Yumi;Yumi;Umm...;0:12,260;1
+Yumi;Yumi;Yumi has always wanted to be in the same grade as you, senpai.;0:13,480;1
+Yumi;Yumi;If we were in the same grade...;0:19,230;1
+Yumi;Yumi;We could’ve spent all three years of high school together...;0:21,110;1
+Yumi;Yumi;Even gone on the school trip together...;0:24,080;1
+Yumi;Yumi;I’ve cried so many times... why couldn’t I have been born\nwhen my big brother was born instead...?;0:27,450;1
+Yumi;Yumi;Yumi knows that compared to the girls in your grade,\nYumi seems childish and selfish.;0:35,400;1
+Yumi;Yumi;But if you don’t like that I’m childish,\nI’ll work hard to be more mature!;0:44,360;1
+Yumi;Yumi;I’ll stop being selfish too!;0:50,060;1
+Yumi;Yumi;So please...;0:53,150;1
+Yumi;Yumi;Don’t think of me as your friend’s little sister anymore.;0:54,260;1
+Yumi;Yumi;I want you to see me as a girl!;0:57,340;1
+Yumi;Yumi;Because senpai, I love you more than anything else in this world...\nAnd I can't help it!;1:02,020;1
+Yumi;<PLAYER_NAME>;Actually... I’ve also been thinking about you, Yumi-chan...;1:09,310;1.5
+Yumi;Yumi;Re-Really?;1:14,840;1
+Yumi;Yumi;You don’t mind that I’m younger?;1:17,010;1
+Yumi;<PLAYER_NAME>;Of course not. I love you, Yumi-chan.;1:19,030;1.5
+Yumi;Yumi;Then... can I have the second button from your uniform?;1:25,130;1
+Yumi;<PLAYER_NAME>;Sure. Here you go.;1:28,360;1.5
+Yumi;Yumi;Yay!;1:31,220;1
+Yumi;Yumi;I’ll keep this as my good luck charm\nand do my best for another year!;1:33,250;1
+Yumi;Yumi;Even after you graduate, please come to visit.\nNot to see my brother, but to see Yumi!;1:38,290;1
+Yumi;Yumi;If you don’t, Yumi will be lonely and cry!;1:46,140;1
+Yumi;<PLAYER_NAME>;I promise. I’ll come visit.;1:50,260;1.5
+Yumi;Yumi;I’m so happy!!;1:54,270;1
+Yumi;Yumi;I love you, senpai.;1:56,290;1
+Yumi;<PLAYER_NAME>;(Though, if we get married...;1:58,260;1.5
+Yumi;<PLAYER_NAME>;I’ll technically become Yoshio’s brother-in-law...);2:01,030;1.5

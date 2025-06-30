@@ -1,6 +1,8 @@
 import json
 from constants import convert_birthday_to_str
+from ctypes import windll
 
+RES_SCALE_FACTOR = windll.shcore.GetScaleFactorForDevice(0) / 100
 
 class Configuration():
     def __init__(self):
@@ -29,7 +31,13 @@ class Configuration():
                 "left_offset_correction": 0
             }
         else:
-            return self.config["border_size"]
+            borders = self.config["border_size"]
+            return {
+                "size_window_border_top": round(borders["size_window_border_top"] * RES_SCALE_FACTOR),
+                "size_window_border_bottom": round(borders["size_window_border_bottom"] * RES_SCALE_FACTOR),
+                "size_toolbar": round(borders["size_toolbar"] * RES_SCALE_FACTOR),
+                "left_offset_correction": round(borders["left_offset_correction"] * RES_SCALE_FACTOR)
+            }
 
     def reload_birthdays(self):
         self.plbday_jp, self.plbday_en = convert_birthday_to_str(self.config["save"]["player"]["birth_month"],
