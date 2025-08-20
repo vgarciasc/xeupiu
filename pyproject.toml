@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xeupiu"
+dynamic = ["version"]
+description = "A translation tool for 'Tokimeki Memorial: Forever With You'."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas==2.2.2",
+    "Pillow==10.0.1",
+    "numpy==1.26.4",
+    "thefuzz==0.22.1",
+    "deepl==1.22.0",
+    "openai==0.28.0",
+    "google-cloud-translate==3.15.3",
+    "pywin32==306; sys_platform == 'windows'",
+    "pywin32-ctypes==0.2.2; sys_platform == 'windows'",
+    "ewmhlib>=0.2; sys_platform == 'linux'",
+    "python-xlib>=0.33; sys_platform == 'linux'",
+    "xdialog",
+    "pyinstaller",
+]
+
+[project.scripts]
+xeupiu = "xeupiu.xeupiu:main"

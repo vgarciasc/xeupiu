@@ -1,16 +1,33 @@
 # Running XEUPIU
 
+## Disclaimer
+
+You must **own** a Playstation and a copy of Tokimeki Memorial.
+
 ## How to install
 
 ### Setting up the emulator
 
-1. Download the [latest version of the DuckStation emulator ](https://www.duckstation.org/) (latest version tested: v0.1-7371)
+1. Download the [latest version of the DuckStation emulator ](https://www.duckstation.org/) (latest version tested: 0.1-6759-gc015039a (dev))
 2. Install the emulator and set it up with your PSX BIOS
 3. Download the Tokimeki Memorial - Forever With You (Rev 4) ROM in Japanese
 4. Configure the emulator by accessing Settings -> Graphics and changing:
 	1. Aspect ratio: 4:3
- 	2. Scaling: Nearest Neighbor (Integer)
-	3. Crop: "All Borders (Aspect Uncorrected)", if such an option is present, or if it isn't, simply "All Borders"
+	2. Crop: All Borders
+	3. Scaling: Nearest Neighbor (Integer)
+
+#### Linux specific
+
+You must run DuckStation using X11, in Wayland it is by design not possible to capture the contents of other programs windows. Technically it can be done with custom code for every window manager, but this is quite complicated and seems unreliable.
+
+If you're unsure whether or not you're using Wayland, you can check your system settings. If you're using X11 then you don't need to do anything. If you're using Wayland then you need to launch Duckstation with slightly different environment variables to force it to launch using XWayland:
+```sh
+env -u WAYLAND_DISPLAY QT_QPA_PLATFORM=xcb <path to DuckStation appimage>
+```
+
+If you're using something like AppimageLauncher, you should edit the generated desktop file to include these environment variables.
+
+Xeupiu has been tested with KDE, but not Gnome or other window managers. It should work fine, but if not it may be that the window cropping is wrong because of window manager differences. You may want to try tweaking the borders in `config.json`; you can double check how the window is being screenshotted using `xeupiu --screenshot <path to save screenshot>`.
 
 ### Setting up the translation backend
 
@@ -31,6 +48,10 @@ The game is already playable, but the game script has not been fully collected y
 6. Fill the empty fields with your DeepL API Key, desired player character name, surname, and nickname.
 7. Follow the on-screen instructions.
 8. Enjoy!
+
+#### Linux specific
+
+Most distros come with Tk, but if yours does not it will need to be installed.
 
 ## Frequently Asked Questions
 
@@ -54,11 +75,7 @@ Try reducing the "History size" parameter in the XEUPIU menu from 10 to 5. This 
 
 Press the `SQUARE` button until you cycle the cursor icon back to the default one (blue pointing hand). **The tool will produce mistakes if the default cursor is not used.**
 
-### 6. I have set up everything correctly, but when I try to run XEUPIU, the overlays are misaligned and nothing is being translated!
-
-This is a known issue currently being investigated. Please download and run an earlier version of Duckstation such as [v0.1-7371](https://github.com/stenzek/duckstation/releases/tag/v0.1-7371).
-
-### 7. I have set up the tool correctly, but when I try to run it, it crashes immediately!
+### 6. I have set up the tool correctly, but when I try to run it, it crashes immediately!
 
 There are some known Windows configurations that affect the tool in its current form; we are working on fixing this for future versions. In the meantime, before opening the tool, please guarantee that:
 
@@ -67,7 +84,7 @@ There are some known Windows configurations that affect the tool in its current 
 
 If these items are true for your PC but the tool keeps crashing, read on.
 
-### 8. The tool was working well, but now when I try to open it, it crashes with "not enough image data"!
+### 7. The tool was working well, but now when I try to open it, it crashes with "not enough image data"!
 
 This is a known issue with the Windows internal screenshotting API, due to interference caused by other 
 applications (most commonly, web browsers). Please do the following:
@@ -79,6 +96,6 @@ applications (most commonly, web browsers). Please do the following:
 
 If this does not solve your issue, read on.
 
-### 9. The game crashed and I don't know why!
+### 8. The game crashed and I don't know why!
 
 If none of the questions above apply to your case, please reach out on the [Discord server](https://discord.gg/aH5meFKRB7). I am only one person with a busy job so I apologize upfront if I take a while to answer.
