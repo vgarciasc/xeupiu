@@ -1,4 +1,4 @@
-pyinstaller xeupiu.py --noconfirm --hidden-import=PySide6 --icon="data/resources/icon.ico"
+pyinstaller run.py --noconfirm --icon="data/resources/icon.ico" --name xeupiu
 mkdir dist\xeupiu\data
 mkdir dist\xeupiu\data\characters
 mkdir dist\xeupiu\data\backgrounds
@@ -14,4 +14,3 @@ copy config_generic.json dist\xeupiu\config.json
 @echo off
 cd dist
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$substring = (Get-Content -Path '../config.json' | Select-Object -Index 1 | ForEach-Object { $_.Substring(16,12) }); Rename-Item -Path 'xeupiu' -NewName ('xeupiu_' + $substring)"
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$substring = (Get-Content -Path '../config.json' | Select-Object -Index 1 | ForEach-Object { $_.Substring(16,12) }); Copy-Item -Path ('xeupiu_' + $substring) -Destination 'C:\Users\Visitante\Downloads' -Recurse"
