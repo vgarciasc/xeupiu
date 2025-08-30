@@ -38,7 +38,7 @@ class XeupiuControlPanel:
         root = tk.Tk()
         root.title(f"XEUPIU {CONFIG['version']}")
         root.resizable(False, False)
-        if sys.platform == "windows":
+        if sys.platform == "win32":
             root.iconbitmap("data/resources/icon.ico")
         elif sys.platform == "linux":
             img = tk.PhotoImage(file="data/resources/icon_small.png")
