@@ -167,15 +167,21 @@ class XeupiuControlPanel:
         # Redirect stdout to the text area
         stdout_redirector = StdoutRedirector(self.output_text)
 
-        self.root = root
-        self.app = App()
         # Start main loop
+        self.root = root
         root.mainloop()
 
         # Restore original stdout
         stdout_redirector.restore()
 
     def save_and_run(self):
+        # creating the app causes a small pause because it loads the database files.
+        # print a message to the terminal and update all the widgets so that users see
+        # that we're doing something.
+        print("Loading...", flush=True)
+        self.root.update_idletasks()
+        self.app = App()
+
         CONFIG['save']['player']['en_name'] = self.en_name_entry.get()
         CONFIG['save']['player']['en_surname'] = self.en_surname_entry.get()
         CONFIG['save']['player']['en_nickname'] = self.en_nickname_entry.get()
@@ -201,7 +207,11 @@ class XeupiuControlPanel:
 
         if self.deepL_key_entry.get() == "":
             display_error("Project XEUPIU - Error!", "DeepL key is not set. If any novel text is encountered, it will remain untranslated.")
-        self.root.after(0, self._step)
+
+        # there's a lot of overlays, let their rendering do their initial update before
+        # we start working (in particular, setting attributes like the alpha are idle
+        # events that don't process immediately)
+        self.root.after_idle(self.root.after, 0, self._step)
 
     def _step(self):
         assert self.app is not None
@@ -210,12 +220,15 @@ class XeupiuControlPanel:
             self.app.step()
             tok = time.monotonic_ns()
             step_time_ns = tok - tik
+            step_time_ms = int(step_time_ns / 1000000)
             fpms = int(1/30 * 1000)
-            # setting to sleep time of 1 allows tk to render, apparently
-            wait_time = max(fpms - (1000 * step_time_ns), 1)
+            # setting to sleep time of 1 allows tk to generate/process non-idle events
+            # like button clicks
+            wait_time = max(fpms - step_time_ms, 0)
             # if not stopping, reschedule this function in the event loop
             if not self.received_stop_signal:
-                self.root.after(wait_time, self._step)
+                # finish rendering, and *then* schedule ourselves for the future
+                self.root.after_idle(self.root.after, wait_time, self._step)
         except Exception as e:
             self.app.handle_error(e)
             raise e from None
