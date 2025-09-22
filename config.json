@@ -10,11 +10,18 @@
     "calibration_history_size": 5,
     "translation_fuzziness": 1.0,
     "border_size": {
-        "print_str_history_size": 10,
-        "size_window_border_top": 30,
-        "size_window_border_bottom": 22,
-        "size_toolbar": 21,
-        "left_offset_correction": 7
+        "windows": {
+            "size_window_border_top": 30,
+            "size_window_border_bottom": 22,
+            "size_toolbar": 21,
+            "left_offset_correction": 7
+        },
+        "linux": {
+            "size_window_border_top": 0,
+            "size_window_border_bottom": 22,
+            "size_toolbar": 22,
+            "left_offset_correction": 0
+        }
     },
     "databases": {
         "names_filepath": "data/texts/database_names.csv",
