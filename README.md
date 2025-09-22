@@ -52,6 +52,6 @@ However, the overall approach can surely be ported to other games.
 
 ## Credits
 
-- **Programming**: vinizinho
+- **Programming**: vinizinho, albong
 - **Translation**: nightmaresinclr
 - **Playtesters**: Takehime, nightmaresinclr, BadWolf42, RosePurrnima, Dan MacGregor, Sibley 
