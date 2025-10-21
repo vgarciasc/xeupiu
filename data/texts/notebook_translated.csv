@@ -74,7 +74,7 @@ Japanese text;English text
 システム設定画面;System settings screen
 廊下;Hallway
 デートスポット;Date spot
-次のページへ;To the next page
+次のページへ;Next page
 きらめき中央公園;Kirameki Central Park
 ショッピング街;Shopping District
 植物園;Botanical Garden
@@ -83,7 +83,7 @@ Japanese text;English text
 ゲームセンター;Arcade
 プラネタリウム;Planetarium
 カレンダー;Calendar
-女の子の評価を聞く;Ask about the girls' opinions
+女の子の評価を聞く;Ask for the girls' assessment
 女の子からの評価;Girls' Assessment
 星座;Sign
 ＢＷＨ;BWH
@@ -116,7 +116,7 @@ Japanese text;English text
 Ｂ型;Type B
 ８６．６０．８６;86.60.86
 吹奏楽部;Brass Band
-趣味は絵を描くこと;Her preffered hobby is drawing.
+趣味は絵を描くこと;Her preferred hobby is drawing.
 明るく友達が多い、運動は駄目;Bright and has many friends, not good at sports.
 ２月１４日;February 14th
 Ｏ型;Type O
@@ -127,9 +127,9 @@ Japanese text;English text
 小物でも見に行こうよ。』;Let's go look at some accessories.
 ジャンク屋に行こうよ。』;Let's go to the electronics store.
 ブティック;Boutique.
-全然、ゆつくり見てていいよ。』;Not at all, take as much time as you need.
-もうちょつとね。』;Just a little more.
-待つてることも、考えてくれよ。』;Think about the fact that I'm waiting too.
+全然、ゆっくり見てていいよ。』;Not at all, take as much time as you need.
+もうちょっとね。』;Just a little more.
+待ってることも、考えてくれよ。』;Think about the fact that I'm waiting too.
 美術室;Art Room
 期末試験結果発表;Final Exam Results
 ＰＬＡＹＥＲ;PLAYER
@@ -178,9 +178,9 @@ Japanese text;English text
 こんな絵がいいの？';Do you like this kind of painting?
 上手だよね。';It's good, isn’t it?
 会場内;Inside The Venue
-コンサート、つまらなかつたね？';That concert was boring, wasn't it?
-コンサート、良かつたね？';That concert was good, wasn’t it?
-コンサート、まあまあだつたね？';That concert was so-so, wasn’t it?
+コンサート、つまらなかったね？';That concert was boring, wasn't it?
+コンサート、良かったね？';That concert was good, wasn’t it?
+コンサート、まあまあだったね？';That concert was so-so, wasn’t it?
 ベレー帽』;Beret
 孫の手』;Back scratcher
 すごく妖しげな本』;Suspicious-looking book
@@ -190,9 +190,9 @@ Japanese text;English text
 うん、片桐さんによく似合うよ。』;Yeah, it looks good on you.
 舞台裏;Backstage
 館内;Inside The Building
-今の映画、まあまあだつたね？』;That movie was so-so, right?
-今の映画、つまらなかつたね？』;That movie was boring, right?
-今の映画、面白かつたね？』;That movie was interesting, right?
+今の映画、まあまあだったね？』;That movie was so-so, right?
+今の映画、つまらなかったね？』;That movie was boring, right?
+今の映画、面白かったね？』;That movie was interesting, right?
 並木道;Tree-lined Street
 本当、気持ちいいね。』;Yeah, it's nice.
 恋愛小説の―場面みたいだね。』;It's like a scene from a romance novel.
@@ -202,3 +202,127 @@ Japanese text;English text
 スケート場;Ice Skating Rink
 スキー場;Ski Resort
 正月;New Year
+よし、女の子と初詣に行くか。』;Alright, let's invite someone to visit the shrine with.
+よし、―人で初詣に行くか。』;Alright, let's visit the shrine alone.
+初詣;New Year's Shrine Visit
+学業成就』;Academic success
+健康祈願』;Good health
+恋愛成就』;Love
+水族館;Aquarium
+ゲーテの詩集』;Goethe's Poetry Collection
+受験参考書』;Exam Reference Book
+スッポンの生き血』;Turtle's Blood
+遊園地内;Inside the Amusement Park
+ジェットコースターに乗ろう。』;Let's ride the roller coaster.
+観覧車に乗ろうよ。』;Let's ride the Ferris wheel.
+ゴーストハウスに行こう。』;Let's go to the haunted house.
+俺がいるから大丈夫だっただろ。』;It was okay because I was there, right?
+意外と臆病なんだね。』;You're surprisingly timid.
+あれで？おかしいんじゃない？』;Scared? By that?
+９月１１日;September 11
+教室;Classroom
+自宅前;In Front of Home
+イルカショー;Dolphin Show
+イルカって頭良いねぇ。』;Dolphins are smart, aren't they?
+イルカってほ乳類なんだよ。』;Dolphins are mammals, you know.
+イルカの歯って怖くない？』;Aren't dolphin teeth scary?
+玄関;Entrance
+スタジアム;Stadium
+学校前;In Front of the School
+桜並木;Cherry Blossom-Lined Path
+だからこそ、美しいんだよ。』;That's precisely why it's beautiful.
+それが自然の法則だからね。』;That's simply the law of nature.
+道路が汚くなるんだよね。』;It makes the roads all dirty...
+よし、―緒に帰ろう。』;Sure, let's walk home together.
+恥ずかしいから、いいよ。』;It's a bit embarrassing...
+スタジアム内;Inside the Stadium
+実際にプレイするほうがいいな。』;I'd rather actually play.
+野球嫌いだから。』;I hate baseball.
+見てるほうがいいかな。』;Maybe it's better to just watch.
+８月４日に神社で縁日があります;There's a festival at the shrine on August 4th.
+この絵、片桐さんに似てない。』;Doesn't this painting look like you?
+この絵、奇麗だと思わない？』;Don't you think this painting is beautiful?
+あの人、奇麗だな⋯。』;That person is beautiful...
+空いてるけど、何？』;I'm free then, what's up?
+残念ながら、俺様は忙しいのだ。』;I'm afraid I must attend to important matters that day.
+いいよ。―緒に行こう。』;Sure. Let's go together.
+いや、遠慮しておくよ。』;Nah, I'll pass.
+二人三脚』;Three-legged Race
+玉転がし』;Ball-rolling Game
+すごくおいしそうだね。』;Looks delicious...
+そう、全然。』;Yes, absolutely.
+水の中のアートだね。』;Art lives inside the water.
+５月１６日;May 16
+７９．５９．８２;79.59.82
+バスケ部;Basketball Club
+アニメと、プロレスが好み;Likes anime and pro wrestling.
+花を見てると、心が和むね。』;Looking at flowers soothes the heart.
+食べれるのかな。』;I wonder if it's edible.
+どこにあるの？』;Where is it?
+図書館内;Inside the Library
+あーっ！みんな勉強してる！』;Ahh! Everyone is studying!
+本当だ、静かだね。』;It really is quiet.
+俺達も静かに勉強しよう。』;Let's study quietly too.
+如月さんと乗るぜ。』;I'll ride with Kisaragi-san.
+如月さんと入るぜ。』;I'll go in with Kisaragi-san.
+誰にでも描けるんじゃない？』;Anyone can draw that, right?
+片桐さん才能あるよ。』;Katagiri-san has talent.
+頑張れば何とかなるよ。』;If you work hard enough, you'll manage.
+
+京都．奈良』;Kyoto and Nara
+沖縄』;Okinawa
+北海道』;Hokkaido
+修学旅行;School Trip
+京都．奈良;Kyoto and Nara
+ホテル．ロビー;Hotel Lobby
+うん、―緒に行こう。』;Sure, let's go together.
+いや、やめておくよ。』;I'd prefer not.
+社寺巡り;Temple and Shrine Tour
+恋愛小説』;Romance Novel
+サンダル』;Sandals
+ヘアーバンド』;Hairband
+土産屋;Souvenir Shop
+―緒に逃げよう。』;Quick, let's run!
+ここは任せて、早く逃げて。』;Get somewhere safe, I'll handle this.
+ボーリング場;Bowling Alley
+８０．５９．８３;80.59.83
+激しいスポーツはしない;I don't do extreme sports.
+落ち着ける音楽が好み;I prefer calming music.
+コンサート会場で、待ち合わせ』;Meet up at the concert venue.
+ゲームセンターで、待ち合わせ』;Meet up at the game center.
+コンサート会場で、;At the concert venue,
+確かこの場所だつた。』;I'm sure it was this place.
+ゲームセンターだつたかな。』;Was it the game center?
+ビデオゲームコーナーに行く。』;Go play the video games.
+メダルゲームコーナーに行く。』;Go play the token games.
+ビデオゲームコーナー;Video Game Corner
+
+
+
+別にかまわないよ。』;I don't really mind.
+最近は、女の子も結構来てるよ。』;Lately, girls are also coming a lot.
+不良になつちゃう？』;Will you become a delinquent?
+ガーギー画集輸入版』;Imported Giger artbook
+香水』;Perfume
+水中メガネ』;Swim goggles
+ボーリング場で、待ち合わせ』;Meet you at the bowling alley.
+ショッピング街で、待ち合わせ』;Meet you at the shopping district.
+ボーリング場で、;At the bowling alley,
+片桐さんには絶対取れないね。』;Katsuragi can't possibly get it.
+片桐さんなら取れるつて。』;Katsuragi can get it, you know.
+何とかなるんじゃない。』;It'll work out somehow.
+もう満足した？』;Are you satisfied now?
+いいね。行こうか。』;Sounds good. Shall we go?
+ジャンク屋;Junk shop
+女のくせにおかしいぜ。』;It's weird for a girl.
+フーン好きなんだ。』;Hmm, you like it.
+サイバーな感覚だよね。』;It feels cyber, doesn't it.
+そうだね、そう思うよ。』;Yeah, I think so too.
+何億年も前の輝きなんだよね。』;It's a shine from billions of years ago.
+あんなのただの光だよ。』;That's just a light.
+貧血の薬』;Anemia medicine.
+シェークスピア全集』;Complete Works of Shakespeare.
+俺は、ちょつと怖かつたよ。』;I was a little scared.
+あれで？おかしいんじゃない。』;With that? Isn't it strange?
+確かにすごかつたね。』;It was certainly amazing.
+校舎裏;Behind the school building.
