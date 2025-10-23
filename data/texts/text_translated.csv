@@ -954,8 +954,8 @@ Katagiri;「ビューティフル、素敵な絵ね。;That's a wonderful drawin
 <PNAME>;『あ、ありがとう。;Ah, thank you.
 Katagiri;「そんなに上手なんだから、美術部に入部すればいいのに⋯。;With drawings that good, you should join the art club...
 <PNAME>;『絵は、たまに描くぐらいが、健康にいいんだよ。;Drawing every once in a while is good for your health.
-Katagiri;「へえ⋯絵ってたまに描くと健康にいいんだ。;Oh... so drawing every once in a while is good for your health.
-<PNAME>;『そう、手のつぼを刺激されてこう⋯。運うって。;Yes, it stimulates the pressure points in your hand... and your luck.
+Katagiri;「へえ⋯絵ってたまに描くと健康にいいんだ。;Oh... so drawing every once in a while is good for your health, huh?
+<PNAME>;『そう、手のつぼを刺激されてこう⋯。違うって。;Yes, it stimulates the pressure points in your hand... I'm kidding.
 Katagiri;「あはははは⋯。私、片桐彩子って言うの。あなたは⋯？;Hahaha... I'm Ayako Katagiri. And you are...?
 <PNAME>;『あ、俺、<PNAME> <PSURNAME>。;Ah, I'm <PNAME> <PSURNAME>.
 Katagiri;「気が向いたら美術室に遊びに来てよ。歓迎するわよ。;If you feel like it, come visit the art room. You're welcome anytime.
@@ -1439,7 +1439,7 @@ Fujisaki;「それじゃ頑張らなくちゃね。;Then you have to work harder
 <PNAME>;（どこで、待ち合わせだったかな？）;(Where are we meeting again?)
 Mysterious Woman;「ごめーん。待った？;Sorry! Did I keep you waiting?
 <PNAME>;『えっ？;Eh?
-Mysterious Woman;「あっ⋯。ごめんなさい。人運いでした。;Ah... Sorry. I thought you were someone else.
+Mysterious Woman;「あっ⋯。ごめんなさい。人違いでした。;Ah... Sorry. I thought you were someone else.
 <PNAME>;『あの娘、学校でもぶつかってくるよな⋯。;That's the girl who bumps into me at school...
 Fujisaki;「私も今来たところよ。;I just got here too.
 Fujisaki;「それじゃ、散歩でもしましょう。;Well then, let's go for a walk.
@@ -1550,7 +1550,7 @@ Katagiri;「ＯＫ。それでいいわ。;"OK!" That sounds good.
 <PNAME>;（今度の日曜日だな。忘れないようにしなくっちゃ。）;(This Sunday. I'd better not forget that.)
 <PNAME>;『よし、次は、優美ちゃんとだ;Alright, next is with Yumi-chan.
 Saotome;「<PNAME>さん。あれぇ、どうしてこっちにいるんですか？;<PNAME>-san! Huh, why are you over here?
-<PNAME>;（優美ちゃん、列を間運えてるみたい。）;(Yumi-chan seems to be cutting in line...)
+<PNAME>;（優美ちゃん、列を間違えてるみたい。）;(Yumi-chan seems to be cutting in line...)
 Katagiri;「オーザッツビューティフル。奇麗なお魚が、たくさんいるわね。;"Oh, that's beautiful!" There are so many pretty fish!
 Katagiri;「イッツソーナイスな表現ね。私もそう思うわ。;"It's so nice," that expression. I think so too.
 Katagiri;「今日は、付き合ってくれて、サンキュー、ありがとう。;Thanks for hanging out with me today! "Thank you!"
@@ -1664,70 +1664,63 @@ Katagiri;「はぁ、はぁ、はぁ⋯。危なかったわね。もう駄目�
 <PNAME>;（ボーリングかあ。）;(Bowling, huh?)
 Saotome;「<PNAME>さん？優美に、御用ですか？;<PNAME>さん？ Do you need something from Yumi?
 <PNAME>;『優美ちゃんは、まだ来てないようだな。;It seems like Yumi-chan hasn't arrived yet.
-<PNAME>;（優美ちゃん、遅いなあ。もしかして場所を間運えたかな。）;(Yumi-chan still hasn't made it... maybe I got the location wrong?)
-<PNAME>;『ゲームセンターに行ってみよう。;Let's go to the game center.
-
-
-
-<PNAME>;『優美ちゃん、ごめんね。ちょっとした手運いで、遅くなっちゃった。;Yumi-chan, sorry. Due to some circumstances, I was late.
-Saotome;「ゆ、優美も、今来たところです。;Y-Yeah, Yumi also just arrived.
-<PNAME>;『本当にごめんね。;Really, I'm sorry.
-<PNAME>;（本当は、かなり待ってたみたいだぞ。;(In reality, it looks like she waited quite a bit.
-Saotome;「早く、入ろうよー。;Let's go in quickly.
-Saotome;「優美、女の子だけどゲーセン好きなんだぁ。;Yumi likes game centers even though she's a girl.
-Saotome;「そう言ってくれると、優美うれしいなぁ。;Yumi is happy you say that.
-Saotome;「すっごく、楽しかったです。また、誘ってくださいね。;It was a lot of fun. Please invite me again.
-<PNAME>;『それじゃあ、今度、連絡するよ。;I'll contact you next time.
-Saotome;「<PNAME>さん―緒に、帰りましょ。;Let's go home together, <PNAME>.
-<PNAME>;『帰ろう。;Let's go home.
+<PNAME>;（優美ちゃん、遅いなあ。もしかして場所を間違えたかな。）;(Yumi-chan still hasn't made it... maybe I got the location wrong?)
+<PNAME>;『ゲームセンターに行ってみよう。;Let's go to the arcade.
+<PNAME>;『優美ちゃん、ごめんね。ちょっとした手違いで、遅くなっちゃった。;Yumi-chan, sorry. I got mixed up, so I arrived late.
+Saotome;「ゆ、優美も、今来たところです。;N-no worries, Yumi just got here.
+<PNAME>;『本当にごめんね。;I'm really sorry.
+<PNAME>;（本当は、かなり待ってたみたいだぞ。;(In reality, it looks like she waited for a while.)
+Saotome;「早く、入ろうよー。;Quickly, let's go inside!
+Saotome;「優美、女の子だけどゲーセン好きなんだぁ。;Yumi likes arcades even though she's a girl.
+Saotome;「そう言ってくれると、優美うれしいなぁ。;That makes Yumi so happy to hear!
+Saotome;「すっごく、楽しかったです。また、誘ってくださいね。;That was a lot of fun! Please invite me again!
+<PNAME>;『それじゃあ、今度、連絡するよ。;Alright, I'll call you sometime.
+Saotome;「<PNAME>さん―緒に、帰りましょ。;Let's walk home together, <PNAME>.
+<PNAME>;『帰ろう。;Let's head home.
 Kisaragi;「そう言えば、もうすぐ文化祭ですね。;Speaking of which, the cultural festival is coming soon.
-<PNAME>;『そう言えばそうだね。;Speaking of which, yes.
-Kisaragi;「お互いに頑張りましょう。;Let's do our best.
-<PNAME>;（ＫＮＭ交響楽団は、今年も来ている交響楽団だ。;(KNM Orchestra is the orchestra that came again this year.)
+<PNAME>;『そう言えばそうだね。;Oh, that's right.
+Kisaragi;「お互いに頑張りましょう。;Let's both do our best.
+<PNAME>;（ＫＮＭ交響楽団は、今年も来ている交響楽団だ。;(KNM Orchestra came again this year.)
 none;『コンサート、良かったね？』『コンサート、つまらなかったね？』『コンサート、まあまあだったね？』;'The concert was good, wasn't it?' 'The concert was boring, wasn't it?' 'The concert was so-so, wasn't it?'
-Katagiri;「えーっ、そう？私はノリのいい曲の方が好きだわ。;Eh, really? I prefer songs with a good rhythm.
-<PNAME>;『よし、ガーギー画集輸入版を、プレゼントしよう。;Alright, I'll give you the imported version of the Gargi Art Collection.
-Katagiri;「えっ？私に、何か用？;Eh? Do you need something from me?
-
-
-Katagiri;「えっ？私に？グラッド、嬉しい⋯。開けてもいい？;Eh? For me? Glad... I'm happy... Can I open it?
-Katagiri;「ワンダフル、素晴らしいわ。こんなもの貰えるなんて、思ってもみなかったわ。;Wonderful, it's splendid. I never thought I'd receive something like this.
+Katagiri;「えーっ、そう？私はノリのいい曲の方が好きだわ。;Eh, really? I prefer songs with more rhythm.
+<PNAME>;『よし、ガーギー画集輸入版を、プレゼントしよう。;Alright, I'll give her the Imported Gergi Artbook.
+Katagiri;「えっ？私に、何か用？;Eh? Do you need something?
+Katagiri;「えっ？私に？グラッド、嬉しい⋯。開けてもいい？;Eh? For me? "I'm so glad..." Can I open it?
+Katagiri;「ワンダフル、素晴らしいわ。こんなもの貰えるなんて、思ってもみなかったわ。;"Wonderful!" It's splendid. I never thought I'd receive something like this!
 Mysterious Woman;「あっ。また、ぶつかっちゃったね。;Oh, we bumped into each other again.
-<PNAME>;『もう、いいよ。何度でも、ぶつかってくれ。;It's alright. You can bump into me as many times as you want.
-Mysterious Woman;「そんな、投げやりな。ごめんね。それじゃ⋯。;Don't be so nonchalant. Sorry about that. See you...
-<PNAME>;『名前ぐらい教えてくれてもいいのに。;It wouldn't hurt to at least tell me your name.
-<PNAME>;『吹奏楽部は、体育館でチャルメラの演奏だ。早く、準備しなきゃ。;The brass band is performing the charumera in the gymnasium. We need to prepare quickly.
+<PNAME>;『もう、いいよ。何度でも、ぶつかってくれ。;Alright, fine. You can bump into me as many times as you want.
+Mysterious Woman;「そんな、投げやりな。ごめんね。それじゃ⋯。;I was just being careless, sorry. See you...
+<PNAME>;『名前ぐらい教えてくれてもいいのに。;It wouldn't hurt to at least tell me your name...
+<PNAME>;『吹奏楽部は、体育館でチャルメラの演奏だ。早く、準備しなきゃ。;The brass band is performing the charamela in the gymnasium. We need to prepare quickly.
 none;片桐;Katagiri
-Katagiri;「ハーイ。ねぇ、今回の曲どう思う？;Hi. Hey, what do you think of this piece?
-<PNAME>;『えっ、チャルメラのこと？;Eh, you mean the charumera?
+Katagiri;「ハーイ。ねぇ、今回の曲どう思う？;"Hi!" So, what do you think of the piece?
+<PNAME>;『えっ、チャルメラのこと？;Eh, you mean the charamela?
 Katagiri;「そうよ。;That's right.
-<PNAME>;『面白くていいんじゃない。何でそんな事聞くの？;I think it's interesting and good. Why do you ask?
-Katagiri;「うけ狙いで作ったんだけど、どんな印象持ってるのか、気になっちゃって⋯。;I made it to be catchy, but I was curious about what impression it gives...
-<PNAME>;『この曲、片桐さんが作ったんだ。へーっ。;Katagiri-san made this piece? Wow.
-Katagiri;「どう、意外な才能でしょう。;How is it? Surprising talent, right?
-
-
+<PNAME>;『面白くていいんじゃない。何でそんな事聞くの？;It's interesting, but I like it. Why do you ask?
+Katagiri;「うけ狙いで作ったんだけど、どんな印象持ってるのか、気になっちゃって⋯。;I was curious about what vibe it gives off. I wrote it to be catchy, but...
+<PNAME>;『この曲、片桐さんが作ったんだ。へーっ。;You wrote this piece? Wow.
+Katagiri;「どう、意外な才能でしょう。;Heh, are you shocked by my talent?
 <PNAME>;『いつかは、何かをする女だと思ってたよ、俺は⋯。;I always thought you'd become someone who'd do something eventually⋯.
 Katagiri;「なにそれ、犯罪者みたい。あっ、もう準備しなきゃ。じゃあ、ミスらないでよ。;What do you mean, like a criminal? Oh, I need to get ready. Don't mess up, okay?
 <PNAME>;『わかってるって。;I know, I know.
-Katagiri;「ブラボー、うまくいったじゃない。;Bravo, it went well, didn't it?
-<PNAME>;『片桐さんの作った曲だから、みんな気合入ってたよ。;Everyone was pumped because it was a song Katagiri-san made.
-Katagiri;「本当、嬉しい。みんなありがとう。;I'm really happy. Thanks, everyone.
-<PNAME>;『ちゃんとやらないと、後が怖いって。;If we don't do it properly, the aftermath will be scary.
-Katagiri;「なによそれ⋯。もう、お礼なんて言わない。;What do you mean by that⋯. I'm not thanking you anymore.
-Saotome;「あっ、<PNAME>さん。;Oh, <PNAME>-san.
+Katagiri;「ブラボー、うまくいったじゃない。;"Bravo!" It went well, didn't it?
+<PNAME>;『片桐さんの作った曲だから、みんな気合入ってたよ。;Everyone was psyched because you wrote it.
+Katagiri;「本当、嬉しい。みんなありがとう。;That makes me really happy. Thank you everyone!
+<PNAME>;『ちゃんとやらないと、後が怖いって。;If we hadn't done it properly, things would've gotten ugly...
+Katagiri;「なによそれ⋯。もう、お礼なんて言わない。;What do you mean by that...? Ugh, I'm not thanking you anymore.
+Saotome;「あっ、<PNAME>さん。;Ah, <PNAME>-san!
 <PNAME>;『優美ちゃん、どうしたの？;Yumi-chan, what's up?
-Saotome;「優美と、いっしょに帰りませんか？;Would you like to go home together with Yumi?
-Saotome;「やったーっ。それじゃ、いっしょに帰りましょう。;Yay! Then, let's go home together.
-Katagiri;「ソーリー。私ね、そういうの読まないのよ。;Sorry, I don't read stuff like that.
-<PNAME>;『詩織、どうしたの？;Shiori, what's wrong?
-Fujisaki;「家もお隣同士だし、たまにはいっしょに帰ろうと思って⋯。;Our houses are next to each other, so I thought we could go home together now and then⋯.
-Fujisaki;「それじゃ、帰りましょう。;Then, let's go home.
-<PNAME>;『如月さん⋯。如月さん⋯。;Kisaragi-san⋯. Kisaragi-san⋯.
+Saotome;「優美と、いっしょに帰りませんか？;Would you like to walk home together with Yumi?
+Saotome;「やったーっ。それじゃ、いっしょに帰りましょう。;Yay! Then, let's go!
+Katagiri;「ソーリー。私ね、そういうの読まないのよ。;"Sorry!" I don't read stuff like that.
+<PNAME>;『詩織、どうしたの？;What is it, Shiori?
+Fujisaki;「家もお隣同士だし、たまにはいっしょに帰ろうと思って⋯。;We're nextdoor neighbors, so I thought we could walk home together now and then...
+Fujisaki;「それじゃ、帰りましょう。;Alright, let's go.
+<PNAME>;『如月さん⋯。如月さん⋯。;Kisaragi-san... Kisaragi-san...
+<PNAME>;（返事がないぞ⋯。）;(No response...)
+<PNAME>;（駄目だ。本に熱中してて、声が聞こえないらしい。）;(It's no use. She seems too absorbed in her book to hear me.)
 
 
-<PNAME>;（返事がないぞ⋯。）;No response⋯.
-<PNAME>;（駄目だ。本に熱中してて、声が聞こえないらしい。）;It's no good. She seems too absorbed in her book to hear me.
 <PNAME>;（このまま、そっとしておこう。）;I'll leave her be.
 Kisaragi;「そろそろ帰りましょうか？;Shall we go home soon?
 <PNAME>;『もう、本はいいの？;Are you done with your book?
