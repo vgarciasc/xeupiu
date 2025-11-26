@@ -1104,7 +1104,7 @@ Katagiri;「ＯＫ。じゃあ、行きましょう。;OK. Let's go then.
 Katagiri;「ソーリー、ごめんね。もうちょっと見てきてもいいかな？;"Sorry!" Mind if I look around a bit longer?
 Katagiri;「サンキューありがとう。嬉しいわ。;"Thank you!" I'm happy you don't mind.
 <PNAME>;（わりと良い印象を与えたみたいだぞ。）;(Looks like I left a pretty good impression.)
-Katagiri;「ソー、ファン。とっても楽しかったわね。また今度誘ってね。;"Soooo fun!" I had a great time. Invite me out again!
+Katagiri;「ソー、ファン。とっても楽しかったわね。また今度誘ってね。;"Soooo fun!" I had a great time. Take me out again!
 <PNAME>;『また今度連絡するよ。;I'll call you again sometime.
 Katagiri;「それじゃ、帰りましょう。<PNAME>君。;Alright then, let's head home, <PNAME>.
 <PNAME>;（明日からテストだ）;(Exams start tomorrow.)
@@ -1299,12 +1299,12 @@ Katagiri;「こういう道をお散歩するのつて、気分爽快ね。;Walk
 Katagiri;「こういう道をお散歩するのって、気分爽快ね。;Walking down a path like this feels refreshing.
 Katagiri;「ふぁー、眠くなってきちゃった。;Yaaawn, I'm getting sleepy...
 <PNAME>;（まぁ、こんなもんだろう。）;(Well, I guess this is fine.)
-Katagiri;「ソー、ファン。今日は楽しかったわね。また今度誘ってね。;"So fun!" I enjoyed today. Invite me again sometime!
+Katagiri;「ソー、ファン。今日は楽しかったわね。また今度誘ってね。;"So fun!" I enjoyed today. Take me out again sometime!
 <PNAME>;（今日は伊集院の家で、クリスマスパーティだ。会場に行こうかな）;(Today is the Christmas party at Ijuin's house. Guess I should head there?)
 <PNAME>;『伊集院の家に着いたぞ。いつ見てもでけぇなぁ。;(Made it to Ijuin's house. I never get used to how huge it looks.)
-Black Suit;「レイ様のお友達で、いらっしゃいますか？;Are you friends with Rei-sama?
+Black Suit;「レイ様のお友達で、いらっしゃいますか？;Are you a friend of Rei-sama?
 <PNAME>;『友達かどうかは知らないけどクラスメートだよ。;I don't know about friends, but we're classmates.
-Black Suit;「結構です。どうぞお入りください。;That's fine. Please, come in.
+Black Suit;「結構です。どうぞお入りください。;Very well. Please, come in.
 <PNAME>;『おっ、今始まるところだな。;Oh, it's just about to start.
 Ijuin;「皆さん。我が伊集院家が誇る、クリスマスパーティーにようこそ。;Everyone, allow me to welcome you to the Ijuin family's pride and joy, the Christmas party.
 Ijuin;「皆さん。我が伊集院家が誇る、クリスマスパーティーにようこそ。日頃の現実を忘れて、今日は大いに楽しんで行ってください。;Everyone, allow me to welcome you to the Christmas party, the Ijuin family's pride and joy. Please, forget life's mundanities and enjoy yourselves!
@@ -1673,7 +1673,7 @@ Saotome;「ゆ、優美も、今来たところです。;N-no worries, Yumi just
 Saotome;「早く、入ろうよー。;Quickly, let's go inside!
 Saotome;「優美、女の子だけどゲーセン好きなんだぁ。;Yumi likes arcades even though she's a girl.
 Saotome;「そう言ってくれると、優美うれしいなぁ。;That makes Yumi so happy to hear!
-Saotome;「すっごく、楽しかったです。また、誘ってくださいね。;That was a lot of fun! Please invite me again!
+Saotome;「すっごく、楽しかったです。また、誘ってくださいね。;That was a lot of fun! Please take me out again!
 <PNAME>;『それじゃあ、今度、連絡するよ。;Alright, I'll call you sometime.
 Saotome;「<PNAME>さん―緒に、帰りましょ。;Let's walk home together, <PNAME>.
 <PNAME>;『帰ろう。;Let's head home.
@@ -1719,31 +1719,72 @@ Fujisaki;「それじゃ、帰りましょう。;Alright, let's go.
 <PNAME>;『如月さん⋯。如月さん⋯。;Kisaragi-san... Kisaragi-san...
 <PNAME>;（返事がないぞ⋯。）;(No response...)
 <PNAME>;（駄目だ。本に熱中してて、声が聞こえないらしい。）;(It's no use. She seems too absorbed in her book to hear me.)
-
-
-<PNAME>;（このまま、そっとしておこう。）;I'll leave her be.
-Kisaragi;「そろそろ帰りましょうか？;Shall we go home soon?
+<PNAME>;（このまま、そっとしておこう。）;(I'll leave her be.)
+Kisaragi;「そろそろ帰りましょうか？;Shall we return home soon?
 <PNAME>;『もう、本はいいの？;Are you done with your book?
 Kisaragi;「はい。あの⋯、本を読んでるとき私に声をかけましたか？;Yes. Umm⋯. Did you call out to me while I was reading?
 <PNAME>;『ま、まあね。でも、別に大した用じゃなかったから。;Well, yeah. But it wasn't anything important.
-Kisaragi;「ごめんなさい。私、本に夢中になると⋯。;Sorry. I tend to get absorbed in books⋯.
+Kisaragi;「ごめんなさい。私、本に夢中になると⋯。;I'm sorry. I tend to get absorbed in books...
 <PNAME>;『そんな事、気にしなくていいから。ほら、帰ろうよ。;Don't worry about it. Come on, let's go home.
-Kisaragi;「はい、ありがとうございます。;Yes, thank you.
+Kisaragi;「はい、ありがとうございます。;Of course. Thank you.
 Katagiri;「そう？どっちでもいいけどね。;Oh? It doesn't matter to me either way.
-Katagiri;「ザッツ ビューティフル。見とれちゃうわね。;That's beautiful. I'm captivated.
-Fujisaki;「‥‥‥‥‥。;‥‥‥‥‥.
-Fujisaki;「あっ⋯。;Ah⋯.
-<PNAME>;『えっ、どうしたの。;What, what's wrong?
-
-
+Katagiri;「ザッツ ビューティフル。見とれちゃうわね。;"That's beautiful!" I'm captivated.
+Fujisaki;「‥‥‥‥‥。;.......
+Fujisaki;「あっ⋯。;Ah...
+<PNAME>;『えっ、どうしたの。;Hm, what's wrong?
 Fujisaki;「ううん、なんでもないの。ところで、今日は何の御用？;No, it's nothing. By the way, what brings you here today?
-Katagiri;「オーイッツソーバッド。スプリットになっちゃった。;Oh, it's so bad. It's split.
-Katagiri;「オーッサンキュー、ありがとう。頑張ってみるわね。;Oh, thank you. I'll try my best.
-<PNAME>;『まだ詩織は、来ていないようだな。;Shiori doesn't seem to be here yet.
-Fujisaki;「本当にごめんなさい。ちょっと、手間取っちゃって⋯。;I'm really sorry. I got a little delayed⋯.
+Katagiri;「オーイッツソーバッド。スプリットになっちゃった。;"Oh, it's so bad!" That's a split...
+Katagiri;「オーッサンキュー、ありがとう。頑張ってみるわね。;"Oh, thank you!" I'll try my best.
+<PNAME>;『まだ詩織は、来ていないようだな。;It seems Shiori hasn't arrived yet.
+Fujisaki;「本当にごめんなさい。ちょっと、手間取っちゃって⋯。;I'm really sorry. I took too long getting ready...
 Fujisaki;「それじゃ、どこに買い物に行きましょうか？;So, where should we go shopping?
-Fujisaki;「それじゃ、行きましょう。;Then, let's go.
-Fujisaki;「ちょっと見てきてもいいかな⋯？;Can I take a quick look around⋯?
-<PNAME>;『ああ、ゆっくり見てくるといいよ。;Yeah, take your time and look around.
-Fujisaki;「ごめんなさい。見たいものがたくさんあって⋯。;Sorry. There are so many things I want to see⋯.
-Fujisaki;「ありがとう。もう十分見たから⋯。;Thank you. I've seen enough now⋯.
+Fujisaki;「それじゃ、行きましょう。;Okay, let's go.
+Fujisaki;「ちょっと見てきてもいいかな⋯？;Is it okay if I take a quick look around..?
+<PNAME>;『ああ、ゆっくり見てくるといいよ。;Yeah, take your time.
+Fujisaki;「ごめんなさい。見たいものがたくさんあって⋯。;Sorry. There are so many things I want to see...
+Fujisaki;「ありがとう。もう十分見たから⋯。;Thank you. I think I've had my fill...
+Fujisaki;「今日はとても楽しかったわ。また今度誘ってくれる？;I had a lot of fun today. Will you take me out again sometime?
+Fujisaki;「もうすぐ今年も終わりね。来年の抱負は、もう決めた？;The year's almost over. Have you decided on your resolutions for next year?
+<PNAME>;『ま、まぁ、色々とね。;Well, yeah, just various goals...
+Fujisaki;「そう。来年も、いい年だといいね。;I see. I hope next year is a good one too.
+Katagiri;「そういえば、もうすぐ冬休みね。何か予定はあるの？;By the way, winter break is coming up soon. Do you have any plans?
+<PNAME>;『んー？特に無いなぁ。片桐さんは？;Hmm? Not really. How about you, Katagiri-san?
+Katagiri;「私も特にないわね。;No, nothing in particular.
+<PNAME>;『そうなんだ。;Is that so?
+<PNAME>;（プラネタリウムかあ。）;(A planetarium, huh...)
+Black Suit;「レイ様のお友達で、いらっしゃいますか？;Are you a friend of Rei-sama?
+Black Suit;「結構です。どうぞお入りください。;Very well. Please, come in.
+<PNAME>;『毎年同じ事言ってるんじゃねぇの？;Are you saying the same thing every year?
+<PNAME>;『聞こえなかったのか？頭悪いんじゃねぇ？;Did you hear me? Are you stupid?
+Ijuin;「失礼な。ま、所詮は庶民の遠吠え、僕には蚊ほどにも感じんがね⋯。;How rude. Well, it doesn't bother me. It's just the commoners' howl, after all...
+<PNAME>;『嫌なやつだなぁ⋯。;What a jerk...
+Ijuin;「１年に１回だけのぜい沢を、思う存分に味わっていってくれたまえ。;Enjoy this once-a-year luxury to your heart's content.
+Ijuin;「１年に１回だけのぜい沢を、思う存分に味わっていってくれたまえ。はーっはっはっはっ。では、失礼するよ。;Enjoy this once-a-year luxury to your heart's content. Haahahaha! Well, if you'll excuse me.
+Saotome;「あ、<PSURNAME>さん招待されてたんですね。;Ah, <PSURNAME>-san, you were invited too.
+<PNAME>;『優美ちゃんも、来てたのか。;Yumi-chan, you're here too.
+none;しばらく優美ちゃんと話し込んだ;I chatted with Yumi-chan for a while...
+Saotome;「同級生のお友達と来てるから、そろそろ、行かなくちゃ。;I've got friends I gotta get back to soon.
+<PNAME>;『いいよ気にしないで。それじゃ、また。;It's fine, don't worry. See you later.
+none;詩織のプレゼントだ！白いコーヒーカップかぁ⋯コーヒーがおいしくなるな。;Shiori's present! A white coffee cup... It'll make coffee taste better.
+<PNAME>;（やった！片桐さんと、優美ちゃんから、年賀状をもらったラッキー。;(Yes! I got a New Year's card from Katagiri-san and Yumi-chan. Lucky!)
+none;ピンポーン;Ding dong...
+<PNAME>;『あれ、お客さんかな？はーい。;Someone's at the door! A guest?
+Katagiri;「アハッピーニューイヤー。明けまして、おめでとう。;"Happy New Year!"
+<PNAME>;『あっ、片桐さん。明けましておめでとう。新年早々、どうしたの？;Ah, Katagiri-san. Happy New Year! What brings you here so early in the year?
+Katagiri;「ねぇねぇ、これから初詣に行きましょうよ。;Hey, let's go to the shrine together!
+Katagiri;「ホント！？じゃあ、行こうよ。;Really!? Then, I'm ready when you are!
+Katagiri;「わ、私だって秘密よ。あっ、ほら、おみくじ引こうよ。;E-even I have secrets. Oh, look, let's draw our fortunes!
+none;大凶だ．．．;Grave Misfortune...
+<PNAME>;（新年早々、ついてないな⋯。）;(Not a good way to start the year...)
+Katagiri;「あははははは。新年早々縁起がいいわね。;Ahahaha! Starting the year with bad omens?
+<PNAME>;『思い切り笑うことないだろう。片桐さんはどうだったの？;You don't have to laugh so hard. What did you get, Katagiri-san?
+Katagiri;「私は、当然大吉よ。;I got Great Blessing, of course.
+<PNAME>;『くそ、すっげー。悔しい。;Damn, lucky... I'm jealous.
+Katagiri;「きっと、日頃の行いの運いよねー。;It must be due to your bad behavior~
+<PNAME>;『そんな事はない。俺、もう一回引いてくる。;That's not true. I'm gonna draw another one.
+Katagiri;「何度引いてもきっと、大凶よ。;No matter how many times you draw, it will always be a Grave Misfortune.
+Katagiri;「何だか、今年はいい年になりそうな気がするわ。;I have a feeling this year is going to be a good one.
+<PNAME>;『どうして？;Why?
+Katagiri;「べ、別にいいじゃない。ほら、帰りましょう。;W-well... never mind. Let's go home.
+<PNAME>;『はぁ、またか⋯。;Ugh, here we go again...
+Tatebayashi;「伊集院さんの家って、大きいのね。初めて見ちゃった。;Ijuuin-san's house is so big. It's my first time seeing it.
