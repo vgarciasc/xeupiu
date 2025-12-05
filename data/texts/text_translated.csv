@@ -1004,7 +1004,7 @@ Yoshio;「こんなとこだな。;Something like this.
 <PNAME>;（女の子の情報でも聞いてみようかな）;(Maybe I’ll ask for some specific info on one of the girls.)
 Yoshio;「あぁ、いいぜ。ちょっと待ってくれよ。;Ah, okay. Hold on a second.
 Yoshio;「片桐、片桐‥‥と。;Katagiri, Katagiri... ah.
-Yoshio;「あったあった。耳かっぽじってよく聞けよ。;Found it, found it. Open your ears and listen carefully.
+Yoshio;「あったあった。耳かっぽじってよく聞けよ。;Found it! Open your ears and listen carefully.
 Yoshio;「って、とこだな。;That's pretty much it.
 <PNAME>;『サンキュー。いつも悪いな。;Thanks! Sorry to bother you all the time.
 Yoshio;「なーに、いいってことよ。女の子の情報なら俺に任せてくれよ。;No problem! When it comes to info on the girls, just leave it to me.
@@ -1856,3 +1856,57 @@ Katagiri;「ぎ、義理よ、義理。でも、ちょっとだけ義理じゃ�
 <PNAME>;『何言ってんだかわかんないよ。;I don’t get what you’re saying.
 Katagiri;「そ、それじゃ、さよなら。;W-well then, goodbye.
 <PNAME>;『何だろ、あんなに慌てて⋯。;I wonder why she was in such a hurry...
+Fujisaki;「あっ、<PSURNAME>君。さっきはごめんね。はい、チョコレート。;Oh, <PSURNAME>-kun. I’m sorry about earlier. Here, I got you chocolate.
+<PNAME>;（わりと多くもらえたな。結構人気あるみたい。）;(I got quite a lot. Seems like I’m fairly popular.)
+Kisaragi;「さようなら。;Goodbye.
+Yoshio;「美樹原、美樹原‥‥と。;Mikihara, Mikihara... ah.
+Mikihara;「あっ、<PNAME>さん。;Oh, <PNAME>-san.
+<PNAME>;『美樹原さん、どうしたの？;Mikihara-san, what’s up?
+Mikihara;「あの⋯、―緒に⋯。あの⋯、帰りませんか⋯？;Um... would you like to... um... walk home... together?
+Mikihara;「⋯！？し、失礼します。;...!? S-sorry...
+<PNAME>;（待っててくれたのに悪い事したかなぁ⋯。）;She waited for me, but I think I did something bad…
+<PNAME>;『今日は、池の方に行こうよ。;Let's go to the pond today.
+Katagiri;「わぁ、奇麗な池ね。わりと絵になるわね。;Wow, that’s a beautiful pond. It’s quite picturesque.
+Katagiri;「グッドアイディア。あっ、でも、道具がないわ。;"Good idea!" Ah, but we don’t have the tools.
+<PNAME>;（カラオケかあ。）;(Ah, karaoke...)
+Mikihara;「あの⋯。いえ、いいです⋯。;Um... no, it’s nothing...
+<PNAME>;『美樹原さん、何の用だったんだ？;Mikihara-san, what did you want?
+Mikihara;「は、はい⋯。あ、ありがとうございます⋯。;O-okay... th-thank you so much...
+<PNAME>;『そう言えば、もうすぐ春休みだね。何か予定は？;Speaking of which, spring break is coming soon. Do you have any plans?
+Mikihara;「わ、私は、特に⋯。;I-I don’t really have any...
+<PNAME>;『そうなんだ。実は俺もなんだ。;I see. Actually, neither do I.
+Mikihara;「そ、そうですか⋯。;R-really...?
+Ijuin;「バレンタインのお返しは持ってきたのかね。;Did you bring return gifts for Valentine’s?
+<PNAME>;『持ってきたに決まってるだろ;Of course, I brought them.
+Ijuin;「ほう⋯。まぁ、頑張りたまえ。;Hm... well, good luck then.
+Katagiri;「ＤＵＭＭＹ。私に、何か用？;DUMMY. Do you need something from me?
+Katagiri;「わ、私に？グラッド、嬉しい⋯。;F-for me? "I'm so glad!"
+
+
+<PNAME>;『良かつた。喜んでもらえて。;Good. I’m glad you liked it.
+Katagiri;「もつたいなくて食べられないわね。それじゃ、ありがとう。;It's too precious to eat. Well then, thank you.
+<PNAME>;（すごく喜んでくれたな。あげてよかつた。）;She was really happy. I’m glad I gave it to her.
+<PNAME>;『何回間運えれば、気が済むんだろう⋯。;How many times will it take to feel satisfied…?
+Tatebayashi;「この間、大通りの角で、美味しいケーキ屋さん見つけたんだ。今度食べに行こうよ。;The other day, I found a delicious cake shop on the corner of the main street. Let’s go eat there next time.
+<PNAME>;『―体、誰にかけてるんだ？;Who are you calling anyway?
+Katagiri;「ねぇねぇ、このブロンズ像、素晴らしい躍動感だと思わない？;Hey, hey, don’t you think this bronze statue has a wonderful sense of movement?
+Katagiri;「そうね。わりといいわね。;Yes, it’s quite good.
+<PNAME>;（待つててくれたのにひどいこと言つちゃつたなぁ⋯。）;She waited for me, but I said something terrible…
+Katagiri;「ううん。グッドタイミ;No, good timi-
+Katagiri;「ビューティフル。奇麗ね。早く座りましょうよ。;Beautiful. It’s pretty. Let’s sit down quickly.
+Katagiri;「星つて、ロマンティックだと思うわ。;I think stars are romantic.
+Katagiri;「星空つて、芸術だと思うわ。;I think the starry sky is art.
+Katagiri;「すごく神秘的ね⋯。いつまでもこうしていたいわ。;It's very mysterious... I want to stay like this forever.
+<PNAME>;『今日から、俺も３年生だ。;Starting today, I’m a third-year student.
+<PNAME>;『卒業まで、あと―年か⋯。詩織の理想に届くには⋯。;Just one more year until graduation… To reach Shiori’s ideal…
+<PNAME>;『勉強は得意科目以外がなぁ⋯。;Studying is tough except for my strong subjects…
+<PNAME>;『もつと身も心も鍛えないとな。;I need to train my body and mind more.
+<PNAME>;『色々な話題が少ないな。;There’s not much variety in topics.
+<PNAME>;『ちょつとかつこ悪いよな。;That's a bit uncool, isn't it?
+<PNAME>;『でも、片桐さんとは仲良くやつていけそうかな。;But I think I can get along well with Katagiri-san.
+<PNAME>;『とにかく、頑張らねば。;Anyway, I have to do my best.
+<PNAME>;『あつ、そう言えば進路相談があるんだ。職員室へ行かなきゃ。;Oh, speaking of which, I have a career consultation. I have to go to the staff room.
+<PNAME>;（俺の進路は、どうしようかな？）;What should I do about my career path?
+<PNAME>;『それじゃあ、誰の進路を調べようかな。;Who should I check out about their career path then?
+<PNAME>;『えーと、片桐さんは、絵の勉強で、海外留学かぁ。片桐さんは留学するのか。;Well, Katagiri-san is going to study art abroad. Katagiri-san is going to study abroad.
+<PNAME>;『えーと、詩織は、―流大学に進学かぁ。詩織なら、合格するだろうな;Well, Shiori is going to a top-tier university. Shiori will probably pass.
