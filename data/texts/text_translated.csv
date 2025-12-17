@@ -1881,32 +1881,61 @@ Ijuin;「バレンタインのお返しは持ってきたのかね。;Did you br
 Ijuin;「ほう⋯。まぁ、頑張りたまえ。;Hm... well, good luck then.
 Katagiri;「ＤＵＭＭＹ。私に、何か用？;DUMMY. Do you need something from me?
 Katagiri;「わ、私に？グラッド、嬉しい⋯。;F-for me? "I'm so glad!"
-
-
-<PNAME>;『良かつた。喜んでもらえて。;Good. I’m glad you liked it.
-Katagiri;「もつたいなくて食べられないわね。それじゃ、ありがとう。;It's too precious to eat. Well then, thank you.
-<PNAME>;（すごく喜んでくれたな。あげてよかつた。）;She was really happy. I’m glad I gave it to her.
-<PNAME>;『何回間運えれば、気が済むんだろう⋯。;How many times will it take to feel satisfied…?
-Tatebayashi;「この間、大通りの角で、美味しいケーキ屋さん見つけたんだ。今度食べに行こうよ。;The other day, I found a delicious cake shop on the corner of the main street. Let’s go eat there next time.
-<PNAME>;『―体、誰にかけてるんだ？;Who are you calling anyway?
-Katagiri;「ねぇねぇ、このブロンズ像、素晴らしい躍動感だと思わない？;Hey, hey, don’t you think this bronze statue has a wonderful sense of movement?
-Katagiri;「そうね。わりといいわね。;Yes, it’s quite good.
-<PNAME>;（待つててくれたのにひどいこと言つちゃつたなぁ⋯。）;She waited for me, but I said something terrible…
-Katagiri;「ううん。グッドタイミ;No, good timi-
-Katagiri;「ビューティフル。奇麗ね。早く座りましょうよ。;Beautiful. It’s pretty. Let’s sit down quickly.
-Katagiri;「星つて、ロマンティックだと思うわ。;I think stars are romantic.
-Katagiri;「星空つて、芸術だと思うわ。;I think the starry sky is art.
+<PNAME>;『良かった。喜んでもらえて。;I'm glad you like it.
+Katagiri;「もったいなくて食べられないわね。それじゃ、ありがとう。;It's too precious to eat. So... thank you.
+<PNAME>;（すごく喜んでくれたな。あげてよかった。）;(She looked really happy. I’m glad I gave it to her.)
+<PNAME>;『何回間運えれば、気が済むんだろう⋯。;How many times will it take to satisfy you...?
+Tatebayashi;「この間、大通りの角で、美味しいケーキ屋さん見つけたんだ。今度食べに行こうよ。;The other day, I found a delicious cake shop on the corner of the main street. Let’s go eat there next time!
+<PNAME>;『―体、誰にかけてるんだ？;Who the hell are you calling anyway?
+Katagiri;「ねぇねぇ、このブロンズ像、素晴らしい躍動感だと思わない？;Hey hey, don’t you think this bronze statue has a wonderful sense of movement?
+Katagiri;「そうね。わりといいわね。;Yeah, it’s pretty good.
+<PNAME>;（待っててくれたのにひどいこと言っちゃったなぁ⋯。）;(She waited just for me, and I said something terrible...)
+Katagiri;「ううん。グッドタイミ;No, "Good timi-"
+Katagiri;「ビューティフル。奇麗ね。早く座りましょうよ。;"Beautiful!" It’s pretty, huh? Let’s find a place to sit.
+Katagiri;「星って、ロマンティックだと思うわ。;I think stars are... "romantic~"
+Katagiri;「星空って、芸術だと思うわ。;The starry sky is art to my eyes.
 Katagiri;「すごく神秘的ね⋯。いつまでもこうしていたいわ。;It's very mysterious... I want to stay like this forever.
 <PNAME>;『今日から、俺も３年生だ。;Starting today, I’m a third-year student.
-<PNAME>;『卒業まで、あと―年か⋯。詩織の理想に届くには⋯。;Just one more year until graduation… To reach Shiori’s ideal…
-<PNAME>;『勉強は得意科目以外がなぁ⋯。;Studying is tough except for my strong subjects…
-<PNAME>;『もつと身も心も鍛えないとな。;I need to train my body and mind more.
+<PNAME>;『卒業まで、あと―年か⋯。詩織の理想に届くには⋯。;Just one more year until graduation... to reach Shiori’s ideal...
+<PNAME>;『勉強は得意科目以外がなぁ⋯。;Studying is tough outside of my strong subjects...
+<PNAME>;『もっと身も心も鍛えないとな。;I must train my body and mind more.
 <PNAME>;『色々な話題が少ないな。;There’s not much variety in topics.
-<PNAME>;『ちょつとかつこ悪いよな。;That's a bit uncool, isn't it?
-<PNAME>;『でも、片桐さんとは仲良くやつていけそうかな。;But I think I can get along well with Katagiri-san.
-<PNAME>;『とにかく、頑張らねば。;Anyway, I have to do my best.
-<PNAME>;『あつ、そう言えば進路相談があるんだ。職員室へ行かなきゃ。;Oh, speaking of which, I have a career consultation. I have to go to the staff room.
-<PNAME>;（俺の進路は、どうしようかな？）;What should I do about my career path?
-<PNAME>;『それじゃあ、誰の進路を調べようかな。;Who should I check out about their career path then?
-<PNAME>;『えーと、片桐さんは、絵の勉強で、海外留学かぁ。片桐さんは留学するのか。;Well, Katagiri-san is going to study art abroad. Katagiri-san is going to study abroad.
-<PNAME>;『えーと、詩織は、―流大学に進学かぁ。詩織なら、合格するだろうな;Well, Shiori is going to a top-tier university. Shiori will probably pass.
+<PNAME>;『ちょっとかっこ悪いよな。;That's a bit uncool, isn't it?
+<PNAME>;『でも、片桐さんとは仲良くやっていけそうかな。;But I think I can get along well with Katagiri-san.
+<PNAME>;『とにかく、頑張らねば。;Anyways, I'd better try my best.
+<PNAME>;『あっ、そう言えば進路相談があるんだ。職員室へ行かなきゃ。;Oh, speaking of which, I have a career consultation. I have to go to the staff room.
+<PNAME>;（俺の進路は、どうしようかな？）;(What should I do about my career path?)
+<PNAME>;『それじゃあ、誰の進路を調べようかな。;So then, whose plans should I check on?
+<PNAME>;『えーと、片桐さんは、絵の勉強で、海外留学かぁ。片桐さんは留学するのか。;Well, Katagiri-san is going to study art abroad...
+<PNAME>;『えーと、詩織は、―流大学に進学かぁ。詩織なら、合格するだろうな;Well, Shiori is going to apply for a top-tier university. She'll probably get accepted...
+
+
+
+<PNAME>;『えーと、如月さんは、―流大学に進学かぁ。如月さんなら、大丈夫だな。;Well, Kisaragi-san is also going to a top-tier university. Kisaragi-san should be okay.
+<PNAME>;『えーと、美樹原さんは、二流企業に就職かぁ。美樹原さん大学に行かないんだ。;Well, Mikihara-san is going to work for a second-rate company. Mikihara-san isn't going to college.
+<PNAME>;『えーと、好雄は、三流大学か。ふーん、好雄は進学するんだ。;Well, Yoshio is going to a third-tier university. So Yoshio is going to continue his studies.
+<PNAME>;『えーと、伊集院は、海外留学か。これで、平和な日々が戻つて来そうだぜ。;Well, Ijuin is going to study abroad. This will bring back peaceful days.
+<PNAME>;『俺は、進学したい。;I want to go on to higher education.
+<PNAME>;（俺は先生に、進路の希望を伝えた。）;I told the teacher about my career aspirations.
+teacher;「お前の今の学力だつたら、頑張らないと、浪人してしまうぞ！;With your current academic level, if you don't work hard, you'll end up repeating!
+<PNAME>;『ガーン。;Gasp.
+<PNAME>;『えつ？この前も入つてたぞ。;What? It was in just the other day.
+Tatebayashi;「この間、素敵な男の子見つけちゃつた。今、追跡中なの。;The other day, I found a wonderful boy. I’m tracking him now.
+
+
+
+<PNAME>;『何か、スパイみたい。;You sound like a spy or something.
+<PNAME>;（俺は、美樹原さんと、楽しく下校した。）;I walked home happily with Mikihara-san.
+<PNAME>;『ほら、片桐さんの番だよ。;Look, it's your turn, Katagiri-san.
+Katagiri;「私は恥ずかしいからいいわ。;I’m too embarrassed, so I’ll pass.
+<PNAME>;『どうしたの？恥ずかしがるなんて、片桐さんらしくないよ。;What's wrong? It's not like you to be embarrassed, Katagiri-san.
+Katagiri;「失礼ね。私はナイーブなのよ。だから歌わないの。;How rude. I’m sensitive, you know. So I’m not singing.
+<PNAME>;『はいはい。でも、片桐さんの美声を聞いてみたいなぁ⋯。;Alright, alright. But I'd love to hear your beautiful voice, Katagiri-san...
+Katagiri;「えつ、そう？どうしようかな⋯。;Really? What should I do then...?
+<PNAME>;『きつと、天使のような、歌声なんだろうな⋯。;I bet it would sound like an angel's voice...
+Katagiri;「そこまで言われちゃしかたないわね。;If you say that much, I guess I have no choice.
+<PNAME>;『やつた。歌つてくれるんだ。（でも、顔が笑つてるぞ。）;Alright! She's going to sing. (But her face is smiling.)
+<PNAME>;『‥‥‥‥。（無茶苦茶、うまいじゃないか⋯。）;...... (She's insanely good...)
+none;そして、―時間後;And then, an hour later—
+Katagiri;「さあのつてきたわ。次は、これよ。;Now I'm in the mood. Next is this one.
+<PNAME>;『‥‥‥‥。（ずつと、歌いつづけてるよ、何がナイーブなんだか⋯。）;...... (She just keeps singing, what's so sensitive about this...?)
