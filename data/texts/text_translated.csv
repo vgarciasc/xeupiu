@@ -1911,20 +1911,19 @@ Katagiri;「すごく神秘的ね⋯。いつまでもこうしていたいわ�
 
 
 
-<PNAME>;『えーと、如月さんは、―流大学に進学かぁ。如月さんなら、大丈夫だな。;Well, Kisaragi-san is also going to a top-tier university. Kisaragi-san should be okay.
-<PNAME>;『えーと、美樹原さんは、二流企業に就職かぁ。美樹原さん大学に行かないんだ。;Well, Mikihara-san is going to work for a second-rate company. Mikihara-san isn't going to college.
-<PNAME>;『えーと、好雄は、三流大学か。ふーん、好雄は進学するんだ。;Well, Yoshio is going to a third-tier university. So Yoshio is going to continue his studies.
-<PNAME>;『えーと、伊集院は、海外留学か。これで、平和な日々が戻つて来そうだぜ。;Well, Ijuin is going to study abroad. This will bring back peaceful days.
+<PNAME>;『えーと、如月さんは、―流大学に進学かぁ。如月さんなら、大丈夫だな。;Well, Kisaragi-san is going to apply for a top-tier university. Knowing her, she'll be fine...
+<PNAME>;『えーと、美樹原さんは、二流企業に就職かぁ。美樹原さん大学に行かないんだ。;Well, Mikihara-san is going to work for a second-rate company. Mikihara-san isn't going to college...
+<PNAME>;『えーと、好雄は、三流大学か。ふーん、好雄は進学するんだ。;Well, Yoshio is going to a third-rate university. So Yoshio will continue his studies...
+<PNAME>;『えーと、伊集院は、海外留学か。これで、平和な日々が戻つて来そうだぜ。;Well, Ijuin is going to study abroad. Surely that'll bring some peace back here...
 <PNAME>;『俺は、進学したい。;I want to go on to higher education.
-<PNAME>;（俺は先生に、進路の希望を伝えた。）;I told the teacher about my career aspirations.
-teacher;「お前の今の学力だつたら、頑張らないと、浪人してしまうぞ！;With your current academic level, if you don't work hard, you'll end up repeating!
-<PNAME>;『ガーン。;Gasp.
+<PNAME>;（俺は先生に、進路の希望を伝えた。）;(I told the teacher about my career aspirations.)
+teacher;「お前の今の学力だつたら、頑張らないと、浪人してしまうぞ！;With your current academic ability, you're on track to repeating a year!
+<PNAME>;『ガーン。;Geez...
 <PNAME>;『えつ？この前も入つてたぞ。;What? It was in just the other day.
 Tatebayashi;「この間、素敵な男の子見つけちゃつた。今、追跡中なの。;The other day, I found a wonderful boy. I’m tracking him now.
-
-
-
 <PNAME>;『何か、スパイみたい。;You sound like a spy or something.
+
+
 <PNAME>;（俺は、美樹原さんと、楽しく下校した。）;I walked home happily with Mikihara-san.
 <PNAME>;『ほら、片桐さんの番だよ。;Look, it's your turn, Katagiri-san.
 Katagiri;「私は恥ずかしいからいいわ。;I’m too embarrassed, so I’ll pass.
