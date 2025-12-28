@@ -1908,35 +1908,59 @@ Katagiri;「すごく神秘的ね⋯。いつまでもこうしていたいわ�
 <PNAME>;『それじゃあ、誰の進路を調べようかな。;So then, whose plans should I check on?
 <PNAME>;『えーと、片桐さんは、絵の勉強で、海外留学かぁ。片桐さんは留学するのか。;Well, Katagiri-san is going to study art abroad...
 <PNAME>;『えーと、詩織は、―流大学に進学かぁ。詩織なら、合格するだろうな;Well, Shiori is going to apply for a top-tier university. She'll probably get accepted...
-
-
-
 <PNAME>;『えーと、如月さんは、―流大学に進学かぁ。如月さんなら、大丈夫だな。;Well, Kisaragi-san is going to apply for a top-tier university. Knowing her, she'll be fine...
 <PNAME>;『えーと、美樹原さんは、二流企業に就職かぁ。美樹原さん大学に行かないんだ。;Well, Mikihara-san is going to work for a second-rate company. Mikihara-san isn't going to college...
 <PNAME>;『えーと、好雄は、三流大学か。ふーん、好雄は進学するんだ。;Well, Yoshio is going to a third-rate university. So Yoshio will continue his studies...
-<PNAME>;『えーと、伊集院は、海外留学か。これで、平和な日々が戻つて来そうだぜ。;Well, Ijuin is going to study abroad. Surely that'll bring some peace back here...
+<PNAME>;『えーと、伊集院は、海外留学か。これで、平和な日々が戻って来そうだぜ。;Well, Ijuin is going to study abroad. Surely that'll bring some peace back here...
 <PNAME>;『俺は、進学したい。;I want to go on to higher education.
 <PNAME>;（俺は先生に、進路の希望を伝えた。）;(I told the teacher about my career aspirations.)
-teacher;「お前の今の学力だつたら、頑張らないと、浪人してしまうぞ！;With your current academic ability, you're on track to repeating a year!
+teacher;「お前の今の学力だったら、頑張らないと、浪人してしまうぞ！;With your current academic ability, you're on track to repeating a year!
 <PNAME>;『ガーン。;Geez...
-<PNAME>;『えつ？この前も入つてたぞ。;What? It was in just the other day.
-Tatebayashi;「この間、素敵な男の子見つけちゃつた。今、追跡中なの。;The other day, I found a wonderful boy. I’m tracking him now.
+<PNAME>;『えっ？この前も入ってたぞ。;What? It was in just the other day.
+Tatebayashi;「この間、素敵な男の子見つけちゃった。今、追跡中なの。;The other day, I found a wonderful boy. I’m tracking him now.
 <PNAME>;『何か、スパイみたい。;You sound like a spy or something.
-
-
 <PNAME>;（俺は、美樹原さんと、楽しく下校した。）;(I walked home happily with Mikihara-san.)
 <PNAME>;『ほら、片桐さんの番だよ。;Look, it's your turn, Katagiri-san.
 Katagiri;「私は恥ずかしいからいいわ。;I’ll pass! It's too embarrassing...
 <PNAME>;『どうしたの？恥ずかしがるなんて、片桐さんらしくないよ。;What's wrong? It's not like you to be embarrassed, Katagiri-san.
-Katagiri;「失礼ね。私はナイーブなのよ。だから歌わないの。;How rude! I’m sensitive, you know. So I’m not singing.
+Katagiri;「失礼ね。私はナイーブなのよ。だから歌わないの。;How rude! I’m fragile, you know. So I’m not singing.
 <PNAME>;『はいはい。でも、片桐さんの美声を聞いてみたいなぁ⋯。;Alright, alright. But I'd love to hear your beautiful voice, Katagiri-san...
-Katagiri;「えつ、そう？どうしようかな⋯。;Oh, really? What should I do then...?
-<PNAME>;『きつと、天使のような、歌声なんだろうな⋯。;I bet it would sound like an angel's voice...
-Katagiri;「そこまで言われちゃしかたないわね。;If you say that much, I guess I have no choice.
-<PNAME>;『やつた。歌つてくれるんだ。（でも、顔が笑つてるぞ。）;Alright! She's going to sing. (But her face is smiling.)
-
-
+Katagiri;「えっ、そう？どうしようかな⋯。;Oh, really? What should I do then...?
+<PNAME>;『きっと、天使のような、歌声なんだろうな⋯。;I bet it would sound like an angel's voice...
+Katagiri;「そこまで言われちゃしかたないわね。;Well if you put it like that, I guess I have no choice.
+<PNAME>;『やった。歌ってくれるんだ。（でも、顔が笑ってるぞ。）;Alright! She's going to sing. (But her face is smiling.)
 <PNAME>;『‥‥‥‥。（無茶苦茶、うまいじゃないか⋯。）;...... (She's insanely good...)
-none;そして、―時間後;And then, an hour later—
-Katagiri;「さあのつてきたわ。次は、これよ。;Now I'm in the mood. Next is this one.
-<PNAME>;『‥‥‥‥。（ずつと、歌いつづけてるよ、何がナイーブなんだか⋯。）;...... (She just keeps singing, what's so sensitive about this...?)
+none;そして、―時間後;And then, an hour later...
+Katagiri;「さあのってきたわ。次は、これよ。;Now I'm in the mood. Next is this one.
+<PNAME>;『‥‥‥‥。（ずっと、歌いつづけてるよ、何がナイーブなんだか⋯。）;...... (She just keeps singing, how exactly is this fragile...?)
+Fujisaki;「ううん。私も、今来たところだから⋯。;No, I just got here, too...
+Fujisaki;「それじゃ、そろそろ、中に入りましょう。;Okay, let's head inside.
+Fujisaki;「私の歌、どうだった？;How was my singing?
+Fujisaki;「嬉しいな。そんなに誉めてくれるとは思わなかったわ。;I'm glad... I didn't expect so much praise!
+Saotome;「ねぇ、もうすぐ優美の誕生日なんだよ。;Hey, Yumi’s birthday is coming up soon~
+<PNAME>;『知ってるよ。覚えてるから、安心しなよ。;I know. Don’t worry, I remember.
+Saotome;「うん。安心した。;That's good to hear.
+<PNAME>;『あっ、詩織。どうしたの？;Oh, Shiori. What’s up?
+Fujisaki;「ねぇ、今度の日曜日、空いてるかな⋯？;Hey, are you free next Sunday…?
+Fujisaki;「買い物に付き合って欲しいんだけど⋯。駄目？;I want to go shopping with you... is that okay?
+Fujisaki;「本当？それじゃ、えーと⋯。;Really? Then, um...
+Fujisaki;「うん、それでいいわ。忘れないでね。;Yeah, that's fine. Don't forget, okay?
+Fujisaki;「ねぇ、これ可愛いね？;Hey, isn't this cute?
+Fujisaki;「えっ、ありがとう。すごく嬉しいな⋯。;Oh, thank you. I'm so happy...
+Fujisaki;「今日は、付き合ってくれて、本当にありがとう。;Thank you so much for hanging out with me today.
+<PNAME>;『あっ、今日は、優美ちゃんの誕生日じゃないか。;Oh, today is Yumi-chan's birthday, isn't it?
+<PNAME>;『よし、ビー玉を、プレゼントしよう。;Alright, let's give her a marble as a present.
+<PNAME>;『あっ、優美ちゃん！;Ah, Yumi-chan!
+Saotome;「優美に？うれしいー。開けてもいいですか？;For Yumi? Yay~! Can I open it?
+Saotome;「⋯。お兄ちゃんにでも、あげようかな⋯。;...maybe I'll give it to my older brother...
+<PNAME>;『あんまり喜んでもらえなかった⋯。失敗だったかな⋯。;She didn't seem too happy about that... was that a mistake...?
+<PNAME>;『そう言えば、もうすぐ体育祭だね。;Speaking of which, the sports festival is coming up soon, right?
+Mikihara;「そ、そうですね⋯。;Y-yes, that's right...
+<PNAME>;『体調を整えておかないとね。;We should make sure we're in good shape for it.
+Mikihara;「あの⋯。わ、私もそう思います。;Um... I-I think so too.
+<PNAME>;（情報誌を見ながら、コナミコマンドを入力すると⋯。↑↑↓↓←→←→ｘ○）;(While looking at the magazine, input the Konami Code... ↑↑↓↓←→←→x○)
+<PNAME>;『おいおい、いい加減にしろよ⋯。;Hey, hey, give me a break...
+Tatebayashi;「学校で、急いでいるふりして、気になる男の子に、わざとぶつかるんだ。;At school, pretend to be in a hurry and purposely bump into the boy you like.
+<PNAME>;『何でそんな事を⋯。;Why would you do something like that...?
+Fujisaki;「あっ⋯。あなたとなの⋯？;Ah... are we together...?
+Katagiri;「レッツダンス。さあ、踊りましょう。;"Let's dance!" Come on~!
