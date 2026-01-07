@@ -2057,3 +2057,52 @@ Saotome;「これ、優美とペアなんですよ。;It pairs with Yumi's!
 Saotome;「あっ、お兄ちゃんに見つからないうちに戻らなきゃ。;Oh, I need to get back before my brother finds out.
 <PNAME>;『ありがとう。大事にするよ。;Thank you. I'll treasure it.
 Saotome;「ずっと、身につけててくださいね。;Please always wear it.
+Katagiri;「ビューティフル。素敵な絵ね。完成したら見せてね。;"Beautiful!" What a lovely painting! You should show me when it's finished.
+<PNAME>;『そう言えば、もうすぐ文化祭だね。;Speaking of which, the cultural festival is coming up soon.
+<PNAME>;『吹奏楽部に、見に来てよ。;You should come watch the brass band.
+Fujisaki;「そう言えば、もうすぐ文化祭ね。;By the way, the cultural festival is coming up.
+Fujisaki;「きっと見学に行くね。;I'll definitely go check it out.
+<PNAME>;『うん、歓迎するよ。;Yeah, you're welcome.
+Fujisaki;「奇麗なお花がたくさんあるね。;There are so many beautiful flowers.
+Fujisaki;「そう思うでしょう。そう言うと思ってたけどね。;You think so, right? I thought you'd say that.
+Fujisaki;「それじゃ、―緒に帰りましょう、ＤＵＭＭＹ。;Well then, let's walk home together, DUMMY.
+<PNAME>;『吹奏楽部は、体育館でクラシック音楽の演奏だ。早く、準備しなきゃ。;The brass band will perform classical music in the gym. We need to get ready soon.
+Katagiri;「ハーイ。最後の発表よ。調子は、どう？;"Hi!" It's the final performance. How are you feeling?
+<PNAME>;『もう、バッチリ。;I'm all set.
+Katagiri;「それなら大丈夫ね。最後にふさわしく、最高の演奏をしましょう。;You'll do great then. Let's give a stunning performance fitting for the finale.
+<PNAME>;『よし、張り切っていこう。;Alright, let's go all out!
+Katagiri;「ブラボー、最後の発表、うまくいったわね。;"Bravo!" The final performance went well.
+<PNAME>;『本当。今までの練習の成果が、発揮できたからだろうね。;It really did. It's probably because we were able to showcase the results of our practice.
+Katagiri;「これで高校生活の吹奏部も終わりね。もう、心残りはないわ。;With this, our high school brass band careers are over. I have no regrets!
+<PNAME>;（たまには早起きもいいなぁ。）;(Sometimes, waking up early is nice.)
+Fujisaki;「あっ、ＤＵＭＭＹおはよう。早いね、今日は。;Oh, good morning, DUMMY. You're up early today.
+<PNAME>;『おはよう、詩織。たまには、早起きの日もあるよ。;Good morning, Shiori. I sometimes get an early start.
+<PNAME>;（今日は楽しく登校できた。早起きは三文の得とは、よく言ったもんだぜ。）;(I had a pleasant walk to school today. It's true what they say, "the early bird gets the worm"...)
+Fujisaki;「そう⋯。じゃあ私、先帰るね。;I see... Well, I'll head home first.
+Saotome;「あっ、もう開演時間だ。早く、早くぅ。;Oh, it's showtime already. C'mon, let's hurry!
+Saotome;「優美達の座席は⋯、えーと。;Our seats are... umm...
+<PNAME>;『ほら、優美ちゃん、こっちこっち。;Look, Yumi-chan, over here.
+<PNAME>;（ｐｒｆは、音とビジュアルを―体化するボーカル、ＤＪ、ダンサーのユニットだ。）;(prf is a group that integrates vocals, DJing, and dance into one.)
+none;『コンサート、まあまあだったね？』『コンサート、良かったね？』『コンサート、つまらなかったね？』;『The concert was so-so, right?』『The concert was good, right?』『The concert was boring, right?』
+Saotome;「優美は、そんなに悪いとは思わなかったけど。;Yumi didn't think it was that bad...
+Saotome;「うーん。今日は、楽しかったかな。また誘ってくださいね。;Hmm... I had fun today. Invite me out again sometime.
+Katagiri;「そうね。良かったわね。;Yeah, it was good.
+Katagiri;「ねぇ、私に似合うネックレス、どれだと思う？;Hey, which necklace do you think suits me?
+Katagiri;「ザッツグッド。私もいいと思ってたんだ。;"That's good!" I thought so, too.
+<PNAME>;（この情報誌も、これで最後か⋯。）;(This is the last issue of this magazine...)
+Kisaragi;「<PNAME>君⋯？えっと、何の御用でしょう。;<PNAME>-kun...? Um, how can I help you?
+Fujisaki;「私は、スキーにでも行こうかと思って。;I was thinking of going skiing.
+<PNAME>;『スキーか⋯。それもいいな⋯。;Skiing, huh... That sounds nice...
+Saotome;「そう言えば、もうすぐ冬休みですね。何か予定はあるんですか？;Speaking of which, winter break is coming up. Do you have any plans?
+<PNAME>;『んー？特に無いなぁ。優美ちゃんは？;Hm? Not really. What about you, Yumi-chan?
+Saotome;「優美はお兄ちゃんとスキーに行くの。;I'm going skiing with my big brother.
+<PNAME>;『スキーか⋯。それも良いね。;Skiing, huh... That sounds nice too.
+<PNAME>;（あっ、美樹原さんがいるぞ。）;(Oh, there's Mikihara-san.)
+<PNAME>;『おーい、美樹原さん。;Hey, Mikihara-san!
+<PNAME>;『まだ如月さんは、来ていないようだな。;It looks like Kisaragi-san hasn't arrived yet.
+Kisaragi;「すみませんでした。準備に、時間がかかってしまって⋯。;I'm sorry. I lost track of time getting ready...
+Kisaragi;「今見てきた、イルカのショー。面白かったですね。;The dolphin show we just saw was interesting, right?
+Kisaragi;「私、目が悪いから、よく見えませんでした。;I have poor eyesight, so I couldn't see it very well.
+Kisaragi;「今日は、ちょっと疲れちゃいましたけど⋯。今度また⋯。;I'm a bit tired today... but sometime...
+<PNAME>;『ごめんね。でも、また誘ってもいいかな？;I'm sorry. Can I take you out again sometime?
+Kisaragi;「も、もちろんです。;O-of course.
