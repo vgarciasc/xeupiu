@@ -1302,9 +1302,9 @@ Katagiri;「ふぁー、眠くなってきちゃった。;Yaaawn, I'm getting sl
 Katagiri;「ソー、ファン。今日は楽しかったわね。また今度誘ってね。;"So fun!" I enjoyed today. Take me out again sometime!
 <PNAME>;（今日は伊集院の家で、クリスマスパーティだ。会場に行こうかな）;(Today is the Christmas party at Ijuin's house. Guess I should head there?)
 <PNAME>;『伊集院の家に着いたぞ。いつ見てもでけぇなぁ。;(Made it to Ijuin's house. I never get used to how huge it looks.)
-Black Suit;「レイ様のお友達で、いらっしゃいますか？;Are you a friend of Rei-sama?
+Sotoi;「レイ様のお友達で、いらっしゃいますか？;Are you a friend of Rei-sama?
 <PNAME>;『友達かどうかは知らないけどクラスメートだよ。;I don't know about friends, but we're classmates.
-Black Suit;「結構です。どうぞお入りください。;Very well. Please, come in.
+Sotoi;「結構です。どうぞお入りください。;Very well. Please, come in.
 <PNAME>;『おっ、今始まるところだな。;Oh, it's just about to start.
 Ijuin;「皆さん。我が伊集院家が誇る、クリスマスパーティーにようこそ。;Everyone, allow me to welcome you to the Ijuin family's pride and joy, the Christmas party.
 Ijuin;「皆さん。我が伊集院家が誇る、クリスマスパーティーにようこそ。日頃の現実を忘れて、今日は大いに楽しんで行ってください。;Everyone, allow me to welcome you to the Christmas party, the Ijuin family's pride and joy. Please, forget life's mundanities and enjoy yourselves!
@@ -1752,8 +1752,8 @@ Katagiri;「そういえば、もうすぐ冬休みね。何か予定はある�
 Katagiri;「私も特にないわね。;No, nothing in particular.
 <PNAME>;『そうなんだ。;Is that so?
 <PNAME>;（プラネタリウムかあ。）;(A planetarium, huh...)
-Black Suit;「レイ様のお友達で、いらっしゃいますか？;Are you a friend of Rei-sama?
-Black Suit;「結構です。どうぞお入りください。;Very well. Please, come in.
+Sotoi;「レイ様のお友達で、いらっしゃいますか？;Are you a friend of Rei-sama?
+Sotoi;「結構です。どうぞお入りください。;Very well. Please, come in.
 <PNAME>;『毎年同じ事言ってるんじゃねぇの？;Are you saying the same thing every year?
 <PNAME>;『聞こえなかったのか？頭悪いんじゃねぇ？;Did you hear me? Are you stupid?
 Ijuin;「失礼な。ま、所詮は庶民の遠吠え、僕には蚊ほどにも感じんがね⋯。;How rude. Well, it doesn't bother me. It's just the commoners' howl, after all...
@@ -2095,7 +2095,7 @@ Fujisaki;「私は、スキーにでも行こうかと思って。;I was thinkin
 <PNAME>;『スキーか⋯。それもいいな⋯。;Skiing, huh... That sounds nice...
 Saotome;「そう言えば、もうすぐ冬休みですね。何か予定はあるんですか？;Speaking of which, winter break is coming up. Do you have any plans?
 <PNAME>;『んー？特に無いなぁ。優美ちゃんは？;Hm? Not really. What about you, Yumi-chan?
-Saotome;「優美はお兄ちゃんとスキーに行くの。;I'm going skiing with my big brother.
+Saotome;「優美はお兄ちゃんとスキーに行くの。;Yumi's going skiing with big brother.
 <PNAME>;『スキーか⋯。それも良いね。;Skiing, huh... That sounds nice too.
 <PNAME>;（あっ、美樹原さんがいるぞ。）;(Oh, there's Mikihara-san.)
 <PNAME>;『おーい、美樹原さん。;Hey, Mikihara-san!
@@ -2106,3 +2106,79 @@ Kisaragi;「私、目が悪いから、よく見えませんでした。;I have 
 Kisaragi;「今日は、ちょっと疲れちゃいましたけど⋯。今度また⋯。;I'm a bit tired today... but sometime...
 <PNAME>;『ごめんね。でも、また誘ってもいいかな？;I'm sorry. Can I take you out again sometime?
 Kisaragi;「も、もちろんです。;O-of course.
+Sotoi;「申し訳ございませんが、その様なお召し物では少々、ご遠慮していただいております。;My apologies, but we cannot let you inside wearing that attire...
+<PNAME>;『えっ、そうなの？;Oh, really?
+Sotoi;「はい。厳しく言いつかっておりますので。;Yes. We have strict instructions.
+<PNAME>;『‥‥‥‥。（しょうがない帰るか‥。）;...... (I guess I should go home...)
+<PNAME>;（ふぅ、家に着いたぞ。）;(Phew, I'm home.)
+<PNAME>;（仕方ない、今年は―人でクリスマスを祝うか。）;(It can't be helped, I'll celebrate Christmas alone this year.)
+<PNAME>;『メリークリスマス！！あぁ、楽しいなぁ。;Merry Christmas!! Ah, this is so... fun.
+<PNAME>;『うぅ、来年こそは楽しいクリスマスを過ごすぞ。;Ugh... next year I'll have a fun Christmas for sure.
+Mikihara;「⋯⋯。;......
+<PNAME>;『どうしたの？;What's wrong?
+Mikihara;「ごめんなさい⋯。その日は、約束があって⋯。;I'm sorry... I have plans that day...
+<PNAME>;『なんだ、そんなこと気にしなくていいよ。;Oh, don't worry about it.
+Mikihara;「あの⋯。また今度、誘って下さい⋯。;Um... Please invite me again another time...
+<PNAME>;『うん、そうするよ。じゃあ。;Yeah, I'll do that. See you.
+<PNAME>;（やった！詩織と、美樹原さんと、優美ちゃんから、年賀状をもらったラッキー。);(Nice! I got New Year's cards from Shiori, Mikihara-san, and Yumi-chan. Lucky!)
+none;ラッキー！大吉だ！！;Lucky! It's Great Fortune!!
+<PNAME>;（やった、今年はいい事ありそうな気がするぜ。）;(Nice, I feel like something good will happen this year!)
+Katagiri;「あら、私と同じ？つまんないわね。;Oh, you got the same as me? That's boring...
+<PNAME>;『えっ？何がつまんないって？;Huh? How's it boring?
+Katagiri;「大吉が出たから、あなたのを見て、大笑いしようと思ったのに。うふふふ⋯。;I was hoping to enjoy my superiority~ Hehehe...
+<PNAME>;『新年早々から、そんな事考えて⋯。;Thinking about that right at the start of the new year...
+Katagiri;「今年は卒業ね。;We'll graduate this year.
+<PNAME>;『そうだねぇ、本当もうすぐだよ。;Yeah... it's coming up.
+Katagiri;「もうすぐ、会えなくなっちゃうかもしれないね。;We might not be able to see each other soon...
+<PNAME>;『ど、どうしたの？片桐さんらしくない。;W-what's wrong? This isn't like you, Katagiri-san.
+Katagiri;「そ、そうね。私らしくないわね。さあ、帰りましょう。;Y-yeah, it's not like me... let's head home.
+<PNAME>;『片桐さんは、まだ来てないようだな。;It looks like Katagiri-san hasn't arrived yet.
+<PNAME>;（片桐さん、遅いなあ。もしかして場所を間運えたかな。）;(Katagiri-san is late... maybe I got the place wrong.)
+<PNAME>;『いや、この場所だった。もう少し待ってみよう。;No, this was the place. I'll wait a bit longer.
+Katagiri;「オー、アンビリーバブル。ターキーよ。;"Oh, unbelievable!" It's a turkey!
+Katagiri;「そう？きっと、実力よね。;Really? It must be real skill.
+Mikihara;「い、いえ⋯。;N-no problem...
+<PNAME>;『それじゃ、そろそろ入ろうか？;Should we head inside?
+Mikihara;「は、はい⋯。そうですね。;Y-yes... let's.
+Mikihara;「あの⋯。静かですね⋯。;Um... it's quiet...
+Mikihara;「あ、あの⋯。そんなに、大声を出したら⋯。;U-um... if you speak so loudly...
+Mikihara;「あの⋯。そ、そうですね⋯。;Um... y-yes...
+<PNAME>;『面白くなかったみたいだね。でも、また誘ってもいいかな？;It seems like you didn't have fun. Can I invite you out again to make up for it?
+Katagiri;「それなら―緒に、カラオケに行かない？;Then how about we go to karaoke together?
+Katagiri;「ねぇ、私の歌どうだった？;Hey, how was my singing?
+Katagiri;「えーっ、本当？何だか照れちゃうな。;R-really? You're making me blush...
+<PNAME>;『よし、ワンピースを、プレゼントしよう。;Alright, I'll get her a one-piece dress as a present.
+Kisaragi;「<PNAME>君！何か御用ですか？;<PNAME>-kun! Did you need something?
+Kisaragi;「えっ、私に⋯？ありがとうございます。開けても、いいでしょうか？;Oh, for me...? Thank you. May I open it?
+Kisaragi;「ありがたく、頂戴します。;I gratefully accept it.
+<PNAME>;『毎年、うるせえぞ。伊集院。;Every year, you're so annoying, Ijuin.
+Ijuin;「そんなに怒ることはないじゃないか。;There's no need to get so angry.
+<PNAME>;『怒りたくもなるぜ。毎年これじゃ⋯。;I can't help but get angry. It's like this every year...
+Ijuin;「まぁそうひがまないでくれたまえ。ははははは⋯。;Well, don't be so bitter about it~ Ha ha ha ha~!
+Kisaragi;「あっ、<PNAME>君。これ、受け取ってください⋯。;Ah, <PNAME>-kun. Please take this...
+Kisaragi;「あの⋯、中に⋯。;Um... inside, there's...
+<PNAME>;『中に何？;What's inside?
+Kisaragi;「い、いえ、何でもないです。し、失礼します。;N-no, it's nothing. Please excuse me.
+<PNAME>;『中に⋯、何だろう。;Inside... what could it be?
+none;ごそごそ;*Rustle rustle*
+<PNAME>;『あれ、中に紙が入ってるぞ。これは如月さんの書いた詩じゃないか。どれどれ⋯。;Hey, there's a paper inside. Isn't this a poem written by Kisaragi-san? Let's see...
+<PNAME>;（な、なんか照れちゃうな⋯。）;(I-I feel a bit embarrassed...)
+Mikihara;「あの⋯。こ、これ⋯。あの⋯。受け取ってください⋯。;Um... t-this... um... please accept it...
+<PNAME>;『あ、ありがとう。嬉しいよ。あっ、美樹原さん。;Oh, thank you. I'm happy you thought of me, um, Mikihara-san.
+Mikihara;「は、恥ずかしい⋯。;I-I should go...
+<PNAME>;『真っ赤な顔してたな⋯。よっぽど恥ずかしかったのかな⋯。;She was completely red... I guess she was really embarrassed...
+Fujisaki;「あっ、ＤＵＭＭＹ。これ、形が悪いかもしれないけど⋯。;Ah, <PNAME>. I know this might not seem very good...
+Fujisaki;「ちょっと学校では、恥ずかしくて渡せなかったの⋯。;I was a bit too embarrassed to give it to you at school...
+Fujisaki;「だって⋯、特別な想いをこめたチョコだから⋯。;Because... I put all my heart into this chocolate...
+<PNAME>;『えっ？それって⋯。;Eh? That means...
+Fujisaki;「そ、それじゃ、また。;W-well, see you later.
+<PNAME>;『特別な想いか⋯。;All her heart, huh...
+Saotome;「それじゃあ、中に入ろうよ。;Well, let's head inside.
+Saotome;「今見てきた、イルカのショー。面白かったね。;The dolphin show we just saw was fascinating, right?
+Saotome;「優美は、イルカさんがかわいいから許しちゃう。;Yumi forgives the dolphins because they're cute~!
+Saotome;「もうすぐ卒業ですね。;Graduation is coming up soon, isn't it?
+Saotome;「何か、寂しくなっちゃうな。;It's going to feel a bit lonely.
+<PNAME>;『そんなことないよ。友達がいるじゃない。;It won't be that way. You have friends, don't you?
+<PNAME>;（あ～あ、留守みたいだな。今日はあきらめるか⋯⋯。）;(Ah... seems like nobody's home. Guess I'll call it quits for today...)
+<PNAME>;『明日は、大学の試験日だ;Tomorrow is the university entrance exam.
+<PNAME>;（どこを受験しようかな？;Where should I apply?
