@@ -1270,7 +1270,7 @@ Katagiri;「どんな曲でもこなせるように、もっと練習しなく�
 <PNAME>;（こうして、文化祭は、終了した。）;(And so, the cultural festival ended.)
 <PNAME>;（怪我が治った）;(The injury healed.)
 Katagiri;「あっ、あそこが空いてるみたいね。;Ah, it looks like that place is open.
-<PNAME>;（フォレスとガンプは、人間のひたむきさをとらえたラブロマンスだ。）;Forres To Gump is a romance film that captures human sincerity.
+<PNAME>;（フォレスとガンプは、人間のひたむきさをとらえたラブロマンスだ。）;Forrest and Gump is a romance film that captures human sincerity.
 none;「只今の上映を持ちまして、本日の上映を終了いたします。;With the end of this screening, today's screenings are over.
 Katagiri;「そう？私は、笑えるのが好きだな。;Really? I prefer funny movies.
 <PNAME>;（悪い印象を与えちゃったかな。）;(Maybe I left a bad impression...)
@@ -2181,4 +2181,225 @@ Saotome;「何か、寂しくなっちゃうな。;It's going to feel a bit lone
 <PNAME>;『そんなことないよ。友達がいるじゃない。;It won't be that way. You have friends, don't you?
 <PNAME>;（あ～あ、留守みたいだな。今日はあきらめるか⋯⋯。）;(Ah... seems like nobody's home. Guess I'll call it quits for today...)
 <PNAME>;『明日は、大学の試験日だ;Tomorrow is the university entrance exam.
-<PNAME>;（どこを受験しようかな？;Where should I apply?
+<PNAME>;（どこを受験しようかな？;(Where should I apply?)
+<PNAME>;『よし、二流大学の試験を受けよう;Alright, I'll apply for a second-tier university.
+<PNAME>;『忘れ物は無いし、試験会場に行こうか;I haven't forgotten anything. Let's head straight to the testing site!
+<PNAME>;（全力を出して頑張るぞー）;(I'll give it everything I've got!)
+<PNAME>;（バッチリできた！これなら大丈夫だろう）;(Nailed it! I should be accepted, no problem.)
+<PNAME>;（合格発表は、３月１日か）;(The exam results will be announced on March 1st, huh...)
+<PNAME>;『ふぅー、卒業式が終わったぜ。校長の話が、長過ぎるんだよなぁ。;Phew, the graduation ceremony is finally over. The principal's speech was way too long.
+<PNAME>;（如月さんは、貧血で倒れなかったかな？）;(I wonder if Kisaragi-san fainted from anemia...)
+<PNAME>;『あれっ、机の中に手紙が入ってるぞ。誰からだろう。;Huh? There's a letter in my desk. I wonder who it's from.
+<PNAME>;『何々、「伝説の樹の下で、待っています。」名前は、どこにも無いなぁ。;"I'll be waiting under the tree of legend." There's no name on it...
+<PNAME>;『それじゃ、急いで行かなくちゃ。;I'd better hurry!
+<PNAME>;『５月１２日。;May 12th.
+<PNAME>;（はぁ⋯。今日は、調子が悪いな⋯。）;(Haa... I'm not feeling well today...)
+Ijuin;「庶民とは悲しいものよ。そんな努力をしなければならないとはね。;It must be sad to be a commoner, having to make such an effort...
+<PNAME>;（もう、やる気無くなっちゃうよ。）;(I've already lost my motivation...)
+<PNAME>;『なあ、好雄⋯。最近なんか面白いことないか;Hey, Yoshio... anything interesting happen lately?
+Yoshio;「そうだな⋯。あ、危ない。;Well... oh, look out!
+Kagami;「きゃっ。;Ah!
+Kagami;「いったーい。;Owww...
+<PNAME>;『だ、大丈夫ですか？;A-are you okay?
+Kagami;「大丈夫じゃないわよ。早く起こしなさいよね。;Of course I'm not okay! Hurry up and help me up.
+<PNAME>;『あ、はい。よいしょっと。;Oh, sure. Here...
+none;ジロジロ;(Stare...)
+<PNAME>;（何だろ。人の顔をジロジロと⋯。）;(What is it? Staring at my face so intently...)
+Kagami;「まあ、いいわ。許してあげる。あなた、お名前は？;Well, fine, I forgive you. What's your name?
+<PNAME>;『<PNAME> <PSURNAME>だけど⋯。;<PNAME> <PSURNAME>, but...
+Kagami;「それじゃ、また会いましょう。<PNAME>君。;Well, I'll see you around, <PNAME>-kun.
+Kagami;「それじゃ、また会いましょう。<PNAME>君。ほーほほほほほほ。;Well, I'll see you around, <PNAME>-kun. Hoohohohoho!
+<PNAME>;『⋯。なあ、好雄⋯。今の、誰？;...hey, Yoshio... who was that just now?
+Yoshio;「お前、知らないのかよ。ファンクラブまである、鏡魅羅を。;You don't know? That's Kagami Mira, she even has a fan club.
+<PNAME>;『へぇ、今の娘が、あの、鏡魅羅なんだ⋯。;Whoa, that girl was Kagami Mira...?
+Yoshio;「いいよなあ、お前名前覚えてもらえて⋯。;You're lucky. She actually bothered to remember your name...
+Yoshio;「鏡、鏡‥‥と。;Kagami, Kagami... ah.
+Kagami;「ハイ、鏡です。;Yes, this is Kagami.
+Kagami;「<PNAME>君？今日は、電話ばっかり⋯。もてすぎるのも、困り物よね。で、何の用かしら？;<PNAME>-kun? It's been phone calls all day... being too popular can be a nuisance. So, what did you need?
+Kagami;「ちょっと待って⋯。あら、珍しく空いてるわね。いいわよ。;Hold on a moment... oh, I'm surprisingly free that day. Alright, let's go.
+Kagami;「知ってると思うけど、私、待たされるの好きじゃないから。;I think you already know, but I don't like to be kept waiting.
+<PNAME>;『分かってるよ。それじゃ。;Got it. Let's go.
+Kagami;「少し待ったけど、この程度なら、許してあげるわ。;I waited a bit, but I'll forgive you this time.
+<PNAME>;『あ、ありがとう。（時間通りに来たのに⋯。）;Oh, thanks. (But I arrived on time...)
+Kagami;「それにしても何もない所ね。つまらないわ。帰るわよ。;This place is so boring, there's nothing here. I'm going home.
+<PNAME>;『せっかく来たんだから。話しでもしようよ。;We came all this way. Let's at least talk.
+<PNAME>;（趣味はウィンドーショッピング。ということを聞き出した。）;(I found out her hobby is window shopping.)
+Kagami;「今日は楽しかったわ。また誘ってもよろしくてよ。;I had fun today. Feel free to invite me out again.
+<PNAME>;『それじゃ、また今度連絡するよ。;Alright, I'll call you sometime.
+Kagami;「<PNAME>君。それじゃ、失礼するわ。;I'll be taking my leave now, <PNAME>-kun.
+none;「サッカー部に入部した。;I joined the soccer team.
+Manager;「毎月第３日曜日は、クラブの日なので、休まないように。;We have practice the third Sunday of each month, so don't miss it.
+Kagami;「さあ、今日はどこに案内してくれるのかしら？;So, where will you be showing me around today?
+Kagami;「よろしくてよ。では、行きましょう。;Alright then, let's go.
+Kagami;「ちょっと見て来るから、ここで待ってなさい。;I'll go take a look around, so please wait here.
+<PNAME>;『ああ、ゆっくり見てきていいよ。;Yeah, take your time.
+Kagami;「待たせたかしら？;Did I keep you waiting?
+Kagami;「そう？ならもう―度、行ってくるわね。;Really? Then I'll go take another look.
+none;「サッカー部を退部した。;I quit the soccer club.
+Kagami;「あら、残念⋯。その日は、別の人と約束があるのよ。;Oh, how unfortunate... I have plans with someone else that day.
+<PNAME>;『そう、やっぱり。;I see, thought so...
+Kagami;「もうちょっと、早く、誘って下されば良かったのに。;If only you had asked me earlier...
+<PNAME>;『今度から、そうしよう。それじゃ。;I'll do that next time. Later.
+Ijuin;「君がそんな事をしてもまったくの無意味だ。無駄な努力はやめたまえ。;What you're doing is completely meaningless. Stop wasting your effort.
+<PNAME>;（そんなことを言うためにわざわざ来るなよなぁ⋯。）;(Why bother coming over here just to say that...?)
+Kagami;「さあ、行きましょう。;Come on, let's go.
+<PNAME>;『そ、そうだね。（遅れてきたのに、何の言葉もなしか⋯。）;S-sure. (Didn't even apologize for being late...)
+Kagami;「じゃあ、着替えてくるわね。;Alright, I'll go change.
+Kagami;「待たせたわね。どう？;Did I keep you waiting? How do I look?
+Kagami;「ほーほほほ。でも、セクシーなのは、水着だけじゃなくてよ。;Hoohoho~! But the swimsuit's not the only thing that's sexy, you know~
+Kagami;「それじゃ、着替えてくるわね。;I'll go change then.
+Kagami;「サンスクリーンを塗っていただけるかしら？;Could you help me apply sunscreen?
+<PNAME>;『よ、よろこんで⋯。;Y-yes, I'd be happy to...
+Kagami;「ちょっと、くすぐったいわね。;It's just a bit ticklish.
+<PNAME>;『あぁ、俺は今猛烈に幸せだ⋯。;Ah, I'm in heaven...
+Kagami;「つまらなかったわ。;That was boring.
+<PNAME>;『そ、そう⋯。あっ、また今度誘ってもいいかな？;I-I see... um, can I ask you out again sometime?
+Kagami;「予定が空いてれば、よろしくてよ。ほーほほほほほ。;If my schedule is open, sure. Hoohohoho~!
+<PNAME>;（誰かが、俺を探している予感がする。）;(I have a feeling someone is looking for me...)
+Yoshio;「いたいた探したぜ。;There you are!
+<PNAME>;『何だよ、好雄。何か用か？;What's up, Yoshio? Do you need something?
+Yoshio;「何の酔狂か知らんけどさ⋯。お前と話がしたい女の子を連れてきたぜ。;I don't know what's gotten into her, but... I brought a girl who wants to talk to you.
+<PNAME>;『お前、それは酔狂じゃないよ普通の女の子なら、当然の行為じゃないか。;Huh? That's a normal thing for a girl to do...
+Yoshio;「そうかい、後で後悔しても知らないぜ。;Really? Don't say I didn't warn you if you regret it later.
+<PNAME>;『後悔⋯。何でだよ。;Why would I regret it?
+Yoshio;「おい、話つけたぜ。じゃあ俺は教室に帰るからな。;Hey, I tried to talk her out of it. I'm heading back to the classroom.
+Asahina;「こんにちは。朝日奈夕子でーす。あれ⋯、どっかで⋯？;Hello! I'm Yuko Asahina. Huh? Haven't we...
+<PNAME>;『お、お前は、当たり屋！;Y-you're that scam artist!
+Asahina;「当たり屋とは失礼ね。あれはわざとじゃなくて、ちょっと急いでたから⋯。;Excuse you! It's not like I did it on purpose, I was just in a hurry...
+<PNAME>;『急ぎね⋯。別に、いいけどさ⋯。で、俺に用って何？;A hurry, huh... well, it's fine. So, what do you want?
+Asahina;「好雄君から聞いたんだけど、あなたって色々と遊ぶ所知ってんでしょ？;Yoshio-kun said that you know lots of places to hang out! Is that true?
+<PNAME>;『まぁ、知ってると言えば、知ってるし⋯、知らないと言えば、知らないなぁ。;Well, I guess you could say that... you could also probably say the opposite.
+Asahina;「ふーん。今度さ、どっか連れてってよ。;Hmm~ Take me out sometime, won't you?
+<PNAME>;『えーっ、俺がー！何でだよ。;Wha- me!? Why me?
+Asahina;「ねぇいいじゃんか。お願ーい、どっか連れてってぇ。;Come on, please? Pretty pleeease, take me out somewhere~
+<PNAME>;『おい、変な声だすなよ！みんな見てるじゃないか。;Hey, don't beg like that! Everyone's staring...
+Asahina;「約束してくれないと、大声で泣き出すわよ。;If you don't promise, I'll cry out in front of everyone!
+<PNAME>;『わかった、わかったからそれだけは、やめてくれ。;Alright, alright, just... don't do that!
+Asahina;「ホント！超ラッキー。絶対だよ。;Really!? Jackpot!! It's a promise then!
+<PNAME>;『はいはい⋯。今度、電話するよ⋯。;Yeah, yeah... I'll call you...
+Asahina;「約束だからね。じゃ、電話待ってるから。;Because you promised! I'll be waiting for your call.
+<PNAME>;『はぁー。疲れた⋯。;Sigh... I'm worn out...
+<PNAME>;（約束だからな。近いうちに、電話しなくちゃ。）;(A promise is a promise. I have to call her soon.)
+<PNAME>;（でも、俺、彼女の電話番号知らないよ。どうしよう⋯。）;(But I don't know her phone number. What should I do?)
+<PNAME>;（後で好雄にでも聞くか⋯。）;(I'll ask Yoshio later...)
+Kagami;「それにしても、やっと涼しくなってきたわね。;By the way, it's finally getting cooler.
+<PNAME>;『本当、過ごし易くなったよ。;You're right. It's a bit cozier now.
+Kagami;「それじゃ、そろそろ、中に入るわよ。;So, is it time to head inside?
+Kagami;「この方の絵、なかなかですわね。;This painting is quite good.
+Kagami;「貴方には、この良さがわかりませんのね。;You can't comprehend the beauty of this, can you?
+Yoshio;「朝日奈、朝日奈‥‥と。;Asahina, Asahina... ah.
+Asahina;「ハイ、朝日奈です。;Yes? It's Asahina.
+Asahina;「<PSURNAME>君？何？どうしたの？;<PSURNAME>-kun? What's up, what's happening?
+Asahina;「ええーっ。何で、その日なの？予定、入れちゃったわよ。;Awww... why that day? I already made plans...
+<PNAME>;『ごめん、もう少し早く連絡すれば、良かったね。;Sorry, I should've called sooner.
+Asahina;「ああっ。―緒に出かけたかったのに。この次は、早めにしてよ。;Hm... I wanted to go out with you. Call me sooner next time!
+<PNAME>;『分かったよ。それじゃ。;Got it. See you later.
+Asahina;「ラッキー。その日、ちょうど暇だったんだ。;Score! I'm totally free that day.
+Asahina;「うん、分かったわ。必ず来てよ。;Yup, got it! You better show up!
+<PNAME>;『さてと、これからどうしようかな。;So, what should I do now?
+<PNAME>;『さて、誰を誘おうか？;Well, who should I invite?
+<PNAME>;『あっ、丁度いいところに、朝日奈さんが現れたぞ。;Oh, right on time. Asahina-san has appeared.
+<PNAME>;『おーい、朝日奈さん。;Hey, Asahina-san!
+Asahina;「あっ、<PSURNAME>君。何々？;Oh, <PSURNAME>-kun. What's up?
+<PNAME>;『―緒に、見学しない？;Wanna check out the cultural festival together?
+Asahina;「バッチタイミング。私も誘おうと思ってたのよ。;Perfect timing! I was thinking of inviting you too~
+<PNAME>;『それじゃあ、どこに行こうか？;So, where should we go?
+Asahina;「噂によると、電脳部と、演劇部が面白いらしいよ。;I heard that the Computer Club and the Drama Club are interesting.
+<PNAME>;『へぇ、そうなんだ。（どこに行こうかなぁ。）;Oh, really? (Where will we go?)
+Asahina;「ほらほら早く。占いやってるから、―緒にやろうよ。;Come on come on, hurry up! They're doing fortune-telling! Let's try it together!
+<PNAME>;『ちょっと、そんなに引っ張らないでくれよ。;Hey, don't tug so hard...
+<PNAME>;『それじゃ、朝日奈さんとの相性だな。;Okay, let's check our compatibility.
+none;＊パソコン ＮＭＳ―９０００＊朝日奈 夕子 血液型 Ｂ型<PNAME> <PSURNAME> 血液型 Ａ型;*PC NMS-9000* Asahina Yuko Blood Type B <PNAME> <PSURNAME> Blood Type A
+none;＊パソコン ＮＭＳ―９０００＊タダイマ、ケイサンチュウ．．．;*PC NMS-9000* Now calculating...
+none;＊パ;*Pa
+none;＊パソコン ＮＭＳ―９０００＊オフタリノ、アイショウハフツウデス。;*PC NMS-9000* Your compatibility is average.
+Asahina;「ふーん、こんなもんか⋯。;Hmm, is that it...?
+<PNAME>;『こんなもんだねぇ。;That's about it.
+Asahina;「占いもしたことだし、次はどこ行く？;Now that we've done the fortune-telling, where should we go next?
+<PNAME>;『えぇ、もう行くの？;Huh, we're leaving already?
+Asahina;「ほら、とりあえず、あっち行ってみようよ。;Come on, let's try going over there next!
+<PNAME>;『あっちって、ち、ちょっと⋯。;Over there? W-wait up...
+Asahina;「ほら、早く早く。;Come on, hurry!
+Asahina;「全然。さあ、早く行こうよ。;Not at all. Come on, let's go.
+Asahina;「ねぇねぇどうしたの。こんなとこに呼び出して。;Hey, what's up? Why'd you call me out here?
+<PNAME>;（今はヨーグルトきのこが流行っているらしい。ということを聞き出した。）;（I found out that yogurt mushrooms are trending right now.）
+Asahina;「今日は超楽しかったね。またどこか誘ってね。;Today was super fun! Invite me somewhere again sometime!
+Asahina;「じゃあ、帰ろ。<PSURNAME>君。;Well, let's go home, <PSURNAME>-kun.
+<PNAME>;『あっ、今日は、朝日奈さんの誕生日じゃないか。;Oh, today is Asahina-san's birthday, isn't it?
+<PNAME>;『よし、ヨーグルトきのこを、プレゼントしよう。;Alright, I'll give the yogurt mushrooms as a present.
+<PNAME>;『あっ、朝日奈さん！;Asahina-san!
+Asahina;「ん？何々？;Huh? What is it?
+Asahina;「ホント！超うれしい！開けてもいいよね？;Really!? That makes me so happy! Can I open it!?
+Asahina;「おっしゃれーっ。超センスいいじゃない。大切にするね。;Stylish~! You got great taste! I'll cherish it.
+Asahina;「じゃ、そろそろ中に入ろうよ。;Well, we should head inside soon.
+<PNAME>;『そうだね。そうしようか。;Yeah, let's do that.
+Asahina;「動物園って、わりと楽しいよね。;The zoo is pretty fun, right?
+Asahina;「何か嘘くさいなぁ。;Sounds like you're faking it...
+Asahina;「超つまんなかったね。;That was super boring.
+<PNAME>;『よし、金の髪飾りを、プレゼントしよう。;Alright, I'll get her a gold hairpin as a present.
+<PNAME>;『あっ、鏡さん！;Oh, Kagami-san!
+Kagami;「あら、<PNAME>君。;Ah, <PNAME>-kun.
+Kagami;「あら、<PNAME>君。何か御用かしら？;Ah, <PNAME>-kun. Do you need something?
+Kagami;「ありがとう、いただくわ。また、私の虜が―人⋯。開けてもいいかしら？;Another one, captivated by my beauty... thank you~ May I open it?
+Kagami;「まあ、私に似つかわしい素敵なものですこと。ありがたくいただくわ。;Oh my, what a fitting and wonderful thing for me~! I'll graciously accept it.
+Asahina;「どこに買い物に行こうか？;Where should we go shopping?
+Asahina;「うん。ソッコーで行こう。;Yeah, let's go right away!
+Asahina;「この服、超いいね。;This dress is super nice.
+Asahina;「うん、それもいいけど、最近はこの色に人気があるんだ。;Yeah, that's nice too, but this color is in style these days.
+<PNAME>;『今日は俺の誕生日だ。;Today is my birthday.
+<PNAME>;『⋯けど、誰にもプレゼントをもらえなかった。;...but, I didn't receive any presents from anyone.
+<PNAME>;（さびしいなぁ。）;(It's so lonely...)
+<PNAME>;（３科目以上赤点だった。明日から、―週間補習だぁ。勉強しかできないー！）;(I failed more than three subjects. Starting tomorrow, it's a week of remedial classes. I can't do anything but study!)
+<PNAME>;（―週間強制補習をしなければならない）;(I have to attend mandatory remedial classes for a week.)
+Asahina;「ふざけろよ！;Quit messing with me!
+<PNAME>;（しまった！！今日は、朝日奈さんとデートの約束があったんだ。;(Shoot!! I had a date with Asahina today...)
+Kagami;「貴方もいらしてたのね。;So, you were invited as well.
+<PNAME>;『鏡さんも来てたのか。;Kagami-san, you came too?
+Kagami;「私、伊集院君に用があるから⋯。それじゃ⋯。;I have some business with Ijuuin-kun... see you later.
+Asahina;「あっ、<PSURNAME>君来てたんだ。;Oh, <PSURNAME>-kun is here.
+<PNAME>;『朝日奈さんも来てたのか。;Asahina-san, you came too?
+Asahina;「友達がいるから、そろそろ行くね。;I have friends to get back to, so I'll see you later!
+none;うっ⋯！？こ、これは⋯サイン入りブロマイド！？何考えてるんだ、あいつ。;What...!? T-this is... an autographed photo!? What on earth is he thinking?
+<PNAME>;（女の子のプレゼントの方が良かったなぁ。⋯⋯帰るか。;(I would have preferred a girl's present... guess I'll go home.)
+<PNAME>;『よし、それじゃあ朝日奈さんの家に電話してみるか。;Alright, let's try calling Asahina-san's house.
+Asahina;「はい、朝日奈です。;Hello, this is Asahina.
+Asahina;「<PSURNAME>君。明けまして、おめでとう。;It's <PSURNAME>-kun, happy new year!
+<PNAME>;『朝日奈さん。今、暇かな？;Asahina-san, are you free right now?
+Asahina;「暇だけど、何？;I'm free, why?
+<PNAME>;『これから初詣に行かない？;Want to go to the shrine together?
+Asahina;「いいよ。ちょうど行きたかったし。;Sure! I was just thinking about going.
+Asahina;「いいわ。神社の前ね。それじゃ。;Sounds good. Meet you in front of the shrine, then.
+<PNAME>;『まだ、朝日奈さんは来てないみたいだな。;Looks like Asahina-san hasn't arrived yet.
+Asahina;「ごめーん。遅くなっちゃった。;Sorry for being late!!
+Asahina;「結構、空いてるね。;It's seriously empty here...
+Asahina;「うん、行こう。;Yeah, let's go.
+Asahina;「何をお願いした？;What did you wish for?
+<PNAME>;『ひ、秘密だよ。朝日奈さんは？;I-it's a secret. What about you, Asahina-san?
+Asahina;「ま、色々とね。ほら、おみくじがあるよ。引きに行こ。;Well, lotsa different stuff. Look, there's omikuji. Let's go draw one!
+Asahina;「ほら、見て見て、大吉なんて超ラッキー。ね、どうだった？;Look, look, I got a Great Blessing. I'm super lucky! So, what did you get?
+Asahina;「まあまあじゃん。私の方がいいけどね。なんたって、大吉だから。;It's alright, huh? Mine's better though. After all, it's a Great Blessing~
+<PNAME>;『そりゃそうだ。;That's true...
+Asahina;「今年も、色々な所に行けるといいね。;Hope we can go out to lots of different places this year too.
+Asahina;「そうね。私も用事あるし。;Yeah. I have some errands too.
+Asahina;「ちょうど今来たところよ。;I just got here!
+Asahina;「それじゃソッコーで滑ろうよ。;Then let's skate right away!
+<PNAME>;『そうしよう。;Let's do that.
+Asahina;「ねぇ、どのぐらい滑れる？;Hey, how well can you skate?
+Asahina;「ラッキー。じゃあさ、教えてよ。;Lucky me~! So, teach me!
+Asahina;「今日は超楽しかったね。また今度誘ってね。;Today was ultra fun! Invite me out again sometime!
+
+
+Fujisaki;「<PSURNAME>君？今日は、何？;<PSURNAME>-kun? What's up today?
+<PNAME>;（あっ、鏡さんがいるぞ。）;(Oh, Kagami-san is here.)
+<PNAME>;『おーい、鏡さん。;Hey, Kagami-san.
+Kagami;「あら、<PNAME>君今帰りかしら？;Oh, <PNAME> are you going home now?
+Kagami;「そうね。帰ってもよくてよ。;Yes, you may go home now.
+Kagami;「それじゃ、ここでお別れしましょう。それじゃ、失礼。;Then let's part ways here. Goodbye.
+<PNAME>;『いつも、家まで送らせてくれないんだよなぁ。;She never lets me walk her home.
+Fujisaki;「あっ、上映時間よ。早く中に入りましょう。;Oh, it's showtime. Let's get inside quickly.
+Fujisaki;「あそこが空いてるわ。座りましょう。;There's a spot over there. Let's sit.
+<PNAME>;（サマソーは、テレビゲームのキャラクターが実写になったアクションだ。;(Summer Wars is an action movie where video game characters come to life.
+none;『今の映画、まあまあだったね？』『今の映画、面白かったね？』『今の映画、つまらなかったね？』;Was the movie just so-so? Was the movie interesting? Was the movie boring?
+Fujisaki;「私は好きじゃないかな。ラブロマンスとかなら好きなんだけど⋯。;I don't really like it. If it were a love romance, I would like it more...
+Fujisaki;「今日はちょっと疲れちゃった。;I'm a bit tired today.
+<PNAME>;（あっ、朝日奈さんがいるぞ。;Oh, there's Asahina.
