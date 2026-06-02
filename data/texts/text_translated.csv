@@ -1500,7 +1500,7 @@ Katagiri;「えっ、ＤＵＭＭＹ。わ、私に何か用？;Huh, DUMMY? D-Do
 <PNAME>;『？？あれ、どこかで会ったことある？;Huh? Have we met somewhere before?
 ?;「さて、私は誰でしょう？;C'mon, who am I?
 <PNAME>;（んー⋯。声は、聞いたことあるような⋯。）;(Hmm... I feel like I've heard this voice before...)
-?;「ブーッ制限時間終了です。私は⋯。;Bzzz! Time's up! I am...
+?;「ブーッ制限時間終了です。私は⋯。;Bzzzt! Time's up! I am...
 Yoshio;「おい、優美。何やってたんだ？;Hey, Yumi. What are you doing?
 ?;「あっ、お兄ちゃん。;Ah, big brother!
 Yoshio;「何だ、<PSURNAME>。;What is it, <PSURNAME>?
@@ -2387,19 +2387,147 @@ Asahina;「それじゃソッコーで滑ろうよ。;Then let's skate right awa
 Asahina;「ねぇ、どのぐらい滑れる？;Hey, how well can you skate?
 Asahina;「ラッキー。じゃあさ、教えてよ。;Lucky me~! So, teach me!
 Asahina;「今日は超楽しかったね。また今度誘ってね。;Today was ultra fun! Invite me out again sometime!
-
-
-Fujisaki;「<PSURNAME>君？今日は、何？;<PSURNAME>-kun? What's up today?
+Fujisaki;「<PSURNAME>君？今日は、何？;<PSURNAME>-kun? What's up?
 <PNAME>;（あっ、鏡さんがいるぞ。）;(Oh, Kagami-san is here.)
-<PNAME>;『おーい、鏡さん。;Hey, Kagami-san.
-Kagami;「あら、<PNAME>君今帰りかしら？;Oh, <PNAME> are you going home now?
-Kagami;「そうね。帰ってもよくてよ。;Yes, you may go home now.
-Kagami;「それじゃ、ここでお別れしましょう。それじゃ、失礼。;Then let's part ways here. Goodbye.
-<PNAME>;『いつも、家まで送らせてくれないんだよなぁ。;She never lets me walk her home.
-Fujisaki;「あっ、上映時間よ。早く中に入りましょう。;Oh, it's showtime. Let's get inside quickly.
-Fujisaki;「あそこが空いてるわ。座りましょう。;There's a spot over there. Let's sit.
-<PNAME>;（サマソーは、テレビゲームのキャラクターが実写になったアクションだ。;(Summer Wars is an action movie where video game characters come to life.
-none;『今の映画、まあまあだったね？』『今の映画、面白かったね？』『今の映画、つまらなかったね？』;Was the movie just so-so? Was the movie interesting? Was the movie boring?
-Fujisaki;「私は好きじゃないかな。ラブロマンスとかなら好きなんだけど⋯。;I don't really like it. If it were a love romance, I would like it more...
-Fujisaki;「今日はちょっと疲れちゃった。;I'm a bit tired today.
-<PNAME>;（あっ、朝日奈さんがいるぞ。;Oh, there's Asahina.
+<PNAME>;『おーい、鏡さん。;Hey, Kagami-san!
+Kagami;「あら、<PNAME>君今帰りかしら？;Ah, are you heading home now, <PNAME>?
+Kagami;「そうね。帰ってもよくてよ。;Yes, I suppose you may walk with me.
+Kagami;「それじゃ、ここでお別れしましょう。それじゃ、失礼。;Alright, let's part ways here. Goodbye.
+<PNAME>;『いつも、家まで送らせてくれないんだよなぁ。;She never lets me walk her all the way home...
+Fujisaki;「あっ、上映時間よ。早く中に入りましょう。;Oh, it's showtime. We should hurry.
+Fujisaki;「あそこが空いてるわ。座りましょう。;Let's sit over there, where it's open.
+<PNAME>;（サマソーは、テレビゲームのキャラクターが実写になったアクションだ。;(Summer Wars is an action movie where video game characters come to life.)
+none;『今の映画、まあまあだったね？』『今の映画、面白かったね？』『今の映画、つまらなかったね？』;Wasn't the movie just so-so? Wasn't the movie interesting? Wasn't the movie boring?
+Fujisaki;「私は好きじゃないかな。ラブロマンスとかなら好きなんだけど⋯。;I didn't really like it. I'd prefer if it were a romance...
+Fujisaki;「今日はちょっと疲れちゃった。;I'm a bit tired from today.
+<PNAME>;（あっ、朝日奈さんがいるぞ。;(Oh, there's Asahina-san.)
+Asahina;「あっ、<PSURNAME>君今帰り？;Oh, <PSURNAME>-kun, you heading home?
+Asahina;「私、これから友達と約束があるんだ。ごめんね。;I have plans with a friend. Sorry.
+Asahina;「じゃあね。;See ya!
+Asahina;「コアラ見た見た？超可愛かったね。;Did you see the koala? Did you!? It was super cute!!
+Asahina;「やっぱそうでしょう。;Of course, right?
+Kagami;「<PNAME>君。チョコレートよ。;<PNAME>-kun. Here’s some chocolate.
+Kagami;「勘運いしないでね。義理よ、義理。;Don't get the wrong idea. It's just out of obligation.
+<PNAME>;『別にいいけど。（どこから見ても、義理にしか見えん。）;I don't mind. (No doubt about it, it really is obligatory...)
+<PNAME>;（あまり貰えなかったけど、こんなもんかな。）;I didn't get much, but I guess this is fine.
+<PNAME>;『まだ朝日奈さんは、来ていないようだな。;Asahina-san hasn't arrived yet.
+Asahina;「ごめーん。お願い、許してぇ。;Sorry! Please, forgive me...
+Asahina;「私、ゲーム得意なんだ。;I'm good at games.
+Asahina;「女にしては、珍しいっしょ。;Pretty rare for a girl, right?
+Kagami;「そういえば、やっと春休みね。;Speaking of which, spring break is coming up.
+<PNAME>;『でも、短い休みだよ。;But it's a short break.
+Kagami;「学校が休みならそれでいいわ。;As long as there's no school, it's fine by me.
+<PNAME>;『あっ、鏡さん。;Oh, Kagami-san.
+Kagami;「ありがとう。いただくわ。;Thank you. I'll take it.
+Asahina;「今見てきたイルカのショー、超良かったと思わない？;Don't you think that dolphin show was just ultra amazing!?
+Asahina;「ホント、ホント。;Totally, totally!
+Asahina;「さあ、中に入ろうよ。;Let's head on in.
+Asahina;「それじゃ、どこに行く？;So, where should we go?
+Asahina;「じゃ、乗りましょ。;Let's get on!
+Asahina;「面白かったね。;That was fun!
+Asahina;「やっぱ、そうでしょう。じゃ、次は何に乗ろうか。;Of course! So, what should we ride next?
+?;Ｉフーッ制限時間終了です。私は⋯。;Bzzzt! Time's up! I am...
+Kagami;「あら、<PSURNAME>君;Ah, <PSURNAME>-kun.
+Asahina;「流行の服は超高くて、なかなかね⋯。;Trendy clothes are super duper expensive, you know...
+Asahina;「やっぱ、そうよね。;Yeah, I agree...
+Asahina;「じゃ、お茶して帰ろうよ。;Let's have some tea before heading home!
+<PNAME>;（俺は、朝日奈さんと、楽しく下校した。）;(I had a nice walk home with Asahina.)
+Fujisaki;「そうだ、覚えてる？もうすぐ私の誕生日よ。;Oh yeah, did you remember? My birthday is coming up soon.
+<PNAME>;『そうだね。ちゃんと覚えてるよ。;Yeah, of course I remember.
+Fujisaki;「本当？嬉しいな。;Really? I'm happy to hear that.
+Asahina;「あっ、もう始まっちゃうよ。;Oh no, it's about to start!
+<PNAME>;『あっ、本当だ。早く入ろう。;Oh, you're right. Let's hurry inside.
+Asahina;「あそこが空いてる。早く早く。;There's an open seat over there! Hurry, hurry!
+<PNAME>;（フンガーは、ドラキュラと並ぶ古典的なホラー映画のリメイクだ。）;(The Hunger is a remake of a classic horror film, on par with Dracula.)
+none;『今の映画、面白かったね？』『今の映画、つまらなかったね？』『今の映画、まあまあだったね？』;Wasn't that movie interesting? Wasn't that boring? Wasn't that movie just so-so?
+Asahina;「そんなに、ひどくないと思うけどな。;I don't think it was that bad.
+<PNAME>;『えっと⋯<PNAME>って言いますけど。;Uhm... My name is <PNAME>, by the way.
+<PNAME>;『あのさ、ちょっとした用事があるんだけど⋯。俺の家の前に来れないかな？;So, I have a small favor to ask... could you come over to my place?
+Fujisaki;「うん、いいわよ。すぐに行くから、ちょっと待っててね。;Yeah, sure. I'll be there soon, so just hang tight for a bit.
+<PNAME>;『さて、先に行って待ってるか。;Alright, I'll go wait outside for her.
+Fujisaki;「待ったぁ。ごめんね、遅くなっちゃって。;Did I make you wait long? Sorry for being late...
+Asahina;「そう言えばもうすぐ体育祭だね。;Speaking of which, the sports festival is coming up soon.
+Asahina;「なんかかったるいなぁ。ブッチしちゃおうかな。;I'm feeling kind of sluggish. Maybe I'll just ditch.
+<PNAME>;『ま、そう言わずに、体調に気を付けて、頑張ろうよ。;Come on, don't say that. Take care of yourself and let's give it our all!
+Asahina;「最近面白い事あった？;Has anything interesting happened lately?
+Asahina;「何か情報あったら、教えてね。;If you hear of anything, let me know.
+Kagami;「そういえば、もうすぐ体育祭ね。;By the way, the sports festival is coming up soon.
+Kagami;「どうして私も出場しなければいけないのかしら？;Why must I participate as well?
+<PNAME>;『朝日奈さん、どうしたの？;Asahina-san, what's up?
+Asahina;「ね、お茶して帰らない？;Hey, do you want to grab some tea before heading back?
+Asahina;「それじゃ早く行きましょう。;Alright, let's go quickly then.
+Asahina;「もっと、面白いことすればいいのに。;We should do something more interesting.
+Kagami;「<PSURNAME>君。ついているわね。;<PSURNAME>-kun, you're quite lucky.
+<PNAME>;（あっ、向こうでヒーローショーをやってるぞ。）;(Ah, there's a hero show happening over there.)
+<PNAME>;『朝日奈さん、ヒーローショー見に行かないか？;Asahina-san, wanna go watch the hero show?
+Asahina;「えぇー。だっさーっ。やめようよ。;Ehh, that's lame. Let's do something else.
+<PNAME>;『いいじゃんか。行こうよ。;Come on, it'll be fun. Let's go.
+Asahina;「しょうがないなぁ。ちょろっとだけよ。;Fiiine, just for a bit though.
+Asahina;「子供達と―緒で恥ずかしくないの？;Aren't you embarrassed to be watching with all these kids?
+Asahina;「見る前に言ってもらいたかったな。;I wish you'd have said that earlier...
+Fujisaki;「素敵な絵ね。でき上がったら見せてね。;That's a lovely drawing. Show it to me when it's finished, okay?
+Asahina;「<PSURNAME>君？バッチタイミング。出かける前でよかったね。で、用は何？;<PSURNAME>-kun? Perfect timing! You caught me before I went out. So, what's up?
+Asahina;「どんなゲームが好き？;What kind of games do you like?
+Asahina;「私も、わりとうまいって言うか、まあまあ好きよ。;I'm pretty good at them too, or rather, I like them quite a bit.
+Asahina;「<PSURNAME>君じゃあ、どっか、よって帰ろうよ。;<PSURNAME>-kun, let's drop by somewhere before heading back.
+<PNAME>;『鏡さん。どうしたの？;Kagami-san, what's up?
+Kagami;「今度の日曜日、空いてるかしら？;Are you free this Sunday?
+Kagami;「それなら、買い物に付き合って下さるわね。;In that case, you’ll take me out shopping, right?
+Kagami;「私の誘いを断るのは、男として罪よね。;Turning down my invitation would be a sin as a man.
+Kagami;「それでいいわ。遅れず来なさいよ。;That's fine. Don't be late.
+Kagami;「別に待ってないわ。さあ、行きましょう。;I wasn’t waiting or anything. Let's go.
+Kagami;「あら？これ、なかなかしゃれてるわね。;Oh? This is quite stylish.
+Kagami;「そうね。私にふさわしいわね。;Yes, it suits me quite well.
+Kagami;「付き合ってくれてありがとう。;Thank you for taking me out.
+Kagami;「<PSURNAME>君それじゃ、さよなら。;See you later, <PSURNAME>-kun.
+Saotome;「<PNAME>さんちょっと聞きたいんですけど⋯。;<PNAME>-san, there's something I'd like to ask you...
+Saotome;「今度の日曜日空いてますか⋯？;Are you free this Sunday...?
+Saotome;「映画のチケットが２枚あるんですけど、―緒に行きませんか？;I've got two movie tickets, would you like to go with me?
+Saotome;「やったー。それじゃ、絶対、約束ですよ。;Yay! Then it's a date, okay?
+Saotome;「うん、それでいいです。それじゃ。;Yeah, that's fine. See you then!
+Saotome;「優美も、今来たところだよ。;I just got here too.
+Saotome;「もう上映時間だよ。早く中に入ろう。;It's already showtime. Let's get in quickly!
+Saotome;「あそこが空いてるよ。;There's an open seat over there.
+<PNAME>;（カンパンマンは、国民的人気キャラクターのアニメだ。）;(Kanpanman is a nationally popular anime character.)
+Saotome;「うーん。優美は楽しかったけど。;Mmph... Yumi had fun though.
+Saotome;「今日はありがとうございました。;Thank you for today.
+<PNAME>;『そう言えば、もうすぐ、テストだね。;By the way, exams are coming up soon.
+Asahina;「うっ、それだけは考えたくなかった。;Ugh, that's the last thing I wanted to think about...
+<PNAME>;『それは、そうだけどね。;Sure, but still...
+Asahina;「それは忘れるのが―番。忘れよ、忘れよ。;It's best to forget about it. Forget it, forget it.
+Fujisaki;Ｉ‥‥‥‥‥。;I...
+Kagami;「ぐ、偶然ね。―緒に帰ってもよろしくてよ。;W-what a coincidence! If you'd like, we can walk home together...
+Kagami;「私の誘いを断る人はいないと思うけど。さぁ、行きましょう。;As if anyone would refuse my invitation... now, let’s go.
+<PNAME>;『鏡さん予定は？;Kagami-san, do you have any plans?
+Kagami;「私は、海にでも行こうかしら。;I might go to the beach.
+<PNAME>;『海か⋯。それはいいな。;The beach, huh... That sounds nice.
+Fujisaki;「それにしても、今日は暑いね。;Even so, it’s really hot today.
+Fujisaki;「この水着、どうかな？;How about this swimsuit?
+Fujisaki;「えっ、ありがとう。でも、ちょっと恥ずかしいな。;Ah, thanks. But it’s also a bit embarrassing...
+Asahina;「すっごい賑やかねぇ。;It’s super lively, isn’t it?
+Asahina;「うん、やろ、やろ。;Yeah, let's do it, let's do it!
+<PNAME>;『取れたら朝日奈さんにあげるね。;I’ll give it to you if I win it, Asahina-san.
+Asahina;「まあまあってとこかな。;Well, that's okay.
+Asahina;「今日は最高だったね。またどこかに誘ってね。;Today was great! Invite me out again sometime!
+Asahina;「この水着、どうかな？;How about this swimsuit?
+Asahina;「やっぱわかる？超嬉しい。;You recognize it!? I'm ecstatic!
+
+
+<PNAME>;『くぅー、体の調子が、最悪だぜ。でも、修学旅行だから集合場所に行かなきゃ。;Ugh, I feel awful. But it’s the school trip, so I have to meet up with everyone else.
+<PNAME>;「そうだ、思い出したぞ。沖縄だ。;That’s right, I remembered. Okinawa.
+<PNAME>;「そうだ、思い出したぞ。沖縄だ。ビシッと、決めてやるぜ。;That’s right, I remembered. Okinawa. I’ll make this trip perfect.
+<PNAME>;『と、言う訳で、あっという間に、沖縄だ。;And just like that, we’re in Okinawa.
+<PNAME>;『今日は、那覇で朝から、自由行動だ。;Today, we’re free to explore Naha from the morning.
+Asahina;「あっ、いたいた。;Ah, there you are.
+<PNAME>;『朝日奈さん、おはよう。何か用？;Good morning, Asahina-san. What’s up?
+Asahina;「ねえ、ねえ、今日の自由行動、―緒に行きたいな。;Hey, hey, I want to go with you for today’s free time.
+Asahina;「じゃあソッコーで行こうよ。ほら早く早く。;Then let’s go quickly. Come on, hurry up.
+<PNAME>;『あ、おい、ちょっと待ってくれよ。;Hey, wait a minute.
+<PNAME>;『すごかったね。首里城跡は。;That was amazing, the Shuri Castle ruins.
+Asahina;「ねえねえ、写真撮ってよ。;Hey, hey, take a photo.
+<PNAME>;『えーっ、また？もう、５００枚以上撮ったんじゃない？;What, again? Haven’t we taken over 500 photos already?
+Asahina;「いいじゃんか。滅多に来れる所じゃないんだから。;It’s fine. It’s not like we come here often.
+<PNAME>;『はいはい、わかりました。;Alright, alright, I got it.
+Asahina;「はい、チーズ。;Say cheese.
+Asahina;「えーっ、もう帰るのぉ？ちょっとぐらい遅れても平気、平気。;What, we’re going back already? It’s fine if we’re a bit late, don’t worry.
+<PNAME>;『夕食抜きになるかもよ。;You might miss dinner.
