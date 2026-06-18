@@ -1293,7 +1293,7 @@ Mysterious Woman;「えっ、そうかな？でも、忘れちゃった。それ
 Katagiri;「ふぅぅ⋯それにしても、今日は寒いわね。;Phew... but it's really cold today.
 <PNAME>;『本当、寒いね。;Yeah, it's cold.
 Katagiri;「それじゃ、ちょっと歩きましょうか？;So, wanna walk for a bit?
-<PNAME>;『今日は、並木道の方に行こうよ。;Let's go to the tree-lined path today.
+<PNAME>;『今日は、並木道の方に行こうよ。;Let's go take the path by the trees.
 Katagiri;「ＯＫ、いいわよ。;OK, sure.
 Katagiri;「こういう道をお散歩するのつて、気分爽快ね。;Walking down a path like this feels refreshing.
 Katagiri;「こういう道をお散歩するのって、気分爽快ね。;Walking down a path like this feels refreshing.
@@ -2511,23 +2511,148 @@ Asahina;「まあまあってとこかな。;Well, that's okay.
 Asahina;「今日は最高だったね。またどこかに誘ってね。;Today was great! Invite me out again sometime!
 Asahina;「この水着、どうかな？;How about this swimsuit?
 Asahina;「やっぱわかる？超嬉しい。;You recognize it!? I'm ecstatic!
-
-
 <PNAME>;『くぅー、体の調子が、最悪だぜ。でも、修学旅行だから集合場所に行かなきゃ。;Ugh, I feel awful. But it’s the school trip, so I have to meet up with everyone else.
 <PNAME>;「そうだ、思い出したぞ。沖縄だ。;That’s right, I remembered. Okinawa.
 <PNAME>;「そうだ、思い出したぞ。沖縄だ。ビシッと、決めてやるぜ。;That’s right, I remembered. Okinawa. I’ll make this trip perfect.
 <PNAME>;『と、言う訳で、あっという間に、沖縄だ。;And just like that, we’re in Okinawa.
-<PNAME>;『今日は、那覇で朝から、自由行動だ。;Today, we’re free to explore Naha from the morning.
-Asahina;「あっ、いたいた。;Ah, there you are.
+<PNAME>;『今日は、那覇で朝から、自由行動だ。;Today, we’re free to explore Naha.
+Asahina;「あっ、いたいた。;Ah, you're here, you're here!
 <PNAME>;『朝日奈さん、おはよう。何か用？;Good morning, Asahina-san. What’s up?
-Asahina;「ねえ、ねえ、今日の自由行動、―緒に行きたいな。;Hey, hey, I want to go with you for today’s free time.
-Asahina;「じゃあソッコーで行こうよ。ほら早く早く。;Then let’s go quickly. Come on, hurry up.
-<PNAME>;『あ、おい、ちょっと待ってくれよ。;Hey, wait a minute.
-<PNAME>;『すごかったね。首里城跡は。;That was amazing, the Shuri Castle ruins.
-Asahina;「ねえねえ、写真撮ってよ。;Hey, hey, take a photo.
-<PNAME>;『えーっ、また？もう、５００枚以上撮ったんじゃない？;What, again? Haven’t we taken over 500 photos already?
-Asahina;「いいじゃんか。滅多に来れる所じゃないんだから。;It’s fine. It’s not like we come here often.
+Asahina;「ねえ、ねえ、今日の自由行動、―緒に行きたいな。;Hey, hey, I want to go out with you during today’s free time.
+Asahina;「じゃあソッコーで行こうよ。ほら早く早く。;Let’s hurry up then! Come on, let's go!
+<PNAME>;『あ、おい、ちょっと待ってくれよ。;Hey, wait up...
+<PNAME>;『すごかったね。首里城跡は。;Shuri Castle is amazing...
+Asahina;「ねえねえ、写真撮ってよ。;Hey hey, we should take a photo.
+<PNAME>;『えーっ、また？もう、５００枚以上撮ったんじゃない？;What, more? Haven’t we taken over 500 photos already?
+Asahina;「いいじゃんか。滅多に来れる所じゃないんだから。;So what? It’s not like we come here often.
 <PNAME>;『はいはい、わかりました。;Alright, alright, I got it.
-Asahina;「はい、チーズ。;Say cheese.
-Asahina;「えーっ、もう帰るのぉ？ちょっとぐらい遅れても平気、平気。;What, we’re going back already? It’s fine if we’re a bit late, don’t worry.
+Asahina;「はい、チーズ。;Say cheese~!
+Asahina;「えーっ、もう帰るのぉ？ちょっとぐらい遅れても平気、平気。;Whaaat, we’re going back already? It’s fine if we’re a bit late, don’t worry so much!
 <PNAME>;『夕食抜きになるかもよ。;You might miss dinner.
+Asahina;「えっ、まじぃ？しょうがないなぁ。;Are you for real? Oh, fine...
+Asahina;「うん、いいよ。じゃ、待ち合わせはどこにする？;Okay, I'm down. Where should we meet?
+<PNAME>;『ホテルのロビーで、いいんじゃない？;How about the hotel lobby?
+Asahina;「そうね、わかったわ。;Sounds good, got it.
+Asahina;「待たせちゃってごめーん。さあ、行こ。;Sorry to keep you waiting! Let’s go!
+<PNAME>;『奇麗な、夕焼けだね。;The sunset is beautiful...
+Asahina;「きれいな夕日ねぇ⋯。そうだ、写真撮ろうよ。;It's so pretty... let’s take a photo!
+<PNAME>;『本当に、写真を撮るのが好きだね。;You really like taking photos, huh?
+Asahina;「だって記念になるじゃない。;It's cause they make for good memories!
+<PNAME>;『あっ、ハブだ。;Ah, a viper!
+Asahina;「はあ、はあ⋯。あぁ、死ぬかと思った。あっ！;Aah, haa... I thought I was going to die. Ah!
+<PNAME>;『ど、どうしたの。朝日奈さん。;W-what's wrong, Asahina-san!?
+Asahina;「写真撮っとけばよかった。;I should have taken a photo...
+<PNAME>;『‥‥‥‥。と、とりあえず。怪我がなくてよかったね。;...well, anyways, I'm glad you're not hurt.
+Asahina;「メダルゲームはあんまりしないんだ。;I don’t play those token games that much.
+Asahina;「そうだと思うけど、今はクレーンゲームとかの方がいいなぁ。;I think so, but I prefer crane games right now.
+Kagami;「そういえば、もうすぐ文化祭ね。;Speaking of which, the cultural festival is soon.
+Kagami;「他の学校の友達も来るから、なかなか大変だわ。;Friends from other schools are coming too, so it's going to be quite the ordeal.
+Saotome;「そう言えば、もうすぐ文化祭ですね。;Speaking of which, the cultural festival is coming up soon, isn't it?
+Saotome;「すっごく楽しみ。;I'm really looking forward to it.
+<PNAME>;『本当。楽しみだね。;Same. It sounds like a blast.
+<PNAME>;（睡拳．痛は、香港おとくいのカンフーアクション映画だ。;(Fury of the Drunken Fist is a specialty kung fu action movie from Hong Kong.)
+none;『今の映画、つまらなかったね？』『今の映画、面白かったね？』『今の映画、まあまあだったね？』;That movie just now was boring, wasn't it? That movie just now was interesting, wasn't it? That movie just now was so-so, wasn't it?
+Asahina;「もう最高。面白かったね。;That was the best! Wasn't it just mesmerizing?
+Asahina;「あっ、<PNICKNAME>。;Oh, <PNICKNAME>!
+Asahina;「そうだ、もうすぐ私の誕生日よ。;That's right, my birthday is coming up soon.
+<PNAME>;『えっ、そうだった？;Huh, really?
+Asahina;「ばっくれても駄目よ。プレゼント、楽しみに待ってるから。;Quit playing dumb. I'm looking forward to my present~
+<PNAME>;『あぁ、今日も良い天気だなぁ。;Ah, it's nice weather out again today.
+<PNAME>;『あっ、鏡さん、おはよう。;Oh, Kagami-san, good morning.
+Kagami;「まだお―人？;Are you still alone?
+<PNAME>;『うん、そう。;Yeah, that's right.
+Kagami;「私が御―緒してあげてもよくてよ。ホーホホホホ。;I shall grace you with my company then. Ohohohohoho~!
+Kagami;「何よ！この私が、せっかく誘ってあげてるのに。失礼するわね。;What's this!? After going out of my way to offer my presence... how rude!
+<PNAME>;『ありゃ、怒らせちゃったよ。;Oh no, I've upset her...
+Asahina;「<PNICKNAME>。何、どうしたの？;<PNICKNAME>, what's wrong?
+Asahina;「嘘っ、私と⋯？うん、行く行く。;Lies, with me...? Sure, I'll go.
+Asahina;「どこでもいいから早く行きましょ。;Anywhere is fine, let's just hurry up and pick something.
+<PNAME>;『早くって⋯。（どこに行こうかな。）;Always in a hurry... (Where should we go?)
+Asahina;「ほらほら早く。演劇始まっちゃうよ。;Come on, hurry! The play is about to start!
+
+<!-- play -->
+none;禅門怪人モンドー;Zen Monster Mondo
+none;禅門怪人モンドー「戦闘員諸君！;Zen Monster Mondo: "Soldiers!"
+none;禅門怪人モンドー「今回の作戦は、幼稚園のバスを襲い、我が幻魔帝国ナゾラーの戦闘員とするのだ。;Zen Monster Mondo: "The plan is to attack the kindergarten bus and turn the children into soldiers for the glorious Demon Empire Nazora!"
+none;戦闘員「ナゾーーッ！;Soldier: "Nazo!!!"
+none;．面黒ゼミナー「我が偉大なる幻魔帝国首領、大聖幻帝ナゾール様のために。;Female Executive Menkuro Seminar: For our great Genma Empire leader, Grand Holy Emperor Nazor.
+combatant;「ナゾッナゾッナゾッナゾッ;Nazo, Nazo, Nazo, Nazo..
+none;カルトレッド「カルトレッド！;Cult Red: "Cult Red!"
+none;カルトブラック「カルトブラック！;Cult Black: "Cult Black!"
+none;カルトブルー「カルトブルー！;Cult Blue: "Cult Blue!"
+none;カルトイエロー「カルトイエロー！;Cult Yellow: "Cult Yellow!"
+none;カルトピンク「カルトピンク！;Cult Pink: "Cult Pink!"
+everyone;「九伊豆戦隊カルトマン！;Everyone: "Quiz Sentai Cultman!"
+everyone;カルトレッド「人類の宝である幼稚園児の誘拐など、国会が解散しようとも、このカルトマンが許さん！;Cult Red: Kidnapping kindergarten children, who are treasures of humanity, even if the diet were to dissolve, this Cultman will not permit it!
+everyone;禅門怪人モンドー「飛んで火にいるカルトマン。今日こそ貴様達の最後だ。戦闘員どもかかれ！;Zenmon Monster Mondo: Flying into the fire, Cultman. Today will be your end. Combatants, attack!
+none;カルトピンク「初級カルトクイズ。１００枚の色紙の９９枚目の紙の色は何？;Cult Pink: Beginner Cult Quiz. What is the color of the 99th sheet out of 100?
+combatant;「ナゾッ？ナゾッ？ナゾッ？;Nazo? Nazo? Nazo?
+none;禅門怪人モンドー「おのれ！;Zenmon Monster Mondo: You!
+Soldier;戦闘員「ナゾーーッ！;Nazo!!!
+Female Executive;．面黒ゼミナー「我が偉大なる幻魔帝国首領、大聖幻帝ナゾール様のために。;Female Executive Menkuro Seminar: For our great Genma Empire leader, Grand Holy Emperor Nazor.
+combatant;「ナゾッナゾッナゾッナゾッ;Nazo, Nazo, Nazo, Nazo..
+none;カルトレッド「カルトレッド！;Cult Red: "Cult Red!"
+none;カルトブラック「カルトブラック！;Cult Black: "Cult Black!"
+none;カルトブルー「カルトブルー！;Cult Blue: "Cult Blue!"
+none;カルトイエロー「カルトイエロー！;Cult Yellow: "Cult Yellow!"
+none;カルトピンク「カルトピンク！;Cult Pink: "Cult Pink!"
+everyone;「九伊豆戦隊カルトマン！;Everyone: "Quiz Sentai Cultman!"
+everyone;カルトレッド「人類の宝である幼稚園児の誘拐など、国会が解散しようとも、このカルトマンが許さん！;Cult Red: Kidnapping kindergarten children, who are treasures of humanity, even if the diet were to dissolve, this Cultman will not permit it!
+everyone;禅門怪人モンドー「飛んで火にいるカルトマン。今日こそ貴様達の最後だ。戦闘員どもかかれ！;Zenmon Monster Mondo: Flying into the fire, Cultman. Today will be your end. Combatants, attack!
+none;カルトピンク「初級カルトクイズ。１００枚の色紙の９９枚目の紙の色は何？;Cult Pink: Beginner Cult Quiz. What is the color of the 99th sheet out of 100?
+combatant;「ナゾッ？ナゾッ？ナゾッ？;Nazo? Nazo? Nazo?
+none;禅門怪人モンドー「おのれ！;Zenmon Monster Mondo: You!
+<!-- play end -->
+
+<PNAME>;『面白かった？;What'd you think?
+Asahina;「何て言うかぁ⋯。面白くないわけじゃないんだけどぉ⋯。;Well... it's not that I didn't like it, but...
+<PNAME>;『あんまり、面白くなかったみたいだね。;You hated it.
+Asahina;「実はそうなんだけど⋯。あっ、それよりもさ、他のところに行こうよ。;Yeah... oh, but let's hit somewhere else, now that that's over with.
+<PNAME>;『残念だけど、文化祭終わりの時間だよ。;Sorry, the festival just ended.
+Asahina;「もう、そんな時間？じゃあさ、お茶して帰らない？;It's already so late? Wanna grab a tea and head back, then?
+<PNAME>;『そうだね。そうし⋯。;Yeah, let's do th-
+Asahina;「ほらほら、早く行こうよ。;Come onnn, hurry up!
+<PNAME>;『ち、ちょっと⋯。;W-wait up...
+Asahina;「ごめんね。電車がもろ混みで⋯。;Sorry. The train was super crowded...
+<PNAME>;（電車が混んでても遅れないぞ。下手な言い訳。）;(Being crowded doesn't make the train late. What a lame excuse...)
+<PNAME>;（今はスノーボードが流行っているらしい。ということを聞き出した。）;(I hear snowboarding is getting popular now.)
+<PNAME>;『よし、スノーボードを、プレゼントしよう。;Alright, I'll get her a snowboard.
+Asahina;「嘘、私に⋯。ね、開けてもいいでしょ？;N-no way, for me...? Can I open it?
+Kagami;「えっ、<PSURNAME>君？そろそろ、貴方から電話が来る頃だと思っていたわ。;Oh, <PSURNAME>-kun? I was expecting a call from you around this time.
+<PNAME>;（職員室は、いつ来ても緊張するなぁ。）;(No matter when I drop by the faculty room, I always get nervous...)
+<PNAME>;『失礼します。;Pardon the interruption...
+<PNAME>;（あれ？）;(Huh?)
+<PNAME>;（朝日奈さんだ。何か、怒られてるな。）;(It's Asahina-san. Looks like she's being scolded.)
+teacher;「おっ、<PNAME>君待ってたよ。;Hey, <PNAME>-kun, I've been waiting for you.
+<PNAME>;（ちっ、先生に呼ばれちまったぜ。）;(Damn, I got called by the teacher.)
+<PNAME>;（やっと、先生の用事が終わったよ。朝日奈さんは、もういないみたいだ。）;(Finally, that's over with. Looks like Asahina-san isn't here anymore.)
+<PNAME>;『失礼しました。;Excuse me.
+<PNAME>;『あれ？朝日奈さん。;Huh? Asahina-san.
+Asahina;「あっ、職員室にいたの？;Oh, were you in the faculty room?
+<PNAME>;『今、怒られてたでしょう。;You got in trouble just now, didn't you?
+Asahina;「えっ。やばいとこ、見られちゃったなぁ。;Urk... so you saw that...
+<PNAME>;『何、怒られてたの？;What did you do?
+Asahina;「ちょろっと、遅刻してね⋯。;I was just... a bit late to class.
+<PNAME>;『それで、あんなに怒られるって事は、かなりの常習犯だね。;You must be a repeat offender for that much of a scolding, 
+Asahina;「そんなことないよ。週に３、４回かな。;That's not true! Just maybe 3 or 4 times a week.
+<PNAME>;『それを常習犯って言うんだよ。;That's what we call a repeat offender...
+Asahina;「でも、あんぐらい我慢するだけで、遅刻ができんだもん。安いもんよ。;But if I'm already trying this hard to make it on time, I can be late sometimes. It's no big.
+<PNAME>;『はぁ⋯。反省の色が無い⋯。;Sigh... you don't seem sorry at all...
+Asahina;「それじゃ、私急ぐから。;Well, I've gotta go.
+<PNAME>;『そう言えば、もうすぐ鏡さんの誕生日だね。;By the way, it's almost your birthday, isn't it?
+Kagami;「知ってたのね。ま、当然だけど⋯。;So, you knew... well, I guess that's only natural~
+<PNAME>;『そ、そう。当然だね⋯。;Y-yeah. Of course...
+Kagami;「プレゼントは邪魔だから、いらないわ。;I don't need a gift, they're really just a hassle.
+<PNAME>;『そ、そう。（でも、どうしよう。）;R-right. (But what should I do...)
+Kagami;「仕方ないから、散歩でもしてあげるわ。;I suppose I have no other option, so I'll go for a walk with you.
+<PNAME>;『じゃあ、並木道の方に行こうよ。;Let's go take the path by the trees.
+Kagami;「そうね。;Alright.
+Kagami;「たまには、こういうのもよろしいわね。;A walk like this is nice, every once in a while.
+Kagami;「本当は、こういう所は好きではないけれど、今日は許してあげるわ。;I don't usually like places like this, but I'll make an exception today.
+Kagami;「今日は楽しかったわ。また、誘っていただけるかしら？;I had a good time today. Will you invite me out again?
+<PNAME>;『もちろん。また今度連絡するよ。;Of course. I'll call you.
+Asahina;「ちょろっと眠くなりそう。;I might get a little sleepy...
+Asahina;「あーっ、眠かった。;*Yawn* I almost fell asleep.
+Asahina;「えぇーっ。だったら乗らないでよ。;Ehh? Then why did we ride it?
+Asahina;「今度は、今日みたいじゃないところに誘ってね。;Next time, take me somewhere completely different.
+<PNAME>;『よし、銀の指輪を、プレゼントしよう。;Alright, I'll get her a silver ring.
